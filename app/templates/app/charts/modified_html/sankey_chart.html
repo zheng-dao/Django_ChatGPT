@@ -1,0 +1,84 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/sankey.js"></script>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <link rel="stylesheet" href="{% static 'app/content/local.css' %}">
+</head>
+
+<body>
+    <div id="container" style="min-width: 310px; margin: 0 auto" class="border"></div>
+    <script>
+    Highcharts.chart('container', {
+
+        title: {
+            text: 'Highcharts Sankey Diagram'
+        },
+        accessibility: {
+            point: {
+                valueDescriptionFormat: '{index}. {point.from} to {point.to}, {point.weight}.'
+            }
+        },
+        series: [{
+            type: 'sankey',
+            name: 'Sankey demo series',
+            keys: ['from', 'to', 'weight'],
+            nodeWidth:300,
+            colors: ['#469FE3', '#CEE0EE', '#CEE0EE','#CEE0EE','#CEE0EE','#CEE0EE'],
+            data: [
+                {from:'Home', to:'Exits',weight:1, color:'#469FE3'},
+                {from:'Home', to:'Loan Rates*', weight:2,color:'#469FE3'},
+                {from:'Home', to:'Home*', weight:3, color:'#469FE3'},
+                {from:'Home', to:'App Starts', weight:4, color:'#469FE3'},
+                {from:'Home', to:'Online Banking', weight:5, color:'#469FE3'},
+                {from:'Home', to:'Contact Us', weight:6, color:'#469FE3'},
+
+                {from:'SEO', to:'Exits', weight:1, color:'#469FE3'},
+                {from:'SEO', to:'Loan Rates*', weight:2,color:'#CEE0EE'},
+                {from:'SEO', to:'Home*', weight:3, color:'#CEE0EE'},
+                {from:'SEO', to:'App Starts', weight:4, color:'#CEE0EE'},
+                {from:'SEO', to:'Online Banking', weight:5, color:'#CEE0EE'},
+                {from:'SEO', to:'Contact Us', weight:6, color:'#CEE0EE'},
+
+                {from:'PPC', to:'Exits', weight:1, color:'#469FE3'},
+                {from:'PPC', to:'Loan Rates*', weight:2,color:'#CEE0EE'},
+                {from:'PPC', to:'Home*', weight:3, color:'#CEE0EE'},
+                {from:'PPC', to:'App Starts', weight:4, color:'#CEE0EE'},
+                {from:'PPC', to:'Online Banking', weight:5, color:'#CEE0EE'},
+                {from:'PPC', to:'Contact Us', weight:6, color:'#CEE0EE'},
+
+                {from:'Auto Calc', to:'Exits', weight:1, color:'#469FE3'},
+                {from:'Auto Calc', to:'Loan Rates*', weight:2,color:'#CEE0EE'},
+                {from:'Auto Calc', to:'Home*', weight:3, color:'#CEE0EE'},
+                {from:'Auto Calc', to:'App Starts', weight:4, color:'#CEE0EE'},
+                {from:'Auto Calc', to:'Online Banking', weight:5, color:'#CEE0EE'},
+                {from:'Auto Calc', to:'Contact Us', weight:6, color:'#CEE0EE'},
+
+                {from:'Loan Rates', to:'Exits', weight:1, color:'#469FE3'},
+                {from:'Loan Rates', to:'Loan Rates*', weight:2,color:'#CEE0EE'},
+                {from:'Loan Rates', to:'Home*', weight:3, color:'#CEE0EE'},
+                {from:'Loan Rates', to:'App Starts', weight:4, color:'#CEE0EE'},
+                {from:'Loan Rates', to:'Online Banking', weight:5, color:'#CEE0EE'},
+                {from:'Loan Rates', to:'Contact Us', weight:6, color:'#CEE0EE'},
+
+                {from:'Other', to:'Exits', weight:1, color:'#469FE3'},
+                {from:'Other', to:'Loan Rates*', weight:2,color:'#CEE0EE'},
+                {from:'Other', to:'Home*', weight:3, color:'#CEE0EE'},
+                {from:'Other', to:'App Starts', weight:4, color:'#CEE0EE'},
+                {from:'Other', to:'Online Banking', weight:5, color:'#CEE0EE'},
+                {from:'Other', to:'Contact Us', weight:6, color:'#CEE0EE'},
+            ],
+
+        }]
+
+    });
+    </script>
+</body>
+
+</html>

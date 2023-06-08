@@ -1,0 +1,197 @@
+{% extends "app/layout.html" %}
+{% load static %}
+
+{% block headscripts %}
+<style>
+
+.thead-dark{
+    background-color: 
+    black;color:white
+}
+
+a {
+    color:#0000FF;
+}
+a:active{
+    color:#0000FF;
+}
+a:visited{
+    color:#0000FF;
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 220px;
+  background-color: #003765;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a,.sidebar h1 {
+  display: block;
+  color: white;
+  padding: 5px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #3d658f;
+  color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #00264c;
+  color: white;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 220px;
+  padding: 1px 16px;
+  height: 1000px;
+  color:black;
+}
+a.edit_link,a.edit_link:hover,a.edit_link:active{
+  color: blue;
+}
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+.img01 img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.container.body-content {
+padding: 0 !important;
+min-width: 100%;
+}
+.btn{
+  margin-top: 10px !important;
+}
+.content,.sidebar{
+  margin-top: 20px !important;
+}
+
+
+
+{% if not selected_company %}
+div.content {margin-left: 0;}
+{% endif %}
+
+</style>
+{% endblock %}
+
+{% block content %}
+{% if selected_company %}
+<div class="sidebar">
+    {% if image_widths %}
+    
+        {% for width in image_widths %}
+                <div>
+                {% if width.0 is None %}
+                    <a href="?image_width=0" {% if width.0 == selected_image_width %} class="active" {% endif %}> {{width.0}} ({{width.1}}) </a>
+                {% else %}
+                    <a href="?image_width={{width.0}}" {% if width.0|slugify == selected_image_width %} class="active" {% endif %}> {{width.0}} ({{width.1}}) </a>
+                {% endif %}
+                </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endif %}
+
+<!-- Page content -->
+<div class="content">
+
+{% if selected_company %}
+{% comment %} <input type=button value="<< Back" class="btn btn-primary" onClick="javascript:history.go(-1);"> {% endcomment %}
+{% endif %}
+    {% if company_list and not selected_company %}
+        <h2>Companies</h2>
+        {% if is_dir_enabled %}
+            <a href="../">Use Asset Database</a><br/><br/>
+        {% else %}
+            <a href="./dir">Use scraped image directory</a><br/><br/>
+        {% endif %}
+        {% for company in company_list %}
+            <div>
+                {% if is_dir_enabled %}
+                    <a href="../{{company.code}}/{{dir_str}}" {% if company.code == request.GET.company %} class='active' {% endif %} >  {{company.name}}</a><br/>
+                {% else %}
+                    <a href="./{{company.code}}" {% if company.code == request.GET.company %} class='active' {% endif %} >  {{company.name}}</a><br/>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div>
+   {% if selected_company %}
+        <h1 style="display:inline"> {{selected_company }} </h1>
+        
+          {% if is_dir_enabled %}
+            <a href="/images/{{selected_company.code}}/"> <span style="display:inline">(Use Asset Database)</span></a>
+          {% else %}
+            <a href="./dir"> <span style="display:inline">(Use scraped image directory)</span></a>
+          {% endif %}
+        
+   {% endif %}
+    {% if image_data and selected_image_width %}
+        {% comment %} <h1> {{ selected_company.name }} </h1> {% endcomment %}
+        {% for width, value_width in image_data.items %}
+            <div class="row img01">
+            {% for height, urls in value_width.items %}
+                <h1>{{width}} X {{height}}</h1>
+                <div class="col-md-12">
+                    <div class="row">
+                      {% for data in urls %}
+                        <div class="col-md-4 img01" style="padding:10px;  border: 1px solid grey;">
+                          
+                          {% if is_dir_enabled %}
+                          <div class="image-container">
+                              {% comment %} <img src="{% static url %}" height={{height}} width={{width}}/> {% endcomment %}
+                              <a href="{{data}}"> <img src="{{data}}"/> </a>
+                          </div>
+                          {% else %}
+                          <div class="image-container">
+                              {% comment %} <img src="{% static url %}" height={{height}} width={{width}}/> {% endcomment %}
+                              <a href="{{data.url}}"> <img src="{{data.url}}"/> </a>
+                          </div>
+                          <div>
+                            <a href ="/admin/app/asset/{{data.id}}/change/" class="edit_link" > Edit </a>
+                          </div>
+                          {% endif %}
+                        </div>
+                      {% endfor %}
+                  </div>
+                </div>
+            {% endfor %}
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

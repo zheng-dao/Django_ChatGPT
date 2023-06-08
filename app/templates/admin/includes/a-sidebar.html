@@ -1,0 +1,431 @@
+{% load static %}
+<div class="sidebar sidebar-style-2" data-background-color="dark2">
+    <div class="sidebar-wrapper scrollbar scrollbar-inner">
+        <div class="sidebar-content">
+            <div class="user">
+                <div class="avatar-sm float-left mr-2">
+                    <img src="{% static 'app/assets/img/profile.jpg' %}" alt="..." class="avatar-img rounded-circle">
+                </div>
+                <div class="info">
+                    <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+                        <span>
+                            Bob
+                            <span class="user-level">Administrator</span>
+                            <span class="caret"></span>
+                        </span>
+                    </a>
+                    <div class="clearfix"></div>
+
+                    <div class="collapse in" id="collapseExample">
+                        <ul class="nav">
+                            <li>
+                                <a href="#profile">
+                                    <span class="link-collapse">My Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#edit">
+                                    <span class="link-collapse">Edit Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#settings">
+                                    <span class="link-collapse">Settings</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav nav-primary">
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                        <i class="fas fa-home"></i>
+                        <p>AI Settings</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="dashboard">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{% url 'a-algorithms-enabled' %}">
+                                    <span class="sub-item">Algorithms Enabled</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'a-products_list' %}">
+                                    <span class="sub-item">Products</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'a-segments' %}">
+                                    <span class="sub-item">Segments</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'a-keywords' %}">
+                                    <span class="sub-item">Keywords</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'a-charter' %}">
+                                    <span class="sub-item">Charter Regions</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <!--<li class="nav-section">
+                    <span class="sidebar-mini-icon">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </span>
+                    <h4 class="text-section">Personalization Engine</h4>
+                </li>-->
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#base">
+                        <i class="fas fa-layer-group"></i>
+                        <p>AI Scenarios</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="base">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{% url 'a-branch_events' %}">
+                                    <span class="sub-item">Create New Scenario</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'a-scenarios' %}">
+                                    <span class="sub-item">View All Scenarios</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components/avatars.html">
+                                    <span class="sub-item">Product-based</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components/buttons.html">
+                                    <span class="sub-item">Geo-based</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components/gridsystem.html">
+                                    <span class="sub-item">Segment-based</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'a-fi-scenarios' %}">
+                                    <span class="sub-item">Funnel Re-entry</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components/panels.html">
+                                    <span class="sub-item">Stepwise-based</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components/panels.html">
+                                    <span class="sub-item">Revenue-based</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components/panels.html">
+                                    <span class="sub-item">Digital Banking Accounts/Transactions</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/campaigns-list/">
+                                    <span class="sub-item">A/B Testing</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components/panels.html">
+                                    <span class="sub-item">Automated Testing</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#sidebarLayouts">
+                        <i class="far fa-sticky-note"></i>
+                        <p>Content</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="sidebarLayouts">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{% url 'a-content-modules' %}">
+                                    <span class="sub-item">Content Modules</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'a-content-module-templates' %}">
+                                    <span class="sub-item">Content Module Templates</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'a-copy-content-modules' %}">
+                                    <span class="sub-item">Copy</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'a-generate-copy' %}">
+                                    <span class="sub-item">Generate Copy</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'a-media-library' %}">
+                                    <span class="sub-item">Media Library</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin/app/offer/">
+                                    <span class="sub-item">Offers</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin/app/faqquestion/">
+                                    <span class="sub-item">FAQs</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#forms">
+                        <i class="far fa-chart-bar"></i>
+                        <p>Analytics</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="forms">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{% url 'a-rpt_personalization' %}">
+                                    <span class="sub-item">Overall Personalization</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'a-rpt_funnel' %}">
+                                    <span class="sub-item">Application Funnel</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'a-rpt_content' %}">
+                                    <span class="sub-item">Content Performance</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'a-rpt_seo' %}">
+                                    <span class="sub-item">SEO</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'a-rpt_page' %}">
+                                    <span class="sub-item">Page Performance</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#users">
+                        <i class="fas fa-user-friends"></i>
+                        <p>User Management</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="users">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{% url 'a-users' %}">
+                                    <span class="sub-item">Users &amp; Permissions</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="forms/forms.html">
+                                    <span class="sub-item">Add a User</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#tables">
+                        <i class="fas fa-table"></i>
+                        <p>Data &amp; Integrations</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="tables">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="tables/tables.html">
+                                    <span class="sub-item">Google Analytics</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tables/tables.html">
+                                    <span class="sub-item">3rd Party Integrations</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tables/tables.html">
+                                    <span class="sub-item">Site Pages</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tables/datatables.html">
+                                    <span class="sub-item">Demographics - US Census</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tables/tables.html">
+                                    <span class="sub-item">NCUA</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tables/tables.html">
+                                    <span class="sub-item">Revenue</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tables/tables.html">
+                                    <span class="sub-item">Rates</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tables/tables.html">
+                                    <span class="sub-item">Zip Codes</span>
+                                </a>
+                            </li>
+                            {% if request.user.is_superuser %}
+                            <li>
+                                <a href="/admin/">
+                                    <span class="sub-item">Admin</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/api/v1">
+                                    <span class="sub-item">API</span>
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#maps">
+                        <i class="fas fa-question"></i>
+                        <p>Support</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="maps">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="maps/jqvmap.html">
+                                    <span class="sub-item">Documentation</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'a-faqs' %}">
+                                    <span class="sub-item">FAQs</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="maps/jqvmap.html">
+                                    <span class="sub-item">Submit a Ticket</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="maps/jqvmap.html">
+                                    <span class="sub-item">Contact Us</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <!--                    <li class="nav-item">
+                                <a data-toggle="collapse" href="#charts">
+                                    <i class="far fa-chart-bar"></i>
+                                    <p>Charts</p>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse" id="charts">
+                                    <ul class="nav nav-collapse">
+                                        <li>
+                                            <a href="charts/charts.html">
+                                                <span class="sub-item">Chart Js</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="charts/sparkline.html">
+                                                <span class="sub-item">Sparkline</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a href="widgets.html">
+                                    <i class="fas fa-desktop"></i>
+                                    <p>Widgets</p>
+                                    <span class="badge badge-success">4</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a data-toggle="collapse" href="#submenu">
+                                    <i class="fas fa-bars"></i>
+                                    <p>Menu Levels</p>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse" id="submenu">
+                                    <ul class="nav nav-collapse">
+                                        <li>
+                                            <a data-toggle="collapse" href="#subnav1">
+                                                <span class="sub-item">Level 1</span>
+                                                <span class="caret"></span>
+                                            </a>
+                                            <div class="collapse" id="subnav1">
+                                                <ul class="nav nav-collapse subnav">
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="sub-item">Level 2</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="sub-item">Level 2</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a data-toggle="collapse" href="#subnav2">
+                                                <span class="sub-item">Level 1</span>
+                                                <span class="caret"></span>
+                                            </a>
+                                            <div class="collapse" id="subnav2">
+                                                <ul class="nav nav-collapse subnav">
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="sub-item">Level 2</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="sub-item">Level 1</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="mx-4 mt-2">
+                                <a href="http://themekita.com/atlantis-bootstrap-dashboard.html" class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i class="fa fa-heart"></i> </span>Buy Pro</a>
+                            </li>
+                        </ul>-->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+{% extends "admin/base_atlantis.html" %}
+{% load static %}
+{% block endheadscripts %}
+<style>
+    .alert-danger {
+        color: #721c24 !important;
+        background-color: #f8d7da !important;
+        border-color: #f5c6cb !important;
+    }
+</style>
+{% endblock endheadscripts %}
+{% block panel-header %}
+<div class="page-navs bg-black py-3 pr-2">
+    <div class="card-title fw-bold">
+        Choose or Create Template
+    </div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+<div class="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title">Template</h4>
+                    </div>
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        {% if message %}
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <div class="alert alert-danger">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if ad_template %}
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="ad_html">Template HTML</label>
+                                    <textarea class="form-control" id="ad_html" name="ad_html" rows="10">{{ ad_template.ad_html }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="templates_list">Events</label>
+                                    <select class="form-control" id="templates_list" name="ad_template">
+                                        <option value="-1">Select Template</option>
+                                        <!-- <option value="0">New Template</option> -->
+                                        {% for i in data %}
+                                        <option value="{{ i.id }}">{% if user.is_superuser or user.is_staff %}{{ i.company.name }} |{% endif %} {{ i.template_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success btn-round" type="submit">Continue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block endscripts %}
+{% endblock %}

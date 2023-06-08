@@ -1,0 +1,54 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<!--test-->
+<div class="jumbotron">
+    <h3>Location-based</h3>
+    <p>
+        <a href="{{ EXTERNAL_SITE_IP }}/?zipcode=32212" class="btn btn-primary btn-large">Military Zip Code</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/?zipcode=32304" class="btn btn-primary btn-large">Tallahassee New Branch</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/?zipcode=94941&use_distance_model=1" class="btn btn-primary btn-large">Distance from Branch Model</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/?zipcode=33145" class="btn btn-primary btn-large">Miami</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/?&zipcode=30338" class="btn btn-primary btn-large">Atlanta</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/?zipcode=32259" class="btn btn-primary btn-large">Wealthy Zip Code</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/?zipcode=32209" class="btn btn-primary btn-large">Lower Income Zip Code</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/?zipcode=32079" class="btn btn-primary btn-large">Elderly Zip Code</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/?zipcode=32228" class="btn btn-primary btn-large">Young Zip Code</a>
+    </p>
+    <h3>Page-based</h3>
+        <a href="{{ EXTERNAL_SITE_IP }}/search?cludoquery= the best ira" class="btn btn-primary btn-large">User Search: the best IRA</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/search?cludoquery=car loan" class="btn btn-primary btn-large">User Search: Car Loan</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/personal/borrow/home-loans/mortgages" class="btn btn-primary btn-large">Product Recognition: Mortgage</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/apply/car-loan" class="btn btn-primary btn-large">Funnel: Apply Car Loan</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/apply/mortgage" class="btn btn-primary btn-large">Funnel: Apply Mortgage</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/apply/credit-card" class="btn btn-primary btn-large">Funnel: Apply Credit Card</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/open/checking" class="btn btn-primary btn-large">Funnel: Open Checking</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/open/cd" class="btn btn-primary btn-large">Funnel: Open CD</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/?products_owned=credit card,car loan" class="btn btn-primary btn-large">Products Owned</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/?products_recommended=credit card" class="btn btn-primary btn-large">Products Recommended</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/?models=rate_compare&data=car loan__rate,5.5__date,2015-01-01|zoo__rate,5.5__date,2015-01-01&products_owned=car loan" class="btn btn-primary btn-large">Detect Refi</a>
+    <h3>Scenario-based</h3>
+        <a href="{{ EXTERNAL_SITE_IP }}?utm_source=google&ut_medium=banner&utm_campaign=FSU_Loyalty&utm_term=fsu" class="btn btn-primary btn-large">Campaign: FSU</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/rates/heloc?models=referrer&referrer=organic" class="btn btn-primary btn-large">Referrer Organic --> Rates</a>
+    <h3>OLB-based</h3>
+        <a href="{{ EXTERNAL_SITE_IP }}/" class="btn btn-primary btn-large">OLB: Mature Accountholder - mature/demo</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/" class="btn btn-primary btn-large">OLB: New Accountholder - new/demo</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/" class="btn btn-primary btn-large">OLB: No Mobile - nomobile/demo</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/olb?models=signal&products_recommended=bill pay__add a payee" class="btn btn-primary btn-large">OLB: Bill Pay Signals</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/olb?products_recommended=credit card&models=signal&page=/olb/lowincome" class="btn btn-primary btn-large">OLB: Low Income Credit Card</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/olb?products_recommended=mobile__member to member&models=signal" class="btn btn-primary btn-large">OLB: No Mobile</a>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>
+
+{% endblock %}

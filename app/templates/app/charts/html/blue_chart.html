@@ -1,0 +1,202 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<link rel="stylesheet" href="/static/app/content/local.css">
+    
+   
+  </head>
+
+  <body>
+    <div
+      id="container"
+      style="min-width: 310px; height: 400px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+      let data = {
+        xAxis: { title: { text: "Numbers" } },
+        title: { text: "Data Summaries (2019, 2020)" },
+        subtitle: { text: "Source" },
+        yAxis: { title: { text: "Numbers of" } },
+        legend: { layout: "vertical", align: "right", verticalAlign: "middle" },
+      };
+
+      let series = data["series"];
+      console.log(series);
+      Highcharts.chart("container", {
+        chart: {
+          type: "area",
+          backgroundColor:'transparent',
+          scrollablePlotArea: {
+            minWidth: 0,
+          },
+          //            styledMode: true,
+          // type: "column",
+        },
+
+        title: {
+          text: "NCUA Data Series: XYZ Credit Union",
+          style: {
+            color: "#02429b",
+          },
+        },
+        "credits": {
+          "enabled": false
+      },
+        /*
+        subtitle: {
+            text: 'Source: Google Analytics'
+        },
+        */
+        //color:["#6b8795","#556d79","#00b1bc","#f19820","#ed2c76","#9dc33b"],
+
+        xAxis: {
+          // one week
+          lineColor: '#434343',
+          lineWidth:3,
+          labels: {
+            style: {
+              color: "#434343",
+            },
+          },
+          gridLineColor: "#ffffff",
+          gridTextColor: "#ffffff",
+
+          categories: [
+            "2019 Q1",
+            "2019 Q2",
+            "2019 Q3",
+            "2019 Q4",
+            "2020 Q1",
+          ],
+          gridLineColor: "transparent",
+          gridTextColor: "#ffffff",
+          lineColor: "#434343",
+          tickColor: "transparent",
+          showEmpty: false,
+        },
+
+        yAxis: {
+          // left y axis
+          title: {
+            text: null,
+          },
+          /*
+            labels: {
+                align: 'left',
+                x: 3,
+                y: 16,
+                format: '{value:.,0f}'
+            },
+            */
+          labels: {
+            style: {
+              color: "#434343",
+            },
+          },
+          lineColor: '#434343',
+          lineWidth:3,
+         // gridLineColor: "transparent",
+          gridTextColor: "#ffffff",
+          gridLineWidth: 0,
+          showFirstLabel: false,
+        } /*{ // right y axis
+            linkedTo: 0,
+            gridLineWidth: 1,
+            gridLineColor: '#FFFFFF',
+            lineColor:'#FFFFFF',
+            opposite: true,
+            title: {
+                text: null
+            },
+            labels: {
+                align: 'right',
+                x: -3,
+                y: 16,
+            },
+            showFirstLabel: false
+        }*/,
+
+        /*legend: {
+            align: 'left',
+            verticalAlign: 'top',
+            borderWidth: 0
+        },
+        */
+        tooltip: {
+          shared: true,
+          crosshairs: true,
+        },
+        /*plotOptions: {
+            series: {
+                cursor: 'pointer',
+                point: {
+                    events: {
+                        click: function (e) {
+                            hs.htmlExpand(null, {
+                                pageOrigin: {
+                                    x: e.pageX || e.clientX,
+                                    y: e.pageY || e.clientY
+                                },
+                                headingText: this.series.name,
+                                maincontentText: Highcharts.dateFormat('%A, %b %e, %Y', this.x) + ':<br/> ' +
+                                    this.y + ' sessions',
+                                width: 200
+                            });
+                        }
+                    }
+                },
+                marker: {
+                    lineWidth: 1
+                }
+            }
+        },
+        */
+        series: [
+          {
+            data: [800.0, 780.0, 1000.0, 850.0, 1200.0],
+            name: "total number of members",
+            /*color: {
+              linearGradient: {
+                x1: 0,
+                x2: 0,
+                y1: 0,
+                y2: 1,
+              },
+              stops: [
+                [0, "#00B1BC"],
+                [1, "#265BB6"],
+              ],
+            },
+            lineWidth: 5,
+          },
+          */
+        },
+        ],
+        plotOptions: {
+          series: {
+            color: "#209af1",
+            pointPadding: 0,
+            groupPadding: 0,
+            borderWidth: 0,
+            shadow: false,
+                opacity: 25,
+                marker: { enabled: false },
+          },
+        },
+      });
+      Highcharts.setOptions({
+        lang: {
+          thousandsSep: ','
+        }
+      });
+    </script>
+  </body>
+</html>

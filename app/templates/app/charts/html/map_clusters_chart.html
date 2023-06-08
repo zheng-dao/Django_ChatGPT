@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.6/proj4.js"></script>
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/marker-clusters.js"></script>
+    <script src="https://code.highcharts.com/modules/coloraxis.js"></script>
+    <script src="https://code.highcharts.com/mapdata/custom/europe.js"></script>
+    <script src="https://code.highcharts.com/mapdata/countries/us/us-fl-all.js"></script>
+
+</head>
+
+<body>
+    <div id="container"
+         style="min-width: 310px; max-width: 700px; height:600px; margin: 0 auto"></div>
+    <script>
+        //https://cdn.jsdelivr.net/gh/highcharts/highcharts@1e9e659c2d60fbe27ef0b41e2f93112dd68fb7a3/samples/data/european-train-stations-near-airports.json
+        Highcharts.getJSON('{% static 'app / data / vystar_locs.json' %}', function (data) {
+            Highcharts.mapChart('container', {
+                chart: {
+                    map: 'countries/us/us-fl-all'
+                },
+                title: {
+                    text: 'VyStar Branch Locations'
+                },
+                subtitle: {
+                    text: 'Here is a subtitle'
+                },
+                mapNavigation: {
+                    enabled: true
+                },
+                colorAxis: {
+                    min: 0,
+                    max: 20
+                },
+                series: [{
+                    name: 'Basemap',
+                    borderColor: 'white',
+                    //nullColor: 'rgba(177, 244, 177, 0.5)',
+                    nullColor: '#45A0E3',
+                    showInLegend: false
+                }, {
+                    type: 'mappoint',
+                    enableMouseTracking: false,
+                    colorKey: 'clusterPointsAmount',
+                    name: 'Cities',
+                    data: data
+                }]
+            });
+        });
+
+
+    </script>
+</body>
+</html>

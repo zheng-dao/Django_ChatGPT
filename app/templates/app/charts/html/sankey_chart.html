@@ -1,0 +1,82 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.highcharts.com/modules/sankey.js"></script>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <link rel="stylesheet" href="{% static 'app/content/local.css' %}">
+
+  </head>
+
+  <body>
+    <div
+      id="container"
+      style="min-width: 310px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+Highcharts.chart('container', {
+
+    title: {
+        text: 'Highcharts Sankey Diagram'
+    },
+    accessibility: {
+        point: {
+            valueDescriptionFormat: '{index}. {point.from} to {point.to}, {point.weight}.'
+        }
+    },
+    series: [{
+        type: 'sankey',
+        name: 'Sankey demo series',
+        keys: ['from', 'to', 'weight'],
+        data: 
+
+[
+   [
+      "(none)",
+      "/default.aspx",
+      29182
+   ],
+   [
+      "organic",
+      "/default.aspx",
+      20417
+   ],
+   [
+      "referral",
+      "/default.aspx",
+      2745
+   ],
+   [
+      "cpc",
+      "/default.aspx",
+      759
+   ],
+   [
+      "banner",
+      "/default.aspx",
+      17
+   ],
+   [
+      "email",
+      "/default.aspx",
+      32
+   ],
+   [
+      "Banner",
+      "/default.aspx",
+      10
+   ]
+],
+
+    }]
+
+});
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+{% extends "admin/base_atlantis.html" %}
+{% load static %}
+{% block endheadscripts %}
+<style>
+    #alert-msg.alert-success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        padding: .65rem 1.25rem;
+        border-radius: 7px;
+    }
+
+        #alert-msg.alert-success button {
+            background: transparent;
+            top: 0 !important;
+            line-height: 15px;
+        }
+
+    #charter-form {
+        margin-top: 15px;
+    }
+
+        #charter-form .top_btn_card {
+            float: right;
+        }
+</style>
+<script src="{% static 'app/assets/js/plugin/highcharts/maps/highmaps.js' %}"></script>
+<script src="{% static 'app/assets/js/plugin/highcharts/maps/modules/exporting.js' %}"></script>
+{% endblock %}
+{% block panel-header %}
+<div class="page-navs bg-black py-3 pr-2">
+    {% if not state %}
+    <div class="card-title fw-bold">
+        Select States and Counties
+    </div>
+    <p>Choose the states in your charter and then click Continue. You will select counties for each state next.</p>
+    {% else %}
+    <div class="card-title fw-bold">
+        Select Counties in Charter{% if state %}: {{ state }}{% endif %}
+    </div>
+    <p>Choose the counties in your charter region in the state of {{ state }}.</p>
+    {% endif %}
+</div>
+{% endblock %}
+{% block panel-inner %}
+<div class="page-inner">
+    {% if companies %}
+    {% include 'admin/companies.html' with companies=companies view_name='charter' %}
+    {% else %}
+    {% if not state %}
+    {% include 'admin/settings/states-map.html' with states=states selected_states=selected_states  %}
+    {% else %}
+    {% include 'admin/settings/county-map.html' with selected_counties=selected_counties %}
+    {% endif %}
+    {% endif %}
+</div>
+{% endblock %}
+{% block endscripts %}
+{% endblock %}

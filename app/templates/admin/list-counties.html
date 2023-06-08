@@ -1,0 +1,197 @@
+{% extends "admin/base_atlantis.html" %}
+{% load static %}
+{% block endheadscripts %}
+<style>
+    /* .sorting, .sorting_asc, .sorting_desc {
+        background : none;
+    } */
+    #basic-datatables .form-check.chkbox {
+        display: revert;
+    }
+
+    .top_btn_card {
+        text-align: right;
+    }
+</style>
+
+{% endblock %}
+{% block panel-header %}
+<div class="page-navs bg-black py-3 pr-2">
+    <div class="card-title fw-bold">
+        Counties
+    </div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+<div class="page-inner">
+    {% if messages %}
+    {% for msg in messages %}
+    <div class="alert alert-{{msg.tags}} alert-dismissible fade show mb-0" role="alert" id="alert-msg">
+        <strong>{{msg|safe}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <form id="charter-form" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="chkbox" id="counties_chkbox">
+        <div class="card-action top_btn_card">
+            <button id="getselectedpoints_top" class="btn btn-success btn-round" type="submit">Continue</button>
+        </div>
+        <div id="container" style="min-width: 310px; max-width: 700px; height:600px; margin: 0 auto"></div>
+
+        <div class="card-action">
+            <button id="getselectedpoints_bottom" class="btn btn-success btn-round" type="submit">Continue</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+{% block endscripts %}
+<script src="{% static 'app/assets/js/plugin/highcharts/maps/highmaps.js' %}"></script>
+<script src="{% static 'app/assets/js/plugin/highcharts/maps/modules/exporting.js' %}"></script>
+<script>
+    {/* sst = "{{ selected_counties }}";
+    selectedCounty = sst.split(",");
+    console.log('selectedCounty23', selectedCounty); */}
+    var geojson = "{{ charter_zipcodes|escapejs }}";
+    var topology = $.parseJSON(geojson);
+    // var selectedZipCodes = ['02818','02816', '02817'];
+    var selectedZipCodes = "{{ selected_zipcodes|escapejs }}";
+    selectedZipCodes = $.parseJSON(selectedZipCodes);
+    console.log('selectedZipCodes', selectedZipCodes);
+ (async () => {
+     const params = new Proxy(new URLSearchParams(window.location.search), {
+     get: (searchParams, prop) => searchParams.get(prop),
+     });
+
+                 var filterData = [];
+                 console.log(topology)
+                 topology.features.forEach(o=>{
+                     //console.log(o)
+                    console.log('city', o.properties['CITY'])
+                    filterData.push([o.properties['ZCTA5CE10'], "0", o.properties['CITY']]);
+                 });
+         console.log('filterData', filterData)
+
+
+         chart = Highcharts.mapChart('container', {
+         chart: {
+             map: topology,
+             borderWidth: 0,
+             marginRight: 20,
+             backgroundColor: null,
+         },
+         credits: {
+                 enabled:false,
+         },
+         exporting: {
+             enabled: false,
+         },
+
+         title: {
+                 text: null,
+                 style: { color: '#FFF' },
+             },
+
+         mapNavigation: {
+             enabled: true,
+             buttonOptions: {
+                 verticalAlign: 'bottom'
+             }
+         },
+
+         colorAxis: {
+                 min: 0,
+                 max: 75,
+                 tickInterval: 5,
+                 stops: [[0, '#b8d0e4'], [0.65, '#b8d0e4'], [1, '#b8d0e4']],
+                 labels: {
+                     format: '{value}%'
+                 }
+         },
+         plotOptions:{
+             series:{
+                 borderColor: '#000000',
+                 point:{
+                     events:{
+                         click: function(){
+                             console.log(this.selected);
+                             this.selected = !this.selected;
+                             // alert(this.name);
+                         },
+                     }
+                 }
+             },
+             map: {
+             tooltip: {
+                 headerFormat: '',
+                 pointFormat: 'Zipcode : <b>{point.ZCTA5CE10}</b><br/>City : <b>{point.CITY}</b>'
+             }}
+         },
+         series: [{
+             data: filterData,
+             keys: ['ZCTA5CE10', 'value', 'CITY'],
+             joinBy: 'ZCTA5CE10',
+             name: 'Zip Codes',
+             states: {
+                 hover: {
+                     color: 'rgb(69,160,227)'
+                 },
+                 select:{
+                     color:'rgb(69,160,227)'
+                 }
+             },
+             dataLabels: {
+                 enabled: true,
+                 format: '{point.ZCTA5CE10}'
+             },
+
+         }],
+         legend: {
+             enabled: false
+         }
+     });
+     chart.series[0].points.forEach(o=>{
+         console.log(o.properties);
+         if(selectedZipCodes.includes(o['ZCTA5CE10'])){
+         o.select(true,true);
+         }
+     });
+
+
+     function onclick_func() {
+         const selectedPointsLength = chart.getSelectedPoints().length;
+             if(chart.getSelectedPoints().length > 0){
+                 var selectedPoints = chart.getSelectedPoints();
+                 var finalSelectedZipCodes = [];
+                 selectedPoints.forEach(function(index,points,array){
+                     finalSelectedZipCodes.push(index["ZCTA5CE10"]);
+
+                 });
+                 // window.location.href = "/county-map?counties="+finalSelectedZipCodes;
+                 console.log('finalSelectedZipCodes', finalSelectedZipCodes)
+                 jQuery("#counties_chkbox").val(finalSelectedZipCodes)
+
+                 jQuery("#charter-form").submit()
+             }
+     }
+     // Create the chart
+     const button_top = document.getElementById('getselectedpoints_top');
+     const button_bottom = document.getElementById('getselectedpoints_bottom');
+
+         // When the button is clicked
+         button_top.onclick = () => {
+             onclick_func(chart)
+         };
+
+         button_bottom.onclick = () => {
+             onclick_func(chart)
+         };
+
+
+
+ })();
+</script>
+{% endblock %}

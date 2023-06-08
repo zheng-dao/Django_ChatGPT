@@ -1,0 +1,235 @@
+{% load i18n static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
+<head>
+    {% block startheadscripts %}
+    {% endblock %}
+    <title>{% block title %}Finalytics.AI{% endblock %}</title>
+    {% comment %}<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static " admin /css/base.css" %}{% endblock %}">{% endcomment %}
+    {% if not is_popup and is_nav_sidebar_enabled %}
+    {% comment %}<link rel="stylesheet" type="text/css" href="{% static " admin /css/nav_sidebar.css" %}">{% endcomment %}
+    <script src="{% static 'admin/js/nav_sidebar.js' %}" defer></script>
+    {% endif %}
+    {% block extrastyle %}{% endblock %}
+    {% block basestyle%}
+    {% comment %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" /> {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/custom-header.css' %}" />
+    {% endblock basestyle %}
+    {% if LANGUAGE_BIDI %}
+    {% comment %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static " admin /css/rtl.css" %}{% endblock %}">{% endcomment %}{% endif %}
+    {% block extrahead %}{% endblock %}
+    {% block responsive %}
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    {% comment %}<link rel="stylesheet" type="text/css" href="{% static "admin /css/responsive.css" %}">{% endcomment %}
+    {% if LANGUAGE_BIDI %}
+    {% comment %}<link rel="stylesheet" type="text/css" href="{% static " admin /css/responsive_rtl.css" %}">{% endcomment %}{% endif %}
+    {% endblock %}
+    {% block blockbots %}
+    <meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}" />
+    <!-- Fonts and icons -->
+    <script src="{% static 'app/assets/js/plugin/webfont/webfont.min.js' %}"></script>
+    <script>
+        WebFont.load({
+            google: { "families": ["Lato:300,400,700,900"] },
+            custom: {
+                "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['{% static "app/assets/css/fonts.min.css" %}']
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'app/assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/css/atlantis.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/sass/atlantis/plugins/_jqueryscrollbar.scss' %}">
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="{% static 'app/assets/css/demo.css' %}">
+    {% block endheadscripts %}    
+    {% endblock %}
+</head>
+{% load i18n %}
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}" data-admin-utc-offset="{% now "Z" %}" data-background-color="dark">
+
+    <div id="container" class="wrapper">
+        <!-- Container -->
+        {% block custom_header %}
+        <div class="main-header">
+            <!-- Logo Header -->
+            <div class="logo-header" data-background-color="dark2">
+
+                <a href="/admin/" class="logo">
+                    <img src="{% static 'app/images/Finalytics_logo_white_05-02-21.svg' %}" alt="navbar brand" class="navbar-brand" style="width:140px;">
+                </a>
+                <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">
+                        <i class="icon-menu"></i>
+                    </span>
+                </button>
+                <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+                <div class="nav-toggle">
+                    <button class="btn btn-toggle toggle-sidebar">
+                        <i class="icon-menu"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- End Logo Header -->
+            <!-- Navbar Header -->
+            {% include 'admin/includes/nav.html' %}
+            <!-- End Navbar -->
+        </div>
+
+        <!-- Sidebar -->
+        {% include 'admin/includes/sidebar.html' %}
+        <!-- End Sidebar -->
+        {% endblock custom_header %}
+
+
+
+        <div class="main-panel" id="main">
+            {% if not is_popup and is_nav_sidebar_enabled %}
+            {% comment %}{% block nav-sidebar %}
+            {% include "admin/nav_sidebar.html" %}
+            {% endblock %} {% endcomment %}
+            {% endif %}
+            <div class="container">
+                {% block messages %}
+                {% if messages %}
+                <ul class="messagelist">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                        {{ message|capfirst }}</li>
+                        {% endfor %}
+                </ul>
+                {% endif %}
+                {% endblock messages %}
+                <!-- Content -->
+                
+                
+                    
+                    <div id="content" class="{% block coltype %}colM{% endblock %} page-inner" ddl="{{ request.path }}">
+                        
+                        
+                        <div class="row">
+                            <div class="{% if request.path == '/admin/' %}col-md-9{% else %}col-md-12 col-lg-12 col-xs-12{% endif %} col-12">
+                                <div class="card">
+                                    {% block pretitle %}{% endblock %}
+                                    <div class="card-header">{% block content_title %}{% if title %}  <div class="card-title">{{ title }}</div>{% endif %}{% endblock %}</div>
+
+                                    {% block content_subtitle %}{% if subtitle %}<h2 class="sub_title">{{ subtitle }}</h2>{% endif %}{% endblock %}
+
+                                    {% if not is_popup %}
+                                    {% block breadcrumbs %}
+                                    <div class="breadcrumbs">
+                                    <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+                                    {% if title %} &rsaquo; {{ title }}{% endif %}
+                                    </div>
+                                    {% endblock %}
+                                    {% endif %}                                    
+
+                                    <div class="card-body">
+                                        {% block content %}
+                                        {% block object-tools %}{% endblock %}
+                                        {{ content }}
+                                        {% endblock %}
+                                    </div>
+                                </div>
+                            </div>
+                                  
+                                        {% if request.path == '/admin/' %}
+                                        <div class="col-md-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    {% block sidebar %}{% endblock %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        {% endif %}
+                                    </div>
+                              
+
+                        <br class="clear">
+                    </div>
+                    
+                
+                <!-- END Content -->
+                {% block footer %}<div id="footer"></div>{% endblock %}
+            </div>
+        </div>
+    </div>
+<!-- END Container -->
+{% block basejs%}
+
+    <script src="{% static 'app/assets/js/core/jquery.3.2.1.min.js' %}"></script>
+    <script src="{% static 'app/assets/js/core/popper.min.js' %}"></script>
+    <script src="{% static 'app/assets/js/core/bootstrap.min.js' %}"></script>{% 
+    <script src="{% static 'app/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+
+
+    <script src="{% static 'app/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+
+    <!-- jQuery Scrollbar -->
+    <script src="{% static 'app/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+
+   
+
+
+
+
+    <!-- Atlantis JS -->
+    <script src="{% static 'app/assets/js/atlantis.min.js' %}"></script>
+
+    <!-- Atlantis DEMO methods, don't include it in your project! -->
+    
+    <script>
+        function update_left_nav_item(current_param) {
+            jQuery('.sidebar-content li a').each(function () {
+                if (jQuery(this).attr('href') == current_param) {
+                    jQuery(this).parent().addClass('active');
+                    jQuery(this).parent().parent().parent().addClass('show');
+                    jQuery(this).parent().parent().parent().parent().addClass('active').addClass('submenu');
+                    return false;
+                }
+            })
+        }
+        jQuery(document).ready(function () {
+            current_param = window.location.pathname;
+            split_url_str = current_param.split('/')
+            console.log('split_url_str[3]', split_url_str.length)
+            valid_models = ['keywordgroup', 'adtemplate', 'adcopy', 'offer', 'faqquestion', 'user']
+            left_nav_models_urls = ['/admin/app/keywordgroup/', '/admin/app/adtemplate/', '/admin/app/adcopy/', '/admin/app/offer/', '/admin/app/faqquestion/', '/admin/auth/user/', '/admin/auth/user/add/']
+            if(split_url_str.length > 3) {
+                if(valid_models.includes(split_url_str[3])) {
+                    if(split_url_str[1] == 'admin' && split_url_str[2] == 'app') {
+                        if(valid_models.includes(split_url_str[3])) {
+                            ind = valid_models.indexOf(split_url_str[3])
+                            current_param = left_nav_models_urls[ind]
+                            update_left_nav_item(current_param)
+                        }
+                    }
+                    else if(split_url_str[1] == 'admin' && split_url_str[2] == 'auth') {
+                        ind = valid_models.indexOf(split_url_str[3])
+                        if(split_url_str[4] == 'add') {
+                            current_param = left_nav_models_urls[ind+1]
+                        }
+                        else {
+                            current_param = left_nav_models_urls[ind]
+                        }
+                        update_left_nav_item(current_param)
+                    }
+                    
+                }
+            }
+                
+        });
+        
+    </script>
+
+
+{% endblock basejs%}
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+  </head>
+
+  <body>
+    <div
+      id="container"
+      style="min-width: 310px; height: 400px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+
+
+      let data = {{ data| safe}}
+
+
+      //let categories = ['total assets (liabilities, deposits, etc)', 'total amount of loans and leases', 'total number of loans and leases', 'total shares and deposits', 'total outstanding loans', 'total number of members']
+      //categories = categories.replace('&#39', '')
+      Highcharts.chart('container',
+          data);
+          Highcharts.setOptions({
+            lang: {
+              thousandsSep: ','
+            }
+          });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+{% load static %}
+<html>
+<body>
+    <img src="{% static 'app/images/logo.png' %}" width="400 px"/>
+    <ol>
+        <li><a href="/connexus?cu_id=66538&products_owned=car%20loan"><b>Pesonalized Home Page:</b></a> Exclude Owned Products (car loan)</li>
+        <li><a href="/connexus?cu_id=66538&products_recommended=&ip=2600:1700:a700:9820:adcb:15ce:4b5a:bc34&products_owned=car%20loan"><b>Personalized Home Page:</b></a> Detect User's City</li>
+        <li><a href="/connexus?cu_id=66538&products_recommended=ira&ip=2600:1700:a700:9820:adcb:15ce:4b5a:bc34&products_owned=car%20loan"><b>Personalized Home Page:</b></a> Recommended Product</li>
+        <li><a href="/connexus?cu_id=66538&products_recommended=&ip=&products_owned=&zipcode=54401&use_distance_model=1"><b>Personalized Home Page:</b></a> Near a Branch</li>
+        <li><a href="/connexus?cu_id=66538&products_recommended=&ip=&products_owned=&zipcode=94941&use_distance_model=1"><b>Personalized Home Page:</b></a> Not Near a Branch</li>
+    </ol>
+</body>
+</html>

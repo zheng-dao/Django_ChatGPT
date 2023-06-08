@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://code.highcharts.com/css/themes/highcharts.css"
+    />
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <link rel="stylesheet" href="/static/app/content/local.css" />
+  </head>
+
+  <body style="background-color: #f1f1f1">
+    <script>
+        function appendChart(index, chart_data){
+            const id = `container_${index+1}`;
+            const element = document.createElement('div');
+            element.id = id;
+            element.style.cssText = 'min-width: 310px; height: 400px; margin: 0 auto';
+            element.className="border";
+            document.body.appendChild(element);
+            Highcharts.chart(id, chart_data);
+        }
+      let dynamic_data = {{ data| safe }}
+      dynamic_data.forEach((chart_data,index)=>{
+        appendChart(index, chart_data);
+      });
+      Highcharts.setOptions({
+        lang: {
+          thousandsSep: ','
+        }
+      });
+    </script>
+  </body>
+</html>

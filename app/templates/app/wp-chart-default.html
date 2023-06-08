@@ -1,0 +1,200 @@
+﻿const column = {
+        chart: {
+          scrollablePlotArea: {
+            minWidth: 0,
+          },
+          //            styledMode: true,
+          type: 'column',
+        },
+
+        title: {
+          text: 'ABC',
+          style: {
+            color: "#02429B",
+          },
+        },
+        /*
+        subtitle: {
+            text: 'Source: Google Analytics'
+        },
+        */
+        //color:["#6b8795","#556d79","#00b1bc","#f19820","#ed2c76","#9dc33b"],
+
+        xAxis: {
+          // one week
+          labels: {
+            style: {
+              color: "#02429B",
+            },
+          },
+
+          categories: [
+            "2019 Q1",
+            "2019 Q2",
+            "2019 Q3",
+            "2019 Q4",
+            "2020 Q1",
+            "2019 Q1",
+            "2019 Q2",
+            "2019 Q3",
+            "2019 Q4",
+            "2020 Q1",
+            "2019 Q1",
+            "2019 Q2",
+            "2019 Q3",
+            "2019 Q4",
+            "2020 Q1",
+            "2019 Q1",
+            "2019 Q2",
+            "2019 Q3",
+            "2019 Q4",
+            "2020 Q1",
+            "2019 Q1",
+            "2019 Q2",
+            "2019 Q3",
+            "2019 Q4",
+            "2020 Q1",
+          ],
+          gridLineColor: "transparent",
+          gridTextColor: "#02429B",
+          lineColor: "transparent",
+          tickColor: "transparent",
+          showEmpty: false,
+          gridLineWidth: 0,
+        },
+
+        yAxis: {
+          // left y axis
+          title: {
+            text: null,
+          },
+          /*
+            labels: {
+                align: 'left',
+                x: 3,
+                y: 16,
+                format: '{value:.,0f}'
+            },
+            */
+          labels: {
+            style: {
+              color: "white",
+            },
+          },
+          gridLineColor: "transparent",
+          gridTextColor: "#02429B",
+          gridLineWidth: 0,
+          showFirstLabel: false,
+          },
+        tooltip: {
+          shared: true,
+          crosshairs: true,
+        },
+        plotOptions: {
+          series: {
+            pointPadding: 0,
+            // groupPadding: 0,
+            borderWidth: 0,
+            //shadow: false,
+            // pointWidth: 15,
+          },
+        },
+        series: [
+          {
+            data: [1258.0, 1270.0, 1277.0, 1283.0, 1280.0],
+            name: "total number of members",
+            color: {
+              linearGradient: {
+                x1: 0,
+                x2: 0,
+                y1: 0,
+                y2: 1,
+              },
+              stops: [
+                [0, "#9DC335"],
+                [1, "#5E7705"],
+              ],
+            },
+          },
+          {
+            data: [2258.0, 2270.0, 2277.0, 2283.0, 2280.0],
+            name: "total outstanding loans",
+            color: {
+              linearGradient: {
+                x1: 0,
+                x2: 0,
+                y1: 0,
+                y2: 1,
+              },
+              stops: [
+                [0, "#ED2A76"],
+                [1, "#8B2A43"],
+              ],
+            },
+          },
+          {
+            data: [7285.0, 7096.0, 8041.0, 4200.0, 7039.0],
+            name: "total shares and deposits",
+            color: {
+              linearGradient: {
+                x1: 0,
+                x2: 0,
+                y1: 0,
+                y2: 1,
+              },
+              stops: [
+                [0, "#F2981B"],
+                [1, "#C13B00"],
+              ],
+            },
+          },
+          {
+            data: [881.0, 901.0, 913.0, 925.0, 914.0],
+            name: "total number of loans and leases",
+            color: {
+              linearGradient: {
+                x1: 0,
+                x2: 0,
+                y1: 0,
+                y2: 1,
+              },
+              stops: [
+                [0, "#00B1BC"],
+                [1, "#265BB6"],
+              ],
+            },
+          },
+          {
+            data: [1142.0, 6965.0, 1951.0, 2506.0, 1646.0],
+            name: "total amount of loans and leases",
+            color: {
+              linearGradient: {
+                x1: 0,
+                x2: 0,
+                y1: 0,
+                y2: 1,
+              },
+              stops: [
+                [0, "#556D79"],
+                [1, "#063E54"],
+              ],
+            },
+          },
+          {
+            data: [5917.0, 9271.0, 4542.0, 2638.0, 2746.0],
+            name: "total assets (liabilities, deposits, etc)",
+            color: {
+              linearGradient: {
+                x1: 0,
+                x2: 0,
+                y1: 0,
+                y2: 1,
+              },
+              stops: [
+                [0, "#6B8795"],
+                [1, "#063E54"],
+              ],
+            },
+          },
+        ],
+      };

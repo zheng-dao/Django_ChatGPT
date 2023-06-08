@@ -1,0 +1,107 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WP demo chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <link rel="stylesheet" href="{% static 'app/content/local.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+  </head>
+
+  <body style="background-color:#f1f1f1;">
+      <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script>
+        function parseLayout(layout) {
+          try {
+            if(layout){
+              const values = layout.split("x").map(Number)
+              return {
+                values,
+                total: values.reduce((t,v)=>v+t,0)
+              }
+            }
+          } catch(error) {
+          }
+        }
+
+        function getClass(index, layout){
+          if(layout)
+          {
+            const currentIndex  = (index) % layout.total;
+            let total = 0;
+            let layoutC = null;
+            for (let i = 0; i < layout.values.length; i++) {
+              const layoutVal = layout.values[i];
+              total+=layoutVal;
+              if(currentIndex<total){
+                layoutC = layoutVal;
+                break;
+              }
+            }
+            return `col-${12/layoutC}`;
+          }
+          return 'col-12';
+        }
+
+        function processReport(report){
+            const containerId = `report-${report.id}`
+            const containerElement =  document.createElement('div')
+            const layout = parseLayout(report.layout);
+            containerElement.setAttribute('id',containerId);
+            document.body.appendChild(containerElement);
+            let container = $(`#${containerId}`);
+            container.append(`<h2>${report.name}<h2>`)
+            container.append(`<div class="row" id="row-${report.id}"><div>`)
+            container = $(`#row-${report.id}`);
+            const charts = report['chart'] || []
+            charts.forEach((chart, index)=>{
+                const div = document.createElement('div')
+                const id = `chart-${chart.id}`
+                div.setAttribute('id',id);
+                div.setAttribute('class', getClass(index,layout))
+                container.append(div)
+                const title = document.createElement('h3')
+                title.appendChild(document.createTextNode(chart.name))
+                div.appendChild(title)
+
+                try {
+                  const data = chart.chart_data
+                  const divH = document.createElement('div')
+                  const idH = `high-chart-${chart.id}-${report.id}`
+                  divH.setAttribute('id',idH);
+                  div.appendChild(divH)
+                  Highcharts.chart(idH, data)
+                } catch(exc){
+                  $(`#${id}`).append(chart.embed_code)
+                }
+                
+            })
+        }
+        function processError(error) {
+            alert(error.message)
+        }
+
+        function processAllReports(reports) {
+            reports.results.forEach(processReport)
+        }
+
+        $(function() {
+            const urlParams = new URLSearchParams(window.location.search)
+            const report = urlParams.get('report')
+            if(report){
+                $.get(`/api/v1/reports/${report}/?${urlParams.toString()}`,processReport).fail(processError)
+            } else {
+                $.get(`/api/v1/reports/?${urlParams.toString()}`,processAllReports).fail(processError)
+            }
+        });
+    </script>
+  </body>
+</html>

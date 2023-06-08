@@ -1,0 +1,1404 @@
+{% extends "admin_static/base_atlantis.html" %}
+{% load i18n static %}
+
+{% block panel-header %}
+<div class="panel-header bg-primary-gradient">
+    <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+                <h2 class="text-white pb-2 fw-bold">Personalization Performance</h2>
+                <!--<h5 class="text-white op-7 mb-2">Lorem ipsum dolor</h5>-->
+            </div>
+            <div class="ml-md-auto py-2 py-md-0">
+                <a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
+                <a href="#" class="btn btn-secondary btn-round">Request a New Report</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+
+<!-- Get Header -->
+
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+    <script type='text/javascript' src="{% static 'app/wp-content/themes/extractable/js/vendor/jquery-2.2.4.min.js' %}"></script>
+    <style type="text/css" id="wp-custom-css">
+        .new_style_hero .row {
+            position: relative;
+        }
+    </style>
+
+    <link rel='stylesheet' id='custom-css' href="{% static 'app/wp-content/themes/extractable/custom.css' %}" type='text/css' media='all' />
+
+
+
+
+    <!-- /Optimize -->
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+
+    <script src="https://code.highcharts.com/modules/funnel.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script src="https://code.highcharts.com/modules/dumbbell.js"></script>
+
+    <script src="https://code.highcharts.com/maps/modules/map.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.6/proj4.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/marker-clusters.js"></script>
+    <script src="https://code.highcharts.com/modules/coloraxis.js"></script>
+    <script src="https://code.highcharts.com/mapdata/countries/us/us-all-all.js"></script>
+    <script src="https://code.highcharts.com/mapdata/countries/us/us-fl-all.js"></script>
+    <script src="https://code.highcharts.com/modules/sankey.js"></script>
+
+
+
+
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <style rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css" media="screen"></style>
+
+    <style>
+
+        .highcharts-background {
+            fill: #556d79;
+        }
+
+        .highcharts-container {
+            /* #1072 */
+
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            font-family: Roboto, Arial, Helvetica, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            font-size: 12px;
+            user-select: none;
+        }
+    </style>
+
+    <script>
+        var url_json_counties = "{% static 'app/data/counties_population.json' %}";
+        var fl_search_volume = "{% static 'app/data/fl_search_volume.json' %}";
+        //var url_json_counties = 'https://staging4.finalytics.ai/wp-content/themes/extractable/counties_population.json';
+        //var fl_search_volume = 'https://staging4.finalytics.ai/wp-content/themes/extractable/fl_search_volume.json';
+    </script>
+
+
+
+
+</head>
+
+
+
+<body class="page-template page-template-templates page-template-template-finalytics page-template-templatestemplate-finalytics-php page page-id-7922">
+
+
+    <!-- Finalytcs Header -->
+
+
+
+
+    <main class="main-fluid">
+
+        <!-- Download Report Form -->
+
+
+        <style>
+            .desktoponly p {
+                color: white;
+            }
+
+            .desktoponly h2 {
+                margin-bottom: 0px;
+            }
+
+            .report-title::before {
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: url({% static 'app/wp-content/uploads/Fill-1.png' %
+            }
+
+            );
+            mix-blend-mode: normal;
+            opacity: 0.87;
+            transform: rotate( -180deg );
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-repeat: no-repeat;
+            background-size: cover;
+            }
+
+            .report-title .select_link {
+                font-size: 14px;
+                padding: 3px;
+            }
+
+            .main-fluid .report-title {
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+
+            .container {
+                width: 100%;
+            }
+        </style>
+
+        <style>
+
+            .keyword-box tbody tr td:nth-child(1) span {
+                width: 150px;
+                display: inline-block;
+            }
+
+            .blue-1 {
+                width: 9px;
+                height: 9px;
+                background: #51A5DE;
+                border-radius: 50%;
+                margin-right: 5px;
+            }
+
+            .blue-2 {
+                width: 9px;
+                height: 9px;
+                background: #76DDFB;
+                border-radius: 50%;
+                margin-right: 5px;
+            }
+
+            .personalization .info-text {
+                display: flex;
+                align-items: center;
+            }
+
+                .personalization .info-text .info {
+                    margin-right: 30px;
+                    display: flex;
+                    align-items: center;
+                }
+
+                    .personalization .info-text .info:last-of-type {
+                        margin-right: 0px;
+                    }
+
+                .personalization .info-text p {
+                    margin-bottom: 0px;
+                    font-family: 'IBM Plex Sans';
+                    font-size: 14px;
+                    line-height: 18px;
+                    letter-spacing: -0.08px;
+                    color: #485465;
+                }
+
+            .keyword-box tbody tr td span img {
+                margin-left: 10px;
+            }
+
+            .personalization .showhidden {
+                cursor: pointer;
+            }
+
+            .personalization .keyword-box h3 {
+                font-size: 24px;
+                color: #00419B;
+                font-family: "IBM Plex Sans";
+                line-height: 28px;
+                font-weight: 300;
+                letter-spacing: -0.46px;
+                margin-top: 50px;
+            }
+
+            .personalization .title-area h3 {
+                font-size: 24px;
+                color: #00419B;
+                font-family: 'IBM Plex Sans';
+                line-height: 28px;
+                font-weight: 300;
+                letter-spacing: -0.46px;
+            }
+
+            .personalization .green {
+                color: #A1E8AB;
+                text-align: center;
+                font-size: 12px;
+                font-weight: 300;
+                font-family: "IBM Plex Sans";
+                margin-left: 5px;
+                width: 45px;
+                display: inline-block;
+            }
+
+            .personalization .red {
+                color: #E82B2B;
+                text-align: center;
+                font-size: 12px;
+                font-weight: 300;
+                font-family: "IBM Plex Sans";
+                margin-left: 5px;
+                width: 45px;
+                display: inline-block;
+            }
+
+            .personalization {
+                background-color: #F0F0F0;
+                padding-bottom: 80px;
+                padding-top: 40px;
+            }
+
+                .personalization .img-fluid {
+                    width: 100%;
+                }
+
+                .personalization .chart-area {
+                    background-color: #fff;
+                    padding: 17px 26px 22px;
+                    border-radius: 4px;
+                    box-shadow: 0px 16px 15px 0px rgba(0,0,0,0.10);
+                    -webkit-box-shadow: 0px 16px 15px 0px rgba(0,0,0,0.10);
+                    -moz-box-shadow: 0px 16px 15px 0px rgba(0,0,0,0.10);
+                    min-height: 250px;
+                    margin-bottom: 50px;
+                }
+
+                    .personalization .chart-area.v2 {
+                        height: 633px;
+                    }
+
+                    .personalization .chart-area .chart {
+                        display: flex;
+                        height: 150px;
+                    }
+
+                        .personalization .chart-area .chart .chart-container {
+                            width: 150px;
+                        }
+
+                        .personalization .chart-area .chart .chart-wrapper:last-of-type {
+                            margin-right: 0px;
+                        }
+
+                        .personalization .chart-area .chart .chart-wrapper {
+                            margin-right: 44px;
+                        }
+
+                            .personalization .chart-area .chart .chart-wrapper h4 {
+                                font-size: 14px;
+                                font-family: 'IBM Plex Sans';
+                                line-height: 18px;
+                                font-weight: 600;
+                                text-align: center;
+                                color: #00419B;
+                            }
+
+
+                .personalization .img-shadow {
+                    box-shadow: 0px 16px 15px 0px rgba(0,0,0,0.10);
+                    -webkit-box-shadow: 0px 16px 15px 0px rgba(0,0,0,0.10);
+                    -moz-box-shadow: 0px 16px 15px 0px rgba(0,0,0,0.10);
+                }
+
+                .personalization .title-area {
+                    margin-top: 10px;
+                    margin-bottom: 32px;
+                }
+
+                .personalization .pl-left {
+                    padding-left: 26px;
+                }
+
+                .personalization .chart-area .title-area {
+                    margin-top: 0px;
+                }
+
+                .personalization .mb-3 {
+                    margin-bottom: 27px;
+                }
+
+                .personalization .chart-area .title-area.flex-between {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                .personalization .chart-area .title-area span.active {
+                    background: #00419B;
+                    color: #fff;
+                }
+
+                .personalization .chart-area .title-area span {
+                    color: #00419B;
+                    font-size: 15px;
+                    border-radius: 100px;
+                    display: inline-block;
+                    font-family: 'IBM Plex Sans';
+                    cursor: pointer;
+                    padding: 0px 22px;
+                }
+
+                .personalization table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    table-layout: fixed;
+                }
+
+                    .personalization table thead {
+                        box-shadow: 0px 1px 15px 0px rgba(0,0,0,0.10);
+                        -webkit-box-shadow: 0px 1px 15px 0px rgba(0,0,0,0.10);
+                        -moz-box-shadow: 0px 1px 15px 0px rgba(0,0,0,0.10);
+                    }
+
+                        .personalization table thead th {
+                            border: none;
+                            padding: 20px 0px;
+                            font-size: 14px;
+                            font-family: 'IBM Plex Sans';
+                            font-weight: 600;
+                            line-height: 16px;
+                            color: #00419B;
+                            background: #fff;
+                            text-align: right;
+                            padding-right: 20px;
+                        }
+
+                            .personalization table thead th.page_url {
+                                width: 20%;
+                            }
+
+                            .personalization table thead th.page_views {
+                                padding-left: 60px;
+                                text-align: left;
+                            }
+
+
+                .personalization .margin-bott {
+                    margin-bottom: 27px;
+                }
+
+                .personalization table tbody tr {
+                    border-bottom: 1px solid #E5E5E5;
+                }
+
+                    .personalization table tbody tr td {
+                        font-family: 'IBM Plex Sans';
+                        color: #333333;
+                        padding: 8px 0px 2px 20px;
+                        font-weight: 400;
+                        font-size: 16px;
+                        vertical-align: top;
+                        text-align: right;
+                        padding-right: 10px;
+                    }
+
+                .personalization table td.total_value {
+                    text-align: left;
+                    padding-left: 0px;
+                }
+
+
+                .personalization table td.average_value {
+                    text-align: left;
+                    padding-left: 20px;
+                }
+
+                .personalization table th.total_value {
+                    vertical-align: top;
+                    width: 10%;
+                }
+
+                .personalization table td.change-percent {
+                    text-align: left;
+                    padding-left: 30px;
+                }
+
+                .personalization table th.change-percent {
+                    text-align: left;
+                    padding-left: 20px;
+                }
+
+
+                .personalization table tbody tr td.fund {
+                    background: #CEE0ED;
+                    padding-right: 10px;
+                    width: 5%;
+                }
+
+                .personalization table tr th.app_comp {
+                    padding-left: 10px;
+                }
+
+                .personalization table tr td.app_comp {
+                    padding-right: 10px;
+                }
+
+                .personalization table thead tr th.fund {
+                    padding-left: 10px;
+                }
+
+                .personalization table tbody tr td.ytd {
+                    background: #45A0E3;
+                    text-align: left;
+                    padding-left: 10px;
+                }
+
+                .personalization table th.ytd {
+                    padding-left: 10px;
+                    vertical-align: top;
+                }
+
+                .personalization table td.app_starts {
+                    padding-left: 10px;
+                }
+
+                .personalization table tbody tr td.ytd span {
+                    color: #fff;
+                }
+
+
+                .personalization table thead th:nth-child(1) {
+                    text-align: left;
+                    padding-left: 10px;
+                    border-top-left-radius: 4px;
+                    border-bottom-left-radius: 4px;
+                }
+
+                .personalization table thead th:nth-child(10) {
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                    width: 13%;
+                }
+
+                .personalization table tbody tr td:nth-child(1) {
+                    text-align: left;
+                    padding-left: 10px;
+                    padding-right: 20px;
+                }
+
+                .personalization .container-cart {
+                    display: none;
+                }
+
+                    .personalization .container-cart.active {
+                        display: block;
+                        height: 100%;
+                    }
+
+                .personalization .tab-area {
+                    width: 100%;
+                    height: 350px;
+                }
+
+            #app-start, #app-fund, #app-com {
+                height: 350px;
+            }
+
+
+
+
+
+            @media only screen and (max-width: 1024px) {
+                .tabs {
+                    background-color: transparent;
+                    padding-bottom: 0px;
+                }
+
+                .w-100 {
+                    width: 100%;
+                }
+            }
+
+            @media only screen and (max-width: 991.98px) {
+            }
+
+
+            @media only screen and (max-width: 767.98px) {
+                .container-tabs {
+                    width: max-content;
+                }
+
+                .personalization .container {
+                    padding-left: 0px;
+                    padding-right: 0px;
+                }
+
+                .seo-report .title-area h3 {
+                    font-size: 24px;
+                }
+
+                .personalization .chart-area .title-area.flex-between {
+                    text-align: left;
+                    display: block;
+                }
+
+                .personalization .chart-area .title-area span {
+                    margin-bottom: 10px;
+                    padding: 0px;
+                    display: block;
+                    width: max-content;
+                }
+
+                    .personalization .chart-area .title-area span.active {
+                        padding: 0px 22px;
+                    }
+
+                .personalization .info-text {
+                    display: block;
+                }
+            }
+        </style>
+        <section class="personalization">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        <div class="chart-area">
+                            <div class="title-area flex-between">
+                                <h3>App Conversion Rate</h3>
+                                <div class="info-text">
+                                    <div class="info"><div class="blue-1"></div> <p>Personalized Experience</p></div>
+                                    <div class="info"><div class="blue-2"></div> <p>No Personalization</p></div>
+                                </div>
+                            </div>
+                            <div class="container-cart" style="display:block">
+                                <div id="app-start-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        <div class="chart-area">
+                            <div class="title-area flex-between">
+                                <h3>% of Visitors Exposed to Personalization</h3>
+                            </div>
+                            <div class="container-cart" style="display:block">
+                                <div id="app-start-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        <div class="chart-area">
+                            <div class="title-area flex-between">
+                                <h3>Funnel Conversion Rates</h3>
+                                <div class="filter-area">
+                                    <span data-tab=".app-1" class="active">App Starts</span>
+                                    <span data-tab=".app-2">App Completes</span>
+                                    <span data-tab=".app-3">Estimated Funded</span>
+                                </div>
+                            </div>
+                            <div class="tab-area">
+                                <div class="container-cart app-1 active">
+                                    <div id="app-start"></div>
+                                </div>
+                                <div class="container-cart app-2">
+                                    <div id="app-com"></div>
+                                </div>
+                                <div class="container-cart app-3">
+                                    <div id="app-fund"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        <div class="keyword-box">
+                            <table>
+                                <thead>
+                                <th class="page_url"><span>Page</span></th>
+                                <th class="page_views"><span>Pageviews</span></th>
+                                <th class="page_views"><span>App Starts</span></th>
+                                <th class="app_comp"><span>App Completes</span></th>
+                                <th class="fund"><span>% Conversion</span></th>
+                                <th class="average"><span>Est. Funded Amount</span></th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="showhidden" index="1"><span>1./index </span> <img src="https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png" alt="toggle"></td>
+                                        <td><span>10,123</span><span class="green">▲ 12%</span></td>
+                                        <td><span>10,123</span><span class="green">▲ 12%</span></td>
+                                        <td><span>10,123</span><span class="green">▲ 12%</span></td>
+                                        <td><span>$10,123</span></td>
+                                        <td><span>$10,123</span></td>
+                                    </tr>
+                                    <tr class="hidden-1">
+                                        <td><span>· Banner 1</span></td>
+                                        <td><span>4,123</span><span class="red">▼ 9%</span></td>
+                                        <td><span>4,123</span><span class="red">▼ 9%</span></td>
+                                        <td><span>4,123</span><span class="red">▼ 9%</span></td>
+                                        <td><span>$4,123</span></td>
+                                        <td><span>$4,123</span></td>
+                                    </tr>
+                                    <tr class="hidden-1">
+                                        <td><span>· Banner 2</span></td>
+                                        <td><span>3,123</span><span class="green">▲ 17%</span></td>
+                                        <td><span>3,123</span><span class="green">▲ 17%</span></td>
+                                        <td><span>3,123</span><span class="green">▲ 17%</span></td>
+                                        <td><span>$3,123</span></td>
+                                        <td><span>$3,123</span></td>
+                                    </tr>
+                                    <tr class="hidden-1">
+                                        <td><span>· Banner 3</span></td>
+                                        <td><span>2,123</span><span class="green">▲ 14%</span></td>
+                                        <td><span>2,123</span><span class="green">▲ 14%</span></td>
+                                        <td><span>2,123</span><span class="green">▲ 14%</span></td>
+                                        <td><span>$2,123</span></td>
+                                        <td><span>$2,123</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>2./checking</span> <img src="https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png" alt="toggle"></td>
+                                        <td><span>1,123</span><span class="red">▼ 9% </span></span></td>
+                                        <td><span>1,123</span><span class="red">▼ 9%</span></td>
+                                        <td><span>1,123</span><span class="red">▼ 9%</span></td>
+                                        <td><span>$1,123</span></td>
+                                        <td><span>$1,123</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>3./savings</span> <img src="https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png" alt="toggle"></td>
+                                        <td><span>123</span><span class="red">▼ 1%</span></span></td>
+                                        <td><span>123</span><span class="red">▼ 1%</span></td>
+                                        <td><span>123</span><span class="red">▼ 1%</span></td>
+                                        <td><span>$123</span></td>
+                                        <td><span>$123</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        <div class="keyword-box">
+                            <h3>Performance by Product</h3>
+                            <table>
+                                <thead>
+                                <th class="page_url"><span>Page</span></th>
+                                <th class="page_views"><span>Pageviews</span></th>
+                                <th class="page_views"><span>App Starts</span></th>
+                                <th class="app_comp"><span>App Completes</span></th>
+                                <th class="fund"><span>% Conversion</span></th>
+                                <th class="average"><span>Estimated Value</span></th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span>1. Loans And Lines </span></span> <img src="https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png" alt="toggle"></td>
+                                        <td><span>5,123</span><span class="green">▲ 12%</span></td>
+                                        <td><span>10,123</span><span class="green">▲ 12%</span></td>
+                                        <td><span>10,123</span><span class="green">▲ 12%</span></td>
+                                        <td><span>$10,123</span></td>
+                                        <td><span>$10,123</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>2. Checking </span></span> <img src="https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png" alt="toggle"></td>
+                                        <td><span>4,123</span><span class="red">▼ 9%</span></td>
+                                        <td><span>4,123</span><span class="red">▼ 9%</span></td>
+                                        <td><span>4,123</span><span class="red">▼ 9%</span></td>
+                                        <td><span>$4,123</span></td>
+                                        <td><span>$4,123</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>3. Savings </span></span> <img src="https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png" alt="toggle"></td>
+                                        <td><span>3,123</span><span class="green">▲ 12%</span></td>
+                                        <td><span>3,123</span><span class="green">▲ 12%</span></td>
+                                        <td><span>3,123</span><span class="green">▲ 12%</span></td>
+                                        <td><span>$3,123</span></td>
+                                        <td><span>$3,123</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>4. Credit and Debit</span></span>  <img src="https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png" alt="toggle"></td>
+                                        <td><span>2,123</span><span class="green">▲ 12%</span></td>
+                                        <td><span>2,123</span><span class="green">▲ 12%</span></td>
+                                        <td><span>2,123</span><span class="green">▲ 12%</span></td>
+                                        <td><span>$2,123</span></td>
+                                        <td><span>$2,123</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>5. Retirement </span></span> <img src="https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png" alt="toggle"></td>
+                                        <td><span>1,123</span><span class="red">▼ 2%</span></td>
+                                        <td><span>1,123</span><span class="red">▼ 2%</span></td>
+                                        <td><span>1,123</span><span class="red">▼ 2%</span></td>
+                                        <td><span>$1,123</span></td>
+                                        <td><span>$1,123</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>6. Business </span></span> <img src="https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png" alt="toggle"></td>
+                                        <td><span>123</span><span class="red">▼ 1%</span></td>
+                                        <td><span>123</span><span class="red">▼ 1%</span></td>
+                                        <td><span>123</span><span class="red">▼ 1%</span></td>
+                                        <td><span>$123</span></td>
+                                        <td><span>$123</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            jQuery(document).ready(function () {
+
+                var count = jQuery('.keyword-box tbody tr').length;
+                for (var i = 0; i < count; i++) {
+                    jQuery('.hidden-' + i).hide();
+
+                }
+
+                jQuery('.showhidden').click(function () {
+                    jQuery('.hidden-' + jQuery(this).attr("index")).toggle();
+                    jQuery(this).toggleClass('active');
+                    if (!jQuery(this).hasClass('active')) {
+                        jQuery(this).find('img').css('transform', 'scale(1)');
+                    } else {
+                        jQuery(this).find('img').css('transform', 'scale(-1)');
+                    }
+                });
+
+                function setDivHeight() {
+                    var div = jQuery('.chart-container');
+                    div.height(div.width() * 0.75);
+                }
+
+                jQuery.ajax({
+                    type: 'GET',
+                    url: `https://stgfinalyticsdata.com/api/v1/reports/14/?report=14&entity_id=68490&entity_type=credit_union&dimensions=core_product__savings+account`,
+                    //url: 'https://finalyticsdata.com/api/v1/domains/?name=' + checkDomain[0],
+                    success: function (response) {
+                        console.log(response);
+                        setDivHeight();
+
+                        let chartDA = response.chart[0].chart_data
+                        console.log(chartDA);
+                        Highcharts.setOptions({
+                            lang: {
+                                thousandsSep: ','
+                            }
+                        });
+
+                        let chartBk = response.chart[1].chart_data
+                        Highcharts.setOptions({
+                            lang: {
+                                thousandsSep: ','
+                            }
+                        });
+
+                        let chartAvg = response.chart[2].chart_data
+                        Highcharts.setOptions({
+                            lang: {
+                                thousandsSep: ','
+                            }
+                        });
+
+
+                    },
+                    error: function (xhr, status, error) {
+                        console.log('error');
+
+                    }
+                });
+
+                jQuery(document).on('click', '.filter-area span', function () {
+                    let value = jQuery(this).data('tab');
+                    jQuery('.container-cart').removeClass('active');
+                    jQuery(value).toggleClass('active');
+                    jQuery('.filter-area span').removeClass('active');
+                    jQuery(this).toggleClass('active');
+                    jQuery('#app-start').highcharts().redraw()
+                })
+
+                let counter_tick_month_1 = 0;
+
+                let dynamic_data_4 = {
+                    "chart": { "type": "line", "backgroundColor": "transparent", "scrollablePlotArea": { "minWidth": 0 }, "height": 250 }, "colors": ["#209af1", "#84c586", "#00429b", "#7793db", "#a8cfe5", "#7497aa"], "title": { "text": "", "style": { "color": "#02429b" } },
+                    "xAxis": {
+                        "min": 2,
+                        "lineColor": "#434343",
+                        "lineWidth": 0,
+                        "tickAmount": 7,
+                        "labels": {
+                            "style":
+                                { "color": "#434343" },
+                            formatter: function () {
+                                counter_tick_month_1++;
+                                if (counter_tick_month_1 > 10) {
+                                    return counter_tick_month_1 + ".21";
+                                } else {
+                                    return '0' + counter_tick_month_1 + ".21";
+                                }
+                            }
+                        }
+                    },
+                    "yAxis": { "lineWidth": 0, "tickWidth": 0, "tickInterval": 5, "tickAmount": 6, "startOnTick": true, "title": { "text": null }, "labels": { "style": { "color": "#434343" }, formatter: function () { return this.value + "%"; } }, "min": 0, "max": 50, "gridLineColor": "transparent", "gridTextColor": "#ffffff", "gridLineWidth": 0, "minorGridLineWidth": 0, "showFirstLabel": false, "lineColor": "#434343", "lineWidth": 0 }, "tooltip": { "shared": true, "crosshairs": true },
+                    "series":
+                        [
+                            { "data": [5, 5, 17, 12, 15, 8, 18, 16, 17, 10, 15, 12, 8, 5, 10, 15, 9, 12, 8], "color": "#209af1", "label": { "enabled": false } },
+                            { "data": [3, 1, 2, 4, 1, 15, 5, 14, 5, 4, 8, 4, 7, 2, 7, 18, 5, 5], "color": "#76DDFB", "label": { "enabled": false } }
+                        ],
+                    "plotOptions": { "line": { "marker": { "enabled": false } }, "series": { "pointPadding": 0, "groupPadding": 0, "borderWidth": 0, "opacity": 25 } }, "subtitle": { "style": { "color": "#ffffff" } }, "credits": { "enabled": false }, "legend": { "enabled": false }, "exporting": { "enabled": false }
+                }
+                console.log(dynamic_data_4);
+                let colors_list_4 = ['']
+                let color_4 = {
+                    linearGradient: {
+                        x1: 0,
+                        x2: 0,
+                        y1: 0,
+                        y2: 1,
+                    },
+                    stops: [
+                        [0, "#00B1BC"],
+                        [1, "#265BB6"],
+                    ],
+                };
+
+                dynamic_data_4['credits'] = { "enabled": false }
+                Highcharts.chart("app-start-1", dynamic_data_4);
+                Highcharts.setOptions({
+                    lang: {
+                        thousandsSep: ','
+                    }
+                });
+
+                let counter_tick_month_2 = 0;
+
+                let dynamic_data_5 = {
+                    "chart": { "type": "line", "backgroundColor": "transparent", "scrollablePlotArea": { "minWidth": 0 }, "height": 250 }, "colors": ["#209af1", "#84c586", "#00429b", "#7793db", "#a8cfe5", "#7497aa"], "title": { "text": "", "style": { "color": "#02429b" } },
+                    "xAxis":
+                    {
+                        "min": 2,
+                        "lineColor": "#434343",
+                        "lineWidth": 0,
+                        "tickAmount": 7,
+                        "labels": {
+                            "style":
+                                { "color": "#434343" },
+                            formatter: function () {
+                                counter_tick_month_2++;
+                                if (counter_tick_month_2 > 10) {
+                                    return counter_tick_month_2 + ".20";
+                                } else {
+                                    return '0' + counter_tick_month_2 + ".20";
+                                }
+                            }
+                        }
+                    },
+                    "yAxis": { "lineWidth": 0, "tickInterval": 10, "title": { "text": null }, "labels": { "style": { "color": "#434343" }, formatter: function () { return this.value + "%"; } }, "min": 0, "max": 60, "gridLineColor": "transparent", "gridTextColor": "#ffffff", "gridLineWidth": 0, "minorGridLineWidth": 0, "showFirstLabel": false, "lineColor": "#434343", "lineWidth": 0 }, "tooltip": { "shared": true, "crosshairs": true }, "series": [{ "data": [20, 18, 45, 32, 40, 25, 48, 40, 41, 44, 30, 38, 34, 25, 20, 30, 38, 25, 34, 30], "color": "#209af1", "label": { "enabled": false } }], "plotOptions": { "line": { "marker": { "enabled": false } }, "series": { "pointPadding": 0, "groupPadding": 0, "borderWidth": 0, "opacity": 25 } }, "subtitle": { "style": { "color": "#ffffff" } }, "credits": { "enabled": false }, "legend": { "enabled": false }, "exporting": { "enabled": false }
+                }
+                console.log(dynamic_data_5);
+                let colors_list_5 = ['']
+                let color_5 = {
+                    linearGradient: {
+                        x1: 0,
+                        x2: 0,
+                        y1: 0,
+                        y2: 1,
+                    },
+                    stops: [
+                        [0, "#00B1BC"],
+                        [1, "#265BB6"],
+                    ],
+                };
+
+                dynamic_data_5['credits'] = { "enabled": false }
+                Highcharts.chart("app-start-2", dynamic_data_5);
+                Highcharts.setOptions({
+                    lang: {
+                        thousandsSep: ','
+                    }
+                });
+
+                let data = {
+                    xAxis: { title: { text: "Numbers" } },
+                    title: { text: "Data Summaries (2019, 2020)" },
+                    subtitle: { text: "Source" },
+                    yAxis: { title: { text: "Numbers of" } },
+                    legend: { layout: "vertical", align: "right", verticalAlign: "middle" },
+                };
+
+                // let series = data["series"];
+                // console.log(series);
+                Highcharts.chart("app-start", {
+                    chart: {
+                        type: "bar",
+                        backgroundColor: 'transparent',
+                        scrollablePlotArea: {
+                            minWidth: 0,
+                        },
+                        style: {
+                            fontFamily: 'IBM Plex Sans'
+                        }
+                        //            styledMode: true,
+                    },
+                    title: {
+                        text: "",
+                        style: {
+                            color: "#02429b",
+                        },
+                    },
+                    "credits": {
+                        "enabled": false
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    xAxis: {
+                        lineColor: 'transparent',
+                        lineWidth: 3,
+                        // one week
+                        labels: {
+                            style: {
+                                color: "#00419B",
+                                fontSize: '14px',
+                                fontWeight: '600',
+                            },
+                            align: 'left',
+                            reserveSpace: true
+                        },
+
+                        categories: [
+                            "Loans & Lines",
+                            "Deposit",
+                            "Credit & Debit",
+                            "Investment",
+                            "Business",
+
+                        ],
+                        gridLineColor: "transparent",
+                        gridTextColor: "#ffffff",
+                        tickColor: "transparent",
+                        showEmpty: false,
+                        gridLineWidth: 0,
+                    },
+
+                    yAxis: {
+                        title: {
+                            text: null,
+                        },
+                        labels: {
+                            style: {
+                                color: "#434343",
+                            },
+                            format: '{value}%',
+                        },
+                        min: 0,
+                        max: 60,
+                        tickPositions: [
+                            -0.1,
+                            0,
+                            20,
+                            40,
+                            60,
+                        ],
+                        // tickInterval: 20,
+                        gridLineColor: "#fff",
+                        gridTextColor: "#434343",
+                        gridLineWidth: 1,
+                        showFirstLabel: false,
+                    },
+                    tooltip: {
+                        shared: true,
+                        crosshairs: true,
+                    },
+                    legend: {
+                        align: 'left',
+                        itemStyle: {
+                            color: "#808080",
+                            fontSize: '14px',
+                            fontWeight: '400',
+                        }
+                    },
+                    colors: ["#51A5DE", "#76DDFB"],
+                    plotOptions: {
+                        series: {
+                            stacking: 'percent',
+                            pointPadding: 0,
+                            // groupPadding: 0,
+                            borderWidth: 0,
+                            //shadow: false,
+                            // pointWidth: 15,
+                        },
+                    },
+                    series: [
+                        {
+                            data: [987, 332, 237, 1987, 50],
+                            name: "Personalized Messaging",
+                            dataLabels: {
+                                enabled: true,
+                                align: 'right',
+                                style: {
+                                    color: "#fff",
+                                    fontSize: '21px',
+                                    fontWeight: '300',
+                                    textOutline: 0,
+                                },
+                                padding: 15,
+                            },
+                        },
+                        {
+                            data: [1459, 397, 980, 1459, 450],
+                            name: "Default Messaging",
+                            dataLabels: {
+                                enabled: true,
+                                align: 'left',
+                                style: {
+                                    color: "#252525",
+                                    fontSize: '21px',
+                                    fontWeight: '300',
+                                    textOutline: 0
+                                },
+                                padding: 15,
+
+                            },
+
+                        }
+                    ],
+                })
+                    ;
+                Highcharts.setOptions({
+                    lang: {
+                        thousandsSep: ','
+                    }
+                });
+
+                // let series = data["series"];
+                // console.log(series);
+                Highcharts.chart("app-com", {
+                    chart: {
+                        type: "bar",
+                        backgroundColor: 'transparent',
+                        scrollablePlotArea: {
+                            minWidth: 0,
+                        },
+                        style: {
+                            fontFamily: 'IBM Plex Sans'
+                        }
+                        //            styledMode: true,
+                    },
+                    title: {
+                        text: "",
+                        style: {
+                            color: "#02429b",
+                        },
+                    },
+                    "credits": {
+                        "enabled": false
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    xAxis: {
+                        lineColor: 'transparent',
+                        lineWidth: 3,
+                        // one week
+                        labels: {
+                            style: {
+                                color: "#00419B",
+                                fontSize: '14px',
+                                fontWeight: '600',
+                            },
+                            align: 'left',
+                            reserveSpace: true
+                        },
+
+                        categories: [
+                            "Loans & Lines",
+                            "Deposit",
+                            "Credit & Debit",
+                            "Investment",
+                            "Business",
+
+                        ],
+                        gridLineColor: "transparent",
+                        gridTextColor: "#ffffff",
+                        tickColor: "transparent",
+                        showEmpty: false,
+                        gridLineWidth: 0,
+                    },
+
+                    yAxis: {
+                        // left y axis
+
+                        title: {
+                            text: null,
+                        },
+                        /*
+                          labels: {
+                              align: 'left',
+                              x: 3,
+                              y: 16,
+                              format: '{value:.,0f}'
+                          },
+                          */
+                        labels: {
+                            style: {
+                                color: "#434343",
+                            },
+                            format: '{value}%',
+                        },
+                        // min: -1,
+                        // max: 100,
+                        tickPositions: [
+                            -0.1,
+                            0,
+                            20,
+                            40,
+                            60,
+                            80,
+                            100,
+                        ],
+                        // tickInterval: 20,
+                        gridLineColor: "#fff",
+                        gridTextColor: "#434343",
+                        gridLineWidth: 1,
+                        showFirstLabel: false,
+                    },
+                    tooltip: {
+                        shared: true,
+                        crosshairs: true,
+                    },
+                    legend: {
+                        align: 'left',
+                        itemStyle: {
+                            color: "#808080",
+                            fontSize: '14px',
+                            fontWeight: '400',
+                        }
+                    },
+                    colors: ["#51A5DE", "#76DDFB"],
+                    plotOptions: {
+                        series: {
+                            stacking: 'percent',
+                            pointPadding: 0,
+                            // groupPadding: 0,
+                            borderWidth: 0,
+                            //shadow: false,
+                            // pointWidth: 15,
+                        },
+                    },
+                    series: [
+                        {
+                            data: [221, 534, 224, 1987, 50],
+                            name: "Personalized Messaging",
+                            dataLabels: {
+                                enabled: true,
+                                align: 'right',
+                                style: {
+                                    color: "#fff",
+                                    fontSize: '21px',
+                                    fontWeight: '300',
+                                    textOutline: 0
+                                },
+                                padding: 15,
+
+                            },
+                        },
+                        {
+                            data: [226, 422, 980, 567, 266],
+                            name: "Default Messaging",
+                            dataLabels: {
+                                enabled: true,
+                                align: 'left',
+                                style: {
+                                    color: "#252525",
+                                    fontSize: '21px',
+                                    fontWeight: '300',
+                                    textOutline: 0
+                                },
+                                padding: 15,
+
+                            },
+
+                        }
+                    ],
+                })
+                    ;
+                Highcharts.setOptions({
+                    lang: {
+                        thousandsSep: ','
+                    }
+                });
+
+                Highcharts.chart("app-fund", {
+                    chart: {
+                        type: "bar",
+                        backgroundColor: 'transparent',
+                        scrollablePlotArea: {
+                            minWidth: 0,
+                        },
+                        style: {
+                            fontFamily: 'IBM Plex Sans'
+                        }
+                        //            styledMode: true,
+                    },
+                    title: {
+                        text: "",
+                        style: {
+                            color: "#02429b",
+                        },
+                    },
+                    "credits": {
+                        "enabled": false
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    xAxis: {
+                        lineColor: 'transparent',
+                        lineWidth: 3,
+                        // one week
+                        labels: {
+                            style: {
+                                color: "#00419B",
+                                fontSize: '14px',
+                                fontWeight: '600',
+                            },
+                            align: 'left',
+                            reserveSpace: true
+                        },
+
+                        categories: [
+                            "Loans & Lines",
+                            "Deposit",
+                            "Credit & Debit",
+                            "Investment",
+                            "Business",
+
+                        ],
+                        gridLineColor: "transparent",
+                        gridTextColor: "#ffffff",
+                        tickColor: "transparent",
+                        showEmpty: false,
+                        gridLineWidth: 0,
+                    },
+
+                    yAxis: {
+                        // left y axis
+
+                        title: {
+                            text: null,
+                        },
+                        /*
+                          labels: {
+                              align: 'left',
+                              x: 3,
+                              y: 16,
+                              format: '{value:.,0f}'
+                          },
+                          */
+                        labels: {
+                            style: {
+                                color: "#434343",
+                            },
+                            format: '{value}%',
+                        },
+                        tickPositions: [
+                            -0.1,
+                            0,
+                            20,
+                            40,
+                            60,
+                            80,
+                            100,
+                        ],
+                        // min: -1,
+                        // max: 100,
+                        // tickInterval: 20,
+                        // title: {
+                        //   margin: 40
+                        // },
+                        gridLineColor: "#fff",
+                        gridTextColor: "#434343",
+                        gridLineWidth: 1,
+                        showFirstLabel: false,
+                    },
+                    tooltip: {
+                        shared: true,
+                        crosshairs: true,
+                    },
+                    legend: {
+                        align: 'left',
+                        itemStyle: {
+                            color: "#808080",
+                            fontSize: '14px',
+                            fontWeight: '400',
+                        }
+                    },
+                    colors: ["#51A5DE", "#76DDFB"],
+                    plotOptions: {
+                        series: {
+                            stacking: 'percent',
+                            pointPadding: 0,
+                            // groupPadding: 0,
+                            borderWidth: 0,
+                            //shadow: false,
+                            // pointWidth: 15,
+                        },
+                    },
+                    series: [
+                        {
+                            data: [685, 765, 237, 1987, 50],
+                            name: "Personalized Messaging",
+                            dataLabels: {
+                                enabled: true,
+                                align: 'right',
+                                style: {
+                                    color: "#fff",
+                                    fontSize: '21px',
+                                    fontWeight: '300',
+                                    textOutline: 0
+                                },
+                                padding: 15,
+
+                            },
+                        },
+                        {
+                            data: [778, 987, 522, 1459, 450],
+                            name: "Default Messaging",
+                            dataLabels: {
+                                enabled: true,
+                                align: 'left',
+                                style: {
+                                    color: "#252525",
+                                    fontSize: '21px',
+                                    fontWeight: '300',
+                                    textOutline: 0
+                                },
+                                padding: 15,
+
+                            },
+
+                        }
+                    ],
+                })
+                    ;
+                Highcharts.setOptions({
+                    lang: {
+                        thousandsSep: ','
+                    }
+                });
+
+
+
+            })
+        </script>
+
+
+
+    </main>
+
+
+    <!-- Footer -->
+    <!-- Get Footer -->
+
+
+
+</body>
+</html>
+
+{% endblock %}

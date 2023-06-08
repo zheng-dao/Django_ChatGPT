@@ -1,0 +1,27 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personalization Test</title>
+    <link rel="stylesheet" href="{% static 'app/content/local.css' %}" />
+    <script type='text/javascript' src="{% static 'app/js/personalization.js' %}"></script> 
+  </head>
+
+  <body style="background-color: #f1f1f1">
+<div class="btnwrap" style="position: fixed;z-index: 10000;top: 0;left: 0;right: 0;background: #000;"><button onclick="show('ads')">Show personalized content</button><button onclick="window.location.href='/preview?cu_id=66538&page=&products_owned=&ip=&products_recommended=&last_product_url=&zipcode=&use_distance_model=&models=&mode=&referrer='">Reset</button><button onclick="window.location.href='/calcoast?cu_id=66584'">Back</button> <a href="/preview?cu_id=66584"> Young Couple to Older Couple </a> | <a href="/preview?cu_id=66584&products_owned=&ip=&products_recommended=&zipcode=&models=referrer&referrer=organic&last_product_url=/rates/heloc">Rates-driven</a> | <a href="/olb?cu_id=66584&models=signal&products_recommended=bill%20pay__add a payee&page=/olb">Digital Banking</a></div>
+<script id="ads" type="text/json"></script>
+
+      <div id="test">
+          <h1>This is headline</h1>
+          <p>This is body copy.</p>
+          <img src="{% static 'app/images/demo/home-equity-loan.jpg' %}" style="width:300px;"/>
+          <br/><br/>
+          <button onclick="window.location.href='https://schoolsfirstfcu.org'">Continue</button> 
+          <a href="https://schoolsfirstfcu.org">Link</a>
+      </div>
+      <br/><br/><br/><br/><br/>
+        <div id="ad"></div>
+  </body>
+</html>

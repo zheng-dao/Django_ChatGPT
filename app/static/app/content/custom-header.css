@@ -1,0 +1,139 @@
+.header {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px;
+    justify-content: space-between;
+    background: rgb(0,0,19);
+    background: radial-gradient(ellipse at top, rgba(0,0,19,1) 0%, rgba(0,88,152,1) 95%);
+}
+.header .navbar-collapse.collapse {
+    display: flex ;
+    padding: 0;
+    justify-content: space-between;
+    align-items: center;
+    flex: auto;
+}
+.header ul.nav.navbar-nav {
+    display: flex;
+    padding-left: 18px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+}
+.header ul.nav.navbar-nav li{
+  list-style: none;
+}
+.header .nav.navbar-nav a {
+    padding: 10px 15px;
+    font-size: 13px;  
+    display: inline;
+    color: #fff;
+    font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+}
+#user-tools a {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+div#user-tools {
+    float: right;
+    padding: 0;
+    margin: 4px 0 0 20px;
+    font-weight: 300;
+    font-size: 11px;
+    font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-align: right;
+}
+.header .navbar-brand {
+    color: #fff;
+    padding: 0;
+}
+.header button.navbar-toggle {
+    display: none;
+}
+.header h1#site-name {
+    margin: 0;
+    color: #f5dd5d;
+    font-size: 24px;
+}
+.header h1#site-name span{
+  display: block;
+}
+.header h1#site-name a {
+    color: #f5dd5d;
+}
+
+#user-tools, #user-tools a, #user-tools a:visited, #user-tools a:active{
+    color:white;
+}
+
+h1 {
+    margin: 0 0 20px;
+    font-weight: 300;
+    font-size: 20px;
+    color: var(--body-quiet-color)
+}
+
+.rest-heading{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 300;
+    font-size: 36px;
+}
+
+.navbar{
+    border-top : none;
+}
+
+.format-selection .btn.btn-primary.js-tooltip{
+    transition: none;
+}
+
+.format-selection .btn.btn-primary.js-tooltip:visited, .format-selection .btn.btn-primary.js-tooltip:focus{
+    color:white;
+}
+.dropdown-menu li{
+    list-style-type: none;
+}
+#content.content_cls {
+    padding: 0 0 60px 0;
+}
+.home_footer_links a:visited {
+    color: rgba(0,88,152,1);
+}
+.calendarbox.module .calendar caption, .calendarbox h2 {
+    background: var(--accent, #f5dd5d);
+}
+.calendarbox.module .calendar caption {
+    padding: 8px;
+    caption-side: inherit;
+}
+.calendarbox.module .calendar-shortcuts {
+    background: var(--body-bg, #fff);
+}
+.clockbox.module {
+    background: var(--body-bg, #fff);
+    color: var(--body-fg, #333);
+    border: 1px solid var(--hairline-color, #e8e8e8);
+
+}
+.clockbox.module h2 {
+    margin: 0;
+    padding: 8px;
+    font-weight: 400;
+    font-size: 13px;
+    text-align: left;
+    background: var(--primary, #79aec8);
+    color: var(--header-link-color, #fff);
+}
+.clockbox.module ul li a:hover {
+    background: var(--primary, #79aec8);
+    color: white;
+    text-decoration: none;
+}
+.clockbox.module .calendar-cancel a:hover {
+    text-decoration: none;
+}
+.select2-container--admin-autocomplete .select2-selection--single .select2-selection__rendered {
+    color: var(--body-fg, #858586);
+}

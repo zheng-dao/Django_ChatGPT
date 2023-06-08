@@ -1,0 +1,209 @@
+@import url('//fonts.googleapis.com/css?family=Roboto:300,400,500,500');
+
+body {
+    padding: 40px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.search-results-wrap .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 50px 0;
+    position: relative;
+}
+
+.search-container {
+    background: #004685;
+    padding: 20px 80px;
+    margin-bottom: 40px;
+}
+
+/* Searchbox */
+#cludo-search-form {
+    position: relative;
+    display: flex;
+}
+
+    #cludo-search-form ::-webkit-input-placeholder {
+        color: #ADADAF;
+    }
+
+    #cludo-search-form :-moz-placeholder {
+        color: #ADADAF;
+    }
+
+    #cludo-search-form ::-moz-placeholder {
+        color: #ADADAF;
+    }
+
+    #cludo-search-form :-ms-input-placeholder {
+        color: #ADADAF;
+    }
+
+    #cludo-search-form input.search-input {
+        height: 50px;
+        border: 0;
+        width: 100%;
+        font-size: 18px;
+        text-indent: 50px;
+        padding-right: 10px;
+        background-image: url('/Static/dist/images/icon-search.svg');
+        background-color: #FFF;
+        background-size: 20px;
+        background-repeat: no-repeat;
+        background-position: 20px 15px;
+    }
+
+    #cludo-search-form button.search-button {
+        background: #0072CD;
+        border: 0;
+        color: #FFF;
+        text-transform: uppercase;
+        text-align: center;
+        margin: 0;
+        width: 85px;
+        height: 50px;
+        padding: 0 20px;
+        font-weight: 700;
+        margin-left: 15px;
+        font-size: 16px;
+    }
+
+/* Search Auto-Complete */
+ul.search_autocomplete {
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    margin-right: 86px;
+}
+
+    ul.search_autocomplete li {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+/* Search Results */
+#cludo-search-results {
+}
+
+.search-result-count {
+    margin-bottom: 20px;
+    display: inline-block;
+    font-size: 28px;
+    color: #333;
+    font-weight: 300;
+}
+
+    .search-result-count b {
+        color: #004685;
+        font-weight: 400;
+    }
+
+.search-results ul li {
+    border-bottom: 1px solid #D8D8D8;
+    padding-bottom: 25px;
+}
+
+    .search-results ul li a {
+        text-decoration: none;
+        color: #4A4A4A;
+    }
+
+        .search-results ul li a h2 {
+            font-size: 20px !important;
+            font-weight: 300 !important;
+            color: #4A4A4A;
+        }
+
+            .search-results ul li a h2 strong,
+            .search-results ul li a h2 b {
+                font-weight: 400 !important;
+            }
+
+        .search-results ul li a p {
+            font-size: 16px;
+            color: #333;
+            font-weight: 300;
+            margin-bottom: 20px;
+            line-height: 1.5em;
+        }
+
+        .search-results ul li a span.path {
+            display: block;
+            padding-top: 10px !important;
+            font-size: 14px;
+            color: #004685;
+            font-weight: 300;
+        }
+
+/* Cludo Pagination */
+nav.cludo-page-navigation {
+    margin: 20px 0 0 0 !important;
+    padding: 0;
+    min-height: auto !important;
+}
+
+    nav.cludo-page-navigation ul.search_page_list {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+        nav.cludo-page-navigation ul.search_page_list li {
+            border-bottom: 0;
+            width: auto !important;
+            padding: 0 !important;
+            margin: 0 5px !important;
+        }
+
+            nav.cludo-page-navigation ul.search_page_list li a {
+                width: auto;
+                display: block;
+                padding: 8px 14px !important;
+                font-size: 14px;
+            }
+
+            nav.cludo-page-navigation ul.search_page_list li.active {
+                background: #00AEEF !important;
+                padding: 8px 14px !important;
+                border-radius: 2px;
+                font-size: 14px;
+            }
+
+.powered-by-cludo, .search-filters {
+    display: none;
+}
+
+@@media screen and (max-width: 640px) {
+    body {
+        padding: 40px 20px;
+    }
+
+    .search-container {
+        padding: 20px 10px;
+        margin-bottom: 40px;
+    }
+
+    #cludo-search-form input.search-input {
+        height: 35px;
+        border: 0;
+        width: 100%;
+        font-size: 18px;
+        text-indent: 35px;
+        padding-right: 10px;
+        background-size: 18px;
+        background-position: 10px 8px;
+    }
+
+    #cludo-search-form button.search-button {
+        width: 45px;
+        height: 35px;
+        padding: 0 10px;
+        margin-left: 10px;
+    }
+}
+
+.powered-by-cludo {
+    display: none !important;
+}

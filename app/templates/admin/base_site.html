@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | Finalytics Admin Site {% endblock %}
+
+{% block branding %}
+{% block extrastyle %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/admin.css" %}" />
+{% endblock %}
+{% include "session_security/all.html" %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}"><img alt="Finalytics.ai" src="{% static "app/images/Finalytics_logo_white_05-02-21.svg" %}"> &nbsp;&nbsp;Admin Site</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

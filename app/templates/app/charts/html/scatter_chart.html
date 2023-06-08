@@ -1,0 +1,187 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Combo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<link rel="stylesheet" href="/static/app/content/local.css">
+  </head>
+
+  <body>
+    <div
+      id="container"
+      style="min-width: 310px; height: 400px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+        const chart = Highcharts.chart('container', {
+        chart: {
+                type: 'scatter',
+                backgroundColor: 'transparent',
+        },
+        title: {
+          text: 'NCUA Data Series: XYZ Credit Union Total number of members',
+          style: {
+            color: '#02429b',
+          },
+        },
+        yAxis: [
+          {
+            lineColor: '#434343',
+          lineWidth:2,
+            // left y axis
+            title: {
+              text: 'Members',
+              style: {
+                color: '#434343',
+              },
+            },
+            labels: {
+              style: {
+                color: '#434343',
+              },
+            },
+            gridLineColor: 'transparent',
+            gridTextColor: '#ffffff',
+            gridLineWidth: 0,
+            showFirstLabel: false,
+          },
+          {
+            opposite: true,
+            title: {
+              text: 'Benchmark value',
+              style: {
+                color: '#434343',
+              },
+            },
+            labels: {
+              style: {
+                color: '#434343',
+              },
+            },
+            gridLineColor: 'transparent',
+            gridTextColor: '#ffffff',
+            gridLineWidth: 0,
+          },
+        ],
+        "credits": {
+          "enabled": false
+      },
+        tooltip: {
+          shared: true,
+        },
+        /*colors: [
+          {
+            linearGradient: {
+              x1: 0,
+              x2: 0,
+              y1: 0,
+              y2: 1,
+            },
+            stops: [
+              [0, '#8B2A43'],
+              [1, '#265BB6'],
+            ],
+          },
+          {
+            linearGradient: {
+              x1: 0,
+              x2: 0,
+              y1: 0,
+              y2: 1,
+            },
+            stops: [
+              [0, '#265BB6'],
+              [1, '#8B2A43'],
+            ],
+          },
+          {
+            linearGradient: {
+              x1: 0,
+              x2: 0,
+              y1: 0,
+              y2: 1,
+            },
+            stops: [
+              [0, '#8B2A43'],
+              [1, '#C13B00'],
+            ],
+          },
+          {
+            linearGradient: {
+              x1: 0,
+              x2: 0,
+              y1: 0,
+              y2: 1,
+            },
+            stops: [
+              [0, '#C13B00'],
+              [1, '#063E54'],
+            ],
+          },
+          {
+            linearGradient: {
+              x1: 0,
+              x2: 0,
+              y1: 0,
+              y2: 1,
+            },
+            stops: [
+              [0, '#063E54'],
+              [1, '#6B8795'],
+            ],
+          },
+        ],
+        */
+        colors:["#209af1", "#84c586", "#00429b", "#7793db", '#a8cfe5', '#7497aa'],
+        xAxis: {
+          lineColor: '#434343',
+          lineWidth:2,
+          // one week
+          labels: {
+            style: {
+              color: '#434343',
+            },
+          },
+            title: {
+                text: 'Benchmark value',
+                style: {
+                color: '#434343',
+                },
+            },
+          gridLineColor: 'fff',
+          gridTextColor: '#ffffff',
+          //lineColor: 'transparent',
+          tickColor: 'transparent',
+          showEmpty: false,
+          gridLineWidth: 1,
+        },
+        series: [
+          {
+            //type: 'column',
+            name: 'Total number of members',
+            data: [1258.0, 1270.0, 1277.0, 1283.0, 1280.0],
+            colorByPoint: false,
+          },
+          {
+            //type: 'area',
+            name: 'Benchmark',
+            data: [100, 200, 150, 310, 450],
+            yAxis: 1,
+          },
+        ],
+      })
+
+      console.log(chart.series[0].options);
+      Highcharts.setOptions({
+        lang: {
+          thousandsSep: ','
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+{% extends "admin/base_atlantis.html" %}
+{% load static %}
+{% block endheadscripts %}
+<style>
+    .alert-danger {
+        color: #721c24 !important;
+        background-color: #f8d7da !important;
+        border-color: #f5c6cb !important;
+    }
+</style>
+{% endblock endheadscripts %}
+{% block panel-header %}
+<div class="page-navs bg-black py-3 pr-2">
+    <div class="card-title fw-bold">
+        Create Branch
+    </div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+
+    {% comment %}{% include template with companies=companies view_name=redirect_url %}{% endcomment %}
+
+    <div class="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center">
+                            <h4 class="card-title">Input Fields</h4>
+                        </div>
+                    </div>
+                    
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6">
+                                    <ul class="list-group list-group-bordered">
+                                        {% for i in campaigns_list %}
+                                            <li><a href="{% url 'campaign-report' i.id %}">{{ i.name }} {% if i.is_active %}(active){% endif %}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>                    
+                        </div>
+                        
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block endscripts %}
+{% endblock %}

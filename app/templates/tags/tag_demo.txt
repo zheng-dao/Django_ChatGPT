@@ -1,0 +1,16 @@
+<head>
+    <script>
+        finDebug=true;
+        finNoCache=true;
+        FINALYTICS_API_URL="https://finalyticsdata.com/api/v1/";
+        //finDevMode=true;
+        //FINALYTICS_API_URL="http://127.0.0.1:8001/api/v1";
+        
+        //    FINALYTICS_API_URL="https://stgfinalyticsdata.com/api/v1";
+        
+        //https://finalytics.blackstone.studio/pixel/pixel.js
+        ((e,a,i)=>{i.finalytics={init:function (c){this.clientId=c}}; var t=a.createElement("script");t.type="text/javascript",t.src="https://finpixel.s3.us-east-2.amazonaws.com/finalytics.js",t.async=0,a.getElementsByTagName("head")[0].appendChild(t)})(0,document,window);
+        finalytics.init('68490');
+        //finalytics.updateParam("products_recommended", "ira");
+    </script>
+    

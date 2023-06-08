@@ -1,0 +1,133 @@
+{% load i18n static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
+<head>
+    {% block startheadscripts %}
+    {% endblock %}
+    <title>{% block title %}Finalytics.AI{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static " admin /css/base.css" %}{% endblock %}">
+    {% if not is_popup and is_nav_sidebar_enabled %}
+    <link rel="stylesheet" type="text/css" href="{% static " admin /css/nav_sidebar.css" %}">
+    <script src="{% static 'admin/js/nav_sidebar.js' %}" defer></script>
+    {% endif %}
+    {% block extrastyle %}{% endblock %}
+    {% block basestyle%}
+    {% comment %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" /> {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/custom-header.css' %}" />
+    {% endblock basestyle %}
+    {% if LANGUAGE_BIDI %}
+    <link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static " admin /css/rtl.css" %}{% endblock %}">{% endif %}
+    {% block extrahead %}{% endblock %}
+    {% block responsive %}
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static " admin /css/responsive.css" %}">
+    {% if LANGUAGE_BIDI %}
+    <link rel="stylesheet" type="text/css" href="{% static " admin /css/responsive_rtl.css" %}">{% endif %}
+    {% endblock %}
+    {% block blockbots %}
+    <meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}" />
+    <!-- Fonts and icons -->
+    <script src="{% static 'app/assets/js/plugin/webfont/webfont.min.js' %}"></script>
+    <script>
+        WebFont.load({
+            google: { "families": ["Lato:300,400,700,900"] },
+            custom: {
+                "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['{% static "app/assets/css/fonts.min.css" %}']
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'app/assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/css/atlantis.css' %}">
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="{% static 'app/assets/css/demo.css' %}">
+    {% block endheadscripts %}
+    {% endblock %}
+</head>
+{% load i18n %}
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}" data-admin-utc-offset="{% now "Z" %}" data-background-color="">
+
+    <div id="container" class="wrapper">
+        <!-- Container -->
+        {% block custom_header %}
+        <div class="main-header">
+            <!-- Logo Header -->
+            <div class="logo-header" data-background-color="dark2">
+
+                <a href="{% url 'dashboard' %}" class="logo">
+                    <img src="{% static 'app/images/Finalytics_logo_white_05-02-21.svg' %}" alt="navbar brand" class="navbar-brand" style="width:140px;">
+                </a>
+                <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">
+                        <i class="icon-menu"></i>
+                    </span>
+                </button>
+                <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+                <div class="nav-toggle">
+                    <button class="btn btn-toggle toggle-sidebar">
+                        <i class="icon-menu"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- End Logo Header -->
+            <!-- Navbar Header -->
+            {% include 'admin/includes/nav.html' %}
+            <!-- End Navbar -->
+        </div>
+
+        <!-- Sidebar -->
+        {% include 'admin/includes/sidebar.html' %}
+        <!-- End Sidebar -->
+        {% endblock custom_header %}
+
+        <div class="main-panel" id="main">
+            <!--{% if not is_popup and is_nav_sidebar_enabled %}
+            {% block nav-sidebar %}
+            {% include "admin/nav_sidebar.html" %}
+            {% endblock %}
+            {% endif %}-->
+            <div class="container">
+                {% block messages %}
+                {% if messages %}
+                <ul class="messagelist">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                        {{ message|capfirst }}</li>
+                        {% endfor %}
+                </ul>
+                {% endif %}
+                {% endblock messages %}
+                <!-- Content -->
+                <div id="content" class="{% block coltype %}colM{% endblock %}">
+                    {% block pretitle %}{% endblock %}
+                    {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+                    {% block content_subtitle %}{% if subtitle %}<h2>{{ subtitle }}</h2>{% endif %}{% endblock %}
+                    {% block content %}
+                    {% block object-tools %}{% endblock %}
+                    {{ content }}
+                    {% endblock %}
+                    {% block sidebar %}{% endblock %}
+                    <br class="clear">
+                </div>
+                <!-- END Content -->
+                {% block footer %}<div id="footer"></div>{% endblock %}
+            </div>
+        </div>
+    </div>
+<!-- END Container -->
+{% block basejs%}
+    <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
+    <script src="{% static 'app/scripts/respond.js' %}"></script>
+    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+    
+{% endblock basejs%}
+</body>
+</html>

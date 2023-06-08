@@ -1,0 +1,179 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <link rel="stylesheet" href="{% static 'app/content/local.css' %}">
+    
+</head>
+
+<body>
+    <div id="container"
+         style="width:743px; height: 400px; margin: 0 auto"
+         class="border"></div>
+    <script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column',
+        },
+	    title: {text:null},
+        exporting:{
+            enabled:false
+        },
+        credits: {
+            enabled: false
+        },
+        xAxis: {
+            visible: false,
+        },
+        yAxis: {
+            visible: false,
+            min: 0,
+            title: {
+                text: null
+            },
+            /* make all y-axis gridlines invisible */
+            gridLineColor: 'transparent'
+        },
+        legend: {
+            align: 'center',
+            alignColumns: true,
+            itemWidth: 144,
+            symbolPadding: 0.001,
+            symbolWidth: 0.001,
+            symbolHeight: 0.001,
+            layout: 'horizontal',
+            horiztonalAlign: 'middle',
+            verticalAlign: 'top',
+            itemDistance: 34,
+            margin: 0,
+            padding: 0,
+            itemStyle: {
+                color:'#555',
+                fontSize: '16px',
+            },
+  //          useHTML: true,
+  //          labelFormatter: function() {
+  //              return '<div style="text-align:center;width:146px;color:#555;font-weight:normal;margin:0;padding:0 0 20px 0;color:#00419B;font-weight:bold;font-size:16px;font-family:Arial;">' + this.name + '</div>';
+		//    }
+		},
+        colors: ['#45A0E3', '#37CCC5', '#12294F', '#058789', '#65EBE4'],
+        plotOptions: {
+            column: {
+                pointPadding: 160,
+                borderWidth: 0,
+                groupPadding: 0,
+            },
+            series: {
+                pointWidth: 120,
+                dataLabels: {
+                    enabled: true,
+                    crop: false,
+                    overflow: 'none',
+                    format: '${y}K',
+                    style: {
+                        fontWeight: 'normal',
+                        fontSize: '30px',
+                        fontFamily: 'arial',
+                        color: '#aaaaaa',
+                    },
+
+                }
+            }
+        },
+        series: [
+            {
+                name: 'Auto Loans',
+                data: [227],
+                color: {
+                    linearGradient: {
+                      x1: 0,
+                      x2: 0,
+                      y1: 0,
+                      y2: 1
+                    },
+                    stops: [
+                        [0, '#45A0E3'],
+                        [1, '#7BCEF3']
+                    ],
+                },
+            },
+            {
+                name: 'Auto Refinance',
+                data: [80],
+                color: {
+                    linearGradient: {
+                      x1: 0,
+                      x2: 0,
+                      y1: 0,
+                      y2: 1
+                    },
+                    stops: [
+                        [0, '#37CCC5'],
+                        [1, '#68E8E4']
+                    ],
+                },
+            },
+            {
+                name: 'Car Buying<br/>Service',
+                data: [70],
+                color: {
+                    linearGradient: {
+                      x1: 0,
+                      x2: 0,
+                      y1: 0,
+                      y2: 1
+                    },
+                    stops: [
+                        [0, '#12294F'],
+                        [1, '#295387']
+                    ],
+                },
+            },
+            {
+                name: 'RV Loans',
+                data: [65],
+                color: {
+                    linearGradient: {
+                      x1: 0,
+                      x2: 0,
+                      y1: 0,
+                      y2: 1
+                    },
+                    stops: [
+                        [0, '#058789'],
+                        [1, '#0CBCBE']
+                    ],
+                },
+            },
+            {
+                name: 'Boat Loans',
+                data: [55],
+                color: {
+                    linearGradient: {
+                      x1: 0,
+                      x2: 0,
+                      y1: 0,
+                      y2: 1
+                    },
+                    stops: [
+                        [0, '#65EBE4'],
+                        [1, '#9EF7F3']
+                    ],
+                },
+            },
+        ]
+    });
+    Highcharts.setOptions({
+        lang: {
+          thousandsSep: ','
+        }
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,792 @@
+{% extends "admin_static/base_atlantis.html" %}
+{% load i18n static %}
+
+{% block panel-header %}
+<div class="panel-header bg-primary-gradient">
+    <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+                <h2 class="text-white pb-2 fw-bold">Content Performance</h2>
+                <!--<h5 class="text-white op-7 mb-2">Lorem ipsum dolor</h5>-->
+            </div>
+            <div class="ml-md-auto py-2 py-md-0">
+                <a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
+                <a href="#" class="btn btn-secondary btn-round">Request a New Report</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+
+<!-- Get Header -->
+
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+    <script type='text/javascript' src="{% static 'app/wp-content/themes/extractable/js/vendor/jquery-2.2.4.min.js' %}"></script>
+    <style type="text/css" id="wp-custom-css">
+        .new_style_hero .row {
+            position: relative;
+        }
+    </style>
+
+    <link rel='stylesheet' id='custom-css' href="{% static 'app/wp-content/themes/extractable/custom.css' %}" type='text/css' media='all' />
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+
+    <script src="https://code.highcharts.com/modules/funnel.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script src="https://code.highcharts.com/modules/dumbbell.js"></script>
+
+    <script src="https://code.highcharts.com/maps/modules/map.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.6/proj4.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/marker-clusters.js"></script>
+    <script src="https://code.highcharts.com/modules/coloraxis.js"></script>
+    <script src="https://code.highcharts.com/mapdata/countries/us/us-all-all.js"></script>
+    <script src="https://code.highcharts.com/mapdata/countries/us/us-fl-all.js"></script>
+    <script src="https://code.highcharts.com/modules/sankey.js"></script>
+
+
+
+
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <style rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css" media="screen"></style>
+
+    <style>
+
+        .highcharts-background {
+            fill: #556d79;
+        }
+
+        .highcharts-container {
+            /* #1072 */
+
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            font-family: Roboto, Arial, Helvetica, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            font-size: 12px;
+            user-select: none;
+        }
+    </style>
+
+    <script>
+        var url_json_counties = 'https://staging4.finalytics.ai/wp-content/themes/extractable/counties_population.json';
+        var fl_search_volume = 'https://staging4.finalytics.ai/wp-content/themes/extractable/fl_search_volume.json';
+    </script>
+
+
+</head>
+
+
+
+<body class="page-template page-template-templates page-template-template-finalytics page-template-templatestemplate-finalytics-php page page-id-6840">
+
+
+    <!-- Finalytcs Header -->
+
+
+
+
+
+    <main class="main-fluid">
+
+        <!-- Download Report Form -->
+
+
+        <style>
+            .desktoponly p {
+                color: white;
+            }
+
+            .desktoponly h2 {
+                margin-bottom: 0px;
+            }
+
+            .report-title::before {
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: url({% static 'app/wp-content/uploads/Fill-1.png' %
+            }
+
+            );
+            mix-blend-mode: normal;
+            opacity: 0.87;
+            transform: rotate( -180deg );
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-repeat: no-repeat;
+            background-size: cover;
+            }
+
+            .report-title .select_link {
+                font-size: 14px;
+                padding: 3px;
+            }
+
+            .main-fluid .report-title {
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+
+            .container {
+                width: 100%;
+            }
+        </style>
+
+        <style>
+            .content-performance .title-area h3 {
+                font-size: 36px;
+                color: #00419B;
+                font-family: 'IBM Plex Sans';
+                line-height: 28px;
+                font-weight: 300;
+            }
+
+            .highcharts-background {
+                fill: #fff !important;
+            }
+
+            #container {
+                width: 100%;
+            }
+
+            .img-fluid {
+                width: 100%;
+            }
+
+            .content-performance .no-padding {
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+
+            .content-performance .title-area h4 {
+                font-size: 24px;
+                color: #00419B;
+                font-family: 'IBM Plex Sans';
+                line-height: 28px;
+                font-weight: 300;
+            }
+
+            .content-performance {
+                background-color: #F0F0F0;
+                padding-top: 0px;
+                padding-bottom: 80px;
+            }
+
+            .main-fluid .report-title {
+                padding-bottom: 96px;
+            }
+
+            .content-performance .title-area {
+                margin-top: 50px;
+                margin-bottom: 29px;
+            }
+
+            .tabs {
+                background-color: transparent;
+                padding-bottom: 0px;
+                margin-top: -47px;
+            }
+
+            .tablinks {
+                transition: all 0.5s;
+                font-weight: 500;
+                text-align: center;
+                letter-spacing: 0.538462px;
+                text-transform: uppercase;
+                color: #B1DDFF;
+                padding: 15px 22px;
+                background-color: transparent;
+                border-radius: 0;
+                display: inline-block;
+                text-decoration: none;
+                border: none;
+                cursor: pointer;
+                font-family: 'IBM Plex Sans';
+                font-size: 13px;
+                line-height: normal;
+                color: #B1DDFF;
+            }
+
+                .tablinks.active {
+                    background-color: #F0F0F0;
+                    color: #3B3B3B;
+                }
+
+                .tablinks:focus {
+                    outline: none;
+                }
+
+            section.tabs {
+                padding-top: 0px !important;
+                overflow-x: auto;
+            }
+
+            .container-tabs {
+                display: flex;
+                justify-content: start;
+                align-items: flex-start;
+                max-width: 1260px;
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            .content-performance .content-area {
+                margin-top: 50px;
+            }
+
+                .content-performance .content-area .keyword {
+                    margin-top: 30px;
+                }
+
+
+            .content-performance .box-area .title-area {
+                margin-top: 0px;
+            }
+
+            .content-performance .box-area {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+                .content-performance .box-area .box {
+                    width: 11.8%;
+                    margin-right: 9px;
+                    padding: 8px 0px 0px;
+                    margin-bottom: 10px;
+                }
+
+                    .content-performance .box-area .box:last-of-type {
+                        margin-right: 0px;
+                    }
+
+            .content-performance .box.gray {
+                background: #EAEAEA;
+            }
+
+            .content-performance .box.white {
+                background: #fff;
+            }
+
+
+            .content-performance .box span.title {
+                font-size: 12px;
+                font-family: 'IBM Plex Sans';
+                font-weight: 700;
+                color: #00419B;
+                text-align: center;
+                display: block;
+                margin-bottom: 2px;
+            }
+
+            .content-performance .box span.number {
+                font-family: 'IBM Plex Sans';
+                font-size: 28px;
+                font-weight: 300;
+                display: block;
+                text-align: center;
+                line-height: 36px;
+                color: #595959;
+                margin-bottom: 12px;
+            }
+
+            .content-performance .box.white span.number {
+                font-size: 18px;
+                letter-spacing: -0.5px;
+            }
+
+            .content-performance .box .bar {
+                width: 100%;
+                background: #CEE0ED;
+                height: 10px;
+                bottom: -5px;
+                position: relative;
+            }
+
+                .content-performance .box .bar .fill {
+                    height: 100%;
+                    background: #45A0E3;
+                }
+
+            .green {
+                font-family: 'IBM Plex Sans';
+                font-size: 12px;
+                line-height: 16px;
+                font-weight: 400;
+                color: #12C42D;
+                margin-top: -10px;
+                display: block;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .red {
+                font-family: 'IBM Plex Sans';
+                text-align: center;
+                font-size: 12px;
+                line-height: 16px;
+                font-weight: 400;
+                color: #E30202;
+                margin-top: -10px;
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            @media only screen and (max-width: 1199.98px) {
+                .tabs {
+                    background-color: transparent;
+                    padding-bottom: 0px;
+                }
+
+                .content-performance .box-area .box {
+                    width: 14.8%;
+                    margin-right: 14px;
+                    margin-bottom: 30px;
+                }
+            }
+
+            @media only screen and (max-width: 991.98px) {
+                .content-performance .box-area .box {
+                    width: 20%;
+                }
+            }
+
+
+            @media only screen and (max-width: 767.98px) {
+                .content-performance .container {
+                    padding-left: 15px;
+                    padding-right: 15px;
+                }
+
+                .content-performance .box-area .box {
+                    width: 45%;
+                }
+
+                .content-performance .title-area h3 {
+                    font-size: 24px;
+                }
+
+                .container-tabs {
+                    width: max-content;
+                }
+
+                .content-performance .no-padding {
+                    padding-left: 15px;
+                    padding-right: 15px;
+                }
+            }
+        </style>
+        <section class="tabs">
+            <div class="container nopadding new_padding_tab">
+                <div class="row">
+                    <div class="col-md-12 nopadding">
+                        <div class="container-tabs">
+                            <button class="tablinks" data-tab="">Personal Checking</button>
+                            <button class="tablinks active" data-tab="">Vehicle Loans</button>
+                            <button class="tablinks" data-tab="">Retirement</button>
+                            <button class="tablinks" data-tab="">Insurance</button>
+                            <button class="tablinks" data-tab="">Home Loans</button>
+                            <button class="tablinks" data-tab="">Loans</button>
+                            <button class="tablinks" data-tab="">Credit Cards</button>
+                            <button class="tablinks" data-tab="">Investments</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content-performance">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 img-fluid">
+                        <div class="title-area">
+                            <h3>Vehicle Loans</h3>
+                        </div>
+                        <div id="container">
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="content-area">
+                            <div class="keyword">
+                                <div class="title-area">
+                                    <h4>Auto Loans</h4>
+                                </div>
+                                <div class="box-area">
+                                    <div class="box gray">
+                                        <span class="title">Page Entrances</span>
+                                        <span class="number">123,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">Unique Page Views</span>
+                                        <span class="number">123,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">App Starts</span>
+                                        <span class="number">123,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">App Completes</span>
+                                        <span class="number">123,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">Fund Rate</span>
+                                        <span class="number">59.5%</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box white">
+                                        <span class="title">Avg. Value</span>
+                                        <span class="number">$32,548</span>
+                                    </div>
+                                    <div class="box white">
+                                        <span class="title">Total Value</span>
+                                        <span class="number">$701,143,441</span>
+                                        <span class="green">▲ 12%</span>
+                                    </div>
+                                    <div class="box white">
+                                        <span class="title">YTD Value</span>
+                                        <span class="number">$4,276,974,988</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="keyword">
+                                <div class="title-area">
+                                    <h4>Auto Refinance</h4>
+                                </div>
+                                <div class="box-area">
+                                    <div class="box gray">
+                                        <span class="title">Page Entrances</span>
+                                        <span class="number">133,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">Unique Page Views</span>
+                                        <span class="number">143,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">App Starts</span>
+                                        <span class="number">153,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">App Completes</span>
+                                        <span class="number">113,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">Fund Rate</span>
+                                        <span class="number">29.5%</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box white">
+                                        <span class="title">Avg. Value</span>
+                                        <span class="number">$40,548</span>
+                                    </div>
+                                    <div class="box white">
+                                        <span class="title">Total Value</span>
+                                        <span class="number">$501,123,141</span>
+                                        <span class="green">▲ 12%</span>
+                                    </div>
+                                    <div class="box white">
+                                        <span class="title">YTD Value</span>
+                                        <span class="number">$2,376,174,288</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="keyword">
+                                <div class="title-area">
+                                    <h4>Car Buying Service</h4>
+                                </div>
+                                <div class="box-area">
+                                    <div class="box gray">
+                                        <span class="title">Page Entrances</span>
+                                        <span class="number">163,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">Unique Page Views</span>
+                                        <span class="number">113,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">App Starts</span>
+                                        <span class="number">153,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">App Completes</span>
+                                        <span class="number">183,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">Fund Rate</span>
+                                        <span class="number">49.5%</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box white">
+                                        <span class="title">Avg. Value</span>
+                                        <span class="number">$31,548</span>
+                                    </div>
+                                    <div class="box white">
+                                        <span class="title">Total Value</span>
+                                        <span class="number">$723,123,441</span>
+                                        <span class="green">▲ 12%</span>
+                                    </div>
+                                    <div class="box white">
+                                        <span class="title">YTD Value</span>
+                                        <span class="number">$3,276,974,988</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="keyword">
+                                <div class="title-area">
+                                    <h4>RV Loans</h4>
+                                </div>
+                                <div class="box-area">
+                                    <div class="box gray">
+                                        <span class="title">Page Entrances</span>
+                                        <span class="number">133,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">Unique Page Views</span>
+                                        <span class="number">23,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">App Starts</span>
+                                        <span class="number">93,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">App Completes</span>
+                                        <span class="number">53,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">Fund Rate</span>
+                                        <span class="number">39.5%</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box white">
+                                        <span class="title">Avg. Value</span>
+                                        <span class="number">$52,548</span>
+                                    </div>
+                                    <div class="box white">
+                                        <span class="title">Total Value</span>
+                                        <span class="number">$101,143,441</span>
+                                        <span class="red">▼ 9%</span>
+                                    </div>
+                                    <div class="box white">
+                                        <span class="title">YTD Value</span>
+                                        <span class="number">$1,276,974,988</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="keyword">
+                                <div class="title-area">
+                                    <h4>Boat Loans</h4>
+                                </div>
+                                <div class="box-area">
+                                    <div class="box gray">
+                                        <span class="title">Page Entrances</span>
+                                        <span class="number">143,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">Unique Page Views</span>
+                                        <span class="number">223,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">App Starts</span>
+                                        <span class="number">23,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">App Completes</span>
+                                        <span class="number">63,497</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box gray">
+                                        <span class="title">Fund Rate</span>
+                                        <span class="number">79.5%</span>
+                                        <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+                                    </div>
+                                    <div class="box white">
+                                        <span class="title">Avg. Value</span>
+                                        <span class="number">$62,548</span>
+                                    </div>
+                                    <div class="box white">
+                                        <span class="title">Total Value</span>
+                                        <span class="number">$751,143,441</span>
+                                        <span class="green">▲ 12%</span>
+                                    </div>
+                                    <div class="box white">
+                                        <span class="title">YTD Value</span>
+                                        <span class="number">$4,676,974,988</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'column',
+                },
+
+                title: { text: null },
+                exporting: {
+                    enabled: false
+                },
+                credits: {
+                    enabled: false
+                },
+                xAxis: {
+                    categories: ['Auto Loan', 'Auto Refinance', 'Car Buying Service', 'RV Loans', 'Boat Loans'],
+                    labels: {
+                        align: 'center',
+                        color: '#aaaaaa',
+                        style: {
+                            fontSize: '12px',
+                            fontWeight: 'bold',
+                            fontFamily: 'Arial, sans-serif'
+                        }
+                    }
+                },
+                yAxis: {
+                    visible: false,
+
+                    min: 0,
+                    title: {
+                        text: null
+                    },
+                    /* make all y-axis gridlines invisible */
+                    gridLineColor: 'transparent'
+                },
+                legend: {
+                    enabled: false,
+                },
+                colors: [{
+                    linearGradient: {
+                        x1: 0,
+                        x2: 0,
+                        y1: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, '#45A0E3'],
+                        [1, '#7BCEF3']
+                    ],
+                }, {
+                    linearGradient: {
+                        x1: 0,
+                        x2: 0,
+                        y1: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, '#37CCC5'],
+                        [1, '#68E8E4']
+                    ],
+                },
+                {
+                    linearGradient: {
+                        x1: 0,
+                        x2: 0,
+                        y1: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, '#12294F'],
+                        [1, '#295387']
+                    ],
+                },
+                {
+                    linearGradient: {
+                        x1: 0,
+                        x2: 0,
+                        y1: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, '#058789'],
+                        [1, '#0CBCBE']
+                    ],
+                },
+                {
+                    linearGradient: {
+                        x1: 0,
+                        x2: 0,
+                        y1: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, '#65EBE4'],
+                        [1, '#9EF7F3']
+                    ],
+                }
+                ],
+                plotOptions: {
+                    column: { colorByPoint: true },
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            crop: false,
+                            overflow: 'none',
+                            format: '${y}K',
+                            //format: '{name}',
+                            style: {
+                                fontWeight: 'normal',
+                                fontSize: '30px',
+                                fontFamily: 'arial',
+                                color: '#aaaaaa',
+                            },
+
+                        },
+                    },
+                },
+
+                series: [
+                    {
+                        name: 'Vehicle Loans',
+                        data: [227, 80, 70, 65, 55],
+                    },
+                ]
+            });
+
+        </script>
+
+
+
+    </main>
+
+</body>
+</html>
+
+    {% endblock %}

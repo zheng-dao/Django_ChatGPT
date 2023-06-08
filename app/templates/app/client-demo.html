@@ -1,0 +1,56 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<!--test-->
+<div class="jumbotron">
+    <h3>Demo Home</h3>
+        <a href="{{ EXTERNAL_SITE_IP }}/static/sites/tru/www.truliantfcu.org/index.html" class="btn btn-primary btn-large">Truliant Demo Home</a>
+    <h3>Location-based</h3>
+    <p>
+        <a href="{{ EXTERNAL_SITE_IP }}/static/sites/tru/www.truliantfcu.org/index.html?zipcode=28201" class="btn btn-primary btn-large">Charlotte Mortgage</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/static/sites/tru/www.truliantfcu.org/index.html?zipcode=28307" class="btn btn-primary btn-large">Military: Fort Bragg</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/static/sites/tru/www.truliantfcu.org/index.html?zipcode=23501" class="btn btn-primary btn-large">Norfolk, VA New Branch</a>
+    </p>
+    <h3>Page-based</h3>
+        <a href="{{ EXTERNAL_SITE_IP }}/static/sites/tru/www.truliantfcu.org/borrow/boat-loans.html" class="btn btn-primary btn-large">Product Recognition: Boat Loan</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/static/sites/tru/www.truliantfcu.org/borrow/personal-loans.html" class="btn btn-primary btn-large">Product Recognition: Personal Loan</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/apply/static/sites/tru/mortgage" class="btn btn-primary btn-large">Funnel: Apply Mortgage</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/static/sites/tru/www.truliantfcu.org/index.html" class="btn btn-primary btn-large">Search</a>
+    <h3>Segment-based</h3>
+        <a href="{{ EXTERNAL_SITE_IP }}/static/sites/tru/www.truliantfcu.org/index.html?segments=family" class="btn btn-primary btn-large">Family</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/static/sites/tru/www.truliantfcu.org/index.html?segments=military" class="btn btn-primary btn-large">Military</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/static/sites/tru/www.truliantfcu.org/index.html?segments=student" class="btn btn-primary btn-large">Student</a>
+    <h3>Campaign-based</h3>
+        <a href="{{ EXTERNAL_SITE_IP }}/static/sites/tru/www.truliantfcu.org/index.html?campaign=multiproduct" class="btn btn-primary btn-large">Multiproduct</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/static/sites/tru/www.truliantfcu.org/index.html?utm_source=google&ut_medium=banner&utm_campaign=UNC_Loyalty&utm_term=unc" class="btn btn-primary btn-large">University of North Carolina</a>
+</div>
+
+<!--
+<div class="jumbotron">
+    <h3>Location-based</h3>
+    <p>
+        <a href="{{ EXTERNAL_SITE_IP }}/?zipcode=32212" class="btn btn-primary btn-large">Military Zip Code</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/?zipcode=32304" class="btn btn-primary btn-large">Tallahassee New Branch</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/?zipcode=28201" class="btn btn-primary btn-large">Charlotte Mortgage</a>
+    </p>
+    <h3>Page-based</h3>
+        <a href="{{ EXTERNAL_SITE_IP }}/search?cludoquery= the best ira" class="btn btn-primary btn-large">User Search: the best IRA</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/personal/borrow/home-loans/mortgages" class="btn btn-primary btn-large">Product Recognition: Mortgage</a>
+        <a href="{{ EXTERNAL_SITE_IP }}/apply/mortgage" class="btn btn-primary btn-large">Funnel: Apply Mortgage</a>
+    <h3>Scenario-based</h3>
+        <a href="{{ EXTERNAL_SITE_IP }}?utm_source=google&ut_medium=banner&utm_campaign=FSU_Loyalty&utm_term=fsu" class="btn btn-primary btn-large">Campaign: FSU</a>
+</div>
+-->
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>
+
+{% endblock %}

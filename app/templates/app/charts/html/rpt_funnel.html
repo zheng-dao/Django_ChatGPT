@@ -1,0 +1,296 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.highcharts.com/highcharts-more.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.6/proj4.js"></script>
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/data.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/funnel.js"></script>
+        <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+      <script src="https://code.highcharts.com/modules/dumbbell.js"></script>
+      <script src="https://code.highcharts.com/modules/sankey.js"></script>
+<script src="https://code.highcharts.com/modules/marker-clusters.js"></script>
+<script src="https://code.highcharts.com/modules/coloraxis.js"></script>
+      <script src="https://code.highcharts.com/mapdata/countries/us/us-fl-all.js"></script>
+
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <link rel="stylesheet" href="{% static 'app/content/local.css' %}">
+
+  </head>
+
+  <body>
+    <a href="#funnel">Funnel</a> | <a href="#traffic">Traffic Source</a> | <a href="#conversion">Conversion Rate</a>
+
+
+    <h2 name="funnel">Application Funnel</h2>
+    <div
+      id="funnel"
+      style="min-width: 50px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+Highcharts.chart("funnel", 
+{
+   "chart":{
+      "type":"bar",
+      "backgroundColor":"transparent",
+      "scrollablePlotArea":{
+         "minWidth":0
+      }
+   },
+   "title":{
+      "text":null
+   },
+    "legend":{
+        "enabled":false,    
+    },
+   "xAxis":{
+        "opposite":true,
+      "labels":{
+         "style":{
+            "color":"#434343"
+         }
+      },
+      "gridLineColor":"transparent",
+      "gridTextColor":"#ffffff",
+      "categories":[
+         "App Starts<br><b>500</b>",
+         "App Partial<br><b>500</b>",
+         "App Completes<br><b>500</b>",
+         "App Funds<br><b>500</b>"
+      ],
+   },
+   "yAxis":[{
+      "title":{
+         "text":null
+      },
+        "opposite":true,
+      "labels":{
+            "enabled":false,
+      },
+      "gridLineColor":"#fff",
+      "gridTextColor":"#ffffff",
+      "gridLineWidth":0,
+      "showFirstLabel":false,
+      "reversed":true
+   }],
+   "tooltip":{
+      "shared":true,
+      "crosshairs":true
+   },
+   "series":[
+      {
+         "data":[
+            2935,
+            2000,
+            867,
+            603
+         ],
+   "colors":[
+      "#209af133",
+      "#209af166",
+      "#209af199",
+      "#209af1",
+   ],
+
+      }
+   ],
+   "plotOptions":{
+      "series":{
+         "pointPadding":0,
+         "borderWidth":0,
+        "colorByPoint": true,
+      }
+   },
+   "credits":{
+      "enabled":false
+   }
+});
+    </script>
+
+
+
+
+    <h2 name="traffic">Traffic Source</h2>
+    <div
+      id="traffic"
+      style="min-width: 50px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+Highcharts.chart("traffic", 
+{
+   "chart":{
+      "type":"dumbbell",
+      "inverted":true,
+        "backgroundColor": "transparent",
+   },
+   "legend":{
+      "enabled":false
+   },
+   "title":{
+      "text":""
+   },
+   "tooltip":{
+      "shared":true
+   },
+   "xAxis":{
+      "type":"category",
+      "categories":[
+         "Social",
+         "Referral",
+         "PPC",
+         "SEO",
+         "Email",
+         "Direct"
+      ]
+   },
+   "yAxis":{
+      "title":{
+         "text":"percent"
+      }
+   },
+    "plotOptions":{
+        "dumbbell":{
+            "lowColor":"#295387",
+            "highColor":"#209af1",
+        },
+    },
+   "series":[
+      {
+         "data":[
+            {
+               "name":"Social",
+               "high":5,
+               "low":2
+            },
+            {
+               "name":"Referral",
+               "high":20,
+               "low":25
+            },
+            {
+               "name":"PPC",
+               "high":10,
+               "low":23
+            },
+            {
+               "name":"SEO",
+               "high":30,
+               "low":25
+            },
+            {
+               "name":"Email",
+               "high":15,
+               "low":15
+            },
+            {
+               "name":"Direct",
+               "high":20,
+               "low":10
+            }
+         ]
+      }
+   ]
+}
+);
+    </script>
+
+
+    <h2 name="conversion">Conversion Rate/Benchmark</h2>
+    <div
+      id="conversion"
+      style="min-width: 50px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+Highcharts.chart("conversion", 
+{
+   "chart":{
+      "type":"dumbbell",
+      "inverted":false,
+        "backgroundColor": "transparent",
+   },
+   "legend":{
+      "enabled":false
+   },
+   "title":{
+      "text":""
+   },
+   "tooltip":{
+      "shared":true
+   },
+   "xAxis":{
+      "type":"category",
+      "categories":[
+         "Social",
+         "Referral",
+         "PPC",
+         "SEO",
+         "Email",
+         "Direct"
+      ]
+   },
+   "yAxis":{
+      "title":{
+         "text":"%"
+      },
+   },
+    "plotOptions":{
+        "dumbbell":{
+            "lowColor":"#295387",
+            "highColor":"#209af1",
+        },
+    },
+   "series":[
+      {
+         "data":[
+            {
+               "name":"Social",
+               "high":5,
+               "low":2
+            },
+            {
+               "name":"Referral",
+               "high":20,
+               "low":25
+            },
+            {
+               "name":"PPC",
+               "high":10,
+               "low":23
+            },
+            {
+               "name":"SEO",
+               "high":30,
+               "low":25
+            },
+            {
+               "name":"Email",
+               "high":15,
+               "low":15
+            },
+            {
+               "name":"Direct",
+               "high":20,
+               "low":10
+            }
+         ]
+      }
+   ]
+}
+);
+    </script>
+
+  </body>
+</html>

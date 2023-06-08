@@ -1,0 +1,187 @@
+﻿                              const combo = {
+                                title: {
+                                  text: 'XYZ',
+                                  style: {
+                                    color: '#02429B',
+                                  },
+                                },
+                                yAxis: [
+                                  {
+                                    // left y axis
+                                    title: {
+                                      text: 'Members',
+                                      style: {
+                                        color: 'white',
+                                      },
+                                    },
+                                    labels: {
+                                      style: {
+                                        color: 'white',
+                                      },
+                                    },
+                                    gridLineColor: 'transparent',
+                                    gridTextColor: '#ffffff',
+                                    gridLineWidth: 0,
+                                    showFirstLabel: false,
+                                  },
+                                  {
+                                    opposite: true,
+                                    title: {
+                                      text: 'Benchmark value',
+                                      style: {
+                                        color: '#02429B',
+                                      },
+                                    },
+                                    labels: {
+                                      style: {
+                                        color: 'white',
+                                      },
+                                    },
+                                    gridLineColor: 'transparent',
+                                    gridTextColor: '#02429B',
+                                    gridLineWidth: 0,
+                                  },
+                                ],
+                                tooltip: {
+                                  shared: true,
+                                },
+                                plotOptions: {
+                                  series: {
+                                    pointPadding: 0,
+                                    // groupPadding: 0,
+                                    borderWidth: 0,
+                                    //shadow: false,
+                                    // pointWidth: 15,
+                                  },
+                                },
+                                colors: [
+                                  {
+                                    linearGradient: {
+                                      x1: 0,
+                                      x2: 0,
+                                      y1: 0,
+                                      y2: 1,
+                                    },
+                                    stops: [
+                                      [0, '#8B2A43'],
+                                      [1, '#265BB6'],
+                                    ],
+                                  },
+                                  {
+                                    linearGradient: {
+                                      x1: 0,
+                                      x2: 0,
+                                      y1: 0,
+                                      y2: 1,
+                                    },
+                                    stops: [
+                                      [0, '#265BB6'],
+                                      [1, '#8B2A43'],
+                                    ],
+                                  },
+                                  {
+                                    linearGradient: {
+                                      x1: 0,
+                                      x2: 0,
+                                      y1: 0,
+                                      y2: 1,
+                                    },
+                                    stops: [
+                                      [0, '#8B2A43'],
+                                      [1, '#C13B00'],
+                                    ],
+                                  },
+                                  {
+                                    linearGradient: {
+                                      x1: 0,
+                                      x2: 0,
+                                      y1: 0,
+                                      y2: 1,
+                                    },
+                                    stops: [
+                                      [0, '#C13B00'],
+                                      [1, '#063E54'],
+                                    ],
+                                  },
+                                  {
+                                    linearGradient: {
+                                      x1: 0,
+                                      x2: 0,
+                                      y1: 0,
+                                      y2: 1,
+                                    },
+                                    stops: [
+                                      [0, '#063E54'],
+                                      [1, '#6B8795'],
+                                    ],
+                                  },
+                                ],
+                                xAxis: {
+                                  // one week
+                                  labels: {
+                                    style: {
+                                      color: '#02429B',
+                                    },
+                                  },
+
+                                  categories: [
+                                    '2019 Q1',
+                                    '2019 Q2',
+                                    '2019 Q3',
+                                    '2019 Q4',
+                                    '2020 Q1',
+                                    '2019 Q1',
+                                    '2019 Q2',
+                                    '2019 Q3',
+                                    '2019 Q4',
+                                    '2020 Q1',
+                                    '2019 Q1',
+                                    '2019 Q2',
+                                    '2019 Q3',
+                                    '2019 Q4',
+                                    '2020 Q1',
+                                    '2019 Q1',
+                                    '2019 Q2',
+                                    '2019 Q3',
+                                    '2019 Q4',
+                                    '2020 Q1',
+                                    '2019 Q1',
+                                    '2019 Q2',
+                                    '2019 Q3',
+                                    '2019 Q4',
+                                    '2020 Q1',
+                                  ],
+                                  gridLineColor: 'transparent',
+                                  gridTextColor: '#02429B',
+                                  lineColor: 'transparent',
+                                  tickColor: 'transparent',
+                                  showEmpty: false,
+                                  gridLineWidth: 0,
+                                },
+                                series: [
+                                  {
+                                    type: 'column',
+                                    name: 'Total number of members',
+                                    data: [1258.0, 1270.0, 1277.0, 1283.0, 1280.0],
+                                    colorByPoint: true,
+                                  },
+                                  {
+                                    type: 'area',
+                                    name: 'Benchmark',
+                                    data: [100, 200, 150, 310, 450],
+                                    yAxis: 1,
+                                    color: {
+                                      linearGradient: {
+                                        x1: 0,
+                                        x2: 0,
+                                        y1: 0,
+                                        y2: 1,
+                                      },
+                                      stops: [
+                                        [0, Highcharts.Color('#ED2A76').setOpacity(0.4).get('rgba')],
+                                        [1, Highcharts.Color('#00B1BC').setOpacity(0.4).get('rgba')],
+                                      ],
+                                    },
+                                  },
+                                ],
+                              };

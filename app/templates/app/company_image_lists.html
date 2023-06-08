@@ -1,0 +1,172 @@
+{% extends "app/layout.html" %}
+{% load static %}
+
+{% block headscripts %}
+<style>
+
+.thead-dark{
+    background-color: 
+    black;color:white
+}
+
+a {
+    color:#0000FF;
+}
+a:active{
+    color:#0000FF;
+}
+a:visited{
+    color:#0000FF;
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 220px;
+  background-color: #003765;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a,.sidebar h1 {
+  display: block;
+  color: white;
+  padding: 5px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #3d658f;
+  color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #00264c;
+  color: white;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 220px;
+  padding: 1px 16px;
+  height: 1000px;
+  color:black;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+.img01 img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.container{
+padding: 0 !important;
+min-width: 100%;
+}
+.btn{
+  margin-top: 10px !important;
+}
+.content,.sidebar{
+  margin-top: 20px !important;
+}
+
+
+
+{% if not company_name or error_message %}
+div.content {margin-left: 0;}
+{% endif %}
+</style>
+{% endblock %}
+
+{% block content %}
+{% if company_name and not error_message %}
+<div class="sidebar">
+    {% if image_data and not image_width %}
+    <h1> {{company_name }} </h1>
+        {% for width in image_data %}
+                <div>
+                    <a href="?image_width={{width}}" {% if width == image_width %} class="active" {% endif %}> {{width}}</a>
+                </div>
+        {% endfor %}
+    {% endif %}
+    {% if image_data and image_width%}
+    <h1> {{company_name }} </h1>
+        {% for width in old_image_data %}
+                <div>
+                    <a href="?image_width={{width}}" {% if width|slugify == image_width|slugify %} class="active" {% endif %}> {{width}}</a>
+                </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endif %}
+
+<!-- Page content -->
+<div class="content">
+{% if company_name %}
+{% comment %} <input type=button value="<< Back" class="btn btn-primary" onClick="javascript:history.go(-1);"> {% endcomment %}
+{% endif %}
+{% if error_message %}
+  <div>
+    {{error_message}}
+  </div>
+{% endif %}
+    {% if company_list and not image_data %}
+        {% for company in company_list %}
+          <div>
+            {% comment %} <a href="?company={{company.name}}" {% if company.name == request.GET.company %} class='active' {% endif %} >  {{company.name}}</a></br> {% endcomment %}
+            <a href="./{{company.code}}" {% if company.code == request.GET.company %} class='active' {% endif %} >  {{company.name}}</a><br/>
+          </div>
+        {% endfor %}
+    {% endif %}
+    
+
+    {% if image_data and image_width %}
+        <h1> {{ company_name.name }} </h1>
+        {% for width, value_width in image_data.items %}
+            <div class="row img01">
+            {% for height, urls in value_width.items %}
+                <h1>{{width}} X {{height}}</h1>
+                <div class="col-md-12">
+                    <div class="row">
+                    {% for url in urls %}
+                      <div class="col-md-4 img01" style="padding:10px;  border: 1px solid grey;">
+                        <div class="image-container">
+                            {% comment %} <img src="{% static url %}" height={{height}} width={{width}}/> {% endcomment %}
+                            <img src="{% get_static_prefix %}sites{{url}}"/>
+                        </div>
+                      </div>
+                  {% endfor %}
+                  </div>
+                </div>
+            {% endfor %}
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

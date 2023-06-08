@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalytics.AI</title>
+    <link rel="stylesheet" href="{% static 'app/assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/custom-mfa.css' %}" />
+    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+    <style>
+   
+.logo {
+    margin-bottom: 90px;
+}
+        body{
+            padding: 0;
+        }
+    .loginSegmentLeft {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #EFEFEE;
+    
+}
+.loginSegmentLeft > div {
+    width: 60%;
+    margin: 0 auto;
+}
+.logo img {
+    height: 70px;
+}
+.logo+h2 {
+    font-weight: 700;
+    margin-top: 75px;
+    margin-bottom: 19px;
+}
+.loginSegment .form-control {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    box-shadow: none;
+    padding: 0;
+}
+.loginSegment input {
+    max-width: unset;
+}
+.loginSegmentLeft a.btn.btn-primary {
+    color: #fff;
+}
+.form-group.form-check {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.submit button {
+    background: #0a48b5;
+    color: #fff;
+    border: none;
+    width: 100%;
+    padding: 11px 0;
+    border-radius: 21px;
+    margin: 40px 0 0;
+}
+.submit{
+    margin-bottom: 16px;
+}
+.help a:first-child {
+    position: relative;
+    padding-right: 6px;
+    margin-right: 6px;
+}
+.help a:first-child:before {
+    content: "";
+    position: absolute;
+    right: 0;
+    height: 14px;
+    background: #ccc;
+    width: 1px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+span.eye {
+    position: absolute;
+    right: 2px;
+    top: 7px;
+    cursor: pointer;
+}
+.form-group {
+    position: relative;
+}        
+.loginSegmentLeft a:visited {
+    color: #428bca;
+}
+
+@media only screen and (min-width:1366px){
+    .loginSegmentRight {
+	background-size: cover;
+}
+
+}
+
+@media only screen and (max-width:1365px){
+ 
+.logo img {
+    height: unset;
+    width: 100%;
+}
+.loginSegmentLeft > div {
+    width: 60%;
+}
+.loginSegmentRight{
+    background-size: cover;
+}
+.loginSegmentLeft, .loginSegmentRight{
+    height: unset;
+    padding: 50px 0;
+}
+}
+@media only screen and (max-width:991px){
+    .loginSegmentLeft, .loginSegmentRight {
+    height: unset;
+    padding: 50px 0;
+}
+    .logo img {
+    height: unset;
+    width: 100%;
+}
+.loginSegmentLeft > div {
+    width:70%;
+}
+
+}
+
+@media only screen and (max-width:767px){
+    .logo img {
+    height: unset;
+    width: 100%;
+}
+.loginSegmentLeft > div {
+    width: 75%;
+}
+.loginSegmentRight {
+    height: 400px;
+}
+.logo {
+    margin-bottom: 40px;
+}
+}
+    </style>
+</head>
+
+<body cz-shortcut-listen="true">
+    {% comment %}<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand"><img alt="Finalytics.ai" src="{% static "app/images/Finalytics_logo_white_05-02-21.svg" %}"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                {% include 'app/primary-navbar.html' %}
+                {% include 'app/loginpartial.html' %}
+            </div>
+        </div>
+    </div> {% endcomment %}
+
+    <section class="loginSegment ">
+        
+            <div class="row" style="margin: 0;">
+                <div class="col-md-6 loginSegmentLeft">
+                    <div>
+                        <div class="logo">
+                            <img src="{% static 'app/images/logo2.svg' %}" alt="">
+                        </div>
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+                <div class="col-md-6 loginSegmentRight">
+
+                </div>
+            </div>
+    </section>
+
+            <script src="{% static 'app/assets/js/core/jquery.3.2.1.min.js' %}"></script>
+            
+            <script src="{% static 'app/assets/js/core/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'app/scripts/respond.js' %}"></script>
+{% block scripts %}{% endblock %}
+
+</body>
+</html>

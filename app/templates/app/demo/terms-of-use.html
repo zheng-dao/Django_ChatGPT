@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js ie ie8"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>Bank of Oklahoma</title>
+        <meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Always force latest IE rendering engine or request Chrome Frame -->
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+<!-- Stylesheets -->
+<link href="stylesheets/styles.css" rel="stylesheet" type="text/css" />
+
+<!-- Modernizr -->
+<script src="javascripts/vendor/modernizr-2.6.2.min.js" type="text/javascript"></script>
+
+<!-- JavaScript -->
+<script src="javascripts/vendor/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="javascripts/vendor/jquery-ui.min.js" type="text/javascript"></script>
+
+<!-- Plugins -->
+<script src="javascripts/vendor/respond.js" type="text/javascript"></script>
+<script src="javascripts/vendor/pushy.min.js" type="text/javascript"></script>
+<script src="javascripts/vendor/jquery.megamenu.js" type="text/javascript"></script>
+<script src="javascripts/vendor/jquery.magnific-popup.min.js" type="text/javascript"></script>
+<script src="javascripts/vendor/jquery.visible.min.js" type="text/javascript"></script>
+<script src="javascripts/vendor/jquery.mask.js" type="text/javascript"></script> <!-- Phone and ZIP Masking -->
+<script src="javascripts/vendor/jquery.alphanumeric.js" type="text/javascript"></script>
+<script src="javascripts/vendor/tipso.js" type="text/javascript"></script>
+<script src="javascripts/vendor/slick.js" type="text/javascript"></script>
+
+<!-- Custom -->
+<script src="javascripts/jquery.accordion.js" type="text/javascript"></script>
+<script src="javascripts/equalheight.js" type="text/javascript"></script>
+<script src="javascripts/password.js" type="text/javascript"></script>
+<script src="javascripts/username.js" type="text/javascript"></script>
+<script src="javascripts/plugins.js" type="text/javascript"></script>
+<script src="javascripts/payee.js" type="text/javascript"></script>
+<script src="javascripts/payee.filter.js" type="text/javascript"></script>
+<script src="javascripts/datepicker.js" type="text/javascript"></script>
+<script src="javascripts/transactionHistory.js" type="text/javascript"></script>
+<script src="javascripts/field-validation.js" type="text/javascript"></script>
+<script src="javascripts/transfers.js" type="text/javascript"></script>
+<script src="javascripts/contact-info.js" type="text/javascript"></script>
+<script src="javascripts/enableSubmit.js" type="text/javascript"></script>
+<script src="javascripts/contactInfoReminder.js" type="text/javascript"></script>
+<script src="javascripts/locations.js" type="text/javascript"></script>
+<script src="javascripts/messageCenter.js" type="text/javascript"></script>
+<script src="javascripts/alerts.js" type="text/javascript"></script>
+<script src="javascripts/helpWithPage.js" type="text/javascript"></script>
+<script src="javascripts/main.js" type="text/javascript"></script>
+
+
+    </head>
+    <body>
+        <!-- Help wwith Page -->
+        <div class="helpScreen">
+            <!-- Help Header -->
+            <div class="helpScreenHeader">
+                <!-- Toc -->
+                <div class="toc"></div>
+                <!-- Index Count -->
+                <ul>
+                    <li>
+                        <button type="button" data-role="none" id="slickPrev" class="slideIndexCounter" aria-label="previous">Previous</button>
+                    </li>
+                    <li>
+                        <span class="slideCounter"><span class="slideIndex">0</span> of <span class="availableSliders">0</span> Pages</span>
+                    </li>
+                    <li>
+                        <button type="button" data-role="none" id="slickNext" class="slideIndexCounter" aria-label="next">Next</button>
+                    </li>
+                </ul>
+                <!-- Close Button -->
+                <div class="helpScreenClose">X</div>
+            </div>
+            <!-- Help Screens -->
+            <div class="helpScreenContent">
+                <div class="helpSlide">
+                    <img src="images/fpo-help-01.jpg">
+                    <span class="helpTip">
+                        <span class="helpTip_title">
+                            Tip Group Title 1: <span>Tip Action Title</span>
+                        </span>
+                        numquam sit vero praesentium magnam minima dolor consequatur fuga illum nisi et ullam nemo cumque labore praesentium consequatur repudiandae adipisci.
+                    </span>
+                </div>
+                <div class="helpSlide">
+                    <img src="images/fpo-help-02-animated.gif">
+                    <span class="helpTip">
+                        <span class="helpTip_title">
+                            Tip Group Title 2: <span>Tip Action Title</span>
+                        </span>
+                        ut enim ut similique sed atque ea iste sit eius et nesciunt necessitatibus provident hic quo et occaecati ea doloribus ipsa iste numquam non omnis beatae doloremque est ipsam eos ut quis vel omnis quis eos voluptatem maxime numquam est.
+                    </span>
+                </div>
+                <div class="helpSlide">
+                    <img src="images/fpo-help-01.jpg">
+                    <span class="helpTip">
+                        <span class="helpTip_title">
+                            Tip Group Title 3: <span>Tip Action Title</span>
+                        </span>
+                        ut ut sed perferendis fugiat quis ut explicabo possimus optio qui sit magni maiores laudantium adipisci explicabo sunt qui ratione.
+                    </span>
+                </div>
+            </div>
+
+            <!-- Table of Contents List -->
+            <div id="tocContent">
+                <div class="tocTitle">All Tips</div>
+
+                <ul>
+                    <li>Tip Group Title: </li>
+                    <li>
+                        <a class="tocItem" data-slideitem="0" href="#">Tip (a)</a>
+                    </li>
+                    <li>
+                        <a class="tocItem" data-slideitem="1" href="#">Tip (b)</a>
+                    </li>
+                    <li>
+                        <a class="tocItem" data-slideitem="2" href="#">Tip (c)</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /Help with Page -->
+
+        <div class="helpOverlay"></div>
+        <!-- Mobile Menu -->
+<div class="pushy pushy-right">
+    <div class="menuWrap">
+        <div class="userInfo">
+            <div class="welcome"> Welcome, <span>Jonathan BusinessName</span></div>
+            <ul>
+                <li>My Messages <span>(<a href="">2</a>)</span></li>
+                <li> <a href=""><span>Logout</span></a> </li>
+            </ul>
+            <div class="session">Last logged on Jul 29, 2014 11:00AM</div>
+        </div>
+        <ul class="mobile">
+            <li> <a href="#">Accounts and Activities</a>
+                <ul>
+                    <li class="title"> <a href="" class="noAccordion">Account Summary</a> </li>
+                    <li class="accountType">Deposit Accounts</li>
+                    <li> <a href="" class="noAccordion">Checking for Cash (...1234)</a> </li>
+                    <li> <a href="" class="noAccordion">Everyday Expenses and Bill (...1234)</a> </li>
+                    <li> <a href="" class="noAccordion">CDs Account (...1234)</a> </li>
+                    <li> <a href="" class="noAccordion">My Secret Savings (...1234)</a> </li>
+                    <li> <a href="" class="noAccordion">Another Secret Savings (...1234)</a> </li>
+                    <li class="accountType">Loan Accounts</li>
+                    <li> <a href="" class="noAccordion">Education Loan (...1234)</a> </li>
+                    <li class="accountType">Mortgage Accounts</li>
+                    <li> <a href="" class="noAccordion">Residential Loan (...1234)</a> </li>
+                </ul>
+            </li>
+            <li> <a href="#">Actions and Services</a>
+                <ul>
+                    <!--<li> <a href="#" class="viewStatements-link noAccordion">View Online Statements</a> </li>-->
+                    <li> <a href="#" class="billPay-link">Pay Bills</a> </li>
+                    <li> <a href="#" class="alerts-link">Alerts</a> </li>
+                    <li> <a href="#" class="transfers-link">Transfer</a> </li>
+                    <li> <a href="#" class="accountServices-link">Services</a>
+                        <ul>
+                            <li><a href="">View Online Statement</a></li>
+                            <li><a href="">Update My Overdraft Coverage Preferences</a></li>
+                            <li><a href="">Order Checks</a></li>
+                            <li><a href="">Request a Stop Payment</a></li>
+                            <li><a href="">Direct Deposit Change Form</a></li>
+                        </ul>
+                    </li>
+                    <li> <a href="#" class="contact-link">Contact Us</a>
+                        <ul>
+                            <li><a href="">Request a Check Copy</a></li>
+                            <li><a href="">Request a Paper Statement Copy</a></li>
+                            <li><a href="">Inquire about a Bill Pay Payment</a></li>
+                            <li><a href="">Inquire about a Transaction</a></li>
+                            <li><a href="">Contact Customer Service</a></li>
+                        </ul>
+                    </li>
+                    <li> <a href="#" class="forms-link">Forms</a> </li>
+                    <li> <a href="#" class="help-link">Help</a> </li>
+                    <li> <a href="#" class="newAccounts-link">New Accounts</a> </li>
+                </ul>
+            </li>
+            <li> <a href="#">Profile Settings</a>
+                <ul>
+                    <li> <a href="" class="noAccordion">Change Username/Password</a> </li>
+                    <li> <a href="" class="noAccordion">Add Eligible Accounts for View</a> </li>
+                    <li> <a href="" class="noAccordion">Change Contact Information</a> </li>
+                    <li> <a href="" class="noAccordion">Change Security Questions &amp; Answers</a> </li>
+                </ul>
+            </li>
+            <li> <a href="#" class="searchBtn">Transaction Search</a>
+                <ul class="transSearch">
+                    <li>
+                        <input type="text">
+                        <input type="submit" value="Search">
+                    </li>
+                </ul>
+            </li>
+            <li><a href="" class="customizeBtn">Customize Page</a></li>
+            <li><a href="" class="helpBtn helpTrigger">Help with Page</a></li>
+        </ul>
+    </div>
+</div>
+<!-- /Mobile Menu -->
+
+<div class="site-overlay"></div>
+
+<header class="push">
+    <div class="container">
+        <div id="logo">
+            <a href="index.html" class="noMobile">
+                <img src="images/bok-logo-high.png" alt="Bank of Oklahoma">
+            </a>
+            <a href="index.html" class="mobile">
+                <img src="images/bok-logo-mobile-high.png" alt="Bank of Oklahoma">
+            </a>
+        </div>
+        <!-- Toolbar -->
+        <div class="toolbar visibleDesktop">
+            <div class="session">Last logged on Jul 29, 2014 11:00AM</div>
+            <ul>
+                <li class="user">
+                    <div class="hover ellipsis">Welcome, <span>Jonathan BusinessName</span></div>
+                    <div class="userDropdown">
+                        <div>
+                            <ul>
+                                <li> <a href="">Change Username/Password</a> </li>
+                                <li> <a href="">Add Eligible Accounts for View</a> </li>
+                                <li> <a href="">Change Contact Information</a> </li>
+                                <li> <a href="">Change Security Questions &amp; Answers</a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>My Messages <span>(<a href="">2</a>)</span></li>
+                <li><a href=""><span>Logout</span></a></li>
+            </ul>
+        </div>
+        <!-- /Toolbar -->
+        <!-- Mobile Menu Link -->
+        <div class="mobileMenu hiddenDesktop menu-btn">
+            Menu
+            <div class="notification">14</div>
+        </div>
+        <!-- /Mobile Menu Link -->
+    </div>
+</header>
+        <!-- Menu -->
+<nav class="push visibleDesktop">
+    <div class="container">
+        <ul class="megamenu">
+            <li class="accountsMenu"> <a href="javascript:void(0)">Accounts and Activities</a>
+                <div class="accountDropdown">
+                    <h2>
+                        <a href="">Account Summary</a>
+                    </h2>
+                    <div class="accountSummary">
+                        <h3>Deposit Accounts</h3>
+                        <table class="summary">
+                            <tr>
+                                <td><a href="">Checking for Cash (...1234)</a></td>
+                                <td class="last"><strong>$10,400.00</strong></td>
+                            </tr>
+                            <tr>
+                                <td><a href="">Everyday Expenses and Bill (...1234)</a></td>
+                                <td class="last"><strong>$10,400.00</strong></td>
+                            </tr>
+                            <tr>
+                                <td><a href="">CDs Account (...1234)</a></td>
+                                <td class="last"><strong>$10,000.00</strong></td>
+                            </tr>
+                            <tr>
+                                <td><a href="">My Secret Savings (...1234)</a></td>
+                                <td class="last"><strong>$10,000.00</strong></td>
+                            </tr>
+                            <tr>
+                                <td><a href="">Another Secret Savings (...1234)</a></td>
+                                <td class="last"><strong>$10,000.00</strong></td>
+                            </tr>
+                        </table>
+                        <div class="cleaner"></div>
+                        <h3>Loan Accounts</h3>
+                        <table class="summary">
+                            <tr>
+                                <td><a href="">Education Loan (...1234)</a></td>
+                                <td class="last"><strong>$5,000.00</strong></td>
+                            </tr>
+                        </table>
+                        <div class="cleaner"></div>
+                        <h3>Mortgage Accounts</h3>
+                        <table class="summary">
+                            <tr>
+                                <td><a href="">Residential Loan (...1234)</a></td>
+                                <td class="last"><strong>$180,000.00</strong></td>
+                            </tr>
+                        </table>
+                        <div class="cleaner"></div>
+                    </div>
+                </div>
+            </li>
+            <li class="actionsMenu"> <a href="javascript:void(0)">Actions and Tools</a>
+                <div class="actionsDropdown">
+                    <!--
+                    <div class="colFull top">
+                        <div class="viewStatements-link"> Statements </div>
+                        <ul>
+                            <li><a href="">View Online Statement</a></li>
+                        </ul>
+                    </div>
+                    -->
+                    <div class="colWrap">
+                        <div class="col">
+                            <dl>
+                                <dt class="transfers-link"> Transfer </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="">Add New Transfer</a></li>
+                                        <li><a href="">Pending Transfers</a></li>
+                                        <li><a href="">Transfer History</a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt class="billPay-link"> Bill Pay </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="">Schedule One-Time Payment</a></li>
+                                        <li><a href="">Recurring Payment</a></li>
+                                        <li><a href="">Manage Payees</a></li>
+                                        <li><a href="">Pending Payments</a></li>
+                                        <li><a href="">Payment History</a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt class="alerts-link"> Alerts </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="">Manage Alerts</a></li>
+                                        <li><a href="">Schedule Alerts</a></li>
+                                        <li><a href="">Manage Contact Points</a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="col">
+                            <dl>
+                                <dt class="accountServices-link">Services</dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="">View Online Statement</a></li>
+                                        <li><a href="">Update My Overdraft Coverage Preferences</a></li>
+                                        <li><a href="">Order Checks</a></li>
+                                        <li><a href="">Request a Stop Payment</a></li>
+                                        <li><a href="">Direct Deposit Change Form</a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt class="contactUs-link">Contact Us</dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="">Request a Check Copy</a></li>
+                                        <li><a href="">Request a Paper Statement Copy</a></li>
+                                        <li><a href="">Inquire about a Bill Pay Payment</a></li>
+                                        <li><a href="">Inquire about a Transaction</a></li>
+                                        <li><a href="">Contact Customer Service</a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt class="help-link"> Help </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="">Help center</a></li>
+                                        <li><a href="">FAQ</a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="colFull">
+                        <div class="newAccount-link"> New Accounts </div>
+                        <ul>
+                            <li><a href="">Apply for an Account</a></li>
+                            <li><a href="">Apply for a Loan</a></li>
+                            <li><a href="">Apply for a Credit Card</a></li>
+                            <li><a href="">Apply for a Mortgage</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="searchMenu"> <a href=""></a>
+                <div class="searchDropdown">
+                    <input type="text" placeholder="Transaction Search">
+                    <input type="submit">
+                </div>
+            </li>
+            <li class="helpMenu"> <a href="" class="helpTrigger">Help with Page</a> </li>
+        </ul>
+    </div>
+</nav>
+<!-- Menu -->
+
+        <!-- Content Area -->
+<div class="main push" role="main">
+    <div class="container">
+        <h1>Bill Pay Enrollment</h1>
+        <p>Please accept the following Terms and Conditions in order to use BillPay.</p>
+
+        <!-- Terms of Use Box -->
+        <div id="terms">
+            <div class="scrollTerms">
+                <h2>TERMS AND CONDITIONS</h2>
+
+                <h3>Online BillPay</h3>
+                <p>These terms and conditions constitute the agreement ("Agreement") between you and Bank of Oklahoma N.A. ("Service Provider") with respect to the provision of Online BillPay Services (the "Service") to you. Your use of the Service constitutes your agreement to be bound by the terms of this Agreement and that your contract is with the Service Provider, who is responsible to you for the provision of the Service. In this Agreement the words "you" and "yours" mean each person that signed the application and the terms "us" and "we" means the Service Provider. This Agreement is in addition to other agreements between the parties.</p>
+
+                <h3>Online Bill Pay Service</h3>
+                <p>Online BillPay Service allows you to pay bills and send money to other people using a personal computer. By providing the Service Provider with the names and account information of those persons or entities to whom you wish to direct payment, you authorize the Service Provider to follow the payment instructions that it receives from you through the bill payment program.</p>
+
+                <p>Payments made Electronically - When the Service Provider receives a payment instruction for a payment(s) that will be sent electronically, you authorize the Service Provider to charge your transaction account on the selected Process Date and remit funds to the designated payee on your behalf. The payment is estimated to arrive in 2 Business Days or before. The Service Provider is not responsible for any delays on the part of the recipient, postal service, or applicable delivery methods.</p>
+
+                <p>Payments made via Paper Check - When the Service Provider receives a payment instruction for a payment(s) that will be sent via a paper check, you authorize the Service Provider to process a paper check containing your transaction account routing number and transaction account number to the designated payee on your behalf. The funds will remain in your transaction account until the check has cleared. The payment is estimated to arrive in 5 Business Days or before. The Service Provider is not responsible for any delays on the part of the recipient, postal service, or applicable delivery methods.</p>
+
+                <p>This Service is available only to consumers and is not applicable for business use.</p>
+
+                <p>The Process Date is defined as the Business Day you request the Service Provider to process the payment. Although you can enter payment instructions through Online BillPay 24 hours a day, 7 days a week (excluding maintenance and other availability windows), payments will only be processed on Business Days. If you select a Process Date that is not a Business Day, the payment will be processed on the previous Business Day. If the previous Business Date has already passed, you will need to enter a Business Day in the future.</p>
+
+                <p>A Business Day is defined as Monday through Friday up to 7:00pm (Central Time) excluding weekends and holidays.</p>
+
+                <p>All authorized payments will be processed on the Business Day you select. The payment will be sent electronically or by mail on the next Business Day.</p>
+
+                <p>In order to qualify for the Online BillPay Guarantee, you agree that Process Dates selected by you will be at least seven Business Days before the actual "payment due date". Payments may be made only to payees with a U.S. payment address. The Service may not be used for the following types of payments:</p>
+
+                <ol>
+                    <li>Payments to settle securities transactions</li>
+                    <li>Payments to payoff special or delayed financing for purchases</li>
+                    <li>Payments to credit counseling agencies who pay creditors on your behalf/li>
+                    <li>Payments to payees outside of the United States</li>
+                    <li>Court-ordered payments such as alimony, child support, speeding tickets, etc.</li>
+                    <li>Tax entities</li>
+                    <li>Collection agencies.</li>
+                </ol>
+
+                <p>Bill payments are limited to $25,000 per payment and other such limitations as to amount and number as may be determined by us from time to time.</p>
+
+                <p>The Service Provider will use its best efforts to make all your payments properly. If you follow the procedures described herein, and the Service Provider fails to send a payment according to the payment instructions received, the Service Provider will bear responsibility for all late charges.</p>
+
+                <h3>Password and Security</h3>
+                <p>You agree not to give or make available your Online Password to any unauthorized individuals. We will not contact you via email or phone requesting your Online Password. If you are contacted by anyone requesting this information please contact us immediately. You agree to take adequate measures to guard against unauthorized access to your Online Password. If you believe that your Password has been lost or stolen or that someone may attempt to use the Service without your consent or has transferred money without your permission, you must notify the Service Provider at once by calling an ExpressBanker at 1-800-234-6181 or writing us at the address listed below under Errors and Questions. Telephoning is the best way to reduce potential losses. ExpressBankers are available 24 hours a day/7 days a week. We may suspend or cancel your password even without receiving such notice from you, if we suspect your password is being used in an unauthorized or fraudulent manner. Unless otherwise provided in this Agreement or as required by law, you agree to be fully liable for all losses which may arise from unauthorized transactions.</p>
+
+                <h3>Errors and Questions</h3>
+                <p>In case of errors and questions about your electronic transfers or payments, you should contact us as soon as possible by:</p>
+
+                <ol>
+                    <li>Telephoning us at: 1-800-234-6181 (24 hours a day, 7 days a week)</li>
+                    <li>Writing us at: BOK Financial Online Banking Service, P.O. Box 2300, Tulsa, OK 74192</li>
+                    <li>Sending us a Secure Message: Logon to Online Banking and click Message Center to send us a message.</li>
+                </ol>
+
+                <p>If you think that your statement is wrong or you need more information about a transfer listed on the statement, you must notify us no later than sixty (60) days after the date on the first statement on which the problem or error appeared.</p>
+
+                <h4>You must:</h4>
+                <ol>
+                    <li>Tell us your name and account number;</li>
+                    <li>Describe the error or the transfer you are unsure about, and explain as clearly as you can, why you believe it is an error or why you need more information; and</li>
+                    <li>Tell us the dollar amount of the suspected error.</li>
+                </ol>
+
+                <p>If you tell us anything about this Agreement or the Service orally, we may require that you send your statements in writing within ten (10) Business Days. If we ask you to put your complaint in writing and we do not receive it within ten (10) Business Days, we may not credit your account. You agree to assist us in the discovery and resolution of issues related to errors or unauthorized use.</p>
+
+                <p>Except as noted below, we will determine whether an error occurred within 10 Business Days after we hear from you and will correct any error promptly. If we need more time, however, we may take up to 45 days to investigate your complaint or question. If we decide to do this, we will credit your account within 10 Business Days for the amount you think is in error, so that you will have the use of the money during the time it takes us to complete our investigation. If we ask you to put your complaint or question in writing and we do not receive it within 10 Business Days, we may not credit your account.</p>
+
+                <p>Special Rules for New Customers - If you are a new customer, for transfers occurring within thirty
+                    (30) days after the first deposit in your account, we will determine if an error occurred within twenty (20) Business Days after we hear from you. However, if needed, we may take up to ninety (90) days to investigate your complaint or question. If we decide to do this, we will credit your account within twenty (20) Business Days for the amount you think is in error so that you will have the use of the money while we complete our investigation.</p>
+
+                <p>We will tell you the results within three Business Days after completing our investigation. If we decide that there was no error, we will send you a written explanation. You may ask for copies of the documents that we used in our investigation.</p>
+
+                <h3>Your Liability for Unauthorized Payments</h3>
+                <p>In accordance with our Online BillPay Guarantee, if you tell us within sixty (60) days of the transaction first appearing on your statement, you shall have no liability for unauthorized use. Tell us at once if you discover your password has been lost or stolen or your account is otherwise subject to access. If you do not tell us within sixty (60) days after the statement containing an unauthorized transaction was mailed to you, you may lose any amount transferred without your authorization if we can prove that we could have stopped someone from making the unauthorized transfer if you had told us on time. If a good reason (such as a long trip or a hospital stay) prevented you from telling us, we may extend the period.</p>
+
+                <h3>Disclosure of Account Information to Third Parties</h3>
+                <p>We will disclose information to third parties about your account or the transfers you make only in the following situations:</p>
+
+                <ol>
+                    <li>Where it is necessary for completing transfers.</li>
+                    <li>In order to verify the existence and condition of your account to a third party, such as a credit bureau or merchant.</li>
+                    <li>In order to comply with a governmental agency or court orders.</li>
+                    <li>If you give us your written permission.</li>
+                    <li>As otherwise stated in our Privacy Policy located on our Web Site</li>
+                </ol>
+
+                <h3>Fees and Charges</h3>
+                <p>Refer to your product brochure for applicable fees for the use of the Service.</p>
+
+                <h3>Documentation of Transfers</h3>
+                <p>You will get a monthly account statement. However, with respect to a savings account, if there are no electronic funds transfers in a particular month, you may not get a statement monthly but you will get a statement at least quarterly.</p>
+
+                <h3>Limitations on Transfers</h3>
+                <p>Federal regulations require limitations on the frequency of preauthorized and "Telephone Transfers" from savings accounts and money market deposit accounts. ("Telephone Transfers" as used in this paragraph refers to transfers initiated through Online Banking, Online BillPay, 24-Hour ExpressBank and those initiated by telephoning the Service Provider and instructing Service Provider personnel to transfer funds from your savings or money market deposit accounts). Additional information can be found in the product brochures.</p>
+
+                <h3>Liability for Failure to Make Payments</h3>
+                <p>If we do not initiate a payment on time or in the correct amount, we will be liable for your losses or damages, including your late fees, according to our Agreement with you and as provided by law. However, there are some exceptions to this liability. For instance, we will not be liable in the following circumstances:</p>
+
+                <ol>
+                    <li>If through no fault of ours, you do not have enough funds in your account to make the transfer, or the transfer would exceed the credit limit on any overdraft line associated with the account;</li>
+                    <li>The equipment or software used by the Service Provider to provide the Service was not working properly and you knew or were advised by the Service Provider about the malfunction before you executed the transaction;</li>
+                    <li>You have not provided the Service Provider with the correct names or account information for those persons or entities to whom you wish to direct payment:</li>
+                    <li>Circumstances beyond our control (such as, but not limited to, fire, flood, or interference from an outside force) prevent the proper execution of the transaction despite the reasonable precautions we have taken;</li>
+                    <li>You have reported your password as lost or stolen or we suspect your password is being used in an unauthorized or fraudulent manner;</li>
+                    <li>Your Service has been cancelled;</li>
+                    <li>If the funds in your account are unavailable because of garnishment, levy, or other hold requirements imposed upon us by law or by a government agency or court orders.</li>
+                    <li>If the payee chooses not to participate in this Service.</li>
+                </ol>
+
+                <p>Our liability is explained in any agreements, notices and disclosures that we separately provide to you from time to time regarding your accounts and the Services. This section explains our liability to you only to the extent that our liability has not been separately disclosed to you by any of these agreements, notices, or disclosures. Under no circumstances will we have any liability to you for failing to provide you access to your accounts through the Service. Furthermore, unless otherwise required by applicable law, we will only be responsible for performing the Services as expressly stated in this Agreement and will only be liable for material losses incurred by you to the extent such losses directly result from our gross negligence or intentional misconduct in performing the Services or as required by law.</p>
+
+                <p>Unless otherwise required by law, in no event will we or our affiliates be liable to you for special, indirect, punitive, or consequential damages including, without limitation, lost profits and attorney's fees, even if we are advised in advance of the possibility of such damages.</p>
+
+                <p>We will not be obligated to honor, in whole or in part, any transaction or instruction which:</p>
+
+                <ol>
+                    <li>is not in accordance with any term or condition applicable to the Service or any related account;</li>
+                    <li>would result in us exceeding any limitation of our intra-day net funds position established pursuant to present or future Federal Reserve guidelines;</li>
+                    <li>would violate any applicable provision of any risk control program of the Federal Reserve or any applicable rule or regulation of any other federal or state regulatory authority; or</li>
+                    <li>is not in accordance with any other requirement of our applicable policies, procedures or practices.</li>
+                </ol>
+
+                <h3>Stopping Preauthorized Payments from Your Account:</h3>
+                <p>If you have told us to make payments out of your account and you wish to cancel any of these payments, this can be done in the Pending Payments tab in Online BillPay for all payments that appear in the list of upcoming payments. Payments can be canceled on or before the Process Date up until the time they are processed. If you order us to stop one of these payments in accordance with the above, and we do not do so, we will be liable for your losses or damages.</p>
+
+                <p>For Payments Made Via Paper Check Only - If a payment was processed via a paper check, it can be stopped through the stop payment process by calling the 24-Hour ExpressBank.</p>
+
+                <h3>In the Event You have Insufficient Funds</h3>
+                <p>In using the Service, you are requesting the System Provider to make payments for you from your Bank of Oklahoma account. If we are unable to complete the transaction due to insufficient funds or because the transaction exceeds the credit limits on overdraft lines of credit associated with your account, the payment transaction may not be completed.</p>
+
+                <p>For Payments Made Electronically - If there are insufficient funds in your transaction account on the Process Date, we will attempt to process the payment again on the next two Business Days. If there are still insufficient funds, the payment transaction may not be completed.</p>
+
+                <p>For Payments Made Via Paper Check Payments will be processed regardless if there are sufficient funds in the transaction account at the time the payment is processed. You will need to make sure funds are in your transaction account at the time the check is presented to avoid fees.</p>
+            </div>
+
+        </div>
+        <!-- /Terms of Use Box -->
+
+        <input type="button" class="btn blue terms"  value="Accept" id="acceptButton">
+        <a href="">Cancel</a>
+
+    </div>
+    <!-- /Container -->
+</div>
+<!-- /Content Area (Main) -->
+
+        <!-- Footer -->
+<footer class="push">
+    <div class="container">
+        <ul>
+            <li> <a href="">Locations</a> </li>
+            <li> <a href="">Contact Center</a> </li>
+            <li> <a href="">Terms</a> </li>
+            <li> <a href="">Privacy</a> </li>
+            <li> <a href="">Full Site</a> </li>
+        </ul>
+    </div>
+</footer>
+<!-- /Footer -->
+    </body>
+</html>

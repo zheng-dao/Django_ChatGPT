@@ -1,0 +1,221 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.highcharts.com/highcharts-more.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.6/proj4.js"></script>
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/data.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/funnel.js"></script>
+        <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+      <script src="https://code.highcharts.com/modules/dumbbell.js"></script>
+      <script src="https://code.highcharts.com/modules/sankey.js"></script>
+<script src="https://code.highcharts.com/modules/marker-clusters.js"></script>
+<script src="https://code.highcharts.com/modules/coloraxis.js"></script>
+      <script src="https://code.highcharts.com/mapdata/countries/us/us-fl-all.js"></script>
+
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <link rel="stylesheet" href="{% static 'app/content/local.css' %}">
+
+  </head>
+
+  <body>
+
+
+    <div
+      id="line"
+      style="min-width: 310px; height: 500px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+    Highcharts.chart('line', 
+{
+          chart: {
+              type: "line",
+              backgroundColor:'transparent',
+        },
+        title: {text:null},
+        colors:["#209af1", "#84c586", "#00429b", "#7793db", '#a8cfe5', '#7497aa'],
+        "credits": {
+          "enabled": false
+          },
+
+        xAxis: {
+            visible: false,
+          categories: [
+            "May",
+            "Jun",
+            "Jul",
+          ],
+          gridLineColor: "transparent",
+          gridTextColor: "#ffffff",
+         
+          tickColor: "transparent",
+          showEmpty: false,
+          gridLineWidth: 0,
+        },
+
+        yAxis: {
+          // left y axis
+            visible:false,
+          min: 0,
+          lineColor: '#434343',
+          lineWidth:2,
+          title: {
+            text: null,
+          },
+          labels: {
+            style: {
+              color: "#434343",
+            },
+          },
+          gridLineColor: "transparent",
+          gridTextColor: "#ffffff",
+          gridLineWidth: 0,
+          showFirstLabel: false,
+        } ,
+
+        legend: {
+            enabled:false,
+        },
+        
+        tooltip: {
+          shared: true,
+          crosshairs: true,
+        },
+        plotOptions: {
+          line:{
+            marker:{
+              enabled: true,
+                symbol: 'circle',
+                lineColor: '#209af1',
+                lineWidth: '1',
+                radius:1,
+                fillColor: 'transparent',
+            }
+          },
+          series: {
+            dataLabels:{
+                enabled:true,
+                format: '{x}',
+                style:{
+                    textOutline: false,
+                },
+            },
+            label:{
+              connectorAllowed: false
+            },
+           pointStart: 0,
+            // groupPadding: 0,
+            //borderWidth: 0,
+            //shadow: false,
+            // pointWidth: 15,
+          },
+        },
+        series: [
+          {
+            data: [1200.0, 1283.0, 1480.0],
+            name: "Pageviews",
+            
+          },
+        ],
+      }
+
+);    </script>
+
+
+
+
+    <div
+      id="sankey"
+      style="min-width: 310px; height: 500px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+    Highcharts.chart('sankey', {
+        chart: {
+            backgroundColor: 'transparent',
+        },
+        title: {
+            text: ''
+        },
+        accessibility: {
+            point: {
+                valueDescriptionFormat: '{index}. {point.from} to {point.to}, {point.weight}.'
+            }
+        },
+        plotOptions: {
+            series: { // or general options: "series: { ... }"
+                dataLabels: {
+                    enabled: true,
+                    //color: 'red',
+                    style: {
+                        textOutline: false 
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'sankey',
+            name: 'Sankey demo series',
+            keys: ['from', 'to', 'weight'],
+            nodeWidth:300,
+            colors: ['#469FE3', '#CEE0EE', '#CEE0EE','#CEE0EE','#CEE0EE','#CEE0EE'],
+            data: [
+                {from:'Home', to:'Exits',weight:1, color:'#469FE3'},
+                {from:'Home', to:'Loan Rates*', weight:2,color:'#469FE3'},
+                {from:'Home', to:'Home*', weight:3, color:'#469FE3'},
+                {from:'Home', to:'App Starts', weight:4, color:'#469FE3'},
+                {from:'Home', to:'Online Banking', weight:5, color:'#469FE3'},
+                {from:'Home', to:'Contact Us', weight:6, color:'#469FE3'},
+
+                {from:'SEO', to:'Exits', weight:1, color:'#469FE3'},
+                {from:'SEO', to:'Loan Rates*', weight:2,color:'#CEE0EE'},
+                {from:'SEO', to:'Home*', weight:3, color:'#CEE0EE'},
+                {from:'SEO', to:'App Starts', weight:4, color:'#CEE0EE'},
+                {from:'SEO', to:'Online Banking', weight:5, color:'#CEE0EE'},
+                {from:'SEO', to:'Contact Us', weight:6, color:'#CEE0EE'},
+
+                {from:'PPC', to:'Exits', weight:1, color:'#469FE3'},
+                {from:'PPC', to:'Loan Rates*', weight:2,color:'#CEE0EE'},
+                {from:'PPC', to:'Home*', weight:3, color:'#CEE0EE'},
+                {from:'PPC', to:'App Starts', weight:4, color:'#CEE0EE'},
+                {from:'PPC', to:'Online Banking', weight:5, color:'#CEE0EE'},
+                {from:'PPC', to:'Contact Us', weight:6, color:'#CEE0EE'},
+
+                {from:'Auto Calc', to:'Exits', weight:1, color:'#469FE3'},
+                {from:'Auto Calc', to:'Loan Rates*', weight:2,color:'#CEE0EE'},
+                {from:'Auto Calc', to:'Home*', weight:3, color:'#CEE0EE'},
+                {from:'Auto Calc', to:'App Starts', weight:4, color:'#CEE0EE'},
+                {from:'Auto Calc', to:'Online Banking', weight:5, color:'#CEE0EE'},
+                {from:'Auto Calc', to:'Contact Us', weight:6, color:'#CEE0EE'},
+
+                {from:'Loan Rates', to:'Exits', weight:1, color:'#469FE3'},
+                {from:'Loan Rates', to:'Loan Rates*', weight:2,color:'#CEE0EE'},
+                {from:'Loan Rates', to:'Home*', weight:3, color:'#CEE0EE'},
+                {from:'Loan Rates', to:'App Starts', weight:4, color:'#CEE0EE'},
+                {from:'Loan Rates', to:'Online Banking', weight:5, color:'#CEE0EE'},
+                {from:'Loan Rates', to:'Contact Us', weight:6, color:'#CEE0EE'},
+
+                {from:'Other', to:'Exits', weight:1, color:'#469FE3'},
+                {from:'Other', to:'Loan Rates*', weight:2,color:'#CEE0EE'},
+                {from:'Other', to:'Home*', weight:3, color:'#CEE0EE'},
+                {from:'Other', to:'App Starts', weight:4, color:'#CEE0EE'},
+                {from:'Other', to:'Online Banking', weight:5, color:'#CEE0EE'},
+                {from:'Other', to:'Contact Us', weight:6, color:'#CEE0EE'},
+            ],
+
+        }]
+
+    });    </script>
+  </body>
+</html>

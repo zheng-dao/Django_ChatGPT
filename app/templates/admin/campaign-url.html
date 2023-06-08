@@ -1,0 +1,72 @@
+{% extends "admin/base_atlantis.html" %}
+{% load static %}
+{% block endheadscripts %}
+<style>
+    a.link_style {
+        color: rgba(169, 175, 187, 0.82) !important;
+        text-decoration: none;
+    }
+
+</style>
+{% endblock %}
+{% block panel-header %}
+<div class="page-navs bg-black py-3 pr-2">
+    <div class="card-title fw-bold">
+        Ad Campaign Connector
+    </div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+<div class="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title">Append the following to your campaign url</h4>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <p>{{ utm_term }}</p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block endscripts %}
+
+<script>
+    
+    jQuery(document).ready(function() {
+        jQuery(".chkbox_area").on('click', '.is_active', function(e) {
+        
+            // e.preventDefault();
+            is_active_chk = jQuery(this).prop('checked')
+            ad_id = jQuery(this).val()
+            base_url = window.location.origin
+            data = {'ad_id': ad_id, 'is_active_chk': is_active_chk}
+            
+            
+            $.ajax({
+                  url:base_url+'/z/scenarios/update-content-module',
+                  type: 'GET',
+                  dataType: 'json',
+                  data: data,
+                  success: function(data) {
+                    if(data.status == 1) {
+                        alert(data.message)
+                    }
+                    else {
+                        alert(data.message)
+                    }
+                  }
+            });
+            
+        })
+    })
+</script>
+{% endblock %}

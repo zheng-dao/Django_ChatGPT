@@ -1,0 +1,81 @@
+{% load static %}
+<html>
+  <head>
+    <title>Highcharts Tutorial</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<link rel="stylesheet" href="/static/app/content/local.css">
+  </head>
+
+  <body>
+    <div
+      id="container"
+      style="width: 550px; height: 400px; margin: 0 auto"
+    ></div>
+    <script language="JavaScript">
+Highcharts.setOptions({
+	lang: {
+  	thousandsSep: ','
+  }
+})
+
+Highcharts.chart('container', {
+	title: {text:null},
+    exporting:{
+        enabled:false
+    },
+    credits: {
+        enabled: false
+    },
+	legend: {
+  	    layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        symbolPadding: 20,
+        itemMarginTop: 10,
+        itemMarginBottom: 10,
+        useHTML: true,
+        labelFormatter: function() {
+            return '<div style="text-align: left; width:130px;height:20px;float:left;color:#555;font-weight:normal;position:relative;top:-2px;">' + this.name + '</div><div style="width:40px; float:left;text-align:left;">' + this.y + '</div>';
+		}
+  },
+  series: [{
+    type: 'pie',
+    size: '100%',
+    innerSize: '60%',
+    showInLegend: false,
+    dataLabels: {
+    	enabled: false
+    },
+    data: [{
+      name: 'Savings',
+      y: 9879,
+      color: '#45A0E3'
+    }, {
+      name: 'Tiered Savings',
+      y: 7034,
+      color: '#37CCC5'
+    }, {
+      name: 'Term Certificates',
+      y: 6698,
+      color: '#12294F'
+    }, {
+      name: 'Health Savings',
+      y: 4897,
+      color: '#058789'
+    }, {
+      name: 'Educational Savings',
+      y: 1035,
+      color: '#65EBE4'
+    }, {
+      name: 'Holiday Savings',
+      y: 875,
+      color: '#00BDFF'
+    }]
+  }]
+});
+    </script>
+  </body>
+</html>

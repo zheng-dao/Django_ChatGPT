@@ -1,0 +1,27 @@
+<div class="modal" tabindex="-1" role="dialog" id="modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="card" style="margin:0;">
+                <div class="card-header">
+                    <h4 class="card-title">Add a New Segment</h4>
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="form-group">
+                            <select class="form-control" id="selected" name="selected">
+                                <option></option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="setting_name" id="setting_name">
+                        <!-- <input type="hidden" name="cu_id" id="cu_id" value="{{ request.GET.cu_id }}"> -->
+                    </div>
+                    <div class="card-footer mr-2" style="text-align:right;">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+          </div>  
+    </div>
+</div>

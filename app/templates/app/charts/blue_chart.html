@@ -1,0 +1,49 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/funnel.js"></script>
+    <script src="https://code.highcharts.com/modules/dumbbell.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script src="https://code.highcharts.com/modules/sankey.js"></script>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <link rel="stylesheet" href="/static/app/content/local.css">
+
+  </head>
+
+  <body style="background-color:#f1f1f1;">
+    <div
+      id="container"
+      style="min-width: 310px;"></div>
+    <script>
+      let dynamic_data = {{ data| safe }}
+      console.log(dynamic_data);
+      let colors_list = ['']
+      let color = {
+        linearGradient: {
+          x1: 0,
+          x2: 0,
+          y1: 0,
+          y2: 1,
+        },
+        stops: [
+          [0, "#00B1BC"],
+          [1, "#265BB6"],
+        ],
+      };
+      dynamic_data['credits'] = {"enabled": false}
+      Highcharts.chart("container", dynamic_data);
+      Highcharts.setOptions({
+        lang: {
+          thousandsSep: ','
+        }
+      });
+    </script>
+  </body>
+</html>

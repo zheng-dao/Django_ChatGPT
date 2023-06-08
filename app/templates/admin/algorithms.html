@@ -1,0 +1,350 @@
+{% extends "admin/base_atlantis.html" %}
+{% load static %}
+{% block panel-header %}
+<div class="panel-header bg-primary-gradient">
+    <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+                <h2 class="text-white pb-2 fw-bold">Algorithms Enabled</h2>
+                <h5 class="text-white op-7 mb-2">Setup and activate/deactivate Finalyltics models and algorithms.</h5>
+            </div>
+            <div class="ml-md-auto py-2 py-md-0">
+                <!--<a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>-->
+                <a href="#" class="btn btn-secondary btn-round">Request New Algorithm</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+<div class="page-navs bg-white">
+    <div class="nav-scroller">
+        <div class="nav nav-tabs nav-line nav-color-secondary d-flex align-items-center justify-contents-center w-100">
+            <a class="nav-link active show" data-toggle="tab" href="#tab1">
+                All Algorithms
+                <span class="count ml-1">(30)</span>
+            </a>
+            <a class="nav-link mr-5" data-toggle="tab" href="#tab2">Prospect</a>
+            <a class="nav-link mr-5" data-toggle="tab" href="#tab2">Member</a>
+            <a class="nav-link mr-5" data-toggle="tab" href="#tab2">Geo</a>
+            <a class="nav-link mr-5" data-toggle="tab" href="#tab2">Segments</a>
+            <a class="nav-link mr-5" data-toggle="tab" href="#tab2">Specialized Content</a>
+            <!--<div class="ml-auto">
+                <a href="#" class="btn btn-success">Request New Algorithm</a>
+            </div>-->
+        </div>
+    </div>
+</div>
+<div class="page-inner">
+    <div class="row row-projects">
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product1.jpg' %}" alt="Product 1">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">First-time Visitor</h4>
+                    <p class="text-muted small mb-2">The first time visitor model predicts what products to deliver to first-time visitors</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product7.jpg' %}" alt="Product 7">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Branch Distance Model</h4>
+                    <p class="text-muted small mb-2">Users who outside of X miles from a branch are served different products.</p>
+                    <a href="">Setup</a>
+                    <p></p>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product3.jpg' %}" alt="Product 3">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Rate Comparator</h4>
+                    <p class="text-muted small mb-2">Last updated: Monday 1:32 AM</p>
+                    <a href="">Setup</a>
+                    <p></p>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product4.jpg' %}" alt="Product 4">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Product</h4>
+                    <p class="text-muted small mb-2">Last updated: Sunday 3:12 PM</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product5.jpg' %}" alt="Product 5">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Geolocation</h4>
+                    <p class="text-muted small mb-2">Last updated: Friday 1:12 PM</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product5.jpg' %}" alt="Product 5">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Funnel Re-entry</h4>
+                    <p class="text-muted small mb-2">If a user enters and leaves the funnel without completing the application, return them to it.</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product7.jpg' %}" alt="Product 7">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Member Mobile App</h4>
+                    <p class="text-muted small mb-2">Show mobile app content module to all Members who have not logged in via the app.</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product4.jpg' %}" alt="Product 7">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Members: Exclude Products Owned</h4>
+                    <p class="text-muted small mb-2">Market products that the member does not own.</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product8.jpg' %}" alt="Product 8">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Bill Pay Steps</h4>
+                    <p class="text-muted small mb-2">Enroll -> Add a Payee -> Make 1st Payment</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product8.jpg' %}" alt="Product 8">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">eStatement Enrollment</h4>
+                    <p class="text-muted small mb-2">Get users to sign up for eStatements.</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product8.jpg' %}" alt="Product 8">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Credit Card Activation</h4>
+                    <p class="text-muted small mb-2">Activate a credit card.</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product2.jpg' %}" alt="Product 2">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Members: Transaction-based Segments</h4>
+                    <p class="text-muted small mb-2">Determine user interests by categorizing their transactions.</p>
+                    <a href="">Setup</a>
+                    <!--<div class="avatar-group">
+                    <div class="avatar avatar-sm">
+                        <img src="{% static 'app/assets/img/jm_denis.jpg' %}" alt="..." class="avatar-img rounded-circle border border-white">
+                    </div>
+                    <div class="avatar avatar-sm">
+                        <img src="{% static 'app/assets/img/chadengle.jpg' %}" alt="..." class="avatar-img rounded-circle border border-white">
+                    </div>
+                    <div class="avatar avatar-sm">
+                        <img src="{% static 'app/assets/img/mlane.jpg' %}" alt="..." class="avatar-img rounded-circle border border-white">
+                    </div>
+                    <div class="avatar avatar-sm">
+                        <img src="{% static 'app/assets/img/talha.jpg' %}" alt="..." class="avatar-img rounded-circle border border-white">
+                    </div>
+                    <div class="avatar avatar-sm">
+                        <span class="avatar-title rounded-circle border border-white bg-success">+</span>
+                    </div>
+                </div>-->
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product8.jpg' %}" alt="Product 8">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">IP Detection</h4>
+                    <p class="text-muted small mb-2">Last updated: Yesterday 3:12 AM</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product8.jpg' %}" alt="Product 8">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Offers</h4>
+                    <p class="text-muted small mb-2">Specialized Offers for Members</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product8.jpg' %}" alt="Product 8">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">FAQs</h4>
+                    <p class="text-muted small mb-2">Targeted FAQs based on products owned and behavioral data.</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product8.jpg' %}" alt="Product 8">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Calculator Interactions</h4>
+                    <p class="text-muted small mb-2">Using calculator interactions to predict stage of sales cycle.</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product2.jpg' %}" alt="Product 2">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Digital Banking</h4>
+                    <p class="text-muted small mb-2">Last updated: Friday 7:45 AM</p>
+                    <a href="">Setup</a>
+                    <!--<div class="avatar-group">
+                    <div class="avatar avatar-sm">
+                        <img src="{% static 'app/assets/img/jm_denis.jpg' %}" alt="..." class="avatar-img rounded-circle border border-white">
+                    </div>
+                    <div class="avatar avatar-sm">
+                        <img src="{% static 'app/assets/img/chadengle.jpg' %}" alt="..." class="avatar-img rounded-circle border border-white">
+                    </div>
+                    <div class="avatar avatar-sm">
+                        <img src="{% static 'app/assets/img/mlane.jpg' %}" alt="..." class="avatar-img rounded-circle border border-white">
+                    </div>
+                    <div class="avatar avatar-sm">
+                        <img src="{% static 'app/assets/img/talha.jpg' %}" alt="..." class="avatar-img rounded-circle border border-white">
+                    </div>
+                    <div class="avatar avatar-sm">
+                        <span class="avatar-title rounded-circle border border-white bg-success">+</span>
+                    </div>
+                </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

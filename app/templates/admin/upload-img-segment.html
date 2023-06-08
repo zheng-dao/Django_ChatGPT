@@ -1,0 +1,197 @@
+{% extends "admin/base_atlantis.html" %}
+{% load static %}
+{% block endheadscripts %}
+<style>
+    .alert-danger {
+        color: #721c24 !important;
+        background-color: #f8d7da !important;
+        border-color: #f5c6cb !important;
+    }
+    form .form-check [type="checkbox"] + .form-check-sign {
+	color: #fff !important;
+}
+input.radio_btn {
+    display: none;
+    cursor: pointer;
+}
+.card input.radio_btn:checked + .img_box {
+    border: 2px solid #6861CE;
+} 
+.card-body .dropzone:hover {
+    background: #202940 !important;
+}
+.h2_or_align {
+    text-align: center;
+}
+label.card {
+    cursor: pointer;
+}
+</style>
+{% endblock endheadscripts %}
+{% block panel-header %}
+<div class="page-navs bg-black py-3 pr-2">
+    <div class="card-title fw-bold">
+        Upload Image
+    </div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+<div class="page-inner">
+    <div class="card">
+
+        
+        
+        <!--<div class="card-header">
+            <div class="card-title">Upload Image</div>
+        </div>-->
+        <div class="card-body">
+            <ul class="nav nav-pills nav-secondary" id="pills-tab" role="tablist">
+                <li class="nav-item submenu">
+                    <a class="nav-link active show" id="upload-image-tab" data-toggle="pill" href="#upload-image-control" role="tab" aria-controls="upload-image-control" aria-selected="false">Upload</a>
+                </li>
+                <li class="nav-item submenu">
+                    <a class="nav-link" id="media-library-tab" data-toggle="pill" href="#media-library-control" role="tab" aria-controls="media-library-control" aria-selected="false">Choose From Media Library</a>
+                </li>
+                
+            </ul>
+            
+                <div class="tab-content mt-2 mb-3" id="pills-tabContent">
+                    <div class="tab-pane fade active show" id="upload-image-control" role="tabpanel" aria-labelledby="upload-image-tab">
+                        <form method="POST" class="form-inline">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="inp_img_url">Enter Image URL</label>
+                                <input type="text" id="inp_img_url" class="form-control" name="inp_img_url" />
+                            </div>
+                            <input type="hidden" name="enabled_tab" value="img_url" />
+                            <button class="btn btn-success btn-round" type="submit">Continue</button>
+                        </form>
+                        <h2 class="h2_or_align">OR</h2>
+                        <div class="form-group">
+                            <label>Upload Image</label>
+                        </div>
+                        <form action="{% url 'upload_img_segment' %}?ad_ids={{ ad_id }}" method="post" class="dropzone"  id="image-upload" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="dz-message" data-dz-message>
+                                <div class="icon">
+                                    <i class="flaticon-file"></i>
+                                </div>
+                                <h4 class="message">Drag and Drop files here</h4>
+                                <!--<div class="note">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</div>-->
+                            </div>
+                            <div class="fallback">
+                                <input name="file" type="file"/>
+                            </div>
+                            <input type="hidden" name="enabled_tab" value="upload" />
+                        </form>
+
+                        <div class="card-action">
+                            <a class="btn btn-success btn-round" href="{% url 'choose_targeted_segment' %}?ad_ids={{ ad_id }}">Continue</a>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="media-library-control" role="tabpanel" aria-labelledby="media-library-tab">
+                        <form method="POST">
+                            {% csrf_token %}
+                        <div class="row row-projects">
+                            
+                                <div class="col-sm-6 col-lg-3" >
+                                    <label class="card">
+                                        <input type="radio" name="target" class="radio_btn">
+                                        <div class="p-2 img_box">
+                                            <img class="card-img-top rounded" src="https://www.finalyticsdemo.com/static/app/assets/images/hero/Car%20Loans.jpg" alt="Product 1">
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="col-sm-6 col-lg-3">
+                                    <label class="card">
+                                        <input type="radio" name="target" class="radio_btn">
+                                        <div class="p-2 img_box">
+                                            <img class="card-img-top rounded" src="https://www.finalyticsdemo.com/static/app/assets/images/hero/Hero%20-%20Auto%20Loans.png" alt="Product 7">
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="col-sm-6 col-lg-3">
+                                    <label class="card">
+                                        <input type="radio" name="target" class="radio_btn">
+                                        <div class="p-2 img_box">
+                                            <img class="card-img-top rounded" src="https://www.finalyticsdemo.com/static/app/assets/images/hero/Auto Loan - Family.png" alt="Product 3">
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="col-sm-6 col-lg-3">
+                                    <label class="card">
+                                        <input type="radio" name="target" class="radio_btn">
+                                        <div class="p-2 img_box">
+                                            <img class="card-img-top rounded" src="https://www.finalyticsdemo.com/static/app/assets/images/sample_hero_small_dark-7b4ffb01.jpg" alt="Product 4">
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="col-sm-6 col-lg-3">
+                                    <label class="card">
+                                        <input type="radio" name="target" class="radio_btn">
+                                        <div class="p-2 img_box">
+                                            <img class="card-img-top rounded" src="https://www.finalyticsdemo.com/static/app/assets/images/hero/Auto%20Loan%20-%20Military.png" alt="Product 5">
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="col-sm-6 col-lg-3">
+                                    <label class="card">
+                                        <input type="radio" name="target" class="radio_btn">
+                                        <div class="p-2 img_box">
+                                            <img class="card-img-top rounded" src="https://www.finalyticsdemo.com/static/app/assets/images/hero/Auto%20Loan%20-%20Grad.png" alt="Product 8">
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="col-sm-6 col-lg-3">
+                                    <label class="card">
+                                        <input type="radio" name="target" class="radio_btn">
+                                        <div class="p-2 img_box">
+                                            <img class="card-img-top rounded" src="https://www.finalyticsdemo.com/static/assets/images/hero-small-dark-Money-Market-2880X1100.jpg" alt="Product 2">
+                                        </div>
+                                    </label>
+                                </div>
+                                <input type="hidden" name="enabled_tab" value="media_library" />
+                                <div class="card-action" style="width:100%;">
+                                    <button class="btn btn-success btn-round" type="submit">Continue</button>
+                                </div>
+                            
+                        </div>                    
+                    </form>
+                    </div>
+                    
+                </div>
+                
+                
+                
+
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block endscripts %}
+<script type="text/javascript">
+	Dropzone.options.imageUpload = {
+        maxFiles: 1,
+        init: function() {
+		  this.on('addedfile', function(file) {
+		    if (this.files.length > 1) {
+		      this.removeFile(this.files[0]);
+		    }
+		  });
+		}
+        // acceptedFiles: ".jpeg,.jpg,.png,.gif"
+    };
+    /* jQuery(document).ready(function() {
+        jQuery("#pills-tab").on('click', '.submenu', function() {
+            current_tab = jQuery(this).children().eq(0).attr('id')
+            if(current_tab == 'media-library-tab') {
+                jQuery("#enabled_tab").val('media_library')
+            }
+            else if(current_tab == "upload-image-tab") {
+                jQuery("#enabled_tab").val('upload')
+            }
+        })
+    })*/
+	</script>
+{% endblock %}

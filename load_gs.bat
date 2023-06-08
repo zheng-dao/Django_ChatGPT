@@ -1,0 +1,1 @@
+call python manage.py loaddata app/fixtures/globalsettings.json

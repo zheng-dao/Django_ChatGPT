@@ -1,0 +1,226 @@
+/* body {
+    font-size: 13px !important;
+} */
+#header {
+    background: rgb(0,0,19);
+    background: radial-gradient(ellipse at top, rgba(0,0,19,1) 0%, rgba(0,88,152,1) 95%);
+}
+
+.module caption {
+    background: rgb(0,0,19);
+    background: radial-gradient(ellipse at top, rgba(0,0,19,1) 0%, rgba(0,88,152,1) 95%);
+}
+
+a:link, a:visited {
+    color: #1572E8;
+    text-decoration: none;
+}
+
+/* div.breadcrumbs {
+    background: rgba(0,88,152,1) 95%;
+} */
+
+.module h2, .module caption, .inline-group h2 {
+    background: rgba(0,88,152,1) 95%;
+}
+
+/* #bg{
+    background-color: #212549;
+    color: antiquewhite;
+
+} */
+
+
+.req{
+    color: antiquewhite;
+   
+}
+#ad_form{
+    border-radius: 10px;
+}
+#ad_form input, textarea, select {
+    padding: .65rem 1.4rem;
+    border-radius: .25rem;
+    /* background-color:#1a2035;
+    color: aliceblue; */
+    background-color: #1a2035;
+    color: #fff;
+    /* border-color: #2f374b; */
+    border: none;
+}
+#ad_form .vForeignKeyRawIdAdminField {
+    width: 7em;
+}
+#ad_form #id_campaigns_input {
+    font-size: 13px;
+}
+.sub_title {
+    padding: 1rem 1.25rem;
+    font-size: 17px;
+    font-weight: bold;
+}
+#ad_form .selector-chosen h2 {
+    background: #1a2035;
+}
+#searchbar {
+    background-color: #1a2035;
+    color: #fff;
+    border-color: #2f374b;
+    width: 100px;
+}
+ul.object-tools {
+    padding: 0;
+  }    
+ul.object-tools li {
+    list-style-type: none;
+}
+ul.object-tools .addlink {
+    margin-left: 20px !important;
+    color: #ffffff;
+    font-weight: bold;
+}
+h3.my_actions {
+    padding-top: 0;
+    font-weight: bold;
+    font-size: 15px;
+}
+.actionlist {
+    padding-left: 0;
+}
+table#result_list th.action-checkbox-column, td.action-checkbox {
+	padding: 8px;
+    
+}
+
+/* table#result_list th input, td.action-checkbox input {
+    vertical-align: top;
+} */
+table#result_list th, td {
+    vertical-align: top;
+    padding: 8px;
+}
+table thead th .text a {
+    padding: 8px 10px;
+    text-transform: uppercase;
+}
+#changelist-filter h3 {
+    font-size: 15px !important;
+    font-weight: bold !important;
+}
+
+
+#changelist-filter h3.filter_h3 {
+    padding: 0;
+    margin-bottom: 0;
+}
+#changelist-filter ul.filter_ul {
+    padding: 0 15px 15px 0;
+}
+#changelist-filter ul li.selected {
+    margin-left: 0;
+    padding-left: 0;    
+    color: #1572E8;
+}
+#changelist-filter h3#changelist-filter-clear {
+    padding: 10px 0 0 0;
+    margin-bottom: 0;
+}
+.breadcrumbs {
+    background: transparent;
+    border: none !important;
+    margin: 0 !important;
+}
+.delete_btn {
+    color: #ffffff !important;
+}
+.btn {
+    font-weight: bold !important;
+    line-height: 1 !important;
+}
+#content-main .selection .select2-selection {
+padding: .65rem 1.4rem;
+border-radius: .25rem;
+/* background-color: #1a2035;
+color: aliceblue; */
+background-color: #1a2035;
+color: #fff;
+font-family: inherit;
+font-size: inherit;
+line-height: inherit;
+}
+
+.results table .sortoptions {
+    display: block;
+    padding: 9px 5px 0 5px;
+    float: right;
+    text-align: right;
+}
+.results table thead th.sorted .sortpriority {
+    font-size: .8em;
+    min-width: 12px;
+    text-align: center;
+    vertical-align: 3px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+.results table thead th.sorted .sortoptions a {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    background: url(../app/images/sorting-icons.svg) 0 0 no-repeat;
+    background-position-x: 0px;
+    background-position-y: 0px;
+    background-size: auto;
+    background-size: 14px auto;
+}
+.results table thead th.sorted .text {
+    padding-right: 42px;
+}
+.results table thead th a {
+    text-decoration: none;
+}
+.results table thead th.sorted .sortoptions a.sortremove {
+    background-position: 0 0;
+}
+.results table thead th.sorted .sortoptions a.sortremove::after {
+    content: '\\';
+    position: absolute;
+    top: -6px;
+    left: 3px;
+    font-weight: 200;
+    font-size: 18px;
+    color: var(--body-quiet-color);
+}
+.results table thead th.sorted a.sortremove {
+    visibility: hidden;
+}
+.results table thead th.sorted .sortoptions a.ascending {
+    background-position: 0 -28px;
+}
+.results table thead th.sorted .sortoptions a.sortremove:focus::after, table thead th.sorted .sortoptions a.sortremove:hover::after {
+    color: #447e9b;
+}
+.results table thead th .text a {
+    display: block;
+    cursor: pointer;
+    padding: 8px 10px;
+}
+.results table thead th a:link {
+    transition: color 0.15s, background 0.15s;
+}
+.results table thead th.sorted .sortoptions a.sortremove:focus, table thead th.sorted .sortoptions a.sortremove:hover {
+    background-position: 0 -14px;
+}
+table thead th .text a:focus, table thead th .text a:hover {
+    
+}
+.results table thead th.sorted:hover a.sortremove {
+    visibility: visible;
+}
+.hidden {
+    display: none;
+}
+.clear {
+    clear: both;
+}

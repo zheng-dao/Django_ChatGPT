@@ -1,0 +1,266 @@
+{% extends "admin/base_atlantis.html" %}
+{% load static %}
+{% load humanize %}
+{% block endheadscripts %}
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    /* .container {
+    max-width: 1170px;
+    max-width: none;
+    padding: 0 !important;
+    } */
+    .body-content {
+        padding: 0 !important;
+    }
+    .heading {
+        margin-top: 100px;
+    }
+    .summary, .submits {
+        display: flex;
+        width: 100%;
+        padding: 16px;
+        box-sizing: border-box;
+    }
+    .submits { 
+        margin-top: 50px;
+    }
+    .summary-6 {
+        display: flex;
+        justify-content: space-between;
+        flex: 0 0 39%;
+        padding: 0 20px;
+    }
+    .summary-6-flex-left {
+        flex: 0 0 50%;
+    }
+    .summary-6-flex-right {
+        flex: 0 0 50%;
+    }
+    .ml-100{
+        margin-left: 5px;
+    }
+    .colInner h2 {
+        /* color: rgba(169, 175, 187, 0.82); */
+        color: #ffffff;
+        font-size: 30px;
+        margin: 0;
+        font-weight: normal;
+    }
+    .colInner span {
+        display: block;
+        text-align: left;
+        width: 100%;
+        color: rgba(169, 175, 187, 0.82);
+        font-size: 16px;
+    }
+    .colInner .fa {
+        color: #fff;
+        font-size: 16px;
+        margin-right: 11px;
+    }
+    .colInner {
+        display: flex;
+        align-items: center;
+    }
+    .circle {
+        margin: 0 11px 0 0;
+        width: 60px;
+        height: 60px;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: #1572E8 !important;
+    }
+    .circle .fa{
+        margin: 0;
+        font-size: 20px;
+        color: #fff;
+    }
+    .green{
+        color: #90b71d !important;
+    }
+    .submits table {
+        width: 100%;
+        background-color: transparent;
+    }
+    .submits table tr {
+        background-color: transparent;
+    }
+    .submits table th {
+        background-color: transparent;
+        color: rgba(169, 175, 187, 0.82);
+    }
+    .submits table span {
+        display: block;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #ccc;
+    }
+    .submits td{
+        border: none;
+    }
+    .submits td {
+        font-size: 16px;
+    }
+    .submits th {
+        font-size: 16px;
+    }
+    .submits td, .submits th{
+        padding: 20px;
+        text-align: center;
+        vertical-align: middle;
+    }
+    td.rowspan {
+        padding: 0;
+        position: relative;
+        width: 10px;
+    }
+    td.rowspan .fa {
+        font-size: 40px;
+        color: #137bc3;
+        background: #fff;
+    }
+    td.rowspan:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        height: 100%;
+        bottom: 0;
+        width: 1px;
+        background: #ccc;
+        z-index: -2;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    h2.h2 {
+        font-size: 28px;
+    }
+    td.ad_title {
+        text-align: left;
+    }
+    .submits table span.plus_minus_symbol {
+        display: initial;
+        content: "\00B1";
+        color: rgba(169, 175, 187, 0.82) !important;
+        font-size: 19px;
+    } 
+    .improvement_block {
+        background: linear-gradient(-45deg, #06418E, #1572E8) !important;
+        text-align: center;
+                vertical-align: middle; color: #ffffff; font-size: 24px !important;background-color: transparent; font-weight: bold;
+    }
+    </style>
+{% endblock %}
+{% block panel-header %}
+
+{% endblock %}
+{% block panel-inner %}
+<div class="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title"><a href="/admin/app/campaign/{% if result %}{{ result.campaign_id.0 }}{% else %}{{ campaign_id }}{% endif %}/change/">{{ campaign_name }}</a></h4>
+                    </div>
+                </div>
+
+
+
+
+                <div class="card-body">
+
+{% if ads_count == 0 %}
+    <div class="summary">
+        <p>There is no analytics data for this campaign, yet.</p>
+    </div>
+{% else %}
+{% if ads_count == 1 or ads_count == 2 %}
+<div class="summary">
+    <div class="summary-6 summary-6-flex-left">
+        <div class="summaryCol">
+            <div class="colInner">
+                <p class="circle">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                </p>
+                <h2>{{ total_visitors|intcomma|default:0 }}<span>UNIQUE VISITORS</span></h2>
+            </div>
+        </div>
+        <div class="summaryCol">
+            <div class="colInner">
+                <p class="circle">
+                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                </p>
+                <h2>{{ days_running|default:0 }}<span>DAYS RUNNING</span></h2>
+            </div>
+        </div>
+    </div>
+    <div class="summary-6 ml-100 summary-6-flex-right">
+        <div class="summaryCol">
+            <div class="colInner">
+                <p class="circle"><i class="fa fa-check" aria-hidden="true"></i></p>
+                <h2>Winning Ad<span>{{ winning_ad|default:'No Ad Found' }}</span></h2>
+            </div>
+        </div>
+        <div class="summaryCol">
+            <div class="colInner">
+                <p class="circle"> <i class="fa fa-clone" aria-hidden="true" style="font-weight:bold;"></i></p>
+                <h2>{% if ads_count == 2 %}{{ ads_count }}{% else %}0{% endif %}<span>VARIATIONS</span></h2>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if ads_count == 2 %}
+<div class="submits">
+    <table class="table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Visitors</th>
+                <th>Clicks</th>
+                <th>Conversion rates</th>
+                <th>95% confidence interval</th>
+                <th>Improvement</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            
+            <tr>
+                <td class="ad_title"><a href="/admin/app/ad/{{ result.ad_id.0 }}/change/">{{ result.ad__name.0 }}</a></td>
+                <td>{{ result.impressions.0 }}</td>
+                <td>{{ result.clicks.0 }}</td>
+                <td>{% if result.cr.0 %}{{ result.cr.0 }}%{% else %}-{% endif %}</td>
+                <td>{% if result.confidence_interval_cr.0.0 %}{{ result.confidence_interval_cr.0.0 }}% - {{ result.confidence_interval_cr.0.1 }}% (<span class="plus_minus_symbol">&#177;</span> {{ conf.0 }}%){% else %}-{% endif %}</td>
+                
+                <td rowspan="2" class="improvement_block">{{ improvement }}%</td>
+            </tr>            
+            
+            
+            <tr>
+                <td class="ad_title"><a href="/admin/app/ad/{{ result.ad_id.1 }}/change/">{{ result.ad__name.1 }}</a></td>
+                <td>{{ result.impressions.1 }}</td>
+                <td>{{ result.clicks.1 }}</td>
+                <td>{{ result.cr.1 }}%</td>
+                <td>{{ result.confidence_interval_cr.1.0 }}% - {{ result.confidence_interval_cr.1.1 }}% (<span class="plus_minus_symbol">&#177;</span> {{ conf.1 }}%)</td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% endif %}
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
+{% block endscripts %}
+{% endblock %}

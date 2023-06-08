@@ -1,0 +1,216 @@
+{% extends "admin_static/base_atlantis.html" %}
+{% load static %}
+{% block panel-header %}
+<div class="panel-header bg-primary-gradient">
+    <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+                <h2 class="text-white pb-2 fw-bold">Scenarios</h2>
+                <h5 class="text-white op-7 mb-2">Lorem ipsum dolor</h5>
+            </div>
+            <div class="ml-md-auto py-2 py-md-0">
+                <a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
+                <a href="#" class="btn btn-secondary btn-round">New Scenario</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+<div class="page-navs bg-white">
+    <div class="nav-scroller">
+        <div class="nav nav-tabs nav-line nav-color-secondary d-flex align-items-center justify-contents-center w-100">
+            <a class="nav-link active show" data-toggle="tab" href="#tab1">
+                All Scenarios
+                <span class="count ml-1">(30)</span>
+            </a>
+            <a class="nav-link mr-5" data-toggle="tab" href="#tab2">Product</a>
+            <a class="nav-link mr-5" data-toggle="tab" href="#tab3">Geo</a>
+            <a class="nav-link mr-5" data-toggle="tab" href="#tab4">Segment</a>
+            <a class="nav-link mr-5" data-toggle="tab" href="#tab1">Funnel Re-entry</a>
+            <a class="nav-link mr-5" data-toggle="tab" href="#tab5">Stepwise</a>
+            <a class="nav-link mr-5" data-toggle="tab" href="#tab6">Revenue</a>
+            <a class="nav-link mr-5" data-toggle="tab" href="#tab6">Digital Banking</a>
+            <a class="nav-link mr-5" data-toggle="tab" href="#tab6">Testing</a>
+            <!--<div class="ml-auto">
+                <a href="#" class="btn btn-success">New Scenario</a>
+            </div>-->
+        </div>
+    </div>
+</div>
+<div class="page-inner">
+    <div class="row row-projects">
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product1.jpg' %}" alt="Product 1">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Core Products</h4>
+                    <p class="text-muted small mb-2">All of the core products for the 1st launch of Finalytics.</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product3.jpg' %}" alt="Product 3">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">New Tallahassee Branch</h4>
+                    <p class="text-muted small mb-2">Home page card about new Tallahassee branch.</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product3.jpg' %}" alt="Product 3">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">123 Street Miami Branch Limited Hours</h4>
+                    <p class="text-muted small mb-2">Closure due to construction.</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product7.jpg' %}" alt="Product 7">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Member: Mobile App</h4>
+                    <p class="text-muted small mb-2">Show mobile app content module to all Members who have not logged in via the app.</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product5.jpg' %}" alt="Product 5">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Funnel Re-entry: Blend</h4>
+                    <p class="text-muted small mb-2">If a user enters and leaves the funnel without completing the application, return them to it.</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product8.jpg' %}" alt="Product 8">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Bill Pay Steps</h4>
+                    <p class="text-muted small mb-2">Enroll -> Add a Payee -> Make 1st Payment</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product8.jpg' %}" alt="Product 8">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">eStatement Enrollment</h4>
+                    <p class="text-muted small mb-2">Get users to sign up for eStatements.</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product8.jpg' %}" alt="Product 8">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Credit Card Activation</h4>
+                    <p class="text-muted small mb-2">Activate a credit card.</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product10.jpeg' %}" alt="Product 8">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Juneau</h4>
+                    <p class="text-muted small mb-2">Juneau hero image.</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{% static 'app/assets/img/examples/product11.jpeg' %}" alt="Product 8">
+                </div>
+                <div class="card-body pt-2">
+                    <h4 class="mb-1 fw-bold">Hackensack</h4>
+                    <p class="text-muted small mb-2">Hackensack hero image.</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                            <span class="form-check-sign" style="color:white;">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

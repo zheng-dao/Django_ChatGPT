@@ -1,0 +1,106 @@
+{% extends "admin/base_atlantis.html" %}
+{% load static %}
+{% block endheadscripts %}
+<style>
+    a.link_style {
+        color: rgba(169, 175, 187, 0.82) !important;
+        text-decoration: none;
+    }
+
+</style>
+{% endblock %}
+{% block panel-header %}
+<div class="panel-header bg-primary-gradient">
+    <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+                <h2 class="text-white pb-2 fw-bold">Ad Campaign Connector</h2>
+                <h5 class="text-white op-7 mb-2">Which Content Module will the campaign be targeting?</h5>
+            </div>
+            {% comment %}<Billings, class="ml-md-auto py-2 py-md-0">
+                <a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
+                <a href="#" class="btn btn-secondary btn-round">New Content Module</a>
+            </Billings,>{% endcomment %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+<div class="page-navs bg-white">
+    <div class="nav-scroller">
+        <div class="nav nav-tabs nav-line nav-color-secondary d-flex align-items-center justify-contents-center w-100">
+            <a class="nav-link active show" data-toggle="tab" href="#tab1">
+                All Content Modules
+                <span class="count ml-1">(30)</span>
+            </a>
+            <a class="nav-link mr-5" data-toggle="tab" href="#tab2">Product</a>
+            <a class="nav-link mr-5" data-toggle="tab" href="#tab3">Geo</a>
+            <!--<div class="ml-auto">
+                <a href="#" class="btn btn-success">New Content Module</a>
+            </div>-->
+        </div>
+    </div>
+</div>
+<div class="page-inner">
+    <div class="row row-projects">
+        {% for image, ad in ads %}
+        <div class="col-sm-6 col-lg-3">
+            <div class="card">
+                <div class="p-2">
+                    <img class="card-img-top rounded" src="{{ image }}" alt="Product 1">
+                </div>
+                <div class="card-body pt-2">
+                    <a class="link_style" href="{% url 'campaign_url' %}?utm_term={{ utm_term }}"><h4 class="mb-1 fw-bold">{{ ad.name }}</h4></a>
+<!--                    <p class="text-muted small mb-2"></p>-->
+                        <p class="text-muted small mb-2">{{ ad.description|default:"No Description" }}</p>
+                    <div class="form-check chkbox_area">
+                        <label class="form-check-label">
+                            <input class="form-check-input is_active" type="checkbox" value="{{ ad.id }}" {% if ad.is_active %}checked{% endif %}>
+                            <span class="form-check-sign" style="color:white;">Published</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No Ad exists.</p>
+        {% endfor %}
+        
+    </div>
+</div>
+
+{% endblock %}
+
+{% block endscripts %}
+
+<script>
+    
+    jQuery(document).ready(function() {
+        jQuery(".chkbox_area").on('click', '.is_active', function(e) {
+        
+            // e.preventDefault();
+            is_active_chk = jQuery(this).prop('checked')
+            ad_id = jQuery(this).val()
+            base_url = window.location.origin
+            data = {'ad_id': ad_id, 'is_active_chk': is_active_chk}
+            
+            
+            $.ajax({
+                  url:base_url+'/b/scenarios/update-content-module',
+                  type: 'GET',
+                  dataType: 'json',
+                  data: data,
+                  success: function(data) {
+                    if(data.status == 1) {
+                        alert(data.message)
+                    }
+                    else {
+                        alert(data.message)
+                    }
+                  }
+            });
+            
+        })
+    })
+</script>
+{% endblock %}

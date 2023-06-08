@@ -1,0 +1,194 @@
+{% extends "admin/base_atlantis.html" %}
+{% load static %}
+{% block endheadscripts %}
+<style>
+    a.link_style {
+        color: rgba(169, 175, 187, 0.82) !important;
+        text-decoration: none;
+    }
+    #alert-msg.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    padding: .65rem 1.25rem;
+    border-radius: 7px;
+}
+#alert-msg.alert-success button {
+    background: transparent;
+    top: 0 !important;
+    line-height: 15px;
+}
+</style>
+{% endblock %}
+{% block panel-header %}
+<div class="panel-header bg-primary-gradient">
+    <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+                <h2 class="text-white pb-2 fw-bold">Media Library</h2>
+                <h5 class="text-white op-7 mb-2">All of the personalized content that will appear on your site</h5>
+            </div>
+            <Billings, class="ml-md-auto py-2 py-md-0">
+                <!--<a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>-->
+                <a href="/admin/app/asset/add/" class="btn btn-secondary btn-round">Add New Asset</a>
+            </Billings,>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+
+<div class="page-navs bg-white">
+    <div class="nav-scroller">
+        <div class="nav nav-tabs nav-line nav-color-secondary d-flex align-items-center justify-contents-center w-100">
+            <a class="nav-link active show" data-toggle="tab" href="#tab1">
+                All Media Libraries
+                <span class="count ml-1">(30)</span>
+            </a>
+            <a class="nav-link mr-5" data-toggle="tab" href="#tab2">Product</a>
+            <a class="nav-link mr-5" data-toggle="tab" href="#tab3">Geo</a>
+            <!--<div class="ml-auto">
+                <a href="#" class="btn btn-success">New Content Module</a>
+            </div>-->
+        </div>
+    </div>
+</div>
+<div class="page-inner">
+    {% if messages %}   
+    {% for msg in messages %}
+        <div class="alert alert-{{msg.tags}} alert-dismissible fade show mb-0" role="alert" id="alert-msg">
+            <strong>{{msg|safe}}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+{% endif %}   
+{% if company_list and not selected_company %}
+{% include 'admin/companies.html' with companies=company_list view_name='z-media-library-company-code' %}
+
+
+{% else %}
+    <div class="row row-projects">
+      {% for width, value_width in image_data.items %}
+      {% if selected_image_width == 'all'  %}
+        <div class="col-sm-12 col-lg-12 col-md-12 col-12">
+            <h1>{{width}}</h1>
+        </div>
+        {% for data in value_width %}
+            <div class="col-sm-6 col-lg-3">
+                <div class="card">
+                    <div class="p-2 image-gallery">
+                        {% if is_dir_enabled %}
+                        <a href="{{data}}"><img class="card-img-top rounded" src="{{data}}" alt="Product 1"></a>
+                        {% else %}
+                        <a href="{{data.url}}"><img class="card-img-top rounded" src="{{data.url}}" alt="Product 1"></a>
+                        {% endif %}
+                    </div>
+                    <div class="card-body pt-2">
+                        <a class="link_style" href="javascript:void(0)"><h4 class="mb-1 fw-bold">{{ data.filename|default:"No Name" }}</h4></a>
+    <!--                    <p class="text-muted small mb-2"></p>-->
+                        
+                        <p class="text-muted small mb-2">{{ width }} X {{ data.height }}</p>
+                        <p class="text-muted small mb-2">{{ data.demographics|default:"" }}</p>
+                        <a href ="/admin/app/asset/{{data.id}}/change/" class="edit_link" > Edit </a>
+                        
+                    </div>
+                </div>
+            </div>
+
+            {% empty %}
+            <p>No assets exist.</p>            
+        {% endfor %}
+      {% else %}
+        {% for height, urls in value_width.items %}
+        <div class="col-sm-12 col-lg-12 col-md-12 col-12">
+            <h1>{{width}} X {{height}}</h1>
+        </div>
+        {% for data in urls %}
+            <div class="col-sm-6 col-lg-3">
+                <div class="card">
+                    <div class="p-2 image-gallery">
+                        {% if is_dir_enabled %}
+                        <a href="{{data}}"><img class="card-img-top rounded" src="{{data}}" alt="Product 1"></a>
+                        {% else %}
+                        <a href="{{data.url}}"><img class="card-img-top rounded" src="{{data.url}}" alt="Product 1"></a>
+                        {% endif %}
+                    </div>
+                    <div class="card-body pt-2">
+                        <a class="link_style" href="javascript:void(0)"><h4 class="mb-1 fw-bold">{{ data.filename|default:"No Name" }}</h4></a>
+    <!--                    <p class="text-muted small mb-2"></p>-->
+                        
+                        <p class="text-muted small mb-2">{{ data.demographics|default:"" }}</p>
+                        <a href ="/admin/app/asset/{{data.id}}/change/" class="edit_link" > Edit </a>
+                        
+                    </div>
+                </div>
+            </div>
+
+            {% empty %}
+            <p>No assets exist.</p>
+            {% endfor %}
+            {% endfor %}
+        {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+</div>
+
+{% endblock %}
+
+{% block endscripts %}
+
+
+<script>
+    // This will create a single gallery from all elements that have class "gallery-item"
+    $('.image-gallery').magnificPopup({
+        delegate: 'a', 
+        type: 'image',
+        removalDelay: 300,
+        gallery:{
+            enabled:true,
+        },
+        mainClass: 'mfp-with-zoom', 
+        zoom: {
+            enabled: true, 
+            duration: 300,
+            easing: 'ease-in-out',
+            opener: function(openerElement) {
+                console.log('openerElement', openerElement)
+                return openerElement.is('img') ? openerElement : openerElement.find('img');
+            }
+        }
+    });
+</script>    
+<script>
+    jQuery(document).ready(function() {
+        jQuery(".chkbox_area").on('click', '.is_active', function(e) {
+        
+            // e.preventDefault();
+            is_active_chk = jQuery(this).prop('checked')
+            ad_id = jQuery(this).val()
+            base_url = window.location.origin
+            data = {'ad_id': ad_id, 'is_active_chk': is_active_chk}
+            
+            
+            $.ajax({
+                  url:base_url+'/content/update-content-module',
+                  type: 'GET',
+                  dataType: 'json',
+                  data: data,
+                  success: function(data) {
+                    if(data.status == 1) {
+                        alert(data.message)
+                    }
+                    else {
+                        alert(data.message)
+                    }
+                  }
+            });
+            
+        })
+    })
+</script>
+{% endblock %}

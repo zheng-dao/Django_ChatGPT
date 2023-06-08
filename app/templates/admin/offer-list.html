@@ -1,0 +1,99 @@
+{% extends "admin/base_atlantis.html" %}
+{% load static %}
+{% block panel-header %}
+<div class="page-navs bg-black py-3 pr-2">
+    <div class="card-title fw-bold">
+        Offers
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Data & Integrations</a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+<div class="page-inner">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title">Offers List</h4>
+                        <a class="btn btn-primary btn-round ml-auto" href="/admin/app/offer/add/" >
+                            <i class="fa fa-plus"></i>
+                            Add
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="add-row" class="display table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Headline</th>
+                                    <th>Company</th>
+                                    <th>Keyword Group</th>
+                                    <th style="width: 10%">Action</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Headline</th>
+                                    <th>Company</th>
+                                    <th>Keyword Group</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                {% for offer in offer_list %}
+                                <tr>
+                                    <td>{{ offer.headline|default:'-' }}</td>
+                                    <td>{{ offer.company|default:'-' }}</td>
+                                    <td>{{ offer.keyword_group|default:'-' }}</td>
+                                    <td>
+                                        <div class="form-button-action">
+                                            <a href="/admin/app/offer/{{ offer.id }}/change/" type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <button type="button" data-toggle="tooltip" m_name="Offer" m_id="{{ offer.id }}" title="" class="btn btn-link btn-danger delete_model_val" data-original-title="Remove" >
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block endscripts %}
+<script>
+    $(document).ready(function () {
+        
+
+        // Add Row
+        $('#add-row').DataTable({
+            "pageLength": 100,
+            "order": []
+        });
+
+
+    });
+</script>
+{% endblock %}

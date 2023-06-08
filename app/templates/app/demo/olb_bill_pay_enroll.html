@@ -1,0 +1,1568 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js ie ie8"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>EastCal</title>
+        <meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Always force latest IE rendering engine or request Chrome Frame -->
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <link rel="apple-touch-icon" sizes="115x115" href="{% static 'app/demo/images/Favicon_EastCal_white_115x115.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'app/demo/images/Favicon_EastCal_white_115x115.png' %}" sizes="115x115">
+
+<!-- Stylesheets -->
+<link href="{% static 'app/demo/stylesheets/styles.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- Modernizr -->
+<script src="{% static 'app/demo/javascripts/vendor/modernizr-2.6.2.min.js' %}" type="text/javascript"></script>
+
+<!-- JavaScript -->
+<script src="{% static 'app/demo/javascripts/vendor/jquery-1.10.2.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/vendor/jquery-ui.min.js' %}" type="text/javascript"></script>
+
+<!-- Plugins -->
+<script src="{% static 'app/demo/javascripts/vendor/respond.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/vendor/pushy.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/vendor/jquery.megamenu.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/vendor/jquery.magnific-popup.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/vendor/jquery.visible.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/vendor/jquery.mask.js' %}" type="text/javascript"></script> <!-- Phone and ZIP Masking -->
+<script src="{% static 'app/demo/javascripts/vendor/jquery.alphanumeric.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/vendor/tipso.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/vendor/slick.js' %}" type="text/javascript"></script>
+
+<!-- Custom -->
+<script src="{% static 'app/demo/javascripts/jquery.accordion.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/equalheight.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/password.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/username.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/plugins.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/payee.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/payee.filter.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/datepicker.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/transactionHistory.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/field-validation.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/transfers.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/contact-info.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/enableSubmit.js' %}" type="text/javascript"></script>
+<!--<script src="{% static 'app/demo/javascripts/contactInfoReminder.js' %}" type="text/javascript"></script>-->
+<script src="{% static 'app/demo/javascripts/locations.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/messageCenter.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/alerts.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/helpWithPage.js' %}" type="text/javascript"></script>
+<script src="{% static 'app/demo/javascripts/main.js' %}" type="text/javascript"></script>
+
+    </head>
+    <body>
+        <div class="btnwrap" style="position: fixed;z-index: 100000;top: 0;left: 0;right: 0;background: #000;">{% include "app/demo/demo_buttons.html" %}</div>
+        <!-- Help wwith Page -->
+        <div class="helpScreen">
+            <!-- Help Header -->
+            <div class="helpScreenHeader">
+                <!-- Toc -->
+                <div class="toc"></div>
+                <!-- Index Count -->
+                <ul>
+                    <li>
+                        <button type="button" data-role="none" id="slickPrev" class="slideIndexCounter" aria-label="previous">Previous</button>
+                    </li>
+                    <li>
+                        <span class="slideCounter"><span class="slideIndex">0</span> of <span class="availableSliders">0</span> Pages</span>
+                    </li>
+                    <li>
+                        <button type="button" data-role="none" id="slickNext" class="slideIndexCounter" aria-label="next">Next</button>
+                    </li>
+                </ul>
+                <!-- Close Button -->
+                <div class="helpScreenClose">X</div>
+            </div>
+            <!-- Help Screens -->
+            <div class="helpScreenContent">
+                <div class="helpSlide">
+                    <img src="{% static 'app/demo/images/fpo-help-01.jpg' %}">
+                    <span class="helpTip">
+                        <span class="helpTip_title">
+                            Tip Group Title 1: <span>Tip Action Title</span>
+                        </span>
+                        sit veniam ullam velit error excepturi eum aut est sunt maiores nesciunt consequatur error unde repellat accusantium harum et deserunt.
+                    </span>
+                </div>
+                <div class="helpSlide">
+                    <img src="{% static 'app/demo/images/fpo-help-02-animated.gif' %}">
+                    <span class="helpTip">
+                        <span class="helpTip_title">
+                            Tip Group Title 2: <span>Tip Action Title</span>
+                        </span>
+                        sint nobis iste adipisci molestiae voluptas distinctio eum quidem est accusantium in est accusamus est aut enim occaecati itaque vel ut voluptas porro aut magnam debitis totam nemo tempora distinctio est mollitia impedit numquam accusamus voluptatibus sunt blanditiis nostrum porro.
+                    </span>
+                </div>
+                <div class="helpSlide">
+                    <img src="{% static 'app/demo/images/fpo-help-01.jpg' %}">
+                    <span class="helpTip">
+                        <span class="helpTip_title">
+                            Tip Group Title 3: <span>Tip Action Title</span>
+                        </span>
+                        vel reiciendis et similique consequatur ducimus quae rem aut et necessitatibus nemo quaerat ea sunt autem at ut occaecati ut.
+                    </span>
+                </div>
+            </div>
+
+            <!-- Table of Contents List -->
+            <div id="tocContent">
+                <div class="tocTitle">All Tips</div>
+
+                <ul>
+                    <li>Tip Group Title: </li>
+                    <li>
+                        <a class="tocItem" data-slideitem="0" href="#">Tip (a)</a>
+                    </li>
+                    <li>
+                        <a class="tocItem" data-slideitem="1" href="#">Tip (b)</a>
+                    </li>
+                    <li>
+                        <a class="tocItem" data-slideitem="2" href="#">Tip (c)</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /Help with Page -->
+
+        <div class="helpOverlay"></div>
+        <!-- Mobile Menu -->
+<div class="pushy pushy-right">
+    <div class="menuWrap">
+        <div class="userInfo">
+            <div class="welcome"> Welcome, <span>Jonathan BusinessName</span></div>
+            <ul>
+                <li>My Messages <span>(<a href="">2</a>)</span></li>
+                <li> <a href=""><span>Logout</span></a> </li>
+            </ul>
+            <div class="session">Last logged on Jul 29, 2014 11:00AM</div>
+        </div>
+        <ul class="mobile">
+            <li> <a href="#">Accounts and Activities</a>
+                <ul>
+                    <li class="title"> <a href="" class="noAccordion">Account Summary</a> </li>
+                    <li class="accountType">Deposit Accounts</li>
+                    <li> <a href="" class="noAccordion">Checking for Cash (...1234)</a> </li>
+                    <li> <a href="" class="noAccordion">Everyday Expenses and Bill (...1234)</a> </li>
+                    <li> <a href="" class="noAccordion">CDs Account (...1234)</a> </li>
+                    <li> <a href="" class="noAccordion">My Secret Savings (...1234)</a> </li>
+                    <li> <a href="" class="noAccordion">Another Secret Savings (...1234)</a> </li>
+                    <li class="accountType">Loan Accounts</li>
+                    <li> <a href="" class="noAccordion">Education Loan (...1234)</a> </li>
+                    <li class="accountType">Mortgage Accounts</li>
+                    <li> <a href="" class="noAccordion">Residential Loan (...1234)</a> </li>
+                </ul>
+            </li>
+            <li> <a href="#">Actions and Services</a>
+                <ul>
+                    <!--<li> <a href="#" class="viewStatements-link noAccordion">View Online Statements</a> </li>-->
+                    <li> <a href="#" class="billPay-link">Pay Bills</a> </li>
+                    <li> <a href="#" class="alerts-link">Alerts</a> </li>
+                    <li> <a href="#" class="transfers-link">Transfer</a> </li>
+                    <li> <a href="#" class="accountServices-link">Services</a>
+                        <ul>
+                            <li><a href="">View Online Statement</a></li>
+                            <li><a href="">Update My Overdraft Coverage Preferences</a></li>
+                            <li><a href="">Order Checks</a></li>
+                            <li><a href="">Request a Stop Payment</a></li>
+                            <li><a href="">Direct Deposit Change Form</a></li>
+                        </ul>
+                    </li>
+                    <li> <a href="#" class="contact-link">Contact Us</a>
+                        <ul>
+                            <li><a href="">Request a Check Copy</a></li>
+                            <li><a href="">Request a Paper Statement Copy</a></li>
+                            <li><a href="">Inquire about a Bill Pay Payment</a></li>
+                            <li><a href="">Inquire about a Transaction</a></li>
+                            <li><a href="">Contact Customer Service</a></li>
+                        </ul>
+                    </li>
+                    <li> <a href="#" class="forms-link">Forms</a> </li>
+                    <li> <a href="#" class="help-link">Help</a> </li>
+                    <li> <a href="#" class="newAccounts-link">New Accounts</a> </li>
+                </ul>
+            </li>
+            <li> <a href="#">Profile Settings</a>
+                <ul>
+                    <li> <a href="" class="noAccordion">Change Username/Password</a> </li>
+                    <li> <a href="" class="noAccordion">Add Eligible Accounts for View</a> </li>
+                    <li> <a href="" class="noAccordion">Change Contact Information</a> </li>
+                    <li> <a href="" class="noAccordion">Change Security Questions &amp; Answers</a> </li>
+                </ul>
+            </li>
+            <li> <a href="#" class="searchBtn">Transaction Search</a>
+                <ul class="transSearch">
+                    <li>
+                        <input type="text">
+                        <input type="submit" value="Search">
+                    </li>
+                </ul>
+            </li>
+            <li><a href="" class="customizeBtn">Customize Page</a></li>
+            <li><a href="" class="helpBtn helpTrigger">Help with Page</a></li>
+        </ul>
+    </div>
+</div>
+<!-- /Mobile Menu -->
+
+<div class="site-overlay"></div>
+
+<header class="push">
+    <div class="container">
+        <div id="logo">
+            <a href="index.html" class="noMobile">
+                <img src="{% static 'app/images/demo/EastCal logo blue.png' %}">
+            </a>
+            <a href="index.html" class="mobile">
+                <img src="{% static 'app/images/demo/EastCal logo blue.png' %}">
+            </a>
+        </div>
+        <!-- Toolbar -->
+        <div class="toolbar visibleDesktop">
+            <div class="session">Last logged on Jul 29, 2014 11:00AM</div>
+            <ul>
+                <li class="user">
+                    <div class="hover ellipsis">Welcome, <span>Jonathan BusinessName</span></div>
+                    <div class="userDropdown">
+                        <div>
+                            <ul>
+                                <li> <a href="">Change Username/Password</a> </li>
+                                <li> <a href="">Add Eligible Accounts for View</a> </li>
+                                <li> <a href="">Change Contact Information</a> </li>
+                                <li> <a href="">Change Security Questions &amp; Answers</a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>My Messages <span>(<a href="">2</a>)</span></li>
+                <li><a href=""><span>Logout</span></a></li>
+            </ul>
+        </div>
+        <!-- /Toolbar -->
+        <!-- Mobile Menu Link -->
+        <div class="mobileMenu hiddenDesktop menu-btn">
+            Menu
+            <div class="notification">14</div>
+        </div>
+        <!-- /Mobile Menu Link -->
+    </div>
+</header>
+        <!-- Menu -->
+<nav class="push visibleDesktop">
+    <div class="container">
+        <ul class="megamenu">
+            <li class="accountsMenu"> <a href="javascript:void(0)">Accounts and Activities</a>
+                <div class="accountDropdown">
+                    <h2>
+                        <a href="">Account Summary</a>
+                    </h2>
+                    <div class="accountSummary">
+                        <h3>Deposit Accounts</h3>
+                        <table class="summary">
+                            <tr>
+                                <td><a href="">Checking for Cash (...1234)</a></td>
+                                <td class="last"><strong>$10,400.00</strong></td>
+                            </tr>
+                            <tr>
+                                <td><a href="">Everyday Expenses and Bill (...1234)</a></td>
+                                <td class="last"><strong>$10,400.00</strong></td>
+                            </tr>
+                            <tr>
+                                <td><a href="">CDs Account (...1234)</a></td>
+                                <td class="last"><strong>$10,000.00</strong></td>
+                            </tr>
+                            <tr>
+                                <td><a href="">My Secret Savings (...1234)</a></td>
+                                <td class="last"><strong>$10,000.00</strong></td>
+                            </tr>
+                            <tr>
+                                <td><a href="">Another Secret Savings (...1234)</a></td>
+                                <td class="last"><strong>$10,000.00</strong></td>
+                            </tr>
+                        </table>
+                        <div class="cleaner"></div>
+                        <h3>Loan Accounts</h3>
+                        <table class="summary">
+                            <tr>
+                                <td><a href="">Education Loan (...1234)</a></td>
+                                <td class="last"><strong>$5,000.00</strong></td>
+                            </tr>
+                        </table>
+                        <div class="cleaner"></div>
+                        <h3>Mortgage Accounts</h3>
+                        <table class="summary">
+                            <tr>
+                                <td><a href="">Residential Loan (...1234)</a></td>
+                                <td class="last"><strong>$180,000.00</strong></td>
+                            </tr>
+                        </table>
+                        <div class="cleaner"></div>
+                    </div>
+                </div>
+            </li>
+            <li class="actionsMenu"> <a href="javascript:void(0)">Actions and Tools</a>
+                <div class="actionsDropdown">
+                    <!--
+                    <div class="colFull top">
+                        <div class="viewStatements-link"> Statements </div>
+                        <ul>
+                            <li><a href="">View Online Statement</a></li>
+                        </ul>
+                    </div>
+                    -->
+                    <div class="colWrap">
+                        <div class="col">
+                            <dl>
+                                <dt class="transfers-link"> Transfer </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="">Add New Transfer</a></li>
+                                        <li><a href="">Pending Transfers</a></li>
+                                        <li><a href="">Transfer History</a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt class="billPay-link"> Bill Pay </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="">Schedule One-Time Payment</a></li>
+                                        <li><a href="">Recurring Payment</a></li>
+                                        <li><a href="">Manage Payees</a></li>
+                                        <li><a href="">Pending Payments</a></li>
+                                        <li><a href="">Payment History</a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt class="alerts-link"> Alerts </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="">Manage Alerts</a></li>
+                                        <li><a href="">Schedule Alerts</a></li>
+                                        <li><a href="">Manage Contact Points</a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="col">
+                            <dl>
+                                <dt class="accountServices-link">Services</dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="">View Online Statement</a></li>
+                                        <li><a href="">Update My Overdraft Coverage Preferences</a></li>
+                                        <li><a href="">Order Checks</a></li>
+                                        <li><a href="">Request a Stop Payment</a></li>
+                                        <li><a href="">Direct Deposit Change Form</a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt class="contactUs-link">Contact Us</dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="">Request a Check Copy</a></li>
+                                        <li><a href="">Request a Paper Statement Copy</a></li>
+                                        <li><a href="">Inquire about a Bill Pay Payment</a></li>
+                                        <li><a href="">Inquire about a Transaction</a></li>
+                                        <li><a href="">Contact Customer Service</a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt class="help-link"> Help </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="">Help center</a></li>
+                                        <li><a href="">FAQ</a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="colFull">
+                        <div class="newAccount-link"> New Accounts </div>
+                        <ul>
+                            <li><a href="">Apply for an Account</a></li>
+                            <li><a href="">Apply for a Loan</a></li>
+                            <li><a href="">Apply for a Credit Card</a></li>
+                            <li><a href="">Apply for a Mortgage</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="searchMenu"> <a href=""></a>
+                <div class="searchDropdown">
+                    <input type="text" placeholder="Transaction Search">
+                    <input type="submit">
+                </div>
+            </li>
+            <li class="helpMenu"> <a href="" class="helpTrigger">Help with Page</a> </li>
+        </ul>
+    </div>
+</nav>
+<!-- Menu -->
+
+        <!-- Content Area -->
+<div class="main push" role="main">
+    <div class="container">
+{% include "app/demo/demo_buttons.html" %}
+<script id="ads" type="text/json"></script>
+        <div id="test" class="boxModule">
+            <div class="loginWrap">
+                <!-- Log In Panel -->
+                <div class="userLogin equalHeights">
+                    <h1>Enroll in Bill Pay</h1>
+                    <p>Set up your Bill Pay in less than 5 minutes.  See how easy it is to pay your utility bill online. </p>
+                    <div class="cleaner"></div>
+                    <a href="" class="btn blue" style="margin-left:0;">Enroll Now</a>
+                    <a href="">Learn More</a>
+                </div>
+                <!-- Sign Up Panel -->
+                <div class="userSignup equalHeights">
+                    <!-- Promo -->
+                    <img src="{% static 'app/images/demo/olb/OLB_BillPay_01.jpg' %}" alt="FPO"/>
+                </div>
+                <div class="cleaner"></div>
+
+            </div>
+            <div class="cleaner"></div>
+        </div>
+
+        <h1>
+            Account Summary
+            <span class="toggle"><a href="" class="customize">Customize</a></span>
+        </h1>
+
+        <!-- Jump To -->
+        <div class="jumpTo">
+            <ul>
+                <li>Jump To:</li>
+                <li><a href="#deposit-accounts" class="scroll">Deposit Accounts</a></li>
+                <li><a href="#loan-accounts" class="scroll">Loan Accounts</a></li>
+                <li><a href="#mortgage-accounts" class="scroll">Mortgage Accounts</a></li>
+            </ul>
+        </div>
+        <!-- /Jump To -->
+
+        <!-- Panel -->
+        <div class="panel" id="deposit-accounts">
+
+            <!-- Account Overview -->
+            <div class="accountOverview">
+                <div class="acctTitle">
+                    <div class="sliderControls">
+                        <h2>Deposit Accounts</h2>
+                    </div>
+                    <div class="alert"> <span>11</span> alerts. <a href="">View All</a> </div>
+                </div>
+                <div class="graph"> <img src="{% static 'app/demo/images/fpo-graph.jpg' %}" alt="FPO Graph"/> </div>
+                <div class="balance"> <span>$50,800.00</span>
+                    <div class="alert"> <span>5</span> alerts. <a href="">View All</a> </div>
+                    <div class="cleaner"></div>
+                    <div class="activitesTrigger">Activities Overview</div>
+                </div>
+
+                <!-- Activities Overview -->
+                <div class="activitiesContent">
+                    <div class="col summary">
+                        <div class="sectionTitle"><span>Summary:</span> Last 60 days</div>
+                        <div class="content">
+                            <!-- Daily Balance -->
+                            <div class="dailyBalanceBox">
+                                <div class="title">Average Daily Balance:</div>
+                                <span>$11,235</span> <a href="">View Statements</a> </div>
+                            <!-- Balance Overview -->
+                            <div class="balanceOverview">
+                                <div class="tablerow">
+                                    <div class="tablecell type">Deposits</div>
+                                    <div class="tablecell bar">
+                                        <div class="percentage green" style='width: 100%'></div>
+                                    </div>
+                                    <div class="tablecell amount">$180,750</div>
+                                </div>
+                                <div class="tablerow">
+                                    <div class="tablecell type">Withdrawals</div>
+                                    <div class="tablecell bar">
+                                        <div class="percentage red" style='width: 70%'></div>
+                                    </div>
+                                    <div class="tablecell amount">$16,230</div>
+                                </div>
+                                <div class="tablerow">
+                                    <div class="tablecell type">Transfers</div>
+                                    <div class="tablecell bar">
+                                        <div class="percentage blue" style='width: 40%'></div>
+                                    </div>
+                                    <div class="tablecell amount">$2,530</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cleaner"></div>
+                    </div>
+                    <div class="col upcoming">
+                        <div class="sectionTitle">
+                            <span class="tipContent" data-tipso="This is a manual TIPSO! <span class='tipClose'>x</a>">
+                                <div class="show-hide-tipso">x</div>
+                            </span>
+					        <span>Planned transfers &amp; payments:</span><br class="mobileBreak"/> Next 8 days
+                        </div>
+                        <div class="content">
+                            <!-- Transactions -->
+                            <div class="transOverview"><span>6</span> payments <span>$10,149</span></div>
+                            <div class="transOverview"><span>5</span> account transfers <span>$20,345</span></div>
+                            <!-- Calendar -->
+                            <div class="calendar">
+                                <div class="scrollContainer">
+                                    <div class="days">
+                                        <div class="month">Aug</div>
+                                        <div class="day"> <span>29</span>
+                                            <div class="activity active">5</div>
+                                            <div class="white-popup transDetails mfp-hide">
+                                                <div class="date"> August 29, 2014 </div>
+                                                <table>
+                                                    <tr>
+                                                        <td><span class="red">$350</span></td>
+                                                        <td><strong>Bill Payment</strong> <a href="">From the account <strong>1234</strong> Honda Finance Corp.</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="blue">$450</span></td>
+                                                        <td><strong>Transfer</strong> <a href="">From the account <strong>0012</strong> to account <strong>6789</strong></a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="red">$350</span></td>
+                                                        <td><strong>Bill Payment</strong> <a href="">From the account <strong>1234</strong> Honda Finance Corp.</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="blue">$425</span></td>
+                                                        <td><strong>Transfer</strong> <a href="">From the account <strong>0012</strong> to account <strong>6789</strong></a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="blue">$470</span></td>
+                                                        <td><strong>Transfer</strong> <a href="">From the account <strong>0012</strong> to account <strong>6789</strong></a></td>
+                                                    </tr>
+                                                </table>
+                                                <div class="cleaner"></div>
+                                            </div>
+                                        </div>
+                                        <div class="day"> <span>30</span>
+                                            <div class="activity disabled">0</div>
+                                        </div>
+                                        <div class="day"> <span>31</span>
+                                            <div class="activity active">4</div>
+                                            <div class="white-popup transDetails mfp-hide">
+                                                <div class="date"> August 31, 2014 </div>
+                                                <table>
+                                                    <tr>
+                                                        <td><span class="red">$350</span></td>
+                                                        <td><strong>Bill Payment</strong> <a href="">From the account <strong>1234</strong> Honda Finance Corp.</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="blue">$450</span></td>
+                                                        <td><strong>Transfer</strong> <a href="">From the account <strong>0012</strong> to account <strong>6789</strong></a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="blue">$425</span></td>
+                                                        <td><strong>Transfer</strong> <a href="">From the account <strong>0012</strong> to account <strong>6789</strong></a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="blue">$470</span></td>
+                                                        <td><strong>Transfer</strong> <a href="">From the account <strong>0012</strong> to account <strong>6789</strong></a></td>
+                                                    </tr>
+                                                </table>
+                                                <div class="cleaner"></div>
+                                            </div>
+                                        </div>
+                                        <div class="day"> <span>01</span>
+                                            <div class="activity active">2</div>
+                                            <div class="white-popup transDetails mfp-hide">
+                                                <div class="date"> September 01, 2014 </div>
+                                                <table>
+                                                    <tr>
+                                                        <td><span class="red">$350</span></td>
+                                                        <td><strong>Bill Payment</strong> <a href="">From the account <strong>1234</strong> Honda Finance Corp.</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="blue">$450</span></td>
+                                                        <td><strong>Transfer</strong> <a href="">From the account <strong>0012</strong> to account <strong>6789</strong></a></td>
+                                                    </tr>
+                                                </table>
+                                                <div class="cleaner"></div>
+                                            </div>
+                                        </div>
+                                        <div class="day"> <span>02</span>
+                                            <div class="activity disabled">0</div>
+                                        </div>
+                                        <div class="day"> <span>03</span>
+                                            <div class="activity none"></div>
+                                        </div>
+                                        <div class="day"> <span>04</span>
+                                            <div class="activity none"></div>
+                                        </div>
+                                        <div class="day"> <span>05</span>
+                                            <div class="activity active">1</div>
+                                            <div class="white-popup transDetails mfp-hide">
+                                                <div class="date"> September 05, 2014 </div>
+                                                <table>
+                                                    <tr>
+                                                        <td><span class="red">$350</span></td>
+                                                        <td><strong>Bill Payment</strong> <a href="">From the account <strong>1234</strong> Honda Finance Corp.</a></td>
+                                                    </tr>
+                                                </table>
+                                                <div class="cleaner"></div>
+                                            </div>
+                                        </div>
+                                        <a href="" class="all">View All</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Activities Overview -->
+            </div>
+            <div class="accountDetailsWrap">
+                <!-- Account Details -->
+                <div class="accountDetails">
+                    <div class="acctTitle">
+                        <h2><a href="">Savings for Cash (...1234)</a></h2>
+                    </div>
+                    <div class="graph"> <img src="{% static 'app/demo/images/fpo-graph.jpg' %}" alt="FPO Graph"/> </div>
+                    <div class="balance"> <span>$10,400.00</span> </div>
+                    <div class="cleaner"></div>
+
+                    <!-- Available Actions -->
+                    <div class="actionsWrap" style="background: lightlue;">
+                        <div class="actionItem"> <a href="#panelOne">I want to...</a> </div>
+                        <div class="actionItem mobileRight"> <a href="#panelTwo">Recent Transactions</a> </div>
+                        <div class="cleaner"></div>
+                        <div class="actionContent firstPanel" id="panelOne">
+                            <ul class="actions">
+                                <li> <a href=""> <img src="{% static 'app/demo/images/icon-tranfer.png' %}"> <span>Transfer</span> </a> </li>
+                                <li> <a href=""> <img src="{% static 'app/demo/images/icon-creditcard.png' %}"> <span>Pay Bill</span> </a> </li>
+                                <li> <a href=""> <img src="{% static 'app/demo/images/icon-alerts.png' %}"> <span>Set Alerts</span> </a> </li>
+                            </ul>
+                        </div>
+                        <div class="actionContent secondPanel" id="panelTwo">
+                            <h2>Last 10 Transactions:</h2>
+                            <a href="" class="btn blue floatRight">See All Transactions</a>
+                            <table class="transactions">
+                                <tr>
+                                    <td>Pending</td>
+                                    <td>REDBOX *DVDRESERVA CHK CARD PUR 866-733-2693 IL 003693</td>
+                                    <td class="widthdrawl">-$135.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Pending</td>
+                                    <td>GANDER MOUNTAIN POS PURCHASE SHERMAN TX 319574</td>
+                                    <td class="widthdrawl">-$100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Pending</td>
+                                    <td>Transfer from account Checking for Cash</td>
+                                    <td>$50.00</td>
+                                </tr>
+                                <tr>
+                                    <td>07/21/2014</td>
+                                    <td>GOOGLE *MBT GOOGLE.COM/CH CA 492950XX...</td>
+                                    <td class="widthdrawl">-$2.99</td>
+                                </tr>
+                                <tr>
+                                    <td>07/14/2014</td>
+                                    <td>Check Deposit</td>
+                                    <td>$1,000.00</td>
+                                </tr>
+                                <tr>
+                                    <td>07/03/2014</td>
+                                    <td>GARDEN RIDGE - 012 POS PURCHASE OKLAHOMACITY OK 803150</td>
+                                    <td class="widthdrawl">-$135.00</td>
+                                </tr>
+                                <tr>
+                                    <td>06/28/2014</td>
+                                    <td>GAP USA POS RETURN TULSA OK 448824</td>
+                                    <td class="widthdrawl">-$488.94</td>
+                                </tr>
+                                <tr>
+                                    <td>06/20/2014</td>
+                                    <td>GARDUNOS RESTAURAN CHK CARD PUR ALBUQUERQUE NM 054174</td>
+                                    <td class="widthdrawl">-$90.12</td>
+                                </tr>
+                                <tr>
+                                    <td>06/18/2014</td>
+                                    <td>Bill payment Toyota Motor Company</td>
+                                    <td class="widthdrawl">-$420.00</td>
+                                </tr>
+                                <tr>
+                                    <td>06/09/2014</td>
+                                    <td>Check Deposit</td>
+                                    <td>$1,000.00</td>
+                                </tr>
+                            </table>
+                            <div class="transactionOptions">
+                                <ul>
+                                    <li> <a href="">See Statements</a> </li>
+                                    <li> <a href="">Account Details</a> </li>
+                                </ul>
+                                <span>Next Statement on 10/01/2014</span> </div>
+                            <!-- Section Promo -->
+                            <div class="sectionPromo"> <img src="https://placeimg.com/958/230/arch/sepia" alt="FPO"/> </div>
+                            <!-- Section Promo -->
+                        </div>
+                    </div>
+                    <!-- /Available Actions -->
+
+                    <div class="cleaner"></div>
+
+                    <!-- Alert -->
+                    <div class="alert">
+                        <div class="alertMsg"> <span>1 of 10:</span> 09/24/2014 Transaction is greater than $1,000. <a href="">View</a> </div>
+                        <div class="alertMsg mobile"> <span>10 Alerts</span> </div>
+                        <ul>
+                            <li> <a href="">View All</a> </li>
+                            <li> <a href="">Dismiss All</a> </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accountDetails">
+                    <div class="acctTitle">
+                        <h2><a href="">Everyday Expenses & Bill (...1234)</a></h2>
+                    </div>
+                    <div class="graph"> <img src="{% static 'app/demo/images/fpo-graph.jpg' %}" alt="FPO Graph"/> </div>
+                    <div class="balance"> <span>$10,400.00</span> </div>
+                    <div class="cleaner"></div>
+
+                    <!-- Available Actions -->
+                    <div class="actionsWrap">
+                        <div class="actionItem"> <a href="#panelThree">I want to...</a> </div>
+                        <div class="actionItem mobileRight"> <a href="#panelFour">Recent Transactions</a> </div>
+                        <div class="cleaner"></div>
+                        <div class="actionContent firstPanel" id="panelThree">
+                            <ul class="actions">
+                                <li> <a href=""> <img src="{% static 'app/demo/images/icon-tranfer.png' %}"> <span>Transfer</span> </a> </li>
+                                <li> <a href=""> <img src="{% static 'app/demo/images/icon-creditcard.png' %}"> <span>Pay Bill</span> </a> </li>
+                                <li> <a href=""> <img src="{% static 'app/demo/images/icon-alerts.png' %}"> <span>Set Alerts</span> </a> </li>
+                            </ul>
+                        </div>
+                        <div class="actionContent secondPanel" id="panelFour">
+                            <h2>Last 10 Transactions:</h2>
+                            <a href="" class="btn blue floatRight">See All Transactions</a>
+                            <table class="transactions">
+                                <tr>
+                                    <td>08/01/2014</td>
+                                    <td>REDBOX *DVDRESERVA CHK CARD PUR 866-733-2693 IL 003693</td>
+                                    <td class="widthdrawl">-$135.00</td>
+                                </tr>
+                                <tr>
+                                    <td>07/30/2014</td>
+                                    <td>GANDER MOUNTAIN POS PURCHASE SHERMAN TX 319574</td>
+                                    <td class="widthdrawl">-$100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>07/26/2014</td>
+                                    <td>Transfer from account Checking for Cash</td>
+                                    <td>$50.00</td>
+                                </tr>
+                                <tr>
+                                    <td>07/21/2014</td>
+                                    <td>GOOGLE *MBT GOOGLE.COM/CH CA 492950XX...</td>
+                                    <td class="widthdrawl">-$2.99</td>
+                                </tr>
+                                <tr>
+                                    <td>07/14/2014</td>
+                                    <td>Check Deposit</td>
+                                    <td>$1,000.00</td>
+                                </tr>
+                                <tr>
+                                    <td>07/03/2014</td>
+                                    <td>GARDEN RIDGE - 012 POS PURCHASE OKLAHOMACITY OK 803150</td>
+                                    <td class="widthdrawl">-$135.00</td>
+                                </tr>
+                                <tr>
+                                    <td>06/28/2014</td>
+                                    <td>GAP USA POS RETURN TULSA OK 448824</td>
+                                    <td class="widthdrawl">-$488.94</td>
+                                </tr>
+                                <tr>
+                                    <td>06/20/2014</td>
+                                    <td>GARDUNOS RESTAURAN CHK CARD PUR ALBUQUERQUE NM 054174</td>
+                                    <td class="widthdrawl">-$90.12</td>
+                                </tr>
+                                <tr>
+                                    <td>06/18/2014</td>
+                                    <td>Bill payment Toyota Motor Company</td>
+                                    <td class="widthdrawl">-$420.00</td>
+                                </tr>
+                                <tr>
+                                    <td>06/09/2014</td>
+                                    <td>Check Deposit</td>
+                                    <td>$1,000.00</td>
+                                </tr>
+                            </table>
+                            <div class="transactionOptions">
+                                <ul>
+                                    <li> <a href="">See Statements</a> </li>
+                                    <li> <a href="">Account Details</a> </li>
+                                </ul>
+                                <span>Next Statement on 10/01/2014</span> </div>
+                        </div>
+                    </div>
+                    <!-- /Available Actions -->
+
+                    <div class="cleaner"></div>
+
+                    <!-- Alert -->
+                    <div class="alert">
+                        <div class="alertMsg"> <span>1 of 10:</span> 09/24/2014 Transaction is greater than $1,000. <a href="">View</a> </div>
+                        <div class="alertMsg mobile"> <span>10 Alerts</span> </div>
+                        <ul>
+                            <li> <a href="">View All</a> </li>
+                            <li> <a href="">Dismiss All</a> </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accountDetails">
+                    <div class="acctTitle">
+                        <h2><a href="">CDs Account (...1234)</a></h2>
+                    </div>
+                    <div class="graph"> </div>
+                    <div class="balance"> <span>$0.00</span> </div>
+                    <div class="cleaner"></div>
+
+                    <!-- Available Actions -->
+                    <div class="actionsWrap">
+                        <div class="actionItem"> <a href="#panelSix">Recent Transactions</a> </div>
+                        <div class="cleaner"></div>
+                        <div class="actionContent firstPanel" id="panelSix">
+                            <h2>Last 10 Transactions:</h2>
+                            <a href="" class="btn blue floatRight">See All Transactions</a>
+                            <table class="transactions">
+                                <tr>
+                                    <td>Pending</td>
+                                    <td>REDBOX *DVDRESERVA CHK CARD PUR 866-733-2693 IL 003693</td>
+                                    <td class="widthdrawl">-$135.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Pending</td>
+                                    <td>GANDER MOUNTAIN POS PURCHASE SHERMAN TX 319574</td>
+                                    <td class="widthdrawl">-$100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Pending</td>
+                                    <td>Transfer from account Checking for Cash</td>
+                                    <td>$50.00</td>
+                                </tr>
+                                <tr>
+                                    <td>07/21/2014</td>
+                                    <td>GOOGLE *MBT GOOGLE.COM/CH CA 492950XX...</td>
+                                    <td class="widthdrawl">-$2.99</td>
+                                </tr>
+                                <tr>
+                                    <td>07/14/2014</td>
+                                    <td>Check Deposit</td>
+                                    <td>$1,000.00</td>
+                                </tr>
+                                <tr>
+                                    <td>07/03/2014</td>
+                                    <td>GARDEN RIDGE - 012 POS PURCHASE OKLAHOMACITY OK 803150</td>
+                                    <td class="widthdrawl">-$135.00</td>
+                                </tr>
+                                <tr>
+                                    <td>06/28/2014</td>
+                                    <td>GAP USA POS RETURN TULSA OK 448824</td>
+                                    <td class="widthdrawl">-$488.94</td>
+                                </tr>
+                                <tr>
+                                    <td>06/20/2014</td>
+                                    <td>GARDUNOS RESTAURAN CHK CARD PUR ALBUQUERQUE NM 054174</td>
+                                    <td class="widthdrawl">-$90.12</td>
+                                </tr>
+                                <tr>
+                                    <td>06/18/2014</td>
+                                    <td>Bill payment Toyota Motor Company</td>
+                                    <td class="widthdrawl">-$420.00</td>
+                                </tr>
+                                <tr>
+                                    <td>06/09/2014</td>
+                                    <td>Check Deposit</td>
+                                    <td>$1,000.00</td>
+                                </tr>
+                            </table>
+                            <div class="transactionOptions">
+                                <ul>
+                                    <li> <a href="">See Statements</a> </li>
+                                    <li> <a href="">Account Details</a> </li>
+                                </ul>
+                                <span>Next Statement on 10/01/2014</span> </div>
+                            <!-- Section Promo -->
+                            <div class="sectionPromo"> <img src="https://placeimg.com/958/230/arch/sepia" alt="FPO"/> </div>
+                            <!-- Section Promo -->
+                        </div>
+                    </div>
+                    <!-- /Available Actions -->
+
+                    <div class="cleaner"></div>
+                </div>
+                <div class="accountDetails">
+                    <div class="acctTitle">
+                        <h2><a href="">Account Name (...1234)</a></h2>
+                    </div>
+                    <div class="graph"> </div>
+                    <div class="balance"> <span>$0.00</span> </div>
+                    <div class="cleaner"></div>
+
+                    <!-- Alert -->
+                    <div class="alert">
+                        <div class="alertMsg"> Account Suspended dapibus consectetur ex sit amet vehicula. </div>
+                        <div class="alertMsg mobile"> <span>dapibus consectetur ex sit amet vehicula.</span> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Panel -->
+
+        <!-- Panel -->
+        <div class="panel" id="loan-accounts">
+
+            <!-- Account Overview -->
+            <div class="accountOverview">
+                <div class="acctTitle">
+                    <div class="sliderControls">
+                        <h2>Loan Accounts</h2>
+                    </div>
+                </div>
+                <div class="graph"> <img src="{% static 'app/demo/images/fpo-graph.jpg' %}" alt="FPO Graph"/> </div>
+                <div class="balance"> <span>$145,800.00</span>
+                    <div class="cleaner"></div>
+                    <div class="activitesTrigger">Activities Overview</div>
+                </div>
+
+                <!-- Activities Overview -->
+                <div class="activitiesContent">
+                    <div class="col summary">
+                        <div class="sectionTitle"><span>Summary:</span> Last 60 days</div>
+                        <div class="content">
+                            <!-- Daily Balance -->
+                            <div class="dailyBalanceBox">
+                                <div class="title">Average Daily Balance:</div>
+                                <span>$11,235</span> <a href="">View Statements</a> </div>
+                            <!-- Balance Overview -->
+                            <div class="balanceOverview">
+                                <div class="tablerow">
+                                    <div class="tablecell type">Deposits</div>
+                                    <div class="tablecell bar">
+                                        <div class="percentage green" style='width: 100%'></div>
+                                    </div>
+                                    <div class="tablecell amount">$180,750</div>
+                                </div>
+                                <div class="tablerow">
+                                    <div class="tablecell type">Withdrawals</div>
+                                    <div class="tablecell bar">
+                                        <div class="percentage red" style='width: 70%'></div>
+                                    </div>
+                                    <div class="tablecell amount">$16,230</div>
+                                </div>
+                                <div class="tablerow">
+                                    <div class="tablecell type">Transfers</div>
+                                    <div class="tablecell bar">
+                                        <div class="percentage blue" style='width: 40%'></div>
+                                    </div>
+                                    <div class="tablecell amount">$2,530</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cleaner"></div>
+                    </div>
+                    <div class="col upcoming">
+                        <div class="sectionTitle">
+                            <span class="tipContent" data-tipso="Aenean viverra a urna posuere molestie. <span class='tipClose'>x</a>">
+                                <div class="show-hide-tipso">x</div>
+                            </span>
+                            <span>Planned transfers &amp; payments:</span><br class="mobileBreak"/> Next 8 days</div>
+                        <div class="content">
+                            <!-- Transactions -->
+                            <div class="transOverview"><span>6</span> payments <span>$10,149</span></div>
+                            <div class="transOverview"><span>5</span> account transfers <span>$20,345</span></div>
+                            <!-- Calendar -->
+                            <div class="calendar">
+                                <div class="scrollContainer">
+                                    <div class="days">
+                                        <div class="month">Aug</div>
+                                        <div class="day"> <span>29</span>
+                                            <div class="activity active">5</div>
+                                            <div class="white-popup transDetails mfp-hide">
+                                                <div class="date"> August 29, 2014 </div>
+                                                <table>
+                                                    <tr>
+                                                        <td><span class="red">$350</span></td>
+                                                        <td><strong>Bill Payment</strong> <a href="">From the account <strong>1234</strong> Honda Finance Corp.</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="blue">$450</span></td>
+                                                        <td><strong>Transfer</strong> <a href="">From the account <strong>0012</strong> to account <strong>6789</strong></a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="red">$350</span></td>
+                                                        <td><strong>Bill Payment</strong> <a href="">From the account <strong>1234</strong> Honda Finance Corp.</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="blue">$425</span></td>
+                                                        <td><strong>Transfer</strong> <a href="">From the account <strong>0012</strong> to account <strong>6789</strong></a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="blue">$470</span></td>
+                                                        <td><strong>Transfer</strong> <a href="">From the account <strong>0012</strong> to account <strong>6789</strong></a></td>
+                                                    </tr>
+                                                </table>
+                                                <div class="cleaner"></div>
+                                            </div>
+                                        </div>
+                                        <div class="day"> <span>30</span>
+                                            <div class="activity disabled">0</div>
+                                        </div>
+                                        <div class="day"> <span>31</span>
+                                            <div class="activity active">4</div>
+                                            <div class="white-popup transDetails mfp-hide">
+                                                <div class="date"> August 31, 2014 </div>
+                                                <table>
+                                                    <tr>
+                                                        <td><span class="red">$350</span></td>
+                                                        <td><strong>Bill Payment</strong> <a href="">From the account <strong>1234</strong> Honda Finance Corp.</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="blue">$450</span></td>
+                                                        <td><strong>Transfer</strong> <a href="">From the account <strong>0012</strong> to account <strong>6789</strong></a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="blue">$425</span></td>
+                                                        <td><strong>Transfer</strong> <a href="">From the account <strong>0012</strong> to account <strong>6789</strong></a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="blue">$470</span></td>
+                                                        <td><strong>Transfer</strong> <a href="">From the account <strong>0012</strong> to account <strong>6789</strong></a></td>
+                                                    </tr>
+                                                </table>
+                                                <div class="cleaner"></div>
+                                            </div>
+                                        </div>
+                                        <div class="day"> <span>01</span>
+                                            <div class="activity active">2</div>
+                                            <div class="white-popup transDetails mfp-hide">
+                                                <div class="date"> September 01, 2014 </div>
+                                                <table>
+                                                    <tr>
+                                                        <td><span class="red">$350</span></td>
+                                                        <td><strong>Bill Payment</strong> <a href="">From the account <strong>1234</strong> Honda Finance Corp.</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="blue">$450</span></td>
+                                                        <td><strong>Transfer</strong> <a href="">From the account <strong>0012</strong> to account <strong>6789</strong></a></td>
+                                                    </tr>
+                                                </table>
+                                                <div class="cleaner"></div>
+                                            </div>
+                                        </div>
+                                        <div class="day"> <span>02</span>
+                                            <div class="activity disabled">0</div>
+                                        </div>
+                                        <div class="day"> <span>03</span>
+                                            <div class="activity none"></div>
+                                        </div>
+                                        <div class="day"> <span>04</span>
+                                            <div class="activity none"></div>
+                                        </div>
+                                        <div class="day"> <span>05</span>
+                                            <div class="activity active">1</div>
+                                            <div class="white-popup transDetails mfp-hide">
+                                                <div class="date"> September 05, 2014 </div>
+                                                <table>
+                                                    <tr>
+                                                        <td><span class="red">$350</span></td>
+                                                        <td><strong>Bill Payment</strong> <a href="">From the account <strong>1234</strong> Honda Finance Corp.</a></td>
+                                                    </tr>
+                                                </table>
+                                                <div class="cleaner"></div>
+                                            </div>
+                                        </div>
+                                        <a href="" class="all">View All</a> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Activities Overview -->
+            </div>
+            <div class="accountDetailsWrap">
+                <!-- Account Details -->
+                <div class="accountDetails">
+                    <div class="acctTitle">
+                        <h2><a href="">Savings for Cash (...1234)</a></h2>
+                    </div>
+                    <div class="graph"> <img src="{% static 'app/demo/images/fpo-graph.jpg' %}" alt="FPO Graph"/> </div>
+                    <div class="balance"> <span>$10,400.00</span> </div>
+                    <div class="cleaner"></div>
+
+                    <!-- Available Actions -->
+                    <div class="actionsWrap">
+                        <div class="actionItem"> <a href="#panelSeven">I want to...</a> </div>
+                        <div class="actionItem mobileRight"> <a href="#panelEight">Recent Transactions</a> </div>
+                        <div class="cleaner"></div>
+                        <div class="actionContent firstPanel" id="panelSeven">
+                            <ul class="actions">
+                                <li> <a href=""> <img src="{% static 'app/demo/images/icon-tranfer.png' %}"> <span>Transfer</span> </a> </li>
+                                <li> <a href=""> <img src="{% static 'app/demo/images/icon-creditcard.png' %}"> <span>Pay Bill</span> </a> </li>
+                                <li> <a href=""> <img src="{% static 'app/demo/images/icon-alerts.png' %}"> <span>Set Alerts</span> </a> </li>
+                            </ul>
+                        </div>
+                        <div class="actionContent secondPanel" id="panelEight">
+                            <h2>Last 10 Transactions:</h2>
+                            <a href="" class="btn blue floatRight">See All Transactions</a>
+                            <table class="transactions">
+                                <tr>
+                                    <td>Pending</td>
+                                    <td>REDBOX *DVDRESERVA CHK CARD PUR 866-733-2693 IL 003693</td>
+                                    <td class="widthdrawl">-$135.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Pending</td>
+                                    <td>GANDER MOUNTAIN POS PURCHASE SHERMAN TX 319574</td>
+                                    <td class="widthdrawl">-$100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Pending</td>
+                                    <td>Transfer from account Checking for Cash</td>
+                                    <td>$50.00</td>
+                                </tr>
+                                <tr>
+                                    <td>07/21/2014</td>
+                                    <td>GOOGLE *MBT GOOGLE.COM/CH CA 492950XX...</td>
+                                    <td class="widthdrawl">-$2.99</td>
+                                </tr>
+                                <tr>
+                                    <td>07/14/2014</td>
+                                    <td>Check Deposit</td>
+                                    <td>$1,000.00</td>
+                                </tr>
+                                <tr>
+                                    <td>07/03/2014</td>
+                                    <td>GARDEN RIDGE - 012 POS PURCHASE OKLAHOMACITY OK 803150</td>
+                                    <td class="widthdrawl">-$135.00</td>
+                                </tr>
+                                <tr>
+                                    <td>06/28/2014</td>
+                                    <td>GAP USA POS RETURN TULSA OK 448824</td>
+                                    <td class="widthdrawl">-$488.94</td>
+                                </tr>
+                                <tr>
+                                    <td>06/20/2014</td>
+                                    <td>GARDUNOS RESTAURAN CHK CARD PUR ALBUQUERQUE NM 054174</td>
+                                    <td class="widthdrawl">-$90.12</td>
+                                </tr>
+                                <tr>
+                                    <td>06/18/2014</td>
+                                    <td>Bill payment Toyota Motor Company</td>
+                                    <td class="widthdrawl">-$420.00</td>
+                                </tr>
+                                <tr>
+                                    <td>06/09/2014</td>
+                                    <td>Check Deposit</td>
+                                    <td>$1,000.00</td>
+                                </tr>
+                            </table>
+                            <div class="transactionOptions">
+                                <ul>
+                                    <li> <a href="">See Statements</a> </li>
+                                    <li> <a href="">Account Details</a> </li>
+                                </ul>
+                                <span>Next Statement on 10/01/2014</span> </div>
+                            <!-- Section Promo -->
+                            <div class="sectionPromo"> <img src="https://placeimg.com/958/230/arch/sepia" alt="FPO"/> </div>
+                            <!-- Section Promo -->
+                        </div>
+                    </div>
+                    <!-- /Available Actions -->
+
+                    <div class="cleaner"></div>
+
+                    <!-- Alert -->
+                    <div class="alert">
+                        <div class="alertMsg"> <span>1 of 10:</span> 09/24/2014 Transaction is greater than $1,000. <a href="">View</a> </div>
+                        <div class="alertMsg mobile"> <span>10 Alerts</span> </div>
+                        <ul>
+                            <li> <a href="">View All</a> </li>
+                            <li> <a href="">Dismiss All</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Panel -->
+
+        <!-- Panel -->
+        <div class="panel" id="mortgage-accounts">
+
+            <!-- Account Overview -->
+            <div class="accountOverview">
+                <div class="acctTitle">
+                    <div class="sliderControls">
+                        <h2>Mortgage Accounts</h2>
+                    </div>
+                </div>
+                <div class="graph"></div>
+                <div class="balance"> <span>$650,200.00</span>
+                    <div class="cleaner"></div>
+                </div>
+            </div>
+            <div class="accountDetailsWrap">
+                <!-- Account Details -->
+                <div class="accountDetails">
+                    <div class="acctTitle">
+                        <h2><a href="">FHA Home Loan (...1234)</a></h2>
+                    </div>
+                    <div class="graph"></div>
+                    <div class="balance"> <span>$10,400.00</span> </div>
+                    <div class="cleaner"></div>
+
+                    <!-- Available Actions -->
+                    <div class="actionsWrap">
+                        <div class="actionItem"> <a href="#panelNine">I want to...</a> </div>
+                        <div class="actionItem mobileRight"> <a href="#panelTen">Recent Transactions</a> </div>
+                        <div class="cleaner"></div>
+                        <div class="actionContent firstPanel" id="panelNine">
+                            <ul class="actions">
+                                <li> <a href=""> <img src="{% static 'app/demo/images/icon-tranfer.png' %}"> <span>Transfer</span> </a> </li>
+                                <li> <a href=""> <img src="{% static 'app/demo/images/icon-creditcard.png' %}"> <span>Pay Bill</span> </a> </li>
+                                <li> <a href=""> <img src="{% static 'app/demo/images/icon-alerts.png' %}"> <span>Set Alerts</span> </a> </li>
+                            </ul>
+                        </div>
+                        <div class="actionContent secondPanel" id="panelTen">
+                            <h2>Last 10 Transactions:</h2>
+                            <a href="" class="btn blue floatRight">See All Transactions</a>
+                            <table class="transactions">
+                                <tr>
+                                    <td>Pending</td>
+                                    <td>REDBOX *DVDRESERVA CHK CARD PUR 866-733-2693 IL 003693</td>
+                                    <td class="widthdrawl">-$135.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Pending</td>
+                                    <td>GANDER MOUNTAIN POS PURCHASE SHERMAN TX 319574</td>
+                                    <td class="widthdrawl">-$100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Pending</td>
+                                    <td>Transfer from account Checking for Cash</td>
+                                    <td>$50.00</td>
+                                </tr>
+                                <tr>
+                                    <td>07/21/2014</td>
+                                    <td>GOOGLE *MBT GOOGLE.COM/CH CA 492950XX...</td>
+                                    <td class="widthdrawl">-$2.99</td>
+                                </tr>
+                                <tr>
+                                    <td>07/14/2014</td>
+                                    <td>Check Deposit</td>
+                                    <td>$1,000.00</td>
+                                </tr>
+                                <tr>
+                                    <td>07/03/2014</td>
+                                    <td>GARDEN RIDGE - 012 POS PURCHASE OKLAHOMACITY OK 803150</td>
+                                    <td class="widthdrawl">-$135.00</td>
+                                </tr>
+                                <tr>
+                                    <td>06/28/2014</td>
+                                    <td>GAP USA POS RETURN TULSA OK 448824</td>
+                                    <td class="widthdrawl">-$488.94</td>
+                                </tr>
+                                <tr>
+                                    <td>06/20/2014</td>
+                                    <td>GARDUNOS RESTAURAN CHK CARD PUR ALBUQUERQUE NM 054174</td>
+                                    <td class="widthdrawl">-$90.12</td>
+                                </tr>
+                                <tr>
+                                    <td>06/18/2014</td>
+                                    <td>Bill payment Toyota Motor Company</td>
+                                    <td class="widthdrawl">-$420.00</td>
+                                </tr>
+                                <tr>
+                                    <td>06/09/2014</td>
+                                    <td>Check Deposit</td>
+                                    <td>$1,000.00</td>
+                                </tr>
+                            </table>
+                            <div class="transactionOptions">
+                                <ul>
+                                    <li> <a href="">See Statements</a> </li>
+                                    <li> <a href="">Account Details</a> </li>
+                                </ul>
+                                <span>Next Statement on 10/01/2014</span> </div>
+                            <!-- Section Promo -->
+                            <div class="sectionPromo"> <img src="https://placeimg.com/958/230/arch/sepia" alt="FPO"/> </div>
+                            <!-- Section Promo -->
+                        </div>
+                    </div>
+                    <!-- /Available Actions -->
+
+                    <div class="cleaner"></div>
+
+                    <!-- Alert -->
+                    <div class="alert">
+                        <div class="alertMsg"> <span>1 of 10:</span> 09/24/2014 Transaction is greater than $1,000. <a href="">View</a> </div>
+                        <div class="alertMsg mobile"> <span>10 Alerts</span> </div>
+                        <ul>
+                            <li> <a href="">View All</a> </li>
+                            <li> <a href="">Dismiss All</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Panel -->
+
+        <!-- CTAs -->
+        <div class="ctaWrap">
+            <div class="ctaBox">
+                <h2>Transfer Funds</h2>
+                <div class="form">
+                    <label>From Account:</label>
+                    <div class="selectWrap">
+                        <select class="select-style">
+                            <option>Checking for Cash (...1234)</option>
+                            <option>Everyday Expenses and Bill (...1234)</option>
+                            <option>CDs Account (...1234)</option>
+                            <option>My Secret Savings (...1234)</option>
+                            <option>Another Secret Savings (...1234)</option>
+                        </select>
+                    </div>
+                    <input type="submit" value="Continue">
+                </div>
+            </div>
+            <div class="ctaBox">
+                <h2>Bill Pay</h2>
+                <div class="form">
+                    <label>Pay To:</label>
+                    <div class="selectWrap">
+                        <select class="select-style">
+                            <option>Checking for Cash (...1234)</option>
+                            <option>Everyday Expenses and Bill (...1234)</option>
+                            <option>CDs Account (...1234)</option>
+                            <option>My Secret Savings (...1234)</option>
+                            <option>Another Secret Savings (...1234)</option>
+                        </select>
+                    </div>
+                    <input type="submit" value="Continue">
+                </div>
+            </div>
+            <div class="ctaBox blue">
+                <h2>Add Another Box</h2>
+                <p>Find more online tools to help you manage your finance.</p>
+            </div>
+        </div>
+        <!-- /CTAs -->
+
+        <!-- Change Password Screen -->
+        <h1>Change Password</h1>
+        <div class="boxModule">
+            <p>Copy TBD, For security purposes, please change your password.</p>
+            <dl>
+                <dt>
+                <div class="step"> <span>1</span> </div>
+                <label>New Password:</label>
+                </dt>
+                <dd>
+                    <input type="password" id="pswd" name="pswd" />
+                    <div class="pswdWrap">
+                        <div id="pswd_info">
+                            <h4>Your password is case sensitive</h4>
+                            <ul>
+                                <li id="letter" class="invalid">At least <strong>one letter</strong></li>
+                                <li id="capital" class="invalid">At least <strong>one capital letter</strong></li>
+                                <li id="number" class="invalid">At least <strong>one number</strong></li>
+                                <li id="length" class="invalid">Be at least <strong>8 characters</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </dd>
+                <dt>
+                <div class="step"> <span>2</span> </div>
+                <label>Confirm Password:</label>
+                </dt>
+                <dd>
+                    <input type="password"/>
+                </dd>
+                <dt></dt>
+                <dd>
+                    <input type="submit" value="Change"/>
+                    <input type="button" value="Cancel"/>
+                </dd>
+            </dl>
+        </div>
+        <!-- /Change Password Screen -->
+
+        <!-- Reset Password -->
+        <h1>Password Reset</h1>
+        <div class="boxModule">
+            <p>To change your password, enter your current password, then enter your new password, and then re-enter your new password to confirm. Upon successfully changing password, you'll be logged out,
+                and need to re-log in.</p>
+            <dl>
+                <dt>
+                <div class="step"> <span>1</span> </div>
+                <label>Current Password:</label>
+                </dt>
+                <dd>
+                    <input type="password"/>
+                </dd>
+                <dt>
+                <div class="step"> <span>2</span> </div>
+                <label>New Password:</label>
+                </dt>
+                <dd>
+                    <input type="password"/>
+                </dd>
+                <dt>
+                <div class="step"> <span>3</span> </div>
+                <label>Confirm Password:</label>
+                </dt>
+                <dd>
+                    <input type="password"/>
+                </dd>
+                <dt></dt>
+                <dd>
+                    <input type="submit" value="Change"/>
+                    <input type="button" value="Cancel"/>
+                </dd>
+            </dl>
+        </div>
+        <!-- /Reset Password -->
+
+        <!-- Change Security Questions -->
+        <h1>Change Security Questions</h1>
+        <div class="boxModule">
+            <p>For security purposes, please choose a question(s) with answers only you know. They will be used on occasion to verify your identity when your account is being accessed online or when you use
+                our automated “Forgot Your Password” feature.</p>
+            <dl>
+                <dt>
+                <div class="step"> <span>1</span> </div>
+                <h3>What was the make and model of your first car?</h3><a href="#inline" class="inline-popup">Change</a>
+                </dt>
+                <dd>
+                    <input type="text"/>
+                </dd>
+                <dt>
+                <div class="step"> <span>2</span> </div>
+                <h3>What was the name of your kindergarten teacher? Last name only.</h3><a href="#inline" class="inline-popup">Change</a>
+                </dt>
+                <dd>
+                    <input type="text"/>
+                </dd>
+                <dt>
+                <div class="step"> <span>3</span> </div>
+                <h3>What was the fist company you worked for?</h3><a href="#inline" class="inline-popup">Change</a>
+                </dt>
+                <dd>
+                    <input type="text"/>
+                </dd>
+                <dt></dt>
+                <dd>
+                    <input type="submit" value="Submit"/>
+                    <input type="button" value="Cancel"/>
+                </dd>
+            </dl>
+        </div>
+        <!-- /Change Security Questions -->
+
+        
+        <div class="boxModule">
+            <p>For security purposes, please validate your identity by answering the following question and click <strong>Submit</strong></p>
+            <dl class="unordered">
+                <dt>
+                    <label>What was the name of your first pet?</label>
+                </dt>
+                <dd>
+                    <input type="text" />
+                </dd>
+                <dt>
+                    
+                </dt>
+                <dd>
+                    <input type="checkbox" id="rememberDevice">
+                    <label for="rememberDevice">Remember this device</label>
+                </dd>
+                
+                <dt></dt>
+                <dd>
+                    <input type="submit" value="Submit"/>
+                    <input type="button" value="Cancel"/>
+                </dd>
+            </dl>
+        </div>
+
+    </div>
+    <!-- /Container -->
+</div>
+<!-- /Content Area (Main) -->
+
+<!-- Security Questions Lightbox -->
+<div id="inline" class="white-popup mfp-hide">
+    <h2>Select a Question</h2>
+    <div class="securityQuestions">
+        <ul>
+            <li>
+                <a href="">What color was your first car?</a>
+            </li>
+            <li>
+                <a href="">What was the fist company you worked for?</a>
+            </li>
+            <li>
+                <a href="">What was the name of your first pet?</a>
+            </li>
+            <li>
+                <a href="">What was the name of your first college dorm?</a>
+            </li>
+            <li>
+                <a href="">What is your maternal grandmother’s first name?</a>
+            </li>
+            <li>
+                <a href="">What was the make and model of your first car?</a>
+            </li>
+            <li>
+                <a href="">What was the name of your kindergarten teacher? Last name only.</a>
+            </li>
+            <li>
+                <a href="">What city was your father born?</a>
+            </li>
+            <li>
+                <a href="">What is your maternal grandfather’s first name?</a>
+            </li>
+        </ul>
+    </div>
+    <div class="cleaner"></div>
+
+</div>
+<!-- /Security Questions Lightbox -->
+
+<!-- Contact Info Reminder -->
+<a href="contact-reminder.html" class="ajax" id="contactReminder" style="display: none;">Show AJAX popup</a>
+
+        <!-- Footer -->
+<footer class="push">
+    <div class="container">
+        <ul>
+            <li> <a href="">Locations</a> </li>
+            <li> <a href="">Contact Center</a> </li>
+            <li> <a href="">Terms</a> </li>
+            <li> <a href="">Privacy</a> </li>
+            <li> <a href="">Full Site</a> </li>
+        </ul>
+    </div>
+</footer>
+<!-- /Footer -->
+    </body>
+</html>

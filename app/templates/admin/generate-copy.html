@@ -1,0 +1,1021 @@
+{% extends "admin/base_atlantis.html" %}
+{% load static %}
+{% block panel-header %}
+<div class="page-navs bg-black py-3 pr-2">
+    <div class="card-title fw-bold">
+        AI-Generated Copy
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Tables</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Datatables</a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+<div class="page-inner">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title">Copy Suggestions</h4>
+                        <ul class="nav nav-pills nav-secondary ml-auto" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link {% if flow != 1 %}active{% endif %}" id="pills-flow1-tab" data-toggle="pill" href="#pills-flow" role="tab" aria-controls="pills-flow1" aria-selected="{% if flow != 1 %}true{% else %}false{% endif %}">Product Copy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if flow == 1 %}active{% endif %}" id="pills-flow2-tab" data-toggle="pill" href="#pills-flow" role="tab" aria-controls="pills-flow2" aria-selected="{% if flow == 1 %}true{% else %}false{% endif %}">Product + Segments</a>
+                            </li>
+                        </ul>
+                        {% comment %} <a class="btn btn-primary btn-round ml-auto" href="/admin/app/adtemplate/add/">
+                            <i class="fa fa-plus"></i>
+                            Add
+                        </a> {% endcomment %}
+                    </div>
+                </div>
+                {% comment %} {% if not suggestions %} {% endcomment %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        {% if message %}
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <div class="alert alert-danger">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="prod">Product</label>
+                                    <input type="text" size="10" name="prod" id="prod" value="car loan" class="form-control">
+                                </div>
+                                
+                                {% if ai_type in 'edits,chat' and stage != 'prod' %}
+                                    {% if flow != 1 %}
+                                    <div class="form-group tab-pane d-none" id="pills-flow2">
+                                        <label for="segments">Segments (comma-delimited)</label>
+                                        <input type="text" size="50" name="segments" id="segments" value="retiree, student, family" class="form-control">
+                                        <input type="hidden" value="0" name="flow" id="flow" />
+                                    </div>
+                                    {% else %}
+                                    <div class="form-group tab-pane" id="pills-flow2">
+                                        <label for="segments">Segments (comma-delimited)</label>
+                                        <input type="text" size="50" name="segments" id="segments" value="retiree, student, family" class="form-control">
+                                        <input type="hidden" value="1" name="flow" id="flow" />
+                                    </div>
+                                    {% endif %}
+                                {% endif %}
+                                <!--<div class="form-group">
+                                <div class="form-group form-inline">
+                                    <label for="prod">Product</label>
+                                    <input type="text" size="10" name="prod" id="prod" value="car loan" class="form-control">
+                                    <label for="segments">Segments (comma-delimited)</label>
+                                    <input type="text" size="50" name="segments" id="segments" value="retiree, student" class="form-control">
+                                </div>
+                                    <label for="instructions">Instructions</label>
+                                    <input type="text" size="255" name="instructions" id="instructions" class="form-control">
+                                </div>-->
+                                <div class="accordion accordion-secondary">
+                                    <div class="card" style="background: transparent !important">
+                                        <div class="card-header collapsed" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" role="button">
+                                            {% comment %} <div class="span-icon">
+                                                <div class="flaticon-box-1"></div>
+                                            </div> {% endcomment %}
+                                            <div class="span-title">
+                                                Settings
+                                            </div>
+                                            <div class="span-mode"></div>
+                                        </div>
+
+                                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <div class="form-group form-inline justify-content-between">
+                                                        <label for="choice">Completion choices</label>
+                                                        <input type="number" id="choice" name="choice" value="1" min="1" max="10" class="form-control">
+                                                    </div>
+                                                </div>
+                
+                                                <div class="form-group">
+                                                    <div class="form-group form-inline justify-content-between">
+                                                        <label for="tokens">Maximum length</label>
+                                                        <input type="text" id="tokens" name="max_tokens" class="form-control">
+                                                    </div>
+                                                    <div id="token_slider" class="slider-primary"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <select class="form-control" id="temp_type_select">
+                                                        <option value="top_p">Top_p</option>
+                                                        <option value="temperature">Temperature</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group top_p">
+                                                    <div class="form-group form-inline justify-content-between">
+                                                        <label for="top_p">Top_p</label>
+                                                        <input type="text" id="top_p" name="top_p" class="form-control">
+                                                    </div>
+                                                    <div id="top_p_slider" class="slider-primary"></div>
+                                                </div>
+
+                                                <div class="form-group temperature">
+                                                    <div class="form-group form-inline justify-content-between">
+                                                        <label for="temperature">Temperature</label>
+                                                        <input type="text" id="temperature" name="temperature" class="form-control">
+                                                    </div>
+                                                    <div id="temp_slider" class="slider-primary"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <div class="accordion accordion-secondary">
+                                    <div class="card" style="background: transparent !important">
+                                        <div class="card-header collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" role="button">
+                                            {% comment %} <div class="span-icon">
+                                                <div class="flaticon-box-1"></div>
+                                            </div> {% endcomment %}
+                                            <div class="span-title">
+                                                Recent History
+                                            </div>
+                                            <div class="span-mode"></div>
+                                        </div>
+
+                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                            <div class="card-body">
+                                                <div id="name-list" data-toggle="lists" data-lists-values='["name"]'>
+            
+                                                    {% comment %} <input class="form-control search mb-2" type="search"> {% endcomment %}
+            
+                                                    <ul class="list-group list-group-bordered list history">
+                                                    </ul>
+            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn btn-success btn-round" type="submit">Generate Copy</button>
+                        </div>
+                    </div>
+                </form>
+                {% comment %} {% endif %} {% endcomment %}
+                {% if suggestions %}
+                <div class="card-body">
+                    <!-- Modal -->
+                    <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header border-0">
+                                    <h5 class="modal-title">
+                                        <span class="fw-mediumbold">
+                                            New
+                                        </span>
+                                        <span class="fw-light">
+                                            Row
+                                        </span>
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="small">Create a new row using this form, make sure you fill them all</p>
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group form-group-default">
+                                                    <label>Name</label>
+                                                    <input id="addName" type="text" class="form-control" placeholder="fill name">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pr-0">
+                                                <div class="form-group form-group-default">
+                                                    <label>Position</label>
+                                                    <input id="addPosition" type="text" class="form-control" placeholder="fill position">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-group-default">
+                                                    <label>Office</label>
+                                                    <input id="addOffice" type="text" class="form-control" placeholder="fill office">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer border-0">
+                                    {% comment %} <button type="button" id="addRowButton" class="btn btn-primary">Add</button> {% endcomment %}
+                                    <form action="/content/generate-copy/chat/segment" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" value="{{ suggestion }}" name="suggestion" />
+                                        <input type="hidden" value="{{ product }}" name="prod" />
+                                        <button type="submit" data-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Get Segments">
+                                            <i class="fas fa-layer-group"></i>
+                                        </button>
+                                    </form>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="getSegmentsModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="background: #202940">
+                                <div class="modal-header border-0">
+                                    <h5 class="modal-title">
+                                        <span class="fw-mediumbold">
+                                            Get Segments
+                                        </span>
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {% comment %} <p class="small">Create a new row using this form, make sure you fill them all</p> {% endcomment %}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="segments">Segments (comma-delimited)</label>
+                                                <input type="text" size="50" name="segments" id="segments1" value="retiree, student, family" class="form-control">
+                                            </div>
+                                            <div class="accordion accordion-secondary">
+                                                <div class="card" style="background: transparent !important">
+                                                    <div class="card-header setting collapsed" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" role="button">
+                                                        {% comment %} <div class="span-icon">
+                                                            <div class="flaticon-box-1"></div>
+                                                        </div> {% endcomment %}
+                                                        <div class="span-title">
+                                                            Settings
+                                                        </div>
+                                                        <div class="span-mode"></div>
+                                                    </div>
+            
+                                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                                        <div class="card-body">
+                                                            <div class="form-group">
+                                                                <div class="form-group form-inline justify-content-between">
+                                                                    <label for="choice">Completion choices</label>
+                                                                    <input type="number" id="choice1" name="choice" value="1" min="1" max="10" class="form-control">
+                                                                </div>
+                                                            </div>
+                            
+                                                            <div class="form-group">
+                                                                <div class="form-group form-inline justify-content-between">
+                                                                    <label for="tokens">Maximum length</label>
+                                                                    <input type="text" id="tokens1" name="max_tokens" class="form-control">
+                                                                </div>
+                                                                <div id="token_slider1" class="slider-primary"></div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <select class="form-control" id="temp_type_select1">
+                                                                    <option value="top_p">Top_p</option>
+                                                                    <option value="temperature">Temperature</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group top_p1">
+                                                                <div class="form-group form-inline justify-content-between">
+                                                                    <label for="top_p">Top_p</label>
+                                                                    <input type="text" id="top_p1" name="top_p" class="form-control">
+                                                                </div>
+                                                                <div id="top_p_slider1" class="slider-primary"></div>
+                                                            </div>
+            
+                                                            <div class="form-group temperature1">
+                                                                <div class="form-group form-inline justify-content-between">
+                                                                    <label for="temperature">Temperature</label>
+                                                                    <input type="text" id="temperature1" name="temperature" class="form-control">
+                                                                </div>
+                                                                <div id="temp_slider1" class="slider-primary"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ai_type_select">Select AI Type:</label>
+                                                <select class="form-control" id="ai_type_select" name="ai_type_select">
+                                                    <option value="edits">Edits</option>
+                                                    <option value="chat">Chat</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer border-0">
+                                    {% comment %} <button type="button" id="addRowButton" class="btn btn-primary">Add</button> {% endcomment %}
+                                    <form action="/content/generate-copy/chat/segment" method="POST" id="getSegmentsModalForm">
+                                        {% csrf_token %}
+                                        <input type="hidden" value="" name="suggestion" id="mSuggestion" />
+                                        <input type="hidden" value="{{ product }}" name="prod" />
+                                        <input type="hidden" value="" name="segments" id="mSegments" />
+                                        <input type="hidden" value="1" name="choice" id="mChoice" />
+                                        <input type="hidden" value="0.7" name="temperature" id="mTemperature" />
+                                        <input type="hidden" value="0.9" name="top_p" id="mTop_p" />
+                                        <input type="hidden" value="75" name="max_tokens" id="mMax_tokens" />
+                                        <button type="submit" class="btn btn-primary" onclick="getSegmentsAction()">
+                                            <span class="btn-label">
+												<i class="fa fa-layer-group"></i>
+											</span>
+											Get Segments
+                                        </button>
+                                    </form>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="sendEmailModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="background: #202940">
+                                <div class="modal-header border-0">
+                                    <h5 class="modal-title">
+                                        <span class="fw-mediumbold">
+                                            Send New Email
+                                        </span>
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form>
+                                                <div class="form-group row">
+                                                    <label for="to" class="col-form-label col-md-2">To :</label>
+                                                    <div class="col-md-10">
+                                                        <input type="text" class="form-control" id="to" name="to">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="cc" class="col-form-label col-md-2">Cc :</label>
+                                                    <div class="col-md-10">
+                                                        <input type="text" class="form-control" id="cc" name="cc">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="subject" class="col-form-label col-md-2">Subject :</label>
+                                                    <div class="col-md-10">
+                                                        <input type="text" class="form-control" id="subject" name="subject">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <textarea class="form-control" id="content" rows="5"></textarea>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer border-0">
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="btn-label">
+                                            <i class="fa fa-envelope"></i>
+                                        </span>
+                                        Send
+                                    </button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table id="add-row" class="display table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    {% if flow == 1 %}
+                                    <th>Segment</th>
+                                    {% else %}
+                                        {% if stage == 'segment' %}
+                                        <th>Segment</th>
+                                        {% endif %}
+                                    {% endif %}
+                                    <th>Generated Copy</th>
+                                    <th style="width: 10%">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for seg,suggestion in suggestions.items %}
+                                <tr>
+                                    <td>{{ product }}</td>
+                                    {% if flow == 1 %}
+                                    <td>{{ seg }}</td>
+                                    {% else %}
+                                        {% if stage == 'segment' %}
+                                        <td>{{ seg }}</td>
+                                        {% endif %}
+                                    {% endif %}
+                                    <td>{{ suggestion }}<br /><br /></td>
+                                    <td>
+                                        <div class="form-button-action">
+                                            {% comment %} <a href="/admin/app/adtemplate/{{ adtemplate.id }}/change/" type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                                <i class="fa fa-edit"></i>
+                                            </a> {% endcomment %}
+                                            <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task" onclick="editRow(this)">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                            {% if flow != 1 %}
+                                                {% if stage == 'segment' %}
+                                                <span data-toggle="tooltip" data-original-title="Send Email">
+                                                    <button class="btn btn-link btn-secondary" data-original-title="Send Email" data-toggle="modal" data-target="#sendEmailModal" data-suggestion="{{ suggestion }}" onclick="handleEmailButtonClick(this)">
+                                                        <i class="fas fa-envelope"></i>
+                                                    </button>
+                                                </span>
+                                                {% endif %}
+                                            {% else %}
+                                            <span data-toggle="tooltip" data-original-title="Send Email">
+                                                <button class="btn btn-link btn-secondary" data-original-title="Send Email" data-toggle="modal" data-target="#sendEmailModal" data-suggestion="{{ suggestion }}" onclick="handleEmailButtonClick(this)">
+                                                    <i class="fas fa-envelope"></i>
+                                                </button>
+                                            </span>
+                                            {% endif %}
+                                            {% if stage != 'segment' %}
+                                            {% comment %} <form action="/content/generate-copy/chat/segment" method="POST">
+                                                {% csrf_token %}
+                                                <input type="hidden" value="{{ suggestion }}" name="suggestion" />
+                                                <input type="hidden" value="{{ product }}" name="prod" />
+                                                <button type="submit" data-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Get Segments">
+                                                    <i class="fas fa-layer-group"></i>
+                                                </button>
+                                            </form> {% endcomment %}
+                                                {% if flow != 1 %}
+                                                <span data-toggle="tooltip" data-original-title="Get Segments">
+                                                    <button class="btn btn-link btn-primary" data-original-title="Get Segments" data-toggle="modal" data-target="#getSegmentsModal" data-suggestion="{{ suggestion }}" onclick="handleButtonClick(this)">
+                                                        <i class="fas fa-layer-group"></i>
+                                                    </button>
+                                                </span>
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary" onclick="saveAll(this)">
+                        <span class="btn-label">
+                            <i class="fa fa-save"></i>
+                        </span>
+                        Save All
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block endscripts %}
+<script>
+    $(document).ready(function () {
+        // Add Row
+        $('#add-row').DataTable({
+            "pageLength": 100,
+            "order": []
+        });
+        $('#segments').change(function() {
+            // Update the value of input2 here
+            $('#mSegments').val($(this).val());
+        });
+
+        var tempSlider = $('#temp_slider');
+        var topPSlider = $('#top_p_slider');
+        var tokenSlider = $('#token_slider');
+
+        var tempSlider1 = $('#temp_slider1');
+        var topPSlider1 = $('#top_p_slider1');
+        var tokenSlider1 = $('#token_slider1');
+
+        var choice = $('#choice');
+        var temperature = $('#temperature');
+        var top_p = $('#top_p');
+        var tokens = $('#tokens');
+
+        var choice1 = $('#choice1');
+        var temperature1 = $('#temperature1');
+        var top_p1 = $('#top_p1');
+        var tokens1 = $('#tokens1');
+
+        var mChoice = $('#mChoice');
+        var mTemperature = $('#mTemperature');
+        var mTop_p = $('#mTop_p');
+        var mMaxTokens = $('#mMax_tokens');
+
+        tempSlider.slider({
+            min: 0,
+            max: 2,
+            step: 0.01,
+            value: 0.7,
+            slide: function(event, ui) {
+              // Do something when the slider is moved
+              console.log(ui.value);
+              temperature.val(ui.value);
+              mTemperature.val(ui.value);
+            }
+        });
+        temperature.val(tempSlider.slider('value'));
+        mTemperature.val(tempSlider.slider('value'));
+        topPSlider.slider({
+            min: 0,
+            max: 1,
+            step: 0.01,
+            value: 0.9,
+            slide: function(event, ui) {
+              // Do something when the slider is moved
+              console.log(ui.value);
+              top_p.val(ui.value);
+              mTop_p.val(ui.value);
+            }
+        });
+        top_p.val(topPSlider.slider('value'));
+        mTop_p.val(topPSlider.slider('value'));
+        tokenSlider.slider({
+            min: 1,
+            max: 2048,
+            value: 75,
+            slide: function(event, ui) {
+              // Do something when the slider is moved
+              console.log(ui.value);
+              tokens.val(ui.value);
+              mMaxTokens.val(ui.value);
+            }
+        });
+        tokens.val(tokenSlider.slider('value'));
+        mMaxTokens.val(tokenSlider.slider('value'));
+
+        choice.change(function() {
+            console.log('choice change: ', choice.val());
+            mChoice.val(choice.val());
+        });
+        temperature.change(function() {
+            mTemperature.val(temperature.val());
+        });
+        top_p.change(function() {
+            mTop_p.val(top_p.val());
+        });
+        tokens.change(function() {
+            mMaxTokens.val(tokens.val());
+        });
+
+        choice.on('input', function() {
+            console.log('choice inpute: ', choice.val());
+            mChoice.val(choice.val());
+        });
+        temperature.on('input', function() {
+            mTemperature.val(temperature.val());
+        });
+        top_p.on('input', function() {
+            mTop_p.val(top_p.val());
+        });
+        tokens.on('input', function() {
+            mMaxTokens.val(tokens.val());
+        });
+
+        choice1.change(function() {
+            console.log('choice change: ', choice.val());
+            mChoice.val(choice1.val());
+        });
+        temperature1.change(function() {
+            mTemperature.val(temperature1.val());
+        });
+        top_p1.change(function() {
+            mTop_p.val(top_p1.val());
+        });
+        tokens1.change(function() {
+            mMaxTokens.val(tokens1.val());
+        });
+
+        choice1.on('input', function() {
+            console.log('choice inpute: ', choice1.val());
+            mChoice.val(choice1.val());
+        });
+        temperature1.on('input', function() {
+            mTemperature.val(temperature1.val());
+        });
+        top_p1.on('input', function() {
+            mTop_p.val(top_p1.val());
+        });
+        tokens1.on('input', function() {
+            mMaxTokens.val(tokens1.val());
+        });
+
+        var temp_type_select = $('#temp_type_select');
+        var temp_selected_value = temp_type_select.find(":selected").val();
+        console.log('temp_selected_value: ', temp_selected_value);
+        var top_p_div = $('.top_p');
+        var temperature_div = $('.temperature');
+        if (temp_type_select) {
+            if (temp_type_select && temp_selected_value === 'top_p') {
+                top_p_div.css({ 'display': 'block' });
+                temperature_div.css({ 'display': 'none' });
+            } else if (temp_type_select && temp_selected_value === 'temperature') {
+                top_p_div.css({ 'display': 'none' });
+                temperature_div.css({ 'display': 'block' });
+            }
+            temp_type_select.change(function() {
+                if (this.value === 'top_p') {
+                    top_p_div.css({ 'display': 'block' });
+                    temperature_div.css({ 'display': 'none' });
+                } else if (this.value === 'temperature') {
+                    top_p_div.css({ 'display': 'none' });
+                    temperature_div.css({ 'display': 'block' });
+                }
+            });
+        }
+
+        var temp_type_select1 = $('#temp_type_select1');
+        var temp_selected_value1 = temp_type_select1.find(":selected").val();
+        console.log('temp_selected_value1: ', temp_selected_value1);
+        var top_p_div1 = $('.top_p1');
+        var temperature_div1 = $('.temperature1');
+        if (temp_type_select1) {
+            if (temp_type_select1 && temp_selected_value1 === 'top_p') {
+                top_p_div1.css({ 'display': 'block' });
+                temperature_div1.css({ 'display': 'none' });
+            } else if (temp_type_select1 && temp_selected_value1 === 'temperature') {
+                top_p_div1.css({ 'display': 'none' });
+                temperature_div1.css({ 'display': 'block' });
+            }
+            temp_type_select1.change(function() {
+                if (this.value === 'top_p') {
+                    top_p_div1.css({ 'display': 'block' });
+                    temperature_div1.css({ 'display': 'none' });
+                } else if (this.value === 'temperature') {
+                    top_p_div1.css({ 'display': 'none' });
+                    temperature_div1.css({ 'display': 'block' });
+                }
+            });
+        }
+
+        $('#getSegmentsModal').on('shown.bs.modal', function () {
+            console.log('Modal is about to be shown');
+            tempSlider1.slider({
+                min: 0,
+                max: 2,
+                step: 0.01,
+                value: 0.7,
+                slide: function(event, ui) {
+                  // Do something when the slider is moved
+                  console.log(ui.value);
+                  temperature1.val(ui.value);
+                  mTemperature.val(ui.value);
+                }
+            });
+            temperature1.val(tempSlider1.slider('value'));
+            mTemperature.val(tempSlider1.slider('value'));
+            topPSlider1.slider({
+                min: 0,
+                max: 1,
+                step: 0.01,
+                value: 0.9,
+                slide: function(event, ui) {
+                  // Do something when the slider is moved
+                  console.log(ui.value);
+                  top_p1.val(ui.value);
+                  mTop_p1.val(ui.value);
+                }
+            });
+            top_p1.val(topPSlider1.slider('value'));
+            mTop_p.val(topPSlider1.slider('value'));
+            tokenSlider1.slider({
+                min: 1,
+                max: 2048,
+                value: 75,
+                slide: function(event, ui) {
+                  // Do something when the slider is moved
+                  console.log(ui.value);
+                  tokens1.val(ui.value);
+                  mMaxTokens.val(ui.value);
+                }
+            });
+            tokens1.val(tokenSlider.slider('value'));
+            mMaxTokens.val(tokenSlider.slider('value'));
+        })
+
+    });
+
+    const flow = "{{ flow }}";
+    const product = "{{ product }}";
+    const segments = [
+        {% for segment in segments %}
+            "{{ segment }}"{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ];
+    const ai_type = "{{ ai_type }}";
+    const temperature = "{{ temperature }}";
+    const top_p = "{{ top_p }}";
+    const max_tokens = "{{ max_tokens }}";
+    const suggestions = [
+        {% for suggestion in suggestions.values %}
+            "{{ suggestion|escapejs }}"{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ];
+    const historyList = document.querySelector('.history');
+    var savedData = JSON.parse(localStorage.getItem('history'));
+    if (savedData) {
+        var htmlString = '';
+        var recentItems = savedData.slice().reverse();
+        recentItems.map(data => {
+            let sdata = JSON.stringify(data).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;').replace(/\//g, '&#x2F;');
+            htmlString += `<button type="button" class="btn btn-link list-group-item list-group-item-action text-primary" data-saved-data='${sdata}' onclick="handleClickHistory(this)">`;
+            htmlString += data.product ? `product: ${data.product}` : '';
+            htmlString += data.segments && data.segments.length > 0 ? `, segments: ${data.segments}` : '';
+            htmlString += '</button>';
+        });
+        historyList.innerHTML = htmlString;
+    }
+    if (product) {
+        const historyObject = {
+            flow,
+            product,
+            segments,
+            ai_type,
+            temperature,
+            top_p,
+            max_tokens,
+            suggestions
+        }
+        console.log('historyObject: ', historyObject);
+        console.log('savedData: ', savedData);
+        
+        if (savedData) {
+            savedData.push(historyObject);
+            if (savedData.length > 10) {
+                savedData.splice(0, 1);
+            }
+            localStorage.setItem('history', JSON.stringify(savedData));
+            var htmlString = '';
+            var recentItems = savedData.slice().reverse();
+            recentItems.map(data => {
+                let sdata = JSON.stringify(data).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;').replace(/\//g, '&#x2F;');
+                htmlString += `<button type="button" class="btn btn-link list-group-item list-group-item-action text-primary" data-saved-data='${sdata}' onclick="handleClickHistory(this)">`;
+                htmlString += data.product ? `product: ${data.product}` : '';
+                htmlString += data.segments? `, segments: ${data.segments}` : '';
+                htmlString += '</button>';
+            });
+            historyList.innerHTML = htmlString;
+        } else {
+            localStorage.setItem('history', JSON.stringify([historyObject]));
+            let sdata = JSON.stringify(historyObject).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;').replace(/\//g, '&#x2F;');
+            htmlString += `<button type="button" class="btn btn-link list-group-item list-group-item-action text-primary" data-saved-data='${sdata}' onclick="handleClickHistory(this)">`;
+            htmlString += historyObject.product ? `product: ${historyObject.product}` : '';
+            htmlString += historyObject.segments? `, segments: ${historyObject.segments}` : '';
+            htmlString += '</button>';
+        }
+    }
+    function handleButtonClick(button) {
+        // Get the data from the button
+        const suggestion = button.dataset.suggestion;
+        const mSuggestion = document.querySelector("#mSuggestion");
+        mSuggestion.value = suggestion;
+    }
+
+    function handleEmailButtonClick(button) {
+        // Get the data from the button
+        const suggestion = button.dataset.suggestion;
+        const mSuggestion = document.querySelector("#mSuggestion");
+        mSuggestion.value = suggestion;
+    }
+
+    function editRow(button) {
+        const originalTitle = button.getAttribute('data-original-title');
+        const row = button.closest('tr');
+        if (originalTitle === 'Edit Task') {
+            button.innerHTML = '<i class="fa fa-save"></i>';
+            button.setAttribute('data-original-title', 'Save Task');
+            if (row.cells.length === 3) {
+                row.cells[1].contentEditable = true;
+                row.cells[1].style.cssText = 'border: 1px solid yellow !important;';
+                row.cells[1].focus()
+                var range = document.createRange();
+                var sel = window.getSelection();
+                range.setStart(row.cells[1].childNodes[0], row.cells[1].textContent.length);
+                range.collapse(true);
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+            if (row.cells.length === 4) {
+                row.cells[2].contentEditable = true;
+                row.cells[2].style.cssText = 'border: 1px solid yellow !important;';
+                row.cells[2].focus()
+                var range = document.createRange();
+                var sel = window.getSelection();
+                range.setStart(row.cells[2].childNodes[0], row.cells[2].textContent.length);
+                range.collapse(true);
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }            
+        } else {
+            button.innerHTML = '<i class="fa fa-edit"></i>';
+            button.setAttribute('data-original-title', 'Edit Task');
+            if (row.cells.length === 3) {
+                row.cells[1].contentEditable = false;
+                row.cells[1].style.borderWidth = '0px';
+            }
+            if (row.cells.length === 4) {
+                row.cells[2].contentEditable = false;
+                row.cells[2].style.borderWidth = '0px';
+            }
+        }
+        // You can perform some other action with the data here
+    }
+
+    function saveAll(button) {
+        const buttons = document.querySelectorAll('button[data-original-title="Save Task"]');
+        buttons.forEach(btn => {
+            btn.innerHTML = '<i class="fa fa-edit"></i>';
+            btn.setAttribute('data-original-title', 'Edit Task');
+        });
+        var table = document.getElementById("add-row");
+        var tds = table.querySelectorAll("td div.form-button-action");
+        tds.forEach(td => {
+            const row = td.closest('tr');            
+            const cells = Array.from(row.cells);
+            cells.forEach(cell => {
+                if (cell.contentEditable === true) {
+                    cell.contentEditable = false;
+                }
+            });
+        });
+
+        const product = "{{ product }}";
+        const segments = [
+            {% for segment in segments %}
+                "{{ segment }}"{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ];
+
+        const suggestions = [
+            {% for suggestion in suggestions.values %}
+                "{{ suggestion|escapejs }}"{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ];
+
+        const data = {
+            product,
+            segments,
+            suggestions
+        };
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const url = '/content/generate_copy_list_data';
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = url;
+        for (const key in data) {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = data[key];
+            form.appendChild(input);
+        }
+        var csrfTokenInput = document.createElement("input");
+        csrfTokenInput.type = "hidden";
+        csrfTokenInput.name = "csrfmiddlewaretoken";
+        csrfTokenInput.value = "{{ csrf_token }}";
+        form.appendChild(csrfTokenInput);
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    var ai_type_select = document.getElementById("ai_type_select");
+    if (ai_type_select) {
+        ai_type_select.addEventListener('change', function() {
+            var selectedOption = ai_type_select.options[ai_type_select.selectedIndex].value;
+            console.log("Selected option: " + selectedOption);
+            if (selectedOption === 'chat') {
+                
+            } else if (selectedOption === 'edits') {
+                
+            }
+        });
+    }
+
+    function getSegmentsAction() {
+        var form = document.getElementById("getSegmentsModalForm");
+        var selectedOption = ai_type_select.options[ai_type_select.selectedIndex].value;
+        if (selectedOption === 'chat') {
+            form.action = "/content/generate-copy/chat/segment";
+        } else if (selectedOption === 'edits') {
+            form.action = "/content/generate-copy/edits/segment";
+        }
+        return true;
+    }
+
+    const flow1Tab = document.querySelector('#pills-flow1-tab');
+    const flow2Tab = document.querySelector('#pills-flow2-tab');
+    const flow2 = document.querySelector('#pills-flow2');
+    const flowInput = document.querySelector('#flow');
+
+    const choice = document.querySelector('#choice');
+
+    if (flow2.classList.contains('d-none')) {
+        choice.value = 3;
+        console.log('HERE');
+    }
+
+    flow1Tab.addEventListener('click', function() {
+        if (!flow2.classList.contains('d-none')) {
+            flow2.classList.add("d-none");
+            flowInput.value = 0;
+            choice.value = 3;
+        }
+    });
+
+    flow2Tab.addEventListener('click', function() {
+        if (window.location.pathname === '/content/generate-copy/edits/segment' || window.location.pathname === '/content/generate-copy/chat/segment') {
+            window.history.pushState(null, null, '/content/generate-copy');
+        }
+        if (flow2.classList.contains('d-none')) {
+            flow2.classList.remove("d-none");
+            flowInput.value = 1;
+            choice.value = 1;
+        }
+    });
+
+    function handleClickHistory(button) {
+        const siblings = button.parentNode.childNodes;
+        for (var i = 0; i < siblings.length; i++) {
+            sibling = siblings[i];
+            sibling.classList.remove('active');
+        }
+        button.classList.add('active');
+        const savedData = button.getAttribute('data-saved-data');
+        console.log('savedData: ', savedData);
+        const parsedData = JSON.parse(savedData);
+        console.log('parsedData: ', parsedData);
+
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const url = '/content/generate-copy_history/';
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = url;
+        const historyInput = document.createElement('input');
+        historyInput.type = 'text';
+        historyInput.name = 'history';
+        historyInput.value = savedData;
+        form.appendChild(historyInput);
+        var csrfTokenInput = document.createElement("input");
+        csrfTokenInput.type = "hidden";
+        csrfTokenInput.name = "csrfmiddlewaretoken";
+        csrfTokenInput.value = "{{ csrf_token }}";
+        form.appendChild(csrfTokenInput);
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    // Get the modal element
+    var getSegmentsModal = document.getElementById('getSegmentsModal');
+
+    {% comment %} // Attach an event listener for the "show.bs.modal" event
+    getSegmentsModal.addEventListener('shown.bs.modal', function () {
+        console.log('Modal is about to be shown');
+        // Add your code here to perform actions when the modal is shown
+    }); {% endcomment %}
+
+    window.addEventListener("pageshow", function(event) {
+        console.log("pageshow");
+        // Check if the modal dialog is open
+        if (getSegmentsModal) {
+          // Reset the select box to its initial state
+          temp_type_select.selectedIndex = 0;
+          ai_type_select.selectedIndex = 0;
+        }
+    });
+
+</script>
+{% endblock %}

@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <link rel="stylesheet" href="{% static 'app/content/local.css' %}">
+
+  </head>
+
+  <body>
+    <div
+      id="container"
+      style="min-width: 310px; height: 400px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+
+
+      let data = {{ data| safe}}
+
+        let categories = data['xAxis']['categories']
+        let series = data['series']
+        console.log(series)
+      //let categories = ['total assets (liabilities, deposits, etc)', 'total amount of loans and leases', 'total number of loans and leases', 'total shares and deposits', 'total outstanding loans', 'total number of members']
+      //categories = categories.replace('&#39', '')
+      Highcharts.chart('container',
+      {
+
+        chart: {
+            scrollablePlotArea: {
+                minWidth: 0
+            },
+            styledMode: true,
+            type:'column',
+            backgroundColor: 'transparent'
+        },
+
+
+       title: {
+            text: 'Quarterly'
+        },
+        /*
+        subtitle: {
+            text: 'Source: Google Analytics'
+        },
+        */
+        color:["#6b8795","#556d79","#00b1bc","#f19820","#ed2c76","#9dc33b"],
+
+        xAxis: {
+             // one week
+            gridLineColor: 'transparent',
+            gridTextColor: '#ffffff',
+
+
+            categories: categories,
+            gridLineColor: 'transparent',
+            gridTextColor: '#ffffff',
+            lineColor: 'transparent',
+            tickColor: 'transparent',
+            showEmpty: false,
+
+        },
+
+        yAxis: { // left y axis
+            title: {
+                text: null
+            },
+            /*
+            labels: {
+                align: 'left',
+                x: 3,
+                y: 16,
+                format: '{value:.,0f}'
+            },
+            */
+            gridLineColor: 'transparent',
+            gridTextColor: '#ffffff',
+            gridLineWidth:0,
+            showFirstLabel: false
+        }, /*{ // right y axis
+            linkedTo: 0,
+            gridLineWidth: 1,
+            gridLineColor: '#FFFFFF',
+            lineColor:'#FFFFFF',
+            opposite: true,
+            title: {
+                text: null
+            },
+            labels: {
+                align: 'right',
+                x: -3,
+                y: 16,
+            },
+            showFirstLabel: false
+        }*/
+
+        /*legend: {
+            align: 'left',
+            verticalAlign: 'top',
+            borderWidth: 0
+        },
+        */
+        tooltip: {
+            shared: true,
+            crosshairs: true
+        },
+
+        /*plotOptions: {
+            series: {
+                cursor: 'pointer',
+                point: {
+                    events: {
+                        click: function (e) {
+                            hs.htmlExpand(null, {
+                                pageOrigin: {
+                                    x: e.pageX || e.clientX,
+                                    y: e.pageY || e.clientY
+                                },
+                                headingText: this.series.name,
+                                maincontentText: Highcharts.dateFormat('%A, %b %e, %Y', this.x) + ':<br/> ' +
+                                    this.y + ' sessions',
+                                width: 200
+                            });
+                        }
+                    }
+                },
+                marker: {
+                    lineWidth: 1
+                }
+            }
+        },
+        */
+        series,
+        plotOptions: {
+            series: {
+                pointPadding: 0,
+                groupPadding: 0,
+                borderWidth: 0,
+                shadow: false
+            }
+        },});
+    </script>
+  </body>
+</html>

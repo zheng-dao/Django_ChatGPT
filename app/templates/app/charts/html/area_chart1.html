@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <style>
+      @import "https://code.highcharts.com/css/themes/highcharts.css";
+      .highcharts-background {
+        fill: #556d79;
+      }
+      .highcharts-container {
+        /* #1072 */
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        font-family: Roboto, Arial, Helvetica, sans-serif, -apple-system,
+          BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+          "Open Sans", "Helvetica Neue", sans-serif;
+        font-size: 12px;
+        /*user-select: none;*/
+      }
+    </style>
+  </head>
+
+  <body>
+    <div
+      id="container"
+      style="min-width: 310px; height: 400px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+      Highcharts.chart("container", {
+        chart: {
+          type: "areaspline",
+        },
+        /*
+        title: {
+          text: "NCUA Data Series: XYZ Credit Union",
+          style: {
+            color: "#ffffff",
+          },
+        },
+        */
+        xAxis: {
+          gridLineWidth: 1,
+          gridLineColor: "white",
+          // one week
+          labels: {
+            style: {
+              color: "white",
+              width: "20px",
+            },
+          },
+          categories: ["2019 Q1", "2019 Q2", "2019 Q3", "2019 Q4", "2020 Q1"],
+        },
+
+        yAxis: {
+          // left y axis
+          title: {
+            text: null,
+          },
+          labels: {
+            style: {
+              color: "white",
+            },
+          },
+          gridLineWidth: 0,
+        },
+        tooltip: {
+          shared: true,
+          crosshairs: true,
+        },
+        plotOptions: {
+          series: {
+            lineWidth: 15,
+            lineColor: {
+              linearGradient: {
+                x1: 0,
+                x2: 2,
+                y1: 1,
+                y2: 2,
+              },
+              stops: [
+                [0, "#265BB6"],
+                [1, "#8B2A43"],
+                [2, "#D7E1E7"],
+              ],
+            },
+          },
+          //fillOpacity: 0.5,
+        },
+        series: [
+          {
+            data: [1258.0, 900.0, 1300.0, 810.0, 1000.0],
+            type: "areaspline",
+            name: "total number of  members in ",
+            opacity: 0.8,
+            color: {
+              linearGradient: {
+                x1: 0,
+                x2: 1,
+                y1: 0,
+                y2: 1,
+              },
+              stops: [
+                [0, "#8B2A43"],
+                [1, "#ED2A76"],
+              ],
+            },
+          },
+        ],
+      });
+    </script>
+  </body>
+</html>

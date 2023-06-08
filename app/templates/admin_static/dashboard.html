@@ -1,0 +1,44 @@
+{% extends "admin_static/base_atlantis.html" %}
+{% load static %}
+{% block endscripts %}
+<script src="{% static 'app/assets/js/plugin/highcharts/maps/highmaps.js' %}"></script>
+<script src="{% static 'app/assets/js/plugin/highcharts/maps/modules/exporting.js' %}"></script>
+<script src="https://code.highcharts.com/mapdata/countries/us/us-fl-all.js"></script>
+<script>
+    Highcharts.mapChart('container-mt', {
+        chart: {
+            map: 'countries/us/us-fl-all',
+            backgroundColor: 'transparent'
+        },
+        credits: {
+            enabled:false,
+        },
+        exporting: {
+            enabled: false,
+        },
+        title: {
+            text: null
+        },
+        subtitle: {
+            text: null
+        },
+        mapNavigation: {
+            enabled: false
+        },
+        colorAxis: {
+            min: 0,
+            max: 20
+        },
+        series: [{
+            name: 'Basemap',
+            borderColor: '#cccccc',
+            //nullColor: 'rgba(177, 244, 177, 0.5)',
+            nullColor: '#45A0E3',
+            showInLegend: false
+        }],
+        legend: {
+            enabled: false
+        }
+    });
+</script>
+{% endblock %}

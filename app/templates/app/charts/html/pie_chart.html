@@ -1,0 +1,148 @@
+{% load static %}
+<html>
+  <head>
+    <title>Highcharts Tutorial</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<link rel="stylesheet" href="/static/app/content/local.css">
+  </head>
+
+  <body>
+    <div
+      id="container"
+      style="width: 550px; height: 400px; margin: 0 auto"
+    ></div>
+    <script language="JavaScript">
+      $(document).ready(function () {
+        var chart = {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+        };
+
+        var title = {
+          text: "NCUA Data Series: XYZ Credit Union",
+        };
+        var tooltip = {
+          pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
+        };
+        var plotOptions = {
+          pie: {
+            allowPointSelect: true,
+            cursor: "pointer",
+
+            dataLabels: {
+              enabled: true,
+              format: "<b>{point.name}%</b>: {point.percentage:.1f} %",
+              style: {
+                color:
+                  (Highcharts.theme && Highcharts.theme.contrastTextColor) ||
+                  "black",
+              },
+            },
+          },
+        };
+        var series = [
+          {
+                type: "pie",
+              backgroundColor: 'transparent',
+            name: "Browser share",
+            data: [
+              {
+                name: "q1",
+                y: 800.0,
+                color: {
+                  radialGradient: {
+                    cx: 0.5,
+                    cy: 0.3,
+                    r: 0.7,
+                  },
+                  stops: [
+                    [0, "#209af1"],
+                    [1, "#209af1"],
+                  ],
+                },
+              },
+              {
+                name: "q2",
+                y: 780.0,
+                sliced: true,
+                selected: true,
+                color: {
+                  radialGradient: {
+                    cx: 0.5,
+                    cy: 0.3,
+                    r: 0.7,
+                  },
+                  stops: [
+                    [0, "#84c586"],
+                    [1, "#84c586"],
+                  ],
+                },
+              },
+              {
+                name: "q3",
+                y: 1050.0,
+                color: {
+                  radialGradient: {
+                    cx: 0.5,
+                    cy: 0.3,
+                    r: 0.7,
+                  },
+                  stops: [
+                    [0, "#00429b"],
+                    [1, "#00429b"],
+                  ],
+                },
+              },
+              {
+                name: "q4",
+                y: 950.0,
+                color: {
+                  radialGradient: {
+                    cx: 0.5,
+                    cy: 0.3,
+                    r: 0.7,
+                  },
+                  stops: [
+                    [0, "#7793db"],
+                    [1, "#7793db"],
+                  ],
+                },
+              },
+            ],
+          },
+        ];
+        // Radialize the colors
+        Highcharts.getOptions().colors = Highcharts.map(
+          Highcharts.getOptions().colors,
+          function (color) {
+            return {
+              radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+              stops: [
+                [0, color],
+                [1, Highcharts.Color(color).brighten(-0.8).get("rgb")], // darken
+              ],
+            };
+          }
+        );
+
+        var json = {};
+        json.chart = chart;
+        json.title = title;
+        json.tooltip = tooltip;
+        json.series = series;
+        json.plotOptions = plotOptions;
+        json.credits={"enabled":false}
+        $("#container").highcharts(json);
+      });
+      Highcharts.setOptions({
+        lang: {
+          thousandsSep: ','
+        }
+      });
+    </script>
+  </body>
+</html>

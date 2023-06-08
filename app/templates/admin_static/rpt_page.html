@@ -1,0 +1,773 @@
+{% extends "admin_static/base_atlantis.html" %}
+{% load i18n static %}
+{% block panel-header %}
+<div class="panel-header bg-primary-gradient">
+    <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+                <h2 class="text-white pb-2 fw-bold">Page Performance</h2>
+                <!--<h5 class="text-white op-7 mb-2">Lorem ipsum dolor</h5>-->
+            </div>
+            <div class="ml-md-auto py-2 py-md-0">
+                <a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
+                <a href="#" class="btn btn-secondary btn-round">Request a New Report</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block panel-inner %}
+
+
+
+
+<!-- Get Header -->
+
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+
+    <script type='text/javascript' src="{% static 'app/wp-content/themes/extractable/js/vendor/jquery-2.2.4.min.js' %}"></script>
+    <style type="text/css" id="wp-custom-css">
+        .new_style_hero .row {
+            position: relative;
+        }
+    </style>
+
+    <link rel='stylesheet' id='custom-css' href="{% static 'app/wp-content/themes/extractable/custom.css' %}" type='text/css' media='all' />
+
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+
+    <script src="https://code.highcharts.com/modules/funnel.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script src="https://code.highcharts.com/modules/dumbbell.js"></script>
+
+    <script src="https://code.highcharts.com/maps/modules/map.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.6/proj4.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/marker-clusters.js"></script>
+    <script src="https://code.highcharts.com/modules/coloraxis.js"></script>
+    <script src="https://code.highcharts.com/mapdata/countries/us/us-all-all.js"></script>
+    <script src="https://code.highcharts.com/mapdata/countries/us/us-fl-all.js"></script>
+    <script src="https://code.highcharts.com/modules/sankey.js"></script>
+
+
+
+
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <style rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css" media="screen"></style>
+
+    <style>
+
+        .highcharts-background {
+            fill: #556d79;
+        }
+
+        .highcharts-container {
+            /* #1072 */
+
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            font-family: Roboto, Arial, Helvetica, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            font-size: 12px;
+            user-select: none;
+        }
+    </style>
+
+    <script>
+        var url_json_counties = 'https://staging4.finalytics.ai/wp-content/themes/extractable/counties_population.json';
+        var fl_search_volume = 'https://staging4.finalytics.ai/wp-content/themes/extractable/fl_search_volume.json';
+    </script>
+
+
+</head>
+
+
+
+<body class="page-template page-template-templates page-template-template-finalytics page-template-templatestemplate-finalytics-php page page-id-7643">
+
+    <!-- Finalytcs Header -->
+
+
+
+
+
+    <main class="main-fluid">
+
+        <!-- Download Report Form -->
+
+
+        <style>
+            .desktoponly p {
+                color: white;
+            }
+
+            .desktoponly h2 {
+                margin-bottom: 0px;
+            }
+
+            .report-title::before {
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: url({% static 'app/wp-content/uploads/Fill-1.png' %
+            }
+
+            );
+            mix-blend-mode: normal;
+            opacity: 0.87;
+            transform: rotate( -180deg );
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-repeat: no-repeat;
+            background-size: cover;
+            }
+
+            .report-title .select_link {
+                font-size: 14px;
+                padding: 3px;
+            }
+
+            .main-fluid .report-title {
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+
+            .container {
+                width: 100%;
+            }
+        </style>
+
+        <style>
+            .performance_table {
+                background-color: #F0F0F0;
+            }
+
+                .performance_table .keyword-box {
+                    margin-bottom: 80px;
+                }
+
+                    .performance_table .keyword-box h3 {
+                        font-size: 24px;
+                        color: #00419B;
+                        font-family: 'IBM Plex Sans';
+                        line-height: 28px;
+                        font-weight: 300;
+                        letter-spacing: -0.46px;
+                        text-transform: capitalize;
+                    }
+
+                    .performance_table .keyword-box td a {
+                        color: #000;
+                        font-family: 'IBM Plex Sans';
+                        text-decoration: none;
+                        font-size: 15px;
+                        overflow-wrap: break-word;
+                    }
+
+                .performance_table #filter1 {
+                    min-width: 150px;
+                    padding: 12px 41px 11px 15px;
+                    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #fff;
+                    background-position: right 16px center;
+                    -moz-appearance: none;
+                    -moz-appearance: none;
+                    -webkit-appearance: none;
+                    appearance: none;
+                }
+
+                .performance_table .btn-blue {
+                    margin-left: 10px;
+                }
+
+                .performance_table table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    table-layout: fixed;
+                }
+
+                    .performance_table table thead {
+                        box-shadow: 0px 1px 15px 0px rgba(0,0,0,0.10);
+                        -webkit-box-shadow: 0px 1px 15px 0px rgba(0,0,0,0.10);
+                        -moz-box-shadow: 0px 1px 15px 0px rgba(0,0,0,0.10);
+                    }
+
+                        .performance_table table thead th {
+                            border: none;
+                            padding: 10px 0px;
+                            font-size: 14px;
+                            font-family: 'IBM Plex Sans';
+                            font-weight: 600;
+                            line-height: 16px;
+                            color: #00419B;
+                            background: #fff;
+                            text-align: left;
+                        }
+
+                            .performance_table table thead th.page_url {
+                                width: 20%;
+                            }
+
+                            .performance_table table thead th.average {
+                                text-align: left;
+                                width: 10%;
+                                padding-left: 20px;
+                            }
+
+                .performance_table .margin-bott {
+                    margin-bottom: 27px;
+                }
+
+                .performance_table table tbody tr {
+                    border-bottom: 1px solid #E5E5E5;
+                }
+
+                    .performance_table table tbody tr td {
+                        font-family: 'IBM Plex Sans';
+                        color: #333333;
+                        padding: 8px 0px 2px 20px;
+                        font-weight: 400;
+                        font-size: 16px;
+                        vertical-align: top;
+                        text-align: left;
+                    }
+
+                .performance_table table td.total_value {
+                    text-align: left;
+                    padding-left: 0px;
+                }
+
+
+                .performance_table table td.average_value {
+                    text-align: left;
+                    padding-left: 20px;
+                }
+
+                .performance_table table th.total_value {
+                    vertical-align: top;
+                    width: 10%;
+                }
+
+                .performance_table table td.change-percent {
+                    text-align: left;
+                    padding-left: 30px;
+                }
+
+                .performance_table table th.change-percent {
+                    text-align: left;
+                    padding-left: 20px;
+                }
+
+                .performance_table table tbody tr td .trafic {
+                    text-align: center;
+                }
+
+                .performance_table table tbody tr td.trafic-container {
+                    padding-left: 0px;
+                }
+
+
+                .performance_table table tbody tr td .trafic span {
+                    display: block;
+                    color: #000;
+                    margin-bottom: 5px;
+                }
+
+                .performance_table table tbody tr td .trafic .bar {
+                    width: 100%;
+                    background: #CEE0ED;
+                    height: 5px;
+                }
+
+                    .performance_table table tbody tr td .trafic .bar .fill {
+                        height: 100%;
+                        background: #45A0E3;
+                    }
+
+                .performance_table table tbody tr td.fund {
+                    background: #CEE0ED;
+                    padding-right: 10px;
+                    width: 5%;
+                }
+
+                .performance_table table tr th.app_comp {
+                    padding-left: 10px;
+                    width: 8%;
+                }
+
+                .performance_table table tr td.app_comp {
+                    padding-right: 10px;
+                }
+
+                .performance_table table thead tr th.fund {
+                    padding-left: 10px;
+                }
+
+                .performance_table table tbody tr td.ytd {
+                    background: #45A0E3;
+                    text-align: left;
+                    padding-left: 10px;
+                }
+
+                .performance_table table th.ytd {
+                    padding-left: 10px;
+                    vertical-align: top;
+                }
+
+                .performance_table table td.app_starts {
+                    padding-left: 10px;
+                }
+
+                .performance_table table tbody tr td.ytd span {
+                    color: #fff;
+                }
+
+
+                .performance_table table thead th:nth-child(1) {
+                    text-align: left;
+                    padding-left: 10px;
+                    border-top-left-radius: 4px;
+                    border-bottom-left-radius: 4px;
+                }
+
+                .performance_table table thead th:nth-child(10) {
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                    width: 13%;
+                }
+
+                .performance_table table tbody tr td:nth-child(1) {
+                    text-align: left;
+                    padding-left: 10px;
+                    padding-right: 20px;
+                }
+
+
+            @media only screen and (max-width: 1199.98px) {
+                #main-container-test {
+                    overflow-x: auto;
+                }
+
+                .performance_table table tbody tr td {
+                    padding-right: 40px;
+                }
+
+                .performance_table table {
+                    table-layout: unset;
+                }
+
+                .performance_table .keyword-box {
+                    overflow-x: auto;
+                }
+            }
+
+
+            @media only screen and (max-width: 767.98px) {
+                .performance_table .btn-blue {
+                    margin: 15px 0px;
+                    display: inline-block;
+                }
+
+                .performance_table #filter1 {
+                    display: block;
+                }
+            }
+        </style>
+        <section id="performance_table" class="performance_table">
+            <!--<div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <form  class="frmsearch2 new_from_credit" method="get" action="">
+                            <input type="text" name="search" id="search" class="fininput domainSearch" placeholder="Search by Domain Name">
+                            <ul id="searchResult3"></ul>
+                            <a href="javascript:;" class="btn-blue filtername">Search</a>
+                            <select name="filter1" id="filter1">
+                                <option value="all">All</option>
+                            </select>
+                        </form>
+
+                        <div style="margin-bottom: 30px;" class="errordomain"></div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="main-container">
+                            <p style="text-align:center;">Loading Data...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            jQuery(function () {
+                var data_performance_table = [];
+                const dropdown1 = jQuery('#filter1');
+
+                jQuery.ajaxSetup({
+                    headers: {
+                        "Authorization": "Token 0c291abd1e60cb4213c3de58dd203e1b46a41594"
+                    }
+                });
+                jQuery(document).ready(function () {
+                    jQuery.get(`/api/v1/pages/?keyword_group__is_core_product=true&keyword_group__keyword=&url_type=&domain__name=vystarcu.org&ordering=-ga_uniquePageviews`, processData).fail(processError);
+
+                    jQuery('.filtername').click(function () {
+                        let search = jQuery('#search').val();
+                        let containerTable = jQuery("#main-container");
+                        containerTable.empty();
+                        containerTable.append('<p style="text-align:center">Loading Data</p>');
+                        counter = 0;
+                        page = 1;
+                        if (search !== '') {
+                            jQuery.get(`/api/v1/pages/?keyword_group__is_core_product=true&keyword_group__keyword=&url_type=&domain__name=${search}`, processData).fail(processError);
+                        } else {
+                            jQuery.get(`/api/v1/pages/?keyword_group__is_core_product=true&keyword_group__keyword=&url_type=`, processData).fail(processError);
+                        }
+                    });
+
+                    dropdown1.change(function () {
+                        if (jQuery(this).val() == 'all') {
+                            processSorting(data_performance_table);
+                        } else {
+                            search_dropdown(jQuery(this).val());
+                        }
+                    })
+
+                    function processError(error) {
+                        alert(error.message)
+                    }
+
+                    function processTableOld(tableData, elTable) {
+                        let url = tableData.url;
+                        let keyword = tableData.keyword_group.keyword;
+                        let ga_entrances = tableData.ga_entrances;
+                        let ga_uniquePageviews = tableData.ga_uniquePageviews;
+                        elTable.append(`
+                                                <tr>
+                                                    <td class="url"><a href="/performance-report-charts/">${url}</a></td>
+                                                    <td class="keyword">${keyword}</td>
+                                                    <td class="ga_entrances">${ga_entrances}</td>
+                                                    <td class="ga_uniquePageviews">${ga_uniquePageviews}</td>
+                                                </tr>
+                                                `);
+                    }
+
+                    function processTable(tableData, elTable) {
+                        let title = tableData;
+                        var id_box = title.replace(" ", "-");
+                        id_box = id_box.toLowerCase();
+                        elTable.append(`
+                                                <div class="keyword-box">
+                                                    <h3>${title}</h3>
+                                                    <table>
+                                                        <thead>
+                                                            <th class="page_url"><span>Page URL</span></th>
+                                                            <th><span>Traffic <br> Accquisition</span></th>
+                                                            <th><span>Unique <br> Pageviews</span></th>
+                                                            <th ><span>App <br> Starts</span></th>
+                                                            <th class="app_comp"><span>App <br> Completes</span></th>
+                                                            <th class="fund"><span>Fund <br> Rate</span></th>
+                                                            <th class="average"><span>Average <br> Value</span></th>
+                                                            <th class="total_value"><span>Total Value</span></th>
+                                                            <th class="change-percent"><span>% <br> Change</span></th>
+                                                            <th class="ytd"><span>YTD Value</span></th>
+                                                        </thead>
+                                                        <tbody id="${id_box}-container">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            `);
+
+                        id_box = jQuery(`#${id_box}-container`);
+
+                        generate_child(title, id_box);
+                    }
+
+                    function processDataOld(data) {
+                        let containerTable = jQuery("#main-container");
+                        containerTable.empty();
+                        if (data.results.length > 0) {
+                            data_performance_table = data.results;
+                            processDropdown(data_performance_table);
+                            const tableElement = document.createElement('table')
+                            tableElement.setAttribute('class', `table-r`);
+                            const tableBody = document.createElement('tbody')
+                            const tableHead = document.createElement('thead')
+                            tableElement.appendChild(tableHead)
+                            tableElement.appendChild(tableBody)
+                            tableElement.setAttribute('id', `tableasset`)
+                            tableBody.setAttribute('id', `tbbody-ajax`);
+                            containerTable.append(tableElement)
+                            th = jQuery('#tableasset thead');
+                            tb = jQuery("#tbbody-ajax");
+                            th.append(`<tr><th class="url-th thead-change">URL ▼</th><th class="keyword thead-change">Keyword ▼ </th><th class="ga_entrances thead-change">Ga Entrances ▲ </th><th class="ga_uniquePage thead-change ">Ga Unique Page Views ▼ </th></tr>`)
+                            data_performance_table.forEach(data => processTable(data, tb));
+
+                            jQuery(".url-th").click(function () {
+                                jQuery('.thead-change').not(jQuery(this)).removeClass('asc');
+                                jQuery(this).toggleClass("asc");
+                                let tb = jQuery("#tbbody-ajax");
+                                tb.empty();
+                                tb.append(`<tr><td colspan="4" style="text-align:center;">Loading Data</td></tr>`);
+                                if (jQuery(this).hasClass('asc')) {
+                                    order = '+url';
+                                    jQuery.get(`/api/v1/pages/?keyword_group__is_core_product=true&keyword_group__keyword=&url_type=&domain__name=vystarcu.org&ordering=${order}`, processSorting).fail(processError);
+                                    jQuery(this).text("URL ▲");
+                                    jQuery('.keyword').text("Keyword ▼");
+                                    jQuery('.ga_uniquePage').text("UniquePageviews ▼");
+                                    jQuery('.ga_entrances').text("Ga Entrances  ▼");
+                                } else {
+                                    order = '-url';
+                                    jQuery.get(`/api/v1/pages/?keyword_group__is_core_product=true&keyword_group__keyword=&url_type=&domain__name=vystarcu.org&ordering=${order}`, processSorting).fail(processError);
+                                    jQuery(this).text("URL ▼");
+                                    jQuery('.keyword').text("Keyword ▼");
+                                    jQuery('.ga_uniquePage').text("Ga Entrances ▼");
+                                    jQuery('.ga_entrances').text("UniquePageviews ▼");
+                                }
+                            })
+
+                            jQuery(".keyword").click(function () {
+                                jQuery('.thead-change').not(jQuery(this)).removeClass('asc');
+                                jQuery(this).toggleClass("asc");
+                                let tb = jQuery("#tbbody-ajax");
+                                tb.empty();
+                                tb.append(`<tr><td colspan="4" style="text-align:center;">Loading Data</td></tr>`);
+                                if (jQuery(this).hasClass('asc')) {
+                                    order = '+keyword_group';
+                                    jQuery.get(`/api/v1/pages/?keyword_group__is_core_product=true&keyword_group__keyword=&url_type=&domain__name=vystarcu.org&ordering=${order}`, processSorting).fail(processError);
+                                    jQuery(this).text("Keyword ▲");
+                                    jQuery('.url-th').text("URL ▼");
+                                    jQuery('.ga_uniquePage').text("UniquePageviews ▼");
+                                    jQuery('.ga_entrances').text("Ga Entrances  ▼");
+                                } else {
+                                    order = '-keyword_group';
+                                    jQuery.get(`/api/v1/pages/?keyword_group__is_core_product=true&keyword_group__keyword=&url_type=&domain__name=vystarcu.org&ordering=${order}`, processSorting).fail(processError);
+                                    jQuery('.url-th').text("URL ▼");
+                                    jQuery('.keyword').text("Keyword ▼");
+                                    jQuery('.ga_uniquePage').text("Ga Entrances ▼");
+                                    jQuery('.ga_entrances').text("UniquePageviews ▼");
+                                }
+                            })
+
+                            jQuery(".ga_entrances").click(function () {
+                                jQuery('.thead-change').not(jQuery(this)).removeClass('asc');
+                                jQuery(this).toggleClass("asc");
+                                let tb = jQuery("#tbbody-ajax");
+                                tb.empty();
+                                tb.append(`<tr><td colspan="4" style="text-align:center;">Loading Data</td></tr>`);
+                                if (jQuery(this).hasClass('asc')) {
+                                    order = '+ga_entrances';
+                                    jQuery.get(`/api/v1/pages/?keyword_group__is_core_product=true&keyword_group__keyword=&url_type=&domain__name=vystarcu.org&ordering=${order}`, processSorting).fail(processError);
+                                    jQuery('.url-th').text("URL ▼");
+                                    jQuery('.keyword').text("Keyword ▼");
+                                    jQuery('.ga_uniquePage').text("UniquePageviews ▼");
+                                    jQuery('.ga_entrances').text("Ga Entrances  ▲");
+                                } else {
+                                    order = '-ga_entrances';
+                                    jQuery.get(`/api/v1/pages/?keyword_group__is_core_product=true&keyword_group__keyword=&url_type=&domain__name=vystarcu.org&ordering=${order}`, processSorting).fail(processError);
+                                    jQuery('.url-th').text("URL ▼");
+                                    jQuery('.keyword').text("Keyword ▼");
+                                    jQuery('.ga_uniquePage').text("Ga Entrances ▼");
+                                    jQuery('.ga_entrances').text("UniquePageviews ▼");
+                                }
+                            })
+
+                            jQuery(".ga_uniquePage").click(function () {
+                                jQuery('.thead-change').not(jQuery(this)).removeClass('asc');
+                                jQuery(this).toggleClass("asc");
+                                let tb = jQuery("#tbbody-ajax");
+                                tb.empty();
+                                tb.append(`<tr><td colspan="4" style="text-align:center;">Loading Data</td></tr>`);
+                                if (jQuery(this).hasClass('asc')) {
+                                    order = '+ga_uniquePageviews';
+                                    jQuery.get(`/api/v1/pages/?keyword_group__is_core_product=true&keyword_group__keyword=&url_type=&domain__name=vystarcu.org&ordering=${order}`, processSorting).fail(processError);
+                                    jQuery('.url-th').text("URL ▼");
+                                    jQuery('.keyword').text("Keyword ▼");
+                                    jQuery('.ga_uniquePage').text("UniquePageviews ▲");
+                                    jQuery('.ga_entrances').text("Ga Entrances  ▼");
+                                } else {
+                                    order = '-ga_uniquePageviews';
+                                    jQuery.get(`/api/v1/pages/?keyword_group__is_core_product=true&keyword_group__keyword=&url_type=&domain__name=vystarcu.org&ordering=${order}`, processSorting).fail(processError);
+                                    jQuery('.url-th').text("URL ▼");
+                                    jQuery('.keyword').text("Keyword ▼");
+                                    jQuery('.ga_uniquePage').text("Ga Entrances ▼");
+                                    jQuery('.ga_entrances').text("UniquePageviews ▼");
+                                }
+                            })
+
+                        } else {
+                            containerTable.append('<p style="text-align:center">No Data Found</p>');
+                        }
+                    }
+
+                    function processData(data) {
+                        let containerTable = jQuery("#main-container");
+                        containerTable.empty();
+                        if (data.results.length > 0) {
+                            data_performance_table = data.results;
+                            let parent_keyword = processDropdown(data_performance_table);
+                            parent_keyword.forEach(data => processTable(data, containerTable));
+
+                        } else {
+                            containerTable.append('<p style="text-align:center">No Data Found</p>');
+                        }
+                    }
+
+                    function processDropdown(data) {
+                        let filter_arr = [];
+                        jQuery.each(data, function (i, el) {
+                            if (jQuery.inArray(el.keyword_group.keyword, filter_arr) === -1) filter_arr.push(el.keyword_group.keyword);
+                        });
+                        // console.log(filter_arr);
+
+                        filter_arr.forEach(data => {
+                            dropdown1.append(jQuery('<option>', { value: data, text: data }));
+                        });
+
+                        return filter_arr;
+                    }
+
+                    function search_dropdown(value) {
+                        let finalSearch = value;
+                        let fullData = data_performance_table;
+                        let mainContainer = jQuery("#tbbody-ajax");
+                        let finalData = [];
+                        finalSearch = finalSearch.toLowerCase();
+
+                        let currSearch = fullData.filter(function (data) {
+                            let testData = data.keyword_group.keyword;
+                            return testData.indexOf(finalSearch) != -1;
+                        });
+                        // console.log(currSearch);
+                        if (currSearch.length > 0) {
+                            mainContainer.empty();
+                            processSorting(currSearch);
+                        } else {
+                            mainContainer.empty();
+                            mainContainer.html('No results found for this keyword.')
+                        }
+                    }
+
+                    function generate_child(value, container) {
+                        let finalSearch = value;
+                        let fullData = data_performance_table;
+                        let mainContainer = container;
+                        let finalData = [];
+                        finalSearch = finalSearch.toLowerCase();
+
+                        let currSearch = fullData.filter(function (data) {
+                            let testData = data.keyword_group.keyword;
+                            return testData.indexOf(finalSearch) != -1;
+                        });
+                        // console.log(currSearch);
+                        if (currSearch.length > 0) {
+                            mainContainer.empty();
+                            process_generate(currSearch, container);
+                        } else {
+                            mainContainer.empty();
+                            mainContainer.html('No results found for this keyword.')
+                        }
+                    }
+
+                    function numberWithCommas(x) {
+                        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    }
+
+                    function process_generate(data, container) {
+                        if (data) {
+                            console.log(container);
+                            console.log(data);
+                            let counter = 0;
+                            let bar_counter = 0;
+                            data.forEach(table_data => {
+                                counter = counter + 1000;
+                                bar_counter = bar_counter + 2;
+                                let url = table_data.url;
+                                let keyword = table_data.keyword_group.keyword;
+                                let ga_entrances = table_data.ga_entrances;
+                                let ga_uniquePageviews = table_data.ga_uniquePageviews;
+                                let trafic = 123497 + counter;
+                                let app_starts = 33659 + counter;
+                                let app_comp = 21542 + counter;
+                                let fund = 59.5 + bar_counter;
+                                let average = 32548 + counter;
+                                let total = 701143441 + counter;
+                                let change_perce = 5.4 + bar_counter;
+                                let ytd = 4276974988 + counter;
+                                let bar_width = 50 + bar_counter;
+
+                                trafic = numberWithCommas(trafic);
+                                app_starts = numberWithCommas(app_starts);
+                                app_comp = numberWithCommas(app_comp);
+                                average = numberWithCommas(average);
+                                total = numberWithCommas(total);
+                                ytd = numberWithCommas(ytd);
+
+
+
+                                keyword = keyword.replace(" ", "-");
+                                keyword = keyword.toLowerCase();
+                                container.append(`
+                                                    <tr>
+                                                        <td><a href="/performance-report-charts/?title=${keyword}&url=${url}">${url}</a></td>
+                                                        <td class="trafic-container">
+                                                            <div class="trafic">
+                                                                <span>${trafic}</span>
+                                                                <div class="bar"><div class="fill" style="width: ${bar_width}%;"></div></div>
+                                                            </div>
+                                                        </td>
+                                                        <td><span>${ga_uniquePageviews}</span></td>
+                                                        <td class="app_starts"><span>${app_starts}</span></td>
+                                                        <td class="app_comp"><span>${app_comp}</span></td>
+                                                        <td class="fund"><span>${fund}%</span></td>
+                                                        <td class="average_value"><span>$${average}</span></td>
+                                                        <td class="total_value"><span>$${total}</span></td>
+                                                        <td class="change-percent"><span>${change_perce}%</span></td>
+                                                        <td class="ytd"><span>$${ytd}</span></td>
+                                                    </tr>
+                                                    `);
+                            });
+                        }
+                    }
+
+                    function processSorting(data) {
+                        tb = jQuery("#tbbody-ajax");
+                        tb.empty();
+
+                        if (data.results) {
+                            data.results.forEach(data => processTable(data, tb));
+                        } else {
+                            data.forEach(data => processTable(data, tb));
+                        }
+
+                    }
+                })
+            });
+        </script>
+
+
+
+    </main>
+
+
+</body>
+</html>
+
+{% endblock %}

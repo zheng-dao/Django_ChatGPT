@@ -1,0 +1,478 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.highcharts.com/highcharts-more.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.6/proj4.js"></script>
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/data.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/funnel.js"></script>
+        <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+      <script src="https://code.highcharts.com/modules/dumbbell.js"></script>
+      <script src="https://code.highcharts.com/modules/sankey.js"></script>
+<script src="https://code.highcharts.com/modules/marker-clusters.js"></script>
+<script src="https://code.highcharts.com/modules/coloraxis.js"></script>
+      <script src="https://code.highcharts.com/mapdata/countries/us/us-fl-all.js"></script>
+
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <link rel="stylesheet" href="{% static 'app/content/local.css' %}">
+
+  </head>
+
+  <body>
+    <a href="#domain">Domain Authority</a> | <a href="#backlinks">Backlinks Rank</a> | <a href="#pageload">Page Load Percentile</a> | <a href="#backlinks">Backlinks Rank</a> | <a href="#lift">Forecasted Lift</a> | <a href="/chart?chart_id=60&entity_id=86490&entity_type=credit_union&map=state__fl,branches__entity_id">County Search Volume Map</a>
+
+
+    <h2 name="domain">Domain Authority</h2>
+    <div
+      id="domain"
+      style="min-width: 50px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+      Highcharts.chart("domain",
+{
+   "chart":{
+      "type":"solidgauge",
+       "backgroundColor": "transparent",
+   },
+   "title":{
+      "text":null
+   },
+   "yAxis":{
+      "min":0,
+      "max":100,
+      "stops":[
+         [
+            0.1,
+            "#55BF3B"
+         ],
+         [
+            0.5,
+            "#DDDF0D"
+         ],
+         [
+            0.9,
+            "#DF5353"
+         ]
+      ],
+      "lineWidth":0,
+      "tickWidth":0,
+      "minorTickInterval":null,
+      "tickAmount":2,
+      "title":{
+         "y":-70
+      },
+      "labels":{
+         "y":16
+      }
+   },
+   "credits":{
+      "enabled":false
+   },
+   "series":[
+      {
+         "data":[
+            [
+               47
+            ]
+         ],
+         "color":"#209af1"
+      }
+   ],
+   "pane":{
+      "center":[
+         "50%",
+         "85%"
+      ],
+      "size":"140%",
+      "startAngle":-90,
+      "endAngle":90,
+      "background":{
+         "innerRadius":"60%",
+         "outerRadius":"100%",
+         "shape":"arc"
+      }
+   },
+   "exporting":{
+      "enabled":false
+   },
+   "tooltip":{
+      "enabled":false
+   },
+   "plotOptions":{
+      "solidgauge":{
+         "dataLabels":{
+            "y":5,
+            "borderWidth":0,
+            "useHTML":false
+         }
+      }
+   },
+   "xAxis":{
+      "categories":[
+         "domain_authority"
+      ]
+   },
+}
+   
+
+        );
+      Highcharts.setOptions({
+        lang: {
+          thousandsSep: ','
+        }
+      });
+</script>
+
+
+
+    <h2 name="backlinks">Backlinks Rank</h2>
+    <div
+      id="backlinks"
+      style="min-width: 50px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+      Highcharts.chart("backlinks",
+{
+   "chart":{
+      "type":"solidgauge",
+        "backgroundColor":"transparent",
+   },
+   "title":{
+      "text":null
+   },
+   "yAxis":{
+      "min":0,
+      "max":4500,
+      "stops":[
+         [
+            0.1,
+            "#55BF3B"
+         ],
+         [
+            0.5,
+            "#DDDF0D"
+         ],
+         [
+            0.9,
+            "#DF5353"
+         ]
+      ],
+      "lineWidth":0,
+      "tickWidth":0,
+      "minorTickInterval":null,
+      "tickAmount":2,
+      "title":{
+         "y":-70
+      },
+      "labels":{
+         "y":16
+      },
+      "reversed":true
+   },
+   "credits":{
+      "enabled":false
+   },
+   "series":[
+      {
+         "data":[
+            [
+               201
+            ]
+         ],
+         "color":"#209af1"
+      }
+   ],
+   "pane":{
+      "center":[
+         "50%",
+         "85%"
+      ],
+      "size":"140%",
+      "startAngle":-90,
+      "endAngle":90,
+      "background":{
+         "innerRadius":"60%",
+         "outerRadius":"100%",
+         "shape":"arc"
+      }
+   },
+   "exporting":{
+      "enabled":false
+   },
+   "tooltip":{
+      "enabled":false
+   },
+   "plotOptions":{
+      "solidgauge":{
+         "dataLabels":{
+            "y":5,
+            "borderWidth":0,
+            "useHTML":false
+         }
+      }
+   },
+   "xAxis":{
+      "categories":[
+         "external_pages_to_root_domain_rank"
+      ]
+   },
+});
+</script>
+
+
+    <h2 name="pageload">Page Load Time Percentile</h2>
+    <div
+      id="pageload"
+      style="min-width: 50px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+      Highcharts.chart("pageload",
+{
+   "chart":{
+      "type":"solidgauge",
+        "backgroundColor": "transparent"
+   },
+   "title":{
+      "text":null
+   },
+   "yAxis":{
+      "min":0,
+      "max":100,
+      "stops":[
+         [
+            0.1,
+            "#55BF3B"
+         ],
+         [
+            0.5,
+            "#DDDF0D"
+         ],
+         [
+            0.9,
+            "#DF5353"
+         ]
+      ],
+      "lineWidth":0,
+      "tickWidth":0,
+      "minorTickInterval":null,
+      "tickAmount":2,
+      "title":{
+         "y":-70
+      },
+      "labels":{
+         "y":16
+      }
+   },
+   "credits":{
+      "enabled":false
+   },
+   "series":[
+      {
+         "data":[
+            [
+               53
+            ]
+         ],
+         "color":"#209af1"
+      }
+   ],
+   "pane":{
+      "center":[
+         "50%",
+         "85%"
+      ],
+      "size":"140%",
+      "startAngle":-90,
+      "endAngle":90,
+      "background":{
+         "innerRadius":"60%",
+         "outerRadius":"100%",
+         "shape":"arc"
+      }
+   },
+   "exporting":{
+      "enabled":false
+   },
+   "tooltip":{
+      "enabled":false
+   },
+   "plotOptions":{
+      "solidgauge":{
+         "dataLabels":{
+            "y":5,
+            "borderWidth":0,
+            "useHTML":false
+         }
+      }
+   },
+   "xAxis":{
+      "categories":[
+         "alexa_avgPageLoadTime_percentile"
+      ]
+   },
+}
+
+);
+</script>
+
+
+    <h2 name="lift">Forecasted Life</h2>
+    <div
+      id="lift"
+      style="min-width: 50px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+      Highcharts.chart("lift",
+{
+   "chart":{
+      "type":"column",
+      "backgroundColor":"transparent",
+      "scrollablePlotArea":{
+         "minWidth":0
+      }
+   },
+   "title":{
+      "text":""
+   },
+   "xAxis":{
+        "visible": true,
+        "lineWidth": 0,
+        "categories": ["App Starts", "App Completes", "Apps Funded", "Annual $ Value"]
+   },
+   "yAxis":{
+        "visible": false,
+   },
+   "legend":{
+        "enabled": false,
+   },
+   "tooltip":{
+      "shared":true,
+      "crosshairs":true
+   },
+   "series":[
+      {
+         "data":[
+            370,
+            370,
+            370,
+            370
+         ],
+         "color":"#84c586"
+      },
+      {
+         "data":[
+            370,
+            370,
+            370,
+            370
+         ],
+         "color":"#209af1"
+      }
+   ],
+   "credits":{
+      "enabled":false
+   },
+   "plotOptions":{
+      "series":{
+         "pointPadding":0,
+         "borderWidth":0,
+        "dataLabels":{
+           "enabled":true,
+           "crop":false,
+           "overflow":"none",
+           "format":"${y}K",
+           "style":{
+              "fontWeight":"normal",
+              "fontSize":"20px",
+              "fontFamily":"arial",
+              "color":"#aaaaaa",
+                "textOutline": false,
+           }
+        },
+      },
+      "column":{
+         "stacking":"normal",
+           "dataLabels": {
+                "enabled": true,
+                "color": "#FFFFFF"
+            }
+      }
+   },
+}
+);
+</script>
+
+
+
+
+
+    <h2 name="search">Total Search Volume</h2>
+    <div
+      id="search"
+      style="min-width: 50px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+      Highcharts.chart("search",
+{
+   "chart":{
+      "backgroundColor":"transparent"
+   },
+   "title":{
+      "text":null
+   },
+   "exporting":{
+      "enabled":false
+   },
+   "credits":{
+      "enabled":false
+   },
+   "legend":{
+      "enabled":false,
+   },
+   "series":[
+      {
+         "type":"pie",
+         "size":"100%",
+         "innerSize":"60%",
+         "showInLegend":true,
+         "dataLabels":{
+            "enabled":true
+         },
+         "data":[
+            {
+               "name":"",
+               "y":2085780
+            },
+            {
+               "name":"My CU",
+               "y":260293
+            }
+         ]
+      }
+   ],
+   "colors":[
+      "#d9e2e9",
+      "#59b1e9"
+   ]
+}
+
+);
+</script>
+    </script>
+  </body>
+</html>

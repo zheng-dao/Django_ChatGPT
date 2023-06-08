@@ -1,0 +1,89 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <link rel="stylesheet" href="{% static 'app/content/local.css' %}">
+    
+</head>
+
+<body>
+    <div id="container"
+         style="min-width: 310px; height: 400px; margin: 0 auto"
+         class="border"></div>
+    <script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'line',
+        },
+	    title: {text:null},
+        exporting:{
+            enabled:false
+        },
+        credits: {
+            enabled: false
+        },
+	    legend: {
+            layout: 'horizontal',
+            align: 'right',
+            verticalAlign: 'top',
+            useHTML: true,
+            labelFormatter: function() {
+                return '<div style="text-align: left; width:100px;float:left;color:#555;font-weight:normal;margin-right:10px;">' + this.name + '</div>';
+		    }
+		},
+        xAxis: {
+            categories: ['04.22', '04.23', '04.24', '04.25', '04.26', '04.27', '04.28', '04.29', '04.30', '05.01', '05.02', '05.03'],
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: null
+            },
+            /* make all y-axis gridlines invisible */
+            gridLineColor: 'transparent',
+            labels: {
+                formatter: function() {
+                   return this.value+"%";
+                }
+            }
+        },
+        colors: ['#45A0E3', '#76DDFB', '#12294F', '#058789', '#65EBE4'],
+        plotOptions: {
+            series: {
+                marker: {'enabled':false},
+                dataLabels: {
+                    enabled: false,
+                    style: {
+                        fontWeight: 'normal',
+                        fontSize: '30px',
+                        color: '#aaaaaa',
+                    },
+
+                }
+            },
+        },
+        series: [
+            {
+                name: 'Personalized',
+                data: [6, 5, 16, 13, 16, 9, 20, 21, 21, 17, 18, 17],
+            },
+            {
+                name: 'Default',
+                data: [4, 2, 4, 4, 16, 12, 11, 14, 18, 6, 10, 7],
+            },
+        ]
+    });
+    Highcharts.setOptions({
+        lang: {
+          thousandsSep: ','
+        }
+      });
+    </script>
+</body>
+</html>

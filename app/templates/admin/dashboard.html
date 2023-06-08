@@ -1,0 +1,144 @@
+{% extends "admin/base_atlantis.html" %}
+
+{% load static %}
+{% block endscripts %}
+<script src="{% static 'app/assets/js/setting-demo.js' %}"></script>
+<script src="{% static 'app/assets/js/demo.js' %}"></script>
+<script src="{% static 'app/assets/js/plugin/highcharts/maps/highmaps.js' %}"></script>
+<script src="{% static 'app/assets/js/plugin/highcharts/maps/modules/exporting.js' %}"></script>
+<script src="https://code.highcharts.com/mapdata/countries/us/us-fl-all.js"></script>
+<script>
+    //https://cdn.jsdelivr.net/gh/highcharts/highcharts@1e9e659c2d60fbe27ef0b41e2f93112dd68fb7a3/samples/data/european-train-stations-near-airports.json
+
+    Highcharts.mapChart('container-mt', {
+        chart: {
+            map: 'countries/us/us-fl-all',
+            backgroundColor: 'transparent'
+        },
+        credits: {
+            enabled: false,
+        },
+        exporting: {
+            enabled: false,
+        },
+        title: {
+            text: null
+        },
+        subtitle: {
+            text: null
+        },
+        mapNavigation: {
+            enabled: false
+        },
+        colorAxis: {
+            min: 0,
+            max: 20
+        },
+        series: [{
+            name: 'Basemap',
+            borderColor: '#cccccc',
+            //nullColor: 'rgba(177, 244, 177, 0.5)',
+            nullColor: '#45A0E3',
+            showInLegend: false
+        }],
+        legend: {
+            enabled: false
+        }
+    });
+
+</script>
+<script>
+    Circles.create({
+        id: 'circles-1',
+        radius: 45,
+        value: 60,
+        maxValue: 100,
+        width: 7,
+        text: 21,
+        colors: ['#f1f1f1', '#FF9E27'],
+        duration: 400,
+        wrpClass: 'circles-wrp',
+        textClass: 'circles-text',
+        styleWrapper: true,
+        styleText: true
+    })
+
+    Circles.create({
+        id: 'circles-2',
+        radius: 45,
+        value: 70,
+        maxValue: 100,
+        width: 7,
+        text: 12,
+        colors: ['#f1f1f1', '#2BB930'],
+        duration: 400,
+        wrpClass: 'circles-wrp',
+        textClass: 'circles-text',
+        styleWrapper: true,
+        styleText: true
+    })
+
+    Circles.create({
+        id: 'circles-3',
+        radius: 45,
+        value: 40,
+        maxValue: 100,
+        width: 7,
+        text: 3,
+        colors: ['#f1f1f1', '#F25961'],
+        duration: 400,
+        wrpClass: 'circles-wrp',
+        textClass: 'circles-text',
+        styleWrapper: true,
+        styleText: true
+    })
+
+    var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
+
+    var mytotalIncomeChart = new Chart(totalIncomeChart, {
+        type: 'bar',
+        data: {
+            labels: ["S", "M", "T", "W", "T", "F", "S", "S", "M", "T"],
+            datasets: [{
+                label: "Total Income",
+                backgroundColor: '#ff9e27',
+                borderColor: 'rgb(23, 125, 255)',
+                data: [6, 4, 9, 5, 4, 6, 4, 3, 8, 10],
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                display: false,
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        display: false //this will remove only the label
+                    },
+                    gridLines: {
+                        drawBorder: false,
+                        display: false
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        drawBorder: false,
+                        display: false
+                    }
+                }]
+            },
+        }
+    });
+
+    $('#lineChart').sparkline([105, 103, 123, 100, 95, 105, 115], {
+        type: 'line',
+        height: '70',
+        width: '100%',
+        lineWidth: '2',
+        lineColor: '#ffa534',
+        fillColor: 'rgba(255, 165, 52, .14)'
+    });
+</script>
+{% endblock %}

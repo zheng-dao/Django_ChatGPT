@@ -1,0 +1,336 @@
+{% extends "admin_static/base_atlantis.html" %}
+{% load static %}
+{% block panel-header %}
+<div class="page-navs bg-black py-3 pr-2">
+    <div class="card-title fw-bold">Product to Segment Mapping</div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+<div class="page-inner page-inner-fill">
+    <div id="myKanban" class="board">
+        <div data-id="_todo" class="kanban-board">
+            <header class="kanban-board-header">
+                <div class="kanban-title-board">Car Loan</div>
+                <div class="kanban-title-button d-inline-flex">
+                    <button class="mr-2"><i class="fas fa-plus-circle"></i></button>
+                    <div class="dropdown dropdown-kanban">
+                        <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-options-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Edit</a>
+                            <a class="dropdown-item" href="#">Move</a>
+                            <a class="dropdown-item" href="#">Duplicate</a>
+                            <a class="dropdown-item" href="#">Trash</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="kanban-drag">
+                <div class="kanban-item">
+                    <!--<div class="kanban-image">
+                    <img src="{% static 'app/assets/img/examples/product8.jpg' %}" class="img-fluid">
+                </div>-->
+                    <a href="#" class="kanban-title">Up-and-Comers</a>
+                    <p>Upper Mid(Scale) Younger Family Mix</p>
+                    <!--<div class="kanban-badges">
+                    <div class="kanban-badge">
+                        <i class="far fa-comment-alt"></i>
+                        <span class="badge-text">2</span>
+                    </div>
+                    <div class="kanban-badge">
+                        <i class="fas fa-paperclip"></i>
+                        <span class="badge-text">10</span>
+                    </div>
+                </div>-->
+                    <div class="kanban-edit">
+                        <i class="fa fa-pencil-alt"></i>
+                    </div>
+                </div>
+                <div class="kanban-item" style="background-color: #F56600">
+                    <a href="#" class="kanban-title" style="color:white;">City Strivers</a>
+                    <p style="color:white;">Midscale Younger Mostly w/ Kids</p>
+                    <!--<div class="kanban-badges">
+                    <div class="kanban-badge">
+                        <i class="far fa-comment-alt"></i>
+                        <span class="badge-text">2</span>
+                    </div>
+                    <div class="kanban-badge bg-success">
+                        <i class="far fa-check-square"></i>
+                        <span class="badge-text">12/12</span>
+                    </div>
+                </div>-->
+                    <div class="kanban-edit">
+                        <i class="fa fa-pencil-alt"></i>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <div data-id="_todo" class="kanban-board">
+            <header class="kanban-board-header">
+                <div class="kanban-title-board">Checking Account</div>
+                <div class="kanban-title-button d-inline-flex">
+                    <button class="mr-2"><i class="fas fa-plus-circle"></i></button>
+                    <div class="dropdown dropdown-kanban">
+                        <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-options-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Edit</a>
+                            <a class="dropdown-item" href="#">Move</a>
+                            <a class="dropdown-item" href="#">Duplicate</a>
+                            <a class="dropdown-item" href="#">Trash</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="kanban-drag">
+                <div class="kanban-item">
+                    <!--<div class="kanban-image">
+                    <img src="{% static 'app/assets/img/examples/product8.jpg' %}" class="img-fluid">
+                </div>-->
+                    <a href="#" class="kanban-title">Planning a Move</a>
+                    <p>Recently Moved</p>
+                    <!--<div class="kanban-badges">
+                    <div class="kanban-badge">
+                        <i class="far fa-comment-alt"></i>
+                        <span class="badge-text">2</span>
+                    </div>
+                    <div class="kanban-badge">
+                        <i class="fas fa-paperclip"></i>
+                        <span class="badge-text">10</span>
+                    </div>
+                </div>-->
+                    <div class="kanban-edit">
+                        <i class="fa fa-pencil-alt"></i>
+                    </div>
+                </div>
+                <div class="kanban-item">
+                    <a href="#" class="kanban-title">Dissatisfied with Big Banks</a>
+                    <!--<div class="kanban-badges">
+                    <div class="kanban-badge">
+                        <i class="far fa-comment-alt"></i>
+                        <span class="badge-text">2</span>
+                    </div>
+                    <div class="kanban-badge bg-success">
+                        <i class="far fa-check-square"></i>
+                        <span class="badge-text">12/12</span>
+                    </div>
+                </div>-->
+                    <div class="kanban-edit">
+                        <i class="fa fa-pencil-alt"></i>
+                    </div>
+                </div>
+                <div class="kanban-item" style="background-color: #2A2F5B;color:white;">
+                    <a href="#" class="kanban-title">Bank Branch Closure Nearby</a>
+                    <!--<div class="kanban-badges">
+                    <div class="kanban-badge bg-danger">
+                        <i class="far fa-clock"></i>
+                        <span class="badge-text">Oct 8, 2018</span>
+                    </div>
+                    <div class="kanban-badge">
+                        <i class="far fa-check-square"></i>
+                        <span class="badge-text">1/5</span>
+                    </div>
+                </div>-->
+                    <div class="kanban-edit">
+                        <i class="fa fa-pencil-alt"></i>
+                    </div>
+                </div>
+                <div class="kanban-item">
+                    <a href="#" class="kanban-title">Bank Closure Nearby</a>
+                    <!--<div class="kanban-badges">
+                    <div class="kanban-badge bg-danger">
+                        <i class="far fa-clock"></i>
+                        <span class="badge-text">Oct 8, 2018</span>
+                    </div>
+                    <div class="kanban-badge">
+                        <i class="far fa-check-square"></i>
+                        <span class="badge-text">1/5</span>
+                    </div>
+                </div>-->
+                    <div class="kanban-edit">
+                        <i class="fa fa-pencil-alt"></i>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <div data-id="_todo" class="kanban-board">
+            <header class="kanban-board-header">
+                <div class="kanban-title-board">Wealth Management</div>
+                <div class="kanban-title-button d-inline-flex">
+                    <button class="mr-2"><i class="fas fa-plus-circle"></i></button>
+                    <div class="dropdown dropdown-kanban">
+                        <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-options-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Edit</a>
+                            <a class="dropdown-item" href="#">Move</a>
+                            <a class="dropdown-item" href="#">Duplicate</a>
+                            <a class="dropdown-item" href="#">Trash</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="kanban-drag">
+                <div class="kanban-item">
+                    <!--<div class="kanban-image">
+                            <img src="{% static 'app/assets/img/examples/product8.jpg' %}" class="img-fluid">
+                    </div>-->
+                    <a href="#" class="kanban-title">Globetrotters</a>
+                    <p>Wealthy Mature w/o Kids</p>
+                    <!--<div class="kanban-badges">
+                        <div class="kanban-badge">
+                            <i class="far fa-comment-alt"></i>
+                            <span class="badge-text">2</span>
+                        </div>
+                        <div class="kanban-badge">
+                            <i class="fas fa-paperclip"></i>
+                            <span class="badge-text">10</span>
+                        </div>
+                    </div>-->
+                    <div class="kanban-edit">
+                        <i class="fa fa-pencil-alt"></i>
+                    </div>
+                </div>
+                <div class="kanban-item">
+                    <a href="#" class="kanban-title">Domestic Bliss</a>
+                    <p>Wealthy Older Mostly w/o Kids</p>
+                    <!--<div class="kanban-badges">
+                        <div class="kanban-badge">
+                            <i class="far fa-comment-alt"></i>
+                            <span class="badge-text">2</span>
+                        </div>
+                        <div class="kanban-badge bg-success">
+                            <i class="far fa-check-square"></i>
+                            <span class="badge-text">12/12</span>
+                        </div>
+                    </div>-->
+                    <div class="kanban-edit">
+                        <i class="fa fa-pencil-alt"></i>
+                    </div>
+                </div>
+                <div class="kanban-item">
+                    <a href="#" class="kanban-title">Big Spenders</a>
+                    <p>Wealthy Older Family Mix</p>
+                    <!--<div class="kanban-badges">
+                        <div class="kanban-badge bg-danger">
+                            <i class="far fa-clock"></i>
+                            <span class="badge-text">Oct 8, 2018</span>
+                        </div>
+                        <div class="kanban-badge">
+                            <i class="far fa-check-square"></i>
+                            <span class="badge-text">1/5</span>
+                        </div>
+                    </div>-->
+                    <div class="kanban-edit">
+                        <i class="fa fa-pencil-alt"></i>
+                    </div>
+                </div>
+                <div class="kanban-item">
+                    <a href="#" class="kanban-title">Feathered Nests</a>
+                    <p>Wealthy Older Family Mix</p>
+                    <!--<div class="kanban-badges">
+                        <div class="kanban-badge bg-danger">
+                            <i class="far fa-clock"></i>
+                            <span class="badge-text">Oct 8, 2018</span>
+                        </div>
+                        <div class="kanban-badge">
+                            <i class="far fa-check-square"></i>
+                            <span class="badge-text">1/5</span>
+                        </div>
+                    </div>-->
+                    <div class="kanban-edit">
+                        <i class="fa fa-pencil-alt"></i>
+                    </div>
+                </div>
+                <div class="kanban-item">
+                    <a href="#" class="kanban-title">Feathered Nests</a>
+                    <p>Wealthy Older Family Mix</p>
+                    <!--<div class="kanban-badges">
+                        <div class="kanban-badge bg-danger">
+                            <i class="far fa-clock"></i>
+                            <span class="badge-text">Oct 8, 2018</span>
+                        </div>
+                        <div class="kanban-badge">
+                            <i class="far fa-check-square"></i>
+                            <span class="badge-text">1/5</span>
+                        </div>
+                    </div>-->
+                    <div class="kanban-edit">
+                        <i class="fa fa-pencil-alt"></i>
+                    </div>
+                </div>
+                <div class="kanban-item">
+                    <a href="#" class="kanban-title">Midlife Highlife</a>
+                    <p>Wealthy Middle Age Mostly w/ Kids</p>
+                    <!--<div class="kanban-badges">
+                        <div class="kanban-badge bg-danger">
+                            <i class="far fa-clock"></i>
+                            <span class="badge-text">Oct 8, 2018</span>
+                        </div>
+                        <div class="kanban-badge">
+                            <i class="far fa-check-square"></i>
+                            <span class="badge-text">1/5</span>
+                        </div>
+                    </div>-->
+                    <div class="kanban-edit">
+                        <i class="fa fa-pencil-alt"></i>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block endscripts %}
+<script>
+    'use strict';
+
+    // Kanban Board Demo
+    // =============================================================
+
+    var boardDemo = {
+        init: function init() {
+
+            this.bindUIActions();
+        },
+        bindUIActions: function bindUIActions() {
+            // event handlers
+            this.handleBoardStyle();
+            this.handleSortable();
+        },
+        byId: function byId(id) {
+            return document.getElementById(id);
+        },
+        handleBoardStyle: function handleBoardStyle() {
+            $(document).on('mouseenter mouseleave', '.kanban-board-header', function (e) {
+                var isHover = e.type === 'mouseenter';
+                $(this).parent().toggleClass('hover', isHover);
+            });
+        },
+        handleSortable: function handleSortable() {
+            var board = this.byId('myKanban');
+            // Multi groups
+            Sortable.create(board, {
+                animation: 150,
+                draggable: '.kanban-board',
+                handle: '.kanban-board-header',
+                filter: '.ignore-sort',
+                forceFallback: true
+            });[].forEach.call(board.querySelectorAll('.kanban-drag'), function (el) {
+                Sortable.create(el, {
+                    group: 'tasks',
+                    animation: 150,
+                    filter: '.ignore-sort',
+                    forceFallback: true
+                });
+            });
+        }
+    };
+
+    boardDemo.init();
+</script>
+{% endblock %}

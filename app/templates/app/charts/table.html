@@ -1,0 +1,31 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <link rel="stylesheet" href="/static/app/content/local.css">
+
+  </head>
+
+  <body style="background-color:#f1f1f1;">
+      <div>
+          <table>
+              <tr>
+              {% for d in data.headers %}
+                <th>{{d}}</th>
+              {% endfor %}
+              </tr>
+              {% for d in data.data %}
+                <tr>
+                    {% for td in d %}
+                        <td>{{td}}</td>
+                    {% endfor %}
+                </tr>
+              {% endfor %}
+
+          </table>
+      </div>
+  </body>
+</html>

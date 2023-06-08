@@ -1,0 +1,30 @@
+﻿{% extends "app/wp.html" %}
+{% load static %}
+            {% block hero %}
+        <section class="hero finalytics">
+            <div class="container">
+                <div class="row middle-xs">
+                    <div class="col-12 col-md-6">
+                        <h1>Testing 123</h1>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo temporibus eveniet voluptates mollitia aliquam facere hic ipsam est. Reprehenderit autem cum doloribus quae ipsam consectetur tempore cupiditate deleniti nulla magni!</p>
+                        <form class="form" action="">
+                            <label for="email" class="sr-only">Email Address:</label>
+                            <input id="email" class="js-email" name="email" type="email"
+                                placeholder="Business email address"
+                                aria-invalid="false">
+                            <div class="form-error" id="email-error" tabindex="-1">
+                                Please enter a valid email address.
+                            </div>
+                            <div class="domain-validity bad hidden">
+                                <p>Sorry, please use a business email address.</p>
+                            </div>
+                            <button type="button" class="btn btn-primary" id="checkEmail">Download Report</button>
+                        </form>
+                    </div>
+                    <div class="col-12 col-md-6 center-xs">
+                        <img src="{% static 'app/wp-content/uploads/report-screenshot.png' %}" alt="The Digital Credit Union Report">
+                    </div>
+                </div>
+            </div>
+            </section>
+            {% endblock %}

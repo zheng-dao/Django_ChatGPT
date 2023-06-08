@@ -1,0 +1,71 @@
+{% extends "admin/base_atlantis.html" %}
+{% load static %}
+{% block endheadscripts %}
+<style>
+    .alert-danger {
+        color: #721c24 !important;
+        background-color: #f8d7da !important;
+        border-color: #f5c6cb !important;
+    }
+</style>
+{% endblock endheadscripts %}
+{% block panel-header %}
+<div class="page-navs bg-black py-3 pr-2">
+    <div class="card-title fw-bold">
+        Create Branch
+    </div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+<div class="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title">Input Fields</h4>
+                    </div>
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        {% if message %}
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <div class="alert alert-danger">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                {% if companies %}
+                                <div class="form-group">
+                                    <label for="branch_list">Company</label>
+                                    <select class="form-control" id="companies_list" name="cu_id">
+                                        <option>Select Company</option>
+                                        {% for co in companies %}
+                                        <option value="{{ co.number }}">{{ co.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                {% endif %}
+                                <div class="form-group">
+                                    <label for="zipcode">Enter Zipcode</label>
+                                    <input type="number" maxlength="5" size="5" name="zipcode" id="zipcode" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success btn-round" type="submit">Continue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block endscripts %}
+{% endblock %}

@@ -1,0 +1,140 @@
+{% extends "admin/base_atlantis.html" %}
+{% load static %}
+{% block endheadscripts %}
+<style>
+    .alert-danger {
+        color: #721c24 !important;
+        background-color: #f8d7da !important;
+        border-color: #f5c6cb !important;
+    }
+</style>
+{% endblock endheadscripts %}
+{% block panel-header %}
+<div class="page-navs bg-black py-3 pr-2">
+    <div class="card-title fw-bold">
+        Ad Campaign Connector
+    </div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+{% if companies %}
+{% include 'admin/companies.html' with companies=companies view_name='z-campaign_type' %}
+{% else %}
+<div class="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title">What type of ad campaign is this?</h4>
+                    </div>
+                </div>
+                <form method="POST" id="cat_form">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        {% if message %}
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <div class="alert alert-danger">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                    {% if products %}
+                                    <div class="form-group">
+                                        <label>Products</label>
+                                        <div class="select2-input">
+                                            <select id="product" name="product" class="form-control">
+                                                <option value="">&nbsp;</option>
+                                                {% for product in products %}
+                                                    <option value="{{ product.keyword }}">{{ product.keyword }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% if services %}
+                                        <div class="form-group">
+                                            <label>Services</label>
+                                            <div class="select2-input">
+                                                <select id="service" name="service" class="form-control">
+                                                    <option value="">&nbsp;</option>
+                                                    {% for service in services %}
+                                                        <option value="{{ service.keyword }}">{{ service.keyword }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    {% if locations %}
+                                    <div class="form-group">
+                                        <label>Locations</label>
+                                        <div class="select2-input">
+                                            <select id="location" name="location" class="form-control">
+                                                <option value="">&nbsp;</option>
+                                                {% for location in locations %}
+                                                    <option value="{{ location.keyword }}">{{ location.keyword }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% if segments %}
+                                    <div class="form-group">
+                                        <label>Segments</label>
+                                        <div class="select2-input">
+                                            <select id="segment" name="segment" class="form-control">
+                                                <option value="">&nbsp;</option>
+                                                {% for segment in segments %}
+                                                    <option value="{{ segment.keyword }}">{{ segment.keyword }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>    
+                                    {% endif %}                                
+
+
+                            </div>
+                        </div>                    
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success btn-round" type="submit" id="submit_btn">Continue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+{% block endscripts %}
+<script>
+    $('#product').select2({
+        theme: "bootstrap"
+    });
+    $('#service').select2({
+        theme: "bootstrap"
+    });
+    $('#location').select2({
+        theme: "bootstrap"
+    });
+    $('#segment').select2({
+        theme: "bootstrap"
+    });
+    jQuery(document).ready(function() {
+        jQuery('#cat_form').on('click', '#submit_btn', function() {
+            if(jQuery("#product").val() && jQuery("#service").val()) {
+                alert('Either select product or service')
+                return false;
+            }
+            else {
+                jQuery('#cat_form').submit()
+            }
+        })
+    })
+</script>
+{% endblock %}

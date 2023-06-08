@@ -1,0 +1,180 @@
+{% extends "app/layout.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+
+.thead-dark{
+    background-color: 
+    black;color:white
+}
+
+a {
+    color:#0000FF;
+}
+a:active{
+    color:#0000FF;
+}
+a:visited{
+    color:#0000FF;
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 220px;
+  background-color: #003765;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a,.sidebar h1, .sidebar h2{
+  display: block;
+  color: white;
+  padding: 5px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #3d658f;
+  color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #00264c;
+  color: white;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 220px;
+  padding: 1px 16px;
+  height: 1000px;
+  color:black;
+}
+a.edit_link,a.edit_link:hover,a.edit_link:active{
+  color: blue;
+}
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+.img01 img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.container{
+padding: 0 !important;
+min-width: 100%;
+}
+.btn{
+  margin-top: 10px !important;
+}
+.content,.sidebar{
+  margin-top: 20px !important;
+}
+
+
+
+{% if not selected_company %}
+div.content {margin-left: 0;}
+{% endif %}
+
+</style>
+
+
+{% if selected_company %}
+<div class="sidebar">
+        {% comment %}<h2>dirs</h2>{% endcomment %}
+        <a href="/qa">QA Home</a>
+        {% for dir in dir_list %}
+          
+            <div>
+                <a href="?selected_dir={{dir.dir_name}}"{% if dir.dir_name == request.GET.selected_dir %} class='active' {% endif %} > {{dir.dir_disp_name}} ({{dir.count}})  </a>
+            </div>
+        {% endfor %}
+</div>
+{% endif %}
+
+<!-- Page content -->
+<div class="content">
+
+{% if selected_company %}
+{% comment %} <input type=button value="<< Back" class="btn btn-primary" onClick="javascript:history.go(-1);"> {% endcomment %}
+{% endif %}
+
+{% if company_list and not selected_company %}
+    <h2>Companies</h2>
+    {% for company in company_list %}
+                <a href="./{{company.code}}" {% if company.code == request.GET.company %} class='active' {% endif %} >  {{company.name}}</a><br/>
+    {% endfor %}
+{% endif %}
+
+<div>
+
+{% if selected_company %}
+  <h1> {{ selected_company.name }} </h1>
+{% endif %}
+{% if image_data %}
+    
+    
+
+      <div class="row img01">
+        <div class="col-md-12">
+          <div class="row">
+            {% for image in image_data %}
+              <div class="col-md-4 img01" style="padding:10px;  border: 1px solid grey;">
+                <div class="image-container">
+                  <a href="{{image}}"> <img src="{{image}}"/> </a>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% comment %} {% for width, value_width in image_data.items %}
+        <div class="row img01">
+        {% for height, urls in value_width.items %}
+            <h1>{{width}} X {{height}}</h1>
+            <div class="col-md-12">
+                <div class="row">
+                  {% for url in urls %}
+                    <div class="col-md-4 img01" style="padding:10px;  border: 1px solid grey;">
+                      <div class="image-container">
+                          {% comment %} <img src="{% static url %}" height={{height}} width={{width}}/>
+                          <a href="{{url}}"> <img src="{{url}}"/> </a>
+                      </div>
+                    </div>
+                  {% endfor %}
+              </div>
+            </div>
+        {% endfor %}
+        </div> {% endcomment %}
+{% endif %}
+</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

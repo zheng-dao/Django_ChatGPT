@@ -1,0 +1,141 @@
+{% load static %}
+<html>
+  <head>
+    <title>Highcharts Tutorial</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <link rel="stylesheet" href="{% static 'app/content/local.css' %}">
+  </head>
+
+  <body>
+    <div
+      id="container"
+      style="width: 550px; height: 400px; margin: 0 auto"
+    ></div>
+    <script language="JavaScript">
+      $(document).ready(function () {
+        var chart = {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+            plotShadow: false,
+          backgroundColor: 'transparent',
+        };
+
+        var title = {
+          text: "NCUA Data Series: XYZ Credit Union",
+        };
+        var tooltip = {
+          pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
+        };
+        var plotOptions = {
+          pie: {
+            allowPointSelect: true,
+            cursor: "pointer",
+
+            dataLabels: {
+              enabled: true,
+              format: "<b>{point.name}%</b>: {point.percentage:.1f} %",
+              style: {
+                color:
+                  (Highcharts.theme && Highcharts.theme.contrastTextColor) ||
+                  "black",
+              },
+            },
+          },
+        };
+        var series = [
+          {
+            type: "pie",
+            name: "Browser share",
+            data: [
+              {
+                name: "q1",
+                y: 800.0,
+                color: {
+                  radialGradient: {
+                    cx: 0.5,
+                    cy: 0.3,
+                    r: 0.7,
+                  },
+                  stops: [
+                    [0, "#5E7705"],
+                    [1, "#9DC335"],
+                  ],
+                },
+              },
+              {
+                name: "q2",
+                y: 780.0,
+                sliced: true,
+                selected: true,
+                color: {
+                  radialGradient: {
+                    cx: 0.5,
+                    cy: 0.3,
+                    r: 0.7,
+                  },
+                  stops: [
+                    [0, "#8B2A43"],
+                    [1, "#ED2A76"],
+                  ],
+                },
+              },
+              {
+                name: "q3",
+                y: 1050.0,
+                color: {
+                  radialGradient: {
+                    cx: 0.5,
+                    cy: 0.3,
+                    r: 0.7,
+                  },
+                  stops: [
+                    [0, "#063E54"],
+                    [1, "#6B8795"],
+                  ],
+                },
+              },
+              {
+                name: "q4",
+                y: 950.0,
+                color: {
+                  radialGradient: {
+                    cx: 0.5,
+                    cy: 0.3,
+                    r: 0.7,
+                  },
+                  stops: [
+                    [0, "#F2981B"],
+                    [1, "#C13B00"],
+                  ],
+                },
+              },
+            ],
+          },
+        ];
+        // Radialize the colors
+        Highcharts.getOptions().colors = Highcharts.map(
+          Highcharts.getOptions().colors,
+          function (color) {
+            return {
+              radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+              stops: [
+                [0, color],
+                [1, Highcharts.Color(color).brighten(-0.8).get("rgb")], // darken
+              ],
+            };
+          }
+        );
+
+        var json = {};
+        json.chart = chart;
+        json.title = title;
+        json.tooltip = tooltip;
+        json.series = series;
+        json.plotOptions = plotOptions;
+        $("#container").highcharts(json);
+      });
+    </script>
+  </body>
+</html>

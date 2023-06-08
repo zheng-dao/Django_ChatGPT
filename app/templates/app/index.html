@@ -1,0 +1,327 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<!--test-->
+<div class="jumbotron">
+    <h3>Ads</h3>
+    <p>
+        {% for sub in subscribers %}
+        <a href="/admin/app/ad/?company__id__exact={{ sub.id }}" class="btn btn-primary btn-large">{{ sub.name }}</a>
+        {% endfor %}
+    </p>
+    <h3>Assets</h3>
+    <p>
+        {% for sub in subscribers %}
+        <a href="/admin/app/asset/?company__id__exact={{ sub.id }}" class="btn btn-primary btn-large">{{ sub.name }}</a>
+        {% endfor %}
+    </p>
+    <h3>SFFire: Stg</h3>
+    <p>
+        <a href="https://www-stg.sffirecu.org/?products_recommended=boat%20loan" class="btn btn-primary btn-large">Boat Loan</a>
+        <a href="https://www-stg.sffirecu.org/?products_recommended=car%20loan" class="btn btn-primary btn-large">Car Loan</a>
+        <a href="https://www-stg.sffirecu.org/?products_recommended=cd" class="btn btn-primary btn-large">CD</a>
+        <a href="https://www-stg.sffirecu.org/?utm_term=cd campaign" class="btn btn-primary btn-large">CD Campaign</a>
+        <a href="https://www-stg.sffirecu.org/?products_recommended=checking%20account" class="btn btn-primary btn-large">Checking Account</a>
+        <a href="https://www-stg.sffirecu.org/?products_recommended=credit card" class="btn btn-primary btn-large">Credit Card</a>
+        <a href="https://www-stg.sffirecu.org/?products_recommended=home equity loan" class="btn btn-primary btn-large">Home Equity Loan</a>
+        <a href="https://www-stg.sffirecu.org/?products_recommended=ira" class="btn btn-primary btn-large">IRA</a>
+        <a href="https://www-stg.sffirecu.org/?products_recommended=money%20market%20account" class="btn btn-primary btn-large">Money Market</a>
+        <a href="https://www-stg.sffirecu.org/?products_recommended=mortgage" class="btn btn-primary btn-large">Mortgage</a>
+        <a href="https://www-stg.sffirecu.org/?products_recommended=savings account" class="btn btn-primary btn-large">Savings</a>
+    </p>
+    <h3>SFFire: Scrape</h3>
+    <p>
+        <a href="http://127.0.0.1:8000/static/sites/sffire/sffirecu.org/index.html?products_recommended=boat%20loan" class="btn btn-primary btn-large">Boat Loan</a>
+        <a href="http://127.0.0.1:8000/static/sites/sffire/sffirecu.org/index.html?products_recommended=car%20loan" class="btn btn-primary btn-large">Car Loan</a>
+        <a href="http://127.0.0.1:8000/static/sites/sffire/sffirecu.org/index.html?products_recommended=cd" class="btn btn-primary btn-large">CD</a>
+        <a href="http://127.0.0.1:8000/static/sites/sffire/sffirecu.org/index.html?products_recommended=checking%20account" class="btn btn-primary btn-large">Checking Account</a>
+        <a href="http://127.0.0.1:8000/static/sites/sffire/sffirecu.org/index.html?products_recommended=credit card" class="btn btn-primary btn-large">Credit Card</a>
+        <a href="http://127.0.0.1:8000/static/sites/sffire/sffirecu.org/index.html?products_recommended=home equity loan" class="btn btn-primary btn-large">Home Equity Loan</a>
+        <a href="http://127.0.0.1:8000/static/sites/sffire/sffirecu.org/index.html?products_recommended=ira" class="btn btn-primary btn-large">IRA</a>
+        <a href="http://127.0.0.1:8000/static/sites/sffire/sffirecu.org/index.html?products_recommended=money%20market%20account" class="btn btn-primary btn-large">Money Market</a>
+        <a href="http://127.0.0.1:8000/static/sites/sffire/sffirecu.org/index.html?products_recommended=mortgage" class="btn btn-primary btn-large">Mortgage</a>
+        <a href="http://127.0.0.1:8000/static/sites/sffire/sffirecu.org/index.html?products_recommended=savings account" class="btn btn-primary btn-large">Savings</a>
+    </p>
+    <h3>UCCU: Stg</h3>
+    <p>
+        <a href="https://dev.uccu.com?zipcode=84095" class="btn btn-primary btn-large">South Jordan</a>
+        <a href="https://dev.uccu.com?zipcode=84044" class="btn btn-primary btn-large">Salt Lake</a>
+        <a href="https://dev.uccu.com?products_recommended=credit card" class="btn btn-primary btn-large">Credit Card</a>
+        <a href="https://dev.uccu.com?products_recommended=mortgage" class="btn btn-primary btn-large">Mortgage</a>
+    </p>
+    <h3>UCCU: Scrape</h3>
+    <p>
+        <a href="https://www.stgfinalyticsdemo.com/static/sites/uccu/www.uccu.com/index.html?zipcode=84095" class="btn btn-primary btn-large">South Jordan</a>
+        <a href="https://www.stgfinalyticsdemo.com/static/sites/uccu/www.uccu.com/index.html?zipcode=84044" class="btn btn-primary btn-large">Salt Lake</a>
+        <a href="https://www.stgfinalyticsdemo.com/static/sites/uccu/www.uccu.com/index.html?products_recommended=credit card" class="btn btn-primary btn-large">Credit Card</a>
+        <a href="https://www.stgfinalyticsdemo.com/static/sites/uccu/www.uccu.com/index.html?products_recommended=mortgage" class="btn btn-primary btn-large">Mortgage</a>
+    </p>
+    <h3>Visions: Prod</h3>
+    <p>
+        <a href="https://www.visionsfcu.org/?zipcode=07010" class="btn btn-primary btn-large">Bergen County/Hackensack, NJ</a>
+        <a href="https://www.visionsfcu.org/?zipcode=13045" class="btn btn-primary btn-large">Cortland County, NY</a>
+        <a href="https://www.visionsfcu.org/?zipcode=18840" class="btn btn-primary btn-large">Sayre, PA</a>
+        <a href="https://www.visionsfcu.org/creditcards" class="btn btn-primary btn-large">Credit Card</a>
+        <a href="https://www.visionsfcu.org/pages/mortgages" class="btn btn-primary btn-large">Mortgage</a>
+        <a href="https://www.visionsfcu.org/?products_recommended=mobile" class="btn btn-primary btn-large">Mobile App</a>
+        <a href="https://www.visionsfcu.org/checking" class="btn btn-primary btn-large">Checking Account</a>
+        <a href="https://www.visionsfcu.org/?products_recommended=bearcats" class="btn btn-primary btn-large">Bearcats</a>
+        <a href="https://www.visionsfcu.org/?products_recommended=college" class="btn btn-primary btn-large">College</a>
+    </p>
+    <h3>Visions: Stg</h3>
+    <h4>Phase 1</h4>
+    <p>
+        <a href="https://staging.visionsfcu.org/?zipcode=07010" class="btn btn-primary btn-large">Bergen County/Hackensack, NJ</a>
+        <a href="https://staging.visionsfcu.org/?zipcode=13045" class="btn btn-primary btn-large">Cortland County, NY</a>
+        <a href="https://staging.visionsfcu.org/?zipcode=18840" class="btn btn-primary btn-large">Sayre, PA</a>
+        <a href="https://staging.visionsfcu.org/creditcards" class="btn btn-primary btn-large">Credit Card</a>
+        <a href="https://staging.visionsfcu.org/pages/mortgages" class="btn btn-primary btn-large">Mortgage</a>
+        <a href="https://staging.visionsfcu.org/?products_recommended=mobile" class="btn btn-primary btn-large">Mobile App</a>
+        <a href="https://staging.visionsfcu.org/checking" class="btn btn-primary btn-large">Checking Account</a>
+        <a href="https://staging.visionsfcu.org/?org=Binghamton University" class="btn btn-primary btn-large">Bearcats</a>
+        <a href="https://staging.visionsfcu.org/?products_recommended=college" class="btn btn-primary btn-large">College</a>
+    </p>
+    <h4>Phase 2</h4>
+    <p>
+        <a href="https://staging.visionsfcu.org/?utm_term=educators" class="btn btn-primary btn-large">Educators Campaign</a>
+        <a href="https://staging.visionsfcu.org/?products_recommended=car loan" class="btn btn-primary btn-large">Car Loan</a>
+        <a href="https://staging.visionsfcu.org/?products_recommended=personal loan" class="btn btn-primary btn-large">Personal Loan</a>
+        <a href="https://staging.visionsfcu.org/?products_recommended=money market account" class="btn btn-primary btn-large">Money Market</a>
+        <a href="https://staging.visionsfcu.org/?products_recommended=cd" class="btn btn-primary btn-large">CDs</a>
+        <a href="https://staging.visionsfcu.org/?products_recommended=investments" class="btn btn-primary btn-large">Investment Services</a>
+        <a href="https://staging.visionsfcu.org/?products_recommended=rv loan" class="btn btn-primary btn-large">RV Loan</a>
+    </p>
+
+    <h3>Visions: Scrape</h3>
+    <p>
+        <a href="https://www.stgfinalyticsdemo.com/static/sites/visions/www.visionsfcu.org/index.html?zipcode=07010" class="btn btn-primary btn-large">Bergen County/Hackensack, NJ</a>
+        <a href="https://www.stgfinalyticsdemo.com/static/sites/visions/www.visionsfcu.org/index.html?zipcode=13045" class="btn btn-primary btn-large">Cortland County, NY</a>
+        <a href="https://www.stgfinalyticsdemo.com/static/sites/visions/www.visionsfcu.org/index.html?zipcode=18840" class="btn btn-primary btn-large">Sayre, PA</a>
+        <a href="https://www.stgfinalyticsdemo.com/static/sites/visions/www.visionsfcu.org/index.html?products_recommended=credit card" class="btn btn-primary btn-large">Credit Card</a>
+        <a href="https://www.stgfinalyticsdemo.com/static/sites/visions/www.visionsfcu.org/index.html?products_recommended=mortgage" class="btn btn-primary btn-large">Mortgage</a>
+        <a href="https://www.stgfinalyticsdemo.com/static/sites/visions/www.visionsfcu.org/index.html?products_recommended=mobile" class="btn btn-primary btn-large">Mobile App</a>
+        <a href="https://www.stgfinalyticsdemo.com/static/sites/visions/www.visionsfcu.org/index.html?products_recommended=checking account" class="btn btn-primary btn-large">Checking Account</a>
+        <a href="https://www.stgfinalyticsdemo.com/static/sites/visions/www.visionsfcu.org/index.html?products_recommended=bearcats" class="btn btn-primary btn-large">Bearcats</a>
+        <a href="https://www.stgfinalyticsdemo.com/static/sites/visions/www.visionsfcu.org/index.html?products_recommended=college" class="btn btn-primary btn-large">College</a>
+    </p>
+
+    <h3>Tools</h3>
+    <p>
+        <a href="/bookmarklet" class="btn btn-primary btn-large">Personalization Admin Bookmarklet</a>
+        <a onclick="FinalyticsGA.open()" class="btn btn-primary btn-large">GA Permissions Dialog</a>
+        <a href="/oauth" class="btn btn-primary btn-large">GA Serverside Permissions Page</a>
+        <a href="/wp-keywords" class="btn btn-primary btn-large">Page Namer Tool/SEO</a>
+        <a href="{{ site_ip }}/?mode=test&zipcode=32212" class="btn btn-primary btn-large">Test Mode</a>
+        <a href="http://localhost:8089" class="btn btn-primary btn-large">Load Testing</a>
+    </p>
+    <h3>VyStar</h3>
+    <p>
+        <a href="{{ site_ip }}/" class="btn btn-primary btn-large">Demo Home</a>
+        <a href="{{ site_ip }}/?models=ml" class="btn btn-primary btn-large">ML: First-time Visitor</a>
+        <a href="{{ site_ip }}/?models=ml_expected_value" class="btn btn-primary btn-large">ML: Expected Value</a>
+        <a href="{{ site_ip }}/?zipcode=32212" class="btn btn-primary btn-large">Military Zip Code</a>
+        <a href="{{ site_ip }}/?zipcode=32304" class="btn btn-primary btn-large">Tallahassee New Branch</a>
+        <a href="{{ site_ip }}/?zipcode=32819" class="btn btn-primary btn-large">Orlando Mortgage</a>
+        <a href="{{ site_ip }}/search?cludoquery=the best ira" class="btn btn-primary btn-large">User Search: the best IRA</a>
+        <a href="{{ site_ip }}/personal/borrow/home-loans/mortgages" class="btn btn-primary btn-large">Product Recognition: Mortgage</a>
+        <a href="{{ site_ip }}/apply/mortgage" class="btn btn-primary btn-large">Funnel: Apply Mortgage</a>
+        <a href="{{ site_ip }}/?zipcode=32259" class="btn btn-primary btn-large">Wealthy Zip Code</a>
+        <a href="{{ site_ip }}/?zipcode=32209" class="btn btn-primary btn-large">Lower Income Zip Code</a>
+        <a href="{{ site_ip }}/?zipcode=33145" class="btn btn-primary btn-large">Miami</a>
+        <a href="{{ site_ip }}/?&zipcode=30338" class="btn btn-primary btn-large">Atlanta</a>
+        <a href="{{ site_ip }}/olb" class="btn btn-primary btn-large">OLB: Affluent</a>
+        <a href="{{ site_ip }}/olb?models=signal&products_recommended=bill pay__add a payee" class="btn btn-primary btn-large">OLB: Bill Pay Signals</a>
+        <a href="{{ site_ip }}/olb?products_recommended=credit card&models=signal&page=/olb/lowincome" class="btn btn-primary btn-large">OLB: Low Income Credit Card</a>
+        <a href="{{ site_ip }}/olb?products_recommended=mobile__member to member&models=signal" class="btn btn-primary btn-large">OLB: No Mobile</a>
+        <a href="{{ site_ip }}/rates/heloc?models=referrer&referrer=organic" class="btn btn-primary btn-large">Referrer Organic --> Rates</a>
+        <a href="{{ site_ip }}/?models=rate_compare&data=car loan__rate,5.5__date,2015-01-01|zoo__rate,5.5__date,2015-01-01&products_owned=car loan" class="btn btn-primary btn-large">Detect Refi: Car Loan</a>
+        <a href="{{ site_ip }}/?models=rate_compare&data=cd__rate,0.5__date,2021-01-01|zoo__rate,3.0__date,2022-09-01&products_owned=cd" class="btn btn-primary btn-large">Detect Inflation</a>
+        <a href="{{ site_ip }}/?products_owned=credit card,car loan" class="btn btn-primary btn-large">Products Owned</a>
+        <a href="{{ site_ip }}/?products_recommended=credit card" class="btn btn-primary btn-large">Products Recommended</a>
+        <a href="{{ site_ip }}/?zipcode=32079" class="btn btn-primary btn-large">Elderly Zip Code</a>
+        <a href="{{ site_ip }}/?zipcode=32228" class="btn btn-primary btn-large">Young Zip Code</a>
+        <a href="{{ site_ip }}/?zipcode=94941&use_distance_model=1" class="btn btn-primary btn-large">Distance from Branch Model</a>
+        <a href="{{ site_ip }}/search?cludoquery=car loan" class="btn btn-primary btn-large">User Search: Car Loan</a>
+        <a href="{{ site_ip }}?utm_source=google&ut_medium=banner&utm_campaign=FSU_Loyalty&utm_term=fsu" class="btn btn-primary btn-large">Campaign: FSU</a>
+        <a href="{{ site_ip }}/apply/car-loan" class="btn btn-primary btn-large">Funnel: Apply Car Loan</a>
+        <a href="{{ site_ip }}/apply/credit-card" class="btn btn-primary btn-large">Funnel: Apply Credit Card</a>
+        <a href="{{ site_ip }}/open/checking" class="btn btn-primary btn-large">Funnel: Open Checking</a>
+        <a href="{{ site_ip }}/open/cd" class="btn btn-primary btn-large">Funnel: Open CD</a>
+        <a href="{{ site_ip }}/offers?page_attributes=offer" class="btn btn-primary btn-large">Offers</a>
+        <a href="{{ site_ip }}/offers?page_attributes=offer&offer_id=1&offer_type=tiered" class="btn btn-primary btn-large">Tiered Offer: Tier 1</a>
+        <a href="{{ site_ip }}/offers?page_attributes=offer&offer_id=2&offer_type=tiered" class="btn btn-primary btn-large">Tiered Offer: Tier 2</a>
+        <a href="{{ site_ip }}/offers?page_attributes=offer&offer_id=12345&offer_type=fi_visitor" class="btn btn-primary btn-large">Offer by User ID</a>
+        <a href="{{ site_ip }}/faqs?page_attributes=faq" class="btn btn-primary btn-large">FAQs</a>
+        <a href="{{ site_ip }}/offers?page_attributes=content&offer_type=location&offer_id=county" class="btn btn-primary btn-large">Charity Rollup</a>
+        <a href="{{ site_ip }}/offers?page_attributes=content&offer_type=location&offer_id=county&zipcode=07010" class="btn btn-primary btn-large">Charity: Bergen</a>
+        <a href="{{ site_ip }}/offers?page_attributes=content&offer_type=location&offer_id=county&zipcode=13045" class="btn btn-primary btn-large">Charity: Cortland</a>
+        <a href="{{ site_ip }}/offers?page_attributes=content&offer_type=location&offer_id=county&zipcode=18840" class="btn btn-primary btn-large">Charity: Beckham (Sayre)</a>
+        <a href="{{ site_ip }}/offers?page_attributes=content&offer_type=location&offer_id=county&zipcode=94941" class="btn btn-primary btn-large">Charity: Marin County</a>
+    </p>
+    <h3>Pesonalization</h3>
+    <p>
+        <a href="/models=ml" class="btn btn-primary btn-large">ML: First-time Visitor</a>
+        <a href="/models=ml_expected_value" class="btn btn-primary btn-large">ML: Expected Value</a>
+        <a href="/preview?cu_id=66584&models=rate_compare&data=car%20loan__rate,5.6__date,2015-01-01&products_owned=car%20loan" class="btn btn-primary btn-large">Refi Rate Compare</a>
+        <a href="/preview?cu_id=66584&products_owned=car loan&ip=&products_recommended=&last_product_url=&zipcode=" class="btn btn-primary btn-large">Products Owned</a>
+        <a href="/preview?cu_id=66584&products_owned=&ip=&products_recommended=ira&last_product_url=&zipcode=" class="btn btn-primary btn-large">Products Recommended</a>
+        <a href="/preview?cu_id=66584&products_owned=&ip=2600:1700:a700:9820:adcb:15ce:4b5a:bc34&products_recommended=hsa&last_product_url=&zipcode=" class="btn btn-primary btn-large">IP Address</a>
+        <a href="/preview?cu_id=66584&products_owned=&ip=&products_recommended=&last_product_url=&zipcode=94941" class="btn btn-primary btn-large">Wealthy Zip Code</a>
+        <a href="/preview?cu_id=66584&products_owned=&ip=&products_recommended=&last_product_url=&zipcode=17016" class="btn btn-primary btn-large">Elderly Zip Code</a>
+        <a href="/preview?cu_id=66584&products_owned=&ip=&products_recommended=&last_product_url=&zipcode=28202" class="btn btn-primary btn-large">Young Zip Code</a>
+        <a href="/preview?cu_id=66584&products_owned=&ip=&products_recommended=&last_product_url=&zipcode=40977" class="btn btn-primary btn-large">Lower Income Zip Code</a>
+        <a href="/preview?cu_id=66584&products_owned=&ip=&products_recommended=&last_product_url=&zipcode=94941&use_distance_model=1" class="btn btn-primary btn-large">Distance from Branch Model</a>
+        <a href="/preview?cu_id=66584&products_owned=&ip=&products_recommended=&zipcode=&models=referrer&referrer=organic&last_product_url=/rates/heloc" class="btn btn-primary btn-large">Referrer Organic --> Rates</a>
+        <a href="/preview?cu_id=66584&models=rate_compare&data=car loan__rate,5.5__date,2015-01-01|zoo__rate,5.5__date,2015-01-01&products_owned=car loan" class="btn btn-primary btn-large">Detect Refi</a>
+        <a href="/olb?cu_id=66584&models=signal&products_recommended=bill pay__add a payee&page=/olb" class="btn btn-primary btn-large">OLB: Bill Pay Signals</a>
+        <a href="/olb?cu_id=66584&page=/olb&products_recommended=heloc" class="btn btn-primary btn-large">OLB: Product Recommended</a>
+        <a href="/connexus-demo" class="btn btn-primary btn-large">Connexus Demo</a>
+        <a href="/calcoast-young" class="btn btn-primary btn-large">CalCoast Demo</a>
+        <a href="/preview?cu_id=66584" class="btn btn-primary btn-large">Preview</a>
+        <a href="/tag?cu_id=66584" class="btn btn-primary btn-large">Tag Preview</a>
+        <a href="https://finalytics.ai/personalization" class="btn btn-primary btn-large">Personalization Report</a>
+    </p>
+
+    <h3>Styles</h3>
+    <p>
+        <a href="/html?chart_type=area" class="btn btn-primary btn-large">Area</a>
+        <a href="/html?chart_type=blue_area" class="btn btn-primary btn-large">Blue Area</a>
+        <a href="/html?chart_type=bar" class="btn btn-primary btn-large">Bar</a>
+        <a href="/html?chart_type=bar_stacked" class="btn btn-primary btn-large">Bar: Stacked</a>
+        <a href="/html?chart_type=bar_stacked_percent" class="btn btn-primary btn-large">Bar: Percent</a>
+        <a href="/html?chart_type=column" class="btn btn-primary btn-large">Column</a>
+        <a href="/html?chart_type=column_stacked" class="btn btn-primary btn-large">Column: Stacked</a>
+        <a href="/html?chart_type=column_stacked_percent" class="btn btn-primary btn-large">Column: Percent</a>
+        <a href="/html?chart_type=funnel" class="btn btn-primary btn-large">Funnel</a>
+        <a href="/html?chart_type=gauge" class="btn btn-primary btn-large">Gauge</a>
+        <a href="/html?chart_type=gauge_dynamic" class="btn btn-primary btn-large">Gauge: Dynamic</a>
+        <a href="/html?chart_type=combo" class="btn btn-primary btn-large">Combo</a>
+        <a href="/html?chart_type=line" class="btn btn-primary btn-large">Line</a>
+        <a href="/html?chart_type=line_points" class="btn btn-primary btn-large">Line: Points</a>
+        <a href="/html?chart_type=dumbbell" class="btn btn-primary btn-large">Dumbbell</a>
+        <a href="/html?chart_type=dumbbell_vertical" class="btn btn-primary btn-large">Dumbbell: Vertical</a>
+        <a href="/html?chart_type=map" class="btn btn-primary btn-large">Map</a>
+        <a href="/html?chart_type=map_clusters" class="btn btn-primary btn-large">Map: Clusters</a>
+        <a href="/html?chart_type=map_points" class="btn btn-primary btn-large">Map: Points</a>
+        <a href="/html?chart_type=map_counties" class="btn btn-primary btn-large">Map: Counties</a>
+        <a href="/html?chart_type=pie" class="btn btn-primary btn-large">Pie</a>
+        <a href="/html?chart_type=donut" class="btn btn-primary btn-large">Donut</a>
+        <a href="/html?chart_type=scatter" class="btn btn-primary btn-large">Scatter</a>
+        <a href="/html?chart_type=negative_bar_chart" class="btn btn-primary btn-large">Negative Bar</a>
+        <a href="/html?chart_type=single_bar" class="btn btn-primary btn-large">Single Bar</a>
+        <a href="/html?chart_type=demo_bar" class="btn btn-primary btn-large">Demo Bar</a>
+        <a href="/html?chart_type=demo_line" class="btn btn-primary btn-large">Demo Line</a>
+        <a href="/html?chart_type=heatmap" class="btn btn-primary btn-large">Heatmap</a>
+        <a href="/html?chart_type=network_graph" class="btn btn-primary btn-large">Network Graph</a>
+        <a href="/html?chart_type=sankey" class="btn btn-primary btn-large">Sankey</a>
+        <a href="/html?chart_type=wordcloud" class="btn btn-primary btn-large">Word Cloud</a>
+    </p>
+
+    <h3>Reports</h3>
+    <p>
+        <a href="/wp-chart?report=1&entity_id=24212&entity_type=credit_union&end_year=2020" class="btn btn-primary btn-large">NCUA CU Report</a>
+        <a href="/wp-chart?report=4&entity_type=benchmark&end_year=2020" class="btn btn-primary btn-large">NCUA Benchmark Report</a>
+        <a href="/wp-chart?report=5&entity_type=benchmark" class="btn btn-primary btn-large">GA Benchmark Report</a>
+        <a href="/wp-chart?report=1&entity_id=24212&entity_type=credit_union&as_combo=true&dimensions=Average&end_year=2020" class="btn btn-primary btn-large">Combo Report NCUA</a>
+        <a href="/wp-chart?report=5&entity_id=24212&entity_type=credit_union&as_combo=true&dimensions=Average&end_year=2020" class="btn btn-primary btn-large">Combo Report GA</a>
+        <a href="/wp-chart?report=6&entity_type=benchmark&dimensions=State__CA&start_year=2015&end_year=2015" class="btn btn-primary btn-large">State</a>
+        <a href="/wp-chart?report=7" class="btn btn-primary btn-large">SEO/SEM Performance</a>
+    </p>
+
+</div>
+
+<div class="row home_footer_links">
+    <div class="col-md-4">
+        <h3>Demo Reports</h3>
+            <p><a href="/demo_reports?report_type=seo">Demo SEO Opportunity Report</a>
+            <p><a href="/demo_reports?report_type=funnel">Demo Funnel Report</a>
+            <p><a href="/demo_reports?report_type=page">Demo Page Performance Report</a>
+            <p><a href="/demo_reports?report_type=content">Demo Content Performance Report</a>
+        <h3>SEO Opportunity</h3>
+            <p><a href="/wp-chart?report=13&entity_id=68490&entity_type=credit_union">SEO Opportunity Report</a>
+            <p><a href="/chart?chart_id=58&entity_type=credit_union&entity_id=68490">Total Search Volume</a>
+            <p><a href="/chart?chart_id=64&entity_id=68490&entity_type=credit_union">My Top Landing Pages Table</a>
+            <p><a href="/chart?chart_id=54&entity_type=credit_union&entity_id=68490">Domain Authority</a>
+            <p><a href="/chart?chart_id=55&entity_type=credit_union&entity_id=68490">Backlinks</a>
+            <p><a href="/chart?chart_id=56&entity_type=credit_union&entity_id=68490">Average Page Load Time Percentile</a>
+            <p><a href="/chart?chart_id=57&entity_type=credit_union&entity_id=68490">App Starts/Completes Value Quarterly</a>
+            <p><a href="/chart?chart_id=60&entity_id=86490&entity_type=credit_union&map=state__fl,branches__entity_id">Counties Map</a>
+            <p><a href="/chart?chart_id=59&entity_id=68490&entity_type=credit_union">Keywords Table</a>
+        <h3>Application Funnel</h3>
+            <p><a href="/wp-chart?report=14&entity_id=68490&entity_type=credit_union&dimensions=core_product__savings%20account">Funnel Report</a>
+            <p><a href="/chart?chart_id=61&entity_id=68490&entity_type=credit_union&dimensions=core_product__savings%20account">Application Funnel</a>
+            <p><a href="/chart?chart_id=62&entity_id=68490&entity_type=credit_union&dimensions=core_product__savings%20account">Dumbbell</a>
+            <p><a href="/chart?chart_id=63&entity_id=68490&entity_type=credit_union&dimensions=core_product__savings%20account">Dumbbell: Vertical</a>
+            <p><a href="/chart?chart_id=71&entity_id=68490&entity_type=credit_union&start_year=2021&end_year=2021&daily_span=30">User Journey Table</a>
+        <h3>Page Performance: Charts & Tables</h3>
+            <p><a href="/api/v1/reports/21/?entity_id=68490&entity_type=credit_union&entity_subtype_id=/default.aspx&entity_subtype=page_path&start_year=2021&end_year=2021">Report API Call</a>
+            <p><a href="/api/v1/pages/?domain__name=vystarcu.org&keyword_group__is_core_product=true&&ordering=-ga_uniquePageviews">API Call for Core Product Report Table</a>
+            <p><a href="/wp-chart?report=21&entity_id=68490&entity_type=credit_union&start_year=2021&end_year=2021&entity_subtype=page&entity_subtype_id=/default.aspx&daily_span=monthly">Page Performance Report</a>
+            <p><a href="/chart?chart_id=65&entity_id=68490&entity_type=credit_union&start_year=2021&end_year=2021&entity_subtype=page&entity_subtype_id=/default.aspx&daily_span=monthly">Page Views</a>
+            <p><a href="/chart?chart_id=66&entity_id=68490&entity_type=credit_union&start_year=2021&end_year=2021&entity_subtype=page&entity_subtype_id=/default.aspx&daily_span=monthly">App Starts</a>
+            <p><a href="/chart?chart_id=67&entity_id=68490&entity_type=credit_union&start_year=2021&end_year=2021&entity_subtype=page&entity_subtype_id=/default.aspx&daily_span=monthly">App Completes</a>
+            <p><a href="/chart?chart_id=68&entity_id=68490&entity_type=credit_union&start_year=2021&end_year=2021&entity_subtype=page&entity_subtype_id=/default.aspx&daily_span=monthly">Apps Funded</a>
+            <p><a href="/chart?chart_id=70&entity_id=68490&entity_type=credit_union&entity_subtype_id=/default.aspx&entity_subtype=page_path">Sankey Source Path</a>
+            <p><a href="/chart?chart_id=69&entity_id=68490&entity_type=credit_union&entity_subtype_id=/default.aspx&entity_subtype=page">Engagement Table</a>
+        <h3>Content Performance</h3>
+            <p><a href="/chart?chart_id=72&entity_id=68490&entity_type=credit_union&entity_subtype=core_product&entity_subtype_id=vehicle loan&daily_span=30">Content Performance Column Chart</a>
+            <p><a href="/chart?chart_id=73&entity_id=68490&entity_type=credit_union&start_year=2021&end_year=2021&daily_span=30&entity_subtype=core_product&entity_subtype_id=loans and credit&show_multiple=1">Content Performance Table</a></p>
+        <h3>Negative Bar Chart</h3>
+        <p><a href="/chart?chart_id=37">Negative Bar Chart (All-in-one)</a>
+        <p><a href="/chart?chart_id=51&show_multiple=1&entity_type=credit_union&entity_id=227">Negative Bar Chart (Multiple Charts)</a>
+        <p><a href="/chart?chart_id=38&entity_id=24212&entity_type=credit_union">Organic vs Paid Clicks per Month</a>
+        <h3>Refactored Chart</h3>
+        <p><a href="/wp-chart?report=1&entity_id=24212&entity_type=credit_union&start_year=2020&end_year=2021&use_new=1">Refactored chart: little data</a>
+        <p><a href="/wp-chart?report=1&entity_id=24212&entity_type=credit_union&start_year=2020&end_year=2021&use_new=1&series=average__state__CA,average__country__US,average__growth__qg,average__competitors,competitors__3,average__tier__1">Refactored chart: lots of data</a>
+        <h3>Combo Chart w/ Live Data: NCUA Raw Data</h3>
+        <p><a href="/combo-chart?start_year=2018&entity_id=24212&chart_one_id=10&end_year=2020">Sample report for loans and leases</a>
+        <h3>All Charts w/ Live Data: NCUA Raw Data</h3>
+        <p><a href="/chart?chart_id=5&entity_id=24212&entity_type=credit_union&start_year=2015&end_year=2020">Total number of members</a> 
+        <p><a href="/chart?chart_id=6&entity_id=24212&entity_type=credit_union&start_year=2015&end_year=2020">Total amount of loans and leases</a> 
+        <p><a href="/chart?chart_id=4&entity_id=24212&entity_type=credit_union&start_year=2015&end_year=2020">Total number of loans and leases</a> 
+        <p><a href="/chart?chart_id=2&entity_id=24212&entity_type=credit_union&start_year=2015&end_year=2020">Total shares and deposits</a> 
+        <p><a href="/chart?chart_id=7&entity_id=24212&entity_type=credit_union&start_year=2015&end_year=2020">Total assets &amp; liabilities</a> 
+        <p><a href="/chart?chart_id=3&entity_id=13&entity_type=credit_union&start_year=2015&end_year=2020">Total oustanding loans</a> 
+        <h3>All Charts w/ Live Data: </h3>
+        <p><a href="/chart?chart_id=5&entity_type=credit_union&entity_id=24212&start_year=2015&end_year=2020&dimensions=Growth__qg">Quarterly Growth</a> 
+        <p><a href="/chart?chart_id=5&entity_type=credit_union&entity_id=24212&start_year=2015&end_year=2020&dimensions=Growth__qoq">QoQ</a> 
+        <p><a href="/chart?chart_id=5&entity_type=credit_union&entity_id=24212&start_year=2015&end_year=2020&dimensions=Growth__yoy">YoY</a> 
+        <h3>All Charts w/ Live Data: State Data</h3>
+        <p><a href="/chart?chart_id=5&entity_type=benchmark&start_year=2015&end_year=2015&dimensions=State__CA">CA Average Total Number of Members</a> 
+        <p><a href="/chart?chart_id=2&entity_type=benchmark&start_year=2015&end_year=2015&dimensions=State__CA">CA Total Shares and Deposits</a> 
+        <p><a href="/chart?chart_id=2&entity_type=benchmark&start_year=2015&end_year=2015&dimensions=State__WY">WY Total Shares and Deposits</a> 
+        <h3>Competitors</h3>
+        <p><a href="/wp-chart?report=1&entity_id=24212&entity_type=credit_union&show_competitors=10&end_year=2020">Competitors</a> 
+    </div>
+    <div class="col-md-4">
+        <h3>NCUA Benchmarks</h3>
+        <p><a href="/chart?chart_id=14&entity_type=benchmark&start_year=2015&end_year=2020">Average Total Number of Members</a> 
+        <p><a href="/chart?chart_id=15&entity_type=benchmark&start_year=2015&end_year=2020">Average Total amount of loans and leases</a> 
+        <p><a href="/chart?chart_id=16&entity_type=benchmark&start_year=2015&end_year=2020">Average Total number of loans and leases</a> 
+        <p><a href="/chart?chart_id=17&entity_type=benchmark&start_year=2015&end_year=2020">Average Total shares and deposits</a> 
+        <p><a href="/chart?chart_id=18&entity_type=benchmark&start_year=2015&end_year=2020">Average Total assets &amp; liabilities</a> 
+        <p><a href="/chart?chart_id=19&entity_type=benchmark&start_year=2015&end_year=2020">Average Total oustanding loans</a> 
+    </div>
+    <div class="col-md-4">
+        <h3>Google Analytics: Benchmark Snapshot (ie NOT daily)</h3>
+        <p><a href="/chart?chart_id=11&entity_type=benchmark">Sample Page Load Times by User Type</a> 
+        <p><a href="/chart?chart_id=12&entity_type=benchmark">Sample Page Load Times by Home Page</a> 
+        <p><a href="/chart?chart_id=13&entity_type=benchmark">Sample Sessions by Traffic Source</a> 
+        <h3>Google Analytics: Benchmark Daily</h3>
+        <p><a href="/chart?chart_id=10&entity_type=benchmark">Sample Page Load Times by Viewport</a> 
+        <h3>Google Analytics: CU Snapshot (ie NOT daily)</h3>
+        <p><a href="/chart?chart_id=11&entity_id=24212&entity_type=credit_union">Sample Page Load Times by User Type</a> 
+        <p><a href="/chart?chart_id=12&entity_id=24212&entity_type=credit_union">Sample Page Load Times by Home Page</a> 
+        <p><a href="/chart?chart_id=13&entity_id=24212&entity_type=credit_union">Sample Sessions by Traffic Source</a> 
+        <h3>Google Analytics: CU Daily</h3>
+        <p><a href="/chart?chart_id=10&entity_type=credit_union&entity_id=24212">Sample Page Load Times by Viewport</a> 
+    </div>
+    <div class="col-md-4">
+        <h3>Reports</h3>
+        <p><a href="/wp-chart?entity_id=24212&end_year=2020">Sample report for loans and leases</a></p>
+        <h3>Combo</h3>
+        <p><a href="/combo-chart?start_year=2018&end_year=2020&entity_id=24212&chart_one_id=10">Sample report for loans and leases</a></p>
+    </div>
+</div>
+
+{% endblock %}

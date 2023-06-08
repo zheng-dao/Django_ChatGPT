@@ -1,0 +1,54 @@
+{% load i18n static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">
+
+
+{% block basestyle%}
+{% comment %} <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" /> {% endcomment %}
+<link rel="stylesheet" type="text/css" href="{% static 'app/content/custom-header.css' %}" />
+<style>
+.header {
+    padding:10px;
+}
+
+</style>
+{% endblock basestyle %}
+
+<div id="container">
+    <!-- Container -->
+    {% block custom_header %}
+    <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="header">
+            {% if not is_popup %}
+            <!-- Header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h1 id="site-name">
+                    <a href="/" class="navbar-brand"><img alt="Finalytics.ai"
+                            src="{% static "app/images/Finalytics_logo_white_05-02-21.svg" %}">
+                    </a>
+                </h1>
+            </div>
+            <div class="navbar-collapse collapse">
+                {% include 'app/primary-navbar.html' %}
+                {% include 'app/loginpartial.html' %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    {% endblock custom_header %}
+</div>
+<!-- END Container -->
+{% block basejs%}
+    <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+    <!-- <script src="{% static 'app/scripts/bootstrap.js' %}"></script> -->
+    <script src="{% static 'app/scripts/respond.js' %}"></script>
+    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+    
+{% endblock basejs%}
+</body>
+</html>

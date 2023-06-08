@@ -1,0 +1,51 @@
+{% extends "admin/base_atlantis.html" %}
+{% load static %}
+{% block endheadscripts %}
+<style>
+    li {
+        list-style-type: none;
+    }
+    ul {
+        padding-left: 0;
+    }
+</style>
+{% endblock %}
+{% block panel-header %}
+<div class="page-navs bg-black py-3 pr-2">
+    <div class="card-title fw-bold">
+        Branch Events
+    </div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+<div class="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title">Events List</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <ul>
+                                    <li><a href="{% url 'create_branch_event' %}">Branch Opening</a></li>
+                                    <li><a href="{% url 'create_branch_event' %}">Branch Closing</a></li>
+                                    <li><a href="javascript:void(0)">Branch Limited Hours</a></li>
+                                    <li><a href="{% url 'create_branch_event' %}">Branch Workshops</a></li>
+                                    <li><a href="javascript:void(0)">Branch Community Events/Presence</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block endscripts %}
+{% endblock %}

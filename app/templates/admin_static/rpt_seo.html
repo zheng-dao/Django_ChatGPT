@@ -1,0 +1,1723 @@
+{% extends "admin_static/base_atlantis.html" %}
+{% load i18n static %}
+
+{% block panel-inner %}
+
+<!-- Get Header -->
+
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+    <script type='text/javascript' src="{% static 'app/wp-content/themes/extractable/js/vendor/jquery-2.2.4.min.js' %}"></script>
+    <style type="text/css" id="wp-custom-css">
+        .new_style_hero .row {
+            position: relative;
+        }
+    </style>
+
+    <link rel='stylesheet' id='custom-css' href="{% static 'app/wp-content/themes/extractable/custom.css' %}" type='text/css' media='all' />
+
+
+
+
+    <!-- /Optimize -->
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+
+    <script src="https://code.highcharts.com/modules/funnel.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script src="https://code.highcharts.com/modules/dumbbell.js"></script>
+
+    <script src="https://code.highcharts.com/maps/modules/map.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.6/proj4.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/marker-clusters.js"></script>
+    <script src="https://code.highcharts.com/modules/coloraxis.js"></script>
+    <script src="https://code.highcharts.com/mapdata/countries/us/us-all-all.js"></script>
+    <script src="https://code.highcharts.com/mapdata/countries/us/us-fl-all.js"></script>
+    <script src="https://code.highcharts.com/modules/sankey.js"></script>
+
+
+
+
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <style rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css" media="screen"></style>
+
+    <style>
+
+        .highcharts-background {
+            fill: #556d79;
+        }
+
+        .highcharts-container {
+            /* #1072 */
+
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            font-family: Roboto, Arial, Helvetica, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            font-size: 12px;
+            user-select: none;
+        }
+    </style>
+
+    <script>
+        var url_json_counties = "{% static 'app/data/counties_population.json' %}";
+        var fl_search_volume = "{% static 'app/data/fl_search_volume.json' %}";
+        //var url_json_counties = 'https://staging4.finalytics.ai/wp-content/themes/extractable/counties_population.json';
+        //var fl_search_volume = 'https://staging4.finalytics.ai/wp-content/themes/extractable/fl_search_volume.json';
+    </script>
+
+
+
+
+</head>
+
+
+
+<body class="page-template page-template-templates page-template-template-finalytics page-template-templatestemplate-finalytics-php page page-id-7190">
+
+    <!-- Finalytcs Header -->
+
+
+
+
+
+    <main class="main-fluid">
+
+        <!-- Download Report Form -->
+
+
+        <style>
+            .desktoponly p {
+                color: white;
+            }
+
+            .desktoponly h2 {
+                margin-bottom: 0px;
+            }
+
+            .report-title::before {
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: url({% static 'app/wp-content/uploads/Fill-1.png' %}); 
+                mix-blend-mode: normal;
+                opacity: 0.87;
+                transform: rotate( -180deg );
+                position: absolute;
+                left: 0;
+                top: 0;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            .report-title .select_link {
+                font-size: 14px;
+                padding: 3px;
+            }
+
+            .main-fluid .report-title {
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+
+            .container {
+                width: 100%;
+            }
+        </style>
+
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+        <style>
+            .seo-report .title-area h3 {
+                font-size: 24px;
+                color: #00419B;
+                font-family: 'IBM Plex Sans';
+                line-height: 28px;
+                font-weight: 300;
+                letter-spacing: -0.46px;
+            }
+
+            .seo-report .slider_wrapper {
+                display: flex;
+                align-items: center;
+            }
+
+                .seo-report .slider_wrapper .slider_area {
+                    width: 85%;
+                    margin-right: 20px;
+                }
+
+                .seo-report .slider_wrapper #slider_numner {
+                    width: 10%;
+                }
+
+            .seo-report .slider_label {
+                display: flex;
+                margin-top: 15px;
+                width: 85%;
+                justify-content: space-between;
+                /* width: 101%; */
+                margin-left: -1%;
+            }
+
+                .seo-report .slider_label p {
+                    margin-bottom: 0px;
+                    font-family: 'IBM Plex Sans';
+                    font-size: 12px;
+                    font-weight: 500;
+                    line-height: 16px;
+                }
+
+            .seo-report .ui-slider-horizontal .ui-slider-handle {
+                top: -.4em;
+                border: 3px solid #45A0E3 !important;
+                border-radius: 50%;
+                width: 25px;
+                height: 25px;
+            }
+
+            .seo-report .day {
+                border-left: 1px solid #D9ECF9;
+                margin-left: 92px;
+                padding-left: 6px;
+                position: relative;
+                height: 32px;
+            }
+
+                .seo-report .day p {
+                    margin-bottom: 0px;
+                    position: absolute;
+                    font-size: 12px;
+                    top: -10px;
+                    left: 10px;
+                    font-weight: 500;
+                    font-family: 'IBM Plex Sans';
+                    line-height: 16px;
+                    color: #45A0E3;
+                }
+
+            .seo-report .ui-widget.ui-widget-content {
+                border: none;
+                background: rgb(69 160 227 / 20%);
+                border-radius: 0px;
+            }
+
+            .seo-report .ui-slider-horizontal .ui-slider-range-min {
+                background: #45A0E3;
+                border-radius: 0px;
+            }
+
+            /* .seo-report .chart.v5 {
+                display: block !important;
+            } */
+
+            .seo-report .list-page h4 {
+                font-size: 14px;
+                color: #00419B;
+                font-family: 'IBM Plex Sans';
+                line-height: 16px;
+                font-weight: 600;
+            }
+
+            .seo-report .list-page {
+                padding-left: 20px;
+            }
+
+                .seo-report .list-page ul {
+                    list-style: none;
+                    padding-left: 0px;
+                }
+
+                    .seo-report .list-page ul li {
+                        font-size: 14px;
+                        color: #333333;
+                        font-family: 'IBM Plex Sans';
+                        line-height: 15px;
+                        font-weight: 500;
+                    }
+
+            .seo-report {
+                background-color: #F0F0F0;
+                padding-bottom: 80px;
+            }
+
+                .seo-report .img-fluid {
+                    width: 100%;
+                }
+
+                .seo-report .chart-area {
+                    background-color: #fff;
+                    height: 100%;
+                    padding: 17px 26px 2px;
+                    border-radius: 4px;
+                    box-shadow: 0px 16px 15px 0px rgba(0,0,0,0.10);
+                    -webkit-box-shadow: 0px 16px 15px 0px rgba(0,0,0,0.10);
+                    -moz-box-shadow: 0px 16px 15px 0px rgba(0,0,0,0.10);
+                }
+
+                    .seo-report .chart-area.v2 {
+                        height: 100%;
+                        padding-bottom: 20px;
+                    }
+
+                    .seo-report .chart-area .chart {
+                        display: flex;
+                        height: 250px;
+                    }
+
+                        .seo-report .chart-area .chart .chart-container {
+                            height: 150px !important;
+                        }
+
+                        .seo-report .chart-area .chart .chart-wrapper:last-of-type {
+                            margin-right: 0px;
+                        }
+
+                        .seo-report .chart-area .chart .chart-wrapper {
+                            margin-right: 44px;
+                            width: 150px;
+                        }
+
+                .seo-report .top-landing h4 {
+                    font-size: 14px;
+                    font-family: 'IBM Plex Sans';
+                    font-weight: 600;
+                    line-height: 16px;
+                    color: #00419B;
+                }
+
+                .seo-report .chart-area .chart .chart-wrapper h4 {
+                    font-size: 14px;
+                    font-family: 'IBM Plex Sans';
+                    line-height: 18px;
+                    font-weight: 600;
+                    text-align: center;
+                    color: #00419B;
+                }
+
+
+                .seo-report .img-shadow {
+                    box-shadow: 0px 16px 15px 0px rgba(0,0,0,0.10);
+                    -webkit-box-shadow: 0px 16px 15px 0px rgba(0,0,0,0.10);
+                    -moz-box-shadow: 0px 16px 15px 0px rgba(0,0,0,0.10);
+                }
+
+                .seo-report .title-area {
+                    margin-top: 36px;
+                    margin-bottom: 32px;
+                }
+
+                .seo-report .chart-area .title-area {
+                    margin-top: 0px;
+                }
+
+                .seo-report .mb-3 {
+                    margin-bottom: 27px;
+                }
+
+                .seo-report table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+
+                    .seo-report table thead {
+                        box-shadow: 0px 1px 15px 0px rgba(0,0,0,0.10);
+                        -webkit-box-shadow: 0px 1px 15px 0px rgba(0,0,0,0.10);
+                        -moz-box-shadow: 0px 1px 15px 0px rgba(0,0,0,0.10);
+                    }
+
+                        .seo-report table thead th {
+                            border: none;
+                            padding: 20px 0px;
+                            font-size: 14px;
+                            font-family: 'IBM Plex Sans';
+                            font-weight: 600;
+                            line-height: 16px;
+                            color: #00419B;
+                            background: #fff;
+                        }
+
+                .seo-report .margin-bott {
+                    margin-bottom: 27px;
+                }
+
+                .seo-report table tbody tr {
+                    border-bottom: 1px solid #BCBCBC;
+                }
+
+                    .seo-report table tbody tr td {
+                        font-size: 14px;
+                        font-family: 'IBM Plex Sans';
+                        line-height: 15px;
+                        color: #333333;
+                        padding: 14px 0px;
+                        font-weight: 500;
+                    }
+
+                .seo-report table thead th:nth-child(1) {
+                    text-align: left;
+                    padding-left: 10px;
+                    border-top-left-radius: 4px;
+                    border-bottom-left-radius: 4px;
+                }
+
+                .seo-report table thead th:nth-child(2) {
+                    text-align: center;
+                }
+
+                .seo-report table thead th:nth-child(3) {
+                    text-align: right;
+                    padding-right: 10px;
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                }
+
+                .seo-report table tbody tr td:nth-child(1) {
+                    text-align: left;
+                    padding-left: 10px;
+                }
+
+                .seo-report table tbody tr td:nth-child(2) {
+                    text-align: center;
+                    font-weight: 400;
+                    font-size: 18px;
+                }
+
+                .seo-report table tbody tr td:nth-child(3) {
+                    text-align: right;
+                    padding-right: 10px;
+                    font-weight: 400;
+                    font-size: 18px;
+                }
+
+            @media only screen and (max-width: 1199.98px) {
+                .seo-report .slider_label {
+                    justify-content: space-between;
+                }
+
+                    .seo-report .slider_label p {
+                        margin-right: 0px !important;
+                    }
+
+                .seo-report .slider_label {
+                    display: none;
+                }
+            }
+
+            @media only screen and (max-width: 767.98px) {
+                .seo-report .title-area h3 {
+                    font-size: 24px;
+                }
+
+                .seo-report .block-mobile {
+                    display: block !important;
+                    min-height: 500px;
+                    height: auto !important;
+                }
+
+                .seo-report .chart-area .chart .chart-wrapper {
+                    margin-right: 0px;
+                }
+
+                .seo-report .chart-area .chart .chart-container {
+                    margin: 0 auto;
+                }
+            }
+
+            @media only screen and (max-width: 991.98px) {
+                .w-100 {
+                    width: 100%;
+                }
+
+                .seo-report .img-shadow {
+                    margin-bottom: 27px;
+                }
+
+                .seo-report .v3 {
+                    margin-bottom: 30px;
+                }
+
+                .seo-report .v2 {
+                    margin-bottom: 30px;
+                    height: auto !important;
+                }
+            }
+        </style>
+
+        <section class="seo-report">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-xs-12 margin-bott">
+                        <div class="chart-area">
+                            <div class="title-area">
+                                <h3>SEO Opportunities</h3>
+                            </div>
+                            <div class="chart block-mobile">
+                                <div class="chart-wrapper">
+                                    <div id="d-a" class="chart-container" style="min-width: 50px;margin: 0px auto;overflow: hidden;">
+                                    </div>
+                                    <h4>Domain Authority</h4>
+                                </div>
+                                <div class="chart-wrapper">
+                                    <div id="backlinks" class="chart-container">
+                                    </div>
+                                    <h4>Backlink Rank</h4>
+                                </div>
+                                <div class="chart-wrapper">
+                                    <div id="avg" class="chart-container">
+                                    </div>
+                                    <h4>Avg Page Load Time</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-xs-12 margin-bott">
+                        <div class="chart-area v3">
+                            <div class="title-area">
+                                <h3>Forecasted Lift</h3>
+                            </div>
+                            <div class="day">
+                                <p>YOU <br>60/Day</p>
+                            </div>
+                            <div class="slider_wrapper">
+                                <div class="slider_area">
+                                    <div id="slider"></div>
+                                </div>
+                                <input type="number" name="slider" min="20" value="20" id="slider_numner">
+                            </div>
+                            <div class="slider_label">
+                                <!-- <p style="margin-right: 26px">20</p>
+                                <p style="margin-right: 26px">40</p>
+                                <p style="margin-right: 26px">60</p>
+                                <p style="margin-right: 25px">80</p>
+                                <p style="margin-right: 25px">100</p>
+                                <p style="margin-right: 25px">120</p>
+                                <p style="margin-right: 19px">140</p>
+                                <p style="margin-right: 19px">160</p>
+                                <p style="margin-right: 19px">180</p>
+                                <p style="margin-right: 19px">200</p>
+                                <p style="margin-right: 19px">220</p>
+                                <p style="margin-right: 19px">240</p> -->
+                                <p>20</p>
+                                <p style="margin-left:-35px;">120</p>
+                                <p style="margin-right: -10px;">240</p>
+                            </div>
+
+                            <div class="chart v5">
+                                <div id="lift" style="width: 100%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-xs-12">
+                        <div class="chart-area v2">
+                            <div class="title-area">
+                                <h3>Total Search Volume</h3>
+                            </div>
+                            <div id="total-search" class="chart-total-search w-100">
+                            </div>
+                            <div class="list-page">
+                                <h4>My Top Landing Pages</h4>
+                                <ul>
+                                    <li>1. www.mycu.com/homepage</li>
+                                    <li>2. www.mycu.com/checkinge</li>
+                                    <li>3. www.mycu.com/savings</li>
+                                    <li>4. www.mycu.com/creditanddebit</li>
+                                    <li>5. www.mycu.com/retirement</li>
+                                    <li>6. www.mycu.com/business</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-12 col-xs-12">
+                        <div class="chart-area v2 w-100">
+                            <div class="title-area">
+                                <h3>Search Volume by Area</h3>
+                            </div>
+                            <div id="maps-chart" class="chart-map w-100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 w-100 col-md-12 col-xs-12">
+                        <div class="title-area">
+                            <h3>Top Keywords in Your Locations</h3>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr class="change-head">
+                                </tr>
+                            </thead>
+                            <tbody class="change">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <script>
+            jQuery(document).ready(function () {
+                jQuery.ajaxSetup({
+                    headers: {
+                        "Authorization": "Token 0c291abd1e60cb4213c3de58dd203e1b46a41594"
+                    }
+                }); function setDivHeight() {
+                    var div = jQuery('.chart-container');
+                    div.height(div.width() * 0.75);
+                }
+                function numberWithCommas(x) {
+                    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                }
+                jQuery.ajax({
+                    type: 'GET',
+                    url: `/api/v1/reports/13/?entity_id=68490&entity_type=credit_union&start_year=2021`,
+                    //url: 'https://finalyticsdata.com/api/v1/domains/?name=' + checkDomain[0],
+                    success: function (response) {
+                        console.log(response);
+                        let chartDA = response.chart[0].chart_data;
+                        Highcharts.setOptions({
+                            lang: {
+                                thousandsSep: ','
+                            }
+                        });
+
+                        response.chart[1].chart_data.series = [{ data: [[201]], color: "#209af1" }];
+                        let chartBk = response.chart[1].chart_data
+                        Highcharts.setOptions({
+                            lang: {
+                                thousandsSep: ','
+                            }
+                        });
+
+                        response.chart[2].chart_data.series = [{ data: [[53]], color: "#209af1" }];
+                        let chartAvg = response.chart[2].chart_data
+                        Highcharts.setOptions({
+                            lang: {
+                                thousandsSep: ','
+                            }
+                        });
+
+
+                        let data_table = response.chart[6].chart_data.data ? response.chart[6].chart_data.data : [];
+                        let data_header = response.chart[6].chart_data.headers ? response.chart[6].chart_data.headers : [];
+                        console.log(data_table);
+                        let head_table = jQuery('.change-head');
+                        let body_table = jQuery('.change');
+
+                        if (data_header.length > 0) {
+                            data_header.forEach(function (q) {
+                                head_table.append(`<th>${q}</th>`);
+                            });
+
+                            data_table = data_table.sort(function (a, b) { return b[1] - a[1] });
+
+                            data_table.forEach(function (e) {
+                                let dt3 = e[2];
+                                if (dt3) {
+                                    dt3 = dt3.toFixed(2);
+                                } else {
+                                    dt3 = 0;
+                                }
+
+                                if (e[1] == null) {
+                                    e[1] = 0;
+                                }
+
+                                if (e[1] > 0) {
+                                    e[1] = numberWithCommas(e[1]);
+                                }
+
+                                body_table.append(`
+                                                    <tr>
+                                                    <td>${e[0]}</td>
+                                                    <td>${e[1]}</td>
+                                                    <td>${dt3}</td>
+                                                    </tr>
+                                                `);
+                            });
+                        }
+
+
+
+
+
+                    },
+                    error: function (xhr, status, error) {
+                        console.log('error');
+
+                    }
+                });
+
+                Highcharts.getJSON(
+                    fl_search_volume,
+                    function (data) {
+
+                        /**
+                        * Data parsed from http://www.bls.gov/lau/#tables
+                        *
+                        * 1. Go to http://www.bls.gov/lau/laucntycur14.txt (or similar, updated
+                        *    datasets)
+                        * 2. In the Chrome Developer tools console, run this code:
+                        *    copy(JSON.stringify(document.body.innerHTML.split('\n').filter(function (s) { return s.indexOf('<PUT DATE HERE IN FORMAT e.g. Feb-14>') !== -1; }).map(function (row) { row = row.split('|'); return { code: 'us-' + row[3].trim().slice(-2).toLowerCase() + '-' + row[2].trim(), name: row[3].trim(), value: parseFloat(row[8]) }; })))
+                        * 3. The data is now on your clipboard, paste it below
+                        * 4. Verify that the length of the data is reasonable, about 3300
+                        *    counties.
+                        */
+
+                        var countiesMap = Highcharts.geojson(
+                            Highcharts.maps['countries/us/us-fl-all']
+                        ),
+                            // Extract the line paths from the GeoJSON
+                            lines = Highcharts.geojson(
+                                Highcharts.maps['countries/us/us-fl-all'], 'mapline'
+                            ),
+                            // Filter out the state borders and separator lines, we want these
+                            // in separate series
+                            borderLines = lines.filter(
+                                l => l.properties['hc-group'] === '__border_lines__'
+                            ),
+                            separatorLines = lines.filter(
+                                l => l.properties['hc-group'] === '__separator_lines__'
+                            );
+
+                        // Add state acronym for tooltip
+                        countiesMap.forEach(function (mapPoint) {
+                            mapPoint.name = mapPoint.name + ', ' +
+                                mapPoint.properties['hc-key'].substr(3, 2);
+                        });
+
+                        document.getElementById('maps-chart').innerHTML = 'Rendering map...';
+
+                        // Create the map
+                        setTimeout(function () { // Otherwise innerHTML doesn't update
+                            Highcharts.mapChart('maps-chart', {
+                                chart: {
+                                    borderWidth: 1,
+                                    marginRight: 20 // for the legend
+                                },
+
+                                title: {
+                                    text: ''
+                                },
+                                "exporting": {
+                                    "enabled": false
+                                },
+
+                                legend: {
+                                    layout: 'horizontal',
+                                    align: 'right',
+                                    floating: true,
+                                    backgroundColor: ( // theme
+                                        Highcharts.defaultOptions &&
+                                        Highcharts.defaultOptions.legend &&
+                                        Highcharts.defaultOptions.legend.backgroundColor
+                                    ) || 'rgba(255, 255, 255, 0.85)'
+                                },
+
+                                mapNavigation: {
+                                    enabled: true
+                                },
+
+                                colorAxis: {
+                                    min: 0,
+                                    max: 580270657601,
+                                    tickInterval: 100270657601,
+                                    stops: [[0.25, '#45A0E333'], [.5, '#45A0E3CC'], [.75, '#45A0E3']],
+                                    labels: {
+                                        format: '{value}'
+                                    }
+                                },
+
+                                plotOptions: {
+                                    mapline: {
+                                        showInLegend: false,
+                                        enableMouseTracking: false
+                                    }
+                                },
+
+                                series: [{
+                                    mapData: countiesMap,
+                                    data: data,
+                                    joinBy: ['hc-key', 'code'],
+                                    name: 'County Search Volume',
+
+                                    borderWidth: 0.5,
+                                    states: {
+                                        hover: {
+                                            color: '#45A0E322'
+                                        }
+                                    },
+                                    shadow: false
+                                }, {
+                                    type: 'mapline',
+                                    name: 'State borders',
+                                    data: borderLines,
+                                    color: 'white',
+                                    shadow: false
+                                }, {
+                                    type: 'mapline',
+                                    name: 'Separator',
+                                    data: separatorLines,
+                                    color: 'gray',
+                                    shadow: false
+                                }]
+                            });
+                        }, 0);
+                    }
+                );
+
+                Highcharts.chart("lift",
+                    {
+                        "chart": {
+                            "type": "column",
+                            "backgroundColor": "transparent",
+                            "scrollablePlotArea": {
+                                "minWidth": 0
+                            },
+                            "style": {
+                                "fontFamily": 'IBM Plex Sans'
+                            }
+                        },
+                        "title": {
+                            "text": ""
+                        },
+                        "xAxis": {
+                            "visible": true,
+                            "lineWidth": 0,
+                            "categories": ["App Starts", "App Completes", "Apps Funded", "Annual $ Value"],
+                            "labels": {
+                                "style": {
+                                    "fontSize": '14px',
+                                    "color": "#00419B",
+                                    "fontWeight": 600,
+                                    "fontFamily": "IBM Plex Sans"
+                                }
+                            },
+                        },
+                        "yAxis": {
+                            "visible": false,
+                            "max": 300
+                        },
+                        "legend": {
+                            "enabled": false,
+                        },
+                        "tooltip": {
+                            "shared": true,
+                            "crosshairs": true
+                        },
+                        "series": [
+                            {
+                                "data": [
+                                    10,
+                                    12,
+                                    13,
+                                    14
+                                ],
+                                "color": {
+                                    "linearGradient": { x1: 0, x2: 0, y1: 0, y2: 1 },
+                                    "stops": [
+                                        [0, '#7BCEF3'],
+                                        [1, '#45A0E3'],
+                                    ]
+                                }
+                            },
+                            {
+                                "data": [
+                                    100,
+                                    120,
+                                    130,
+                                    140
+                                ],
+                                "color": "#347EB4"
+                            }
+                        ],
+                        "credits": {
+                            "enabled": false
+                        },
+                        "exporting": {
+                            "enabled": false
+                        },
+                        "plotOptions": {
+                            "series": {
+                                "pointPadding": 16,
+                                "borderWidth": 0,
+                                "pointWidth": 120,
+                                "dataLabels": {
+                                    "enabled": true,
+                                    "crop": false,
+                                    "overflow": "none",
+                                    "format": "{y}K",
+                                    "style": {
+                                        "fontWeight": 300,
+                                        "fontSize": "21px",
+                                        "color": "#FFFFFF",
+                                        "textOutline": false,
+                                    }
+                                },
+                            },
+                            "column": {
+                                "stacking": "normal",
+                                "dataLabels": {
+                                    "enabled": true,
+                                    "color": "#FFFFFF"
+                                }
+                            }
+                        },
+                    },
+                    function (chart) {
+
+                        jQuery("#slider").slider({
+                            range: "min",
+                            value: 1,
+                            min: 20,
+                            max: 240,
+                            step: 1,
+                            slide: function (event, ui) {
+                                // chart.xAxis[0].setExtremes(ui.values[0] - 1960, ui.values[1] - 1960)
+                                var newdata = [];
+                                var curr_data = [10, 12, 13, 14];
+                                var max_data = [100, 120, 130, 140];
+                                // console.log(curr_data);
+                                var newdata2 = [];
+                                curr_data.forEach(function (item, index) {
+                                    let counter = ui.value;
+                                    if (counter > 30) {
+                                        counter = (max_data[index] / 240) * counter;
+                                    } else {
+                                        counter = item + 0.2;
+                                    }
+                                    counter = Math.round(counter);
+                                    console.log(counter);
+
+                                    newdata.push(counter);
+                                })
+                                console.log(newdata);
+                                chart.series[0].setData(newdata);
+                                jQuery('#slider_numner').val(ui.value);
+                            }
+                        });
+
+                        jQuery(document).on('change', '#slider_numner', function () {
+                            let value = jQuery(this).val();
+                            jQuery("#slider").slider("value", value);
+                            var newdata = [];
+                            var curr_data = [10, 12, 13, 14];
+                            var max_data = [100, 120, 130, 140];
+
+                            // console.log(curr_data);
+                            var newdata2 = [];
+                            curr_data.forEach(function (item, index) {
+                                let counter = value;
+                                counter = parseInt(value);
+                                if (counter > 30) {
+                                    counter = (max_data[index] / 240) * counter;
+                                } else {
+                                    counter = item + 0.2;
+                                }
+                                counter = parseInt(counter);
+                                newdata.push(counter);
+                                console.log(counter);
+                            })
+                            // console.log(newdata);
+                            chart.series[0].setData(newdata);
+
+                        })
+
+                    }
+                );
+
+                Highcharts.chart("total-search",
+                    {
+                        "chart": {
+                            "backgroundColor": "transparent",
+
+                        },
+                        "title": {
+                            "text": null
+                        },
+                        "exporting": {
+                            "enabled": false
+                        },
+                        "credits": {
+                            "enabled": false
+                        },
+                        "legend": {
+                            "enabled": false,
+                        },
+                        "series": [
+                            {
+                                "type": "pie",
+                                "size": "100%",
+                                "innerSize": "60%",
+                                "showInLegend": true,
+                                "dataLabels": {
+                                    "enabled": true
+                                },
+                                "data": [
+                                    {
+                                        "name": "",
+                                        "y": 2085780
+                                    },
+                                    {
+                                        "name": "My CU",
+                                        "y": 260293
+                                    }
+                                ]
+                            }
+                        ],
+                        "colors": [
+                            "#d9e2e9",
+                            "#59b1e9"
+                        ]
+                    }
+                );
+
+                // Highcharts.chart("d-a",
+                //     {
+                //         "chart":{
+                //             "type":"solidgauge",
+                //             "backgroundColor": "transparent",
+                //                                 spacingTop: 0,
+                //             spacingLeft: 0,
+                //             spacingRight: 0,
+                //             spacingBottom: 0
+                //         },
+                //         "title":{
+                //             "text":null
+                //         },
+                //         "yAxis":{
+                //             "min":0,
+                //             "max":100,
+                //             "stops":[
+                //             [
+                //                 0.1,
+                //                 "#55BF3B"
+                //             ],
+                //             [
+                //                 0.5,
+                //                 "#DDDF0D"
+                //             ],
+                //             [
+                //                 0.9,
+                //                 "#DF5353"
+                //             ]
+                //             ],
+                //             "lineWidth":0,
+                //             "tickWidth":0,
+                //             "minorTickInterval":null,
+                //             "tickAmount":2,
+                //             "title":{
+                //             "y":-70
+                //             },
+                //             "labels":{
+                //             "y":16
+                //             }
+                //         },
+                //         "credits":{
+                //             "enabled":false
+                //         },
+                //         "series":[
+                //             {
+                //             "data":[
+                //                 [
+                //                     47
+                //                 ]
+                //             ],
+                //             "color":"#209af1"
+                //             }
+                //         ],
+                //         "pane":{
+                //             "center":[
+                //             "50%",
+                //             ],
+                //                     "size": "100%",
+
+                //             "startAngle":-150,
+                //             "endAngle":150,
+                //             "background": [{
+                //                 "backgroundColor": "#f4f4f4",
+                //                 "borderWidth": 0,
+                //                 "innerRadius":"60%",
+                //                 "outerRadius":"100%",
+                //             }],
+                //         },
+                //         "exporting":{
+                //             "enabled":false
+                //         },
+                //         "tooltip":{
+                //             "enabled":false
+                //         },
+                //         "plotOptions":{
+                //             "solidgauge":{
+                //             "dataLabels":{
+                //                 "y":5,
+                //                 "borderWidth":0,
+                //                 "useHTML":false
+                //             }
+                //             }
+                //         },
+                //         "xAxis":{
+                //             "categories":[
+                //             "domain_authority"
+                //             ]
+                //         },
+                //     }
+                // );
+
+                // Highcharts.chart("backlinks",
+                //     {
+                //         "chart":{
+                //             "type":"solidgauge",
+                //             "backgroundColor":"transparent",
+                //             spacingTop: 0,
+                //             spacingLeft: 0,
+                //             spacingRight: 0,
+                //             spacingBottom: 0
+                //         },
+                //         "title":{
+                //             "text":null
+                //         },
+                //         "yAxis":{
+                //             "min":0,
+                //             "max":4500,
+                //             "stops":[
+                //             [
+                //                 0.1,
+                //                 "#55BF3B"
+                //             ],
+                //             [
+                //                 0.5,
+                //                 "#DDDF0D"
+                //             ],
+                //             [
+                //                 0.9,
+                //                 "#DF5353"
+                //             ]
+                //             ],
+                //             "lineWidth":0,
+                //             "tickWidth":0,
+                //             "minorTickInterval":null,
+                //             "tickAmount":2,
+                //             "title":{
+                //             "y":-70
+                //             },
+                //             "labels":{
+                //             "y":16
+                //             },
+                //         },
+                //         "credits":{
+                //             "enabled":false
+                //         },
+                //         "series":[
+                //             {
+                //             "data":[
+                //                 [
+                //                     201
+                //                 ]
+                //             ],
+                //             "color":"#209af1"
+                //             }
+                //         ],
+                //         "pane":{
+                //             "center":[
+                //             "50%",
+                //             ],
+                //                     "size": "100%",
+
+                //             "startAngle":-150,
+                //             "endAngle":150,
+                //             "background": [{
+                //                 "backgroundColor": "#f4f4f4",
+                //                 "borderWidth": 0,
+                //                 "innerRadius":"60%",
+                //                 "outerRadius":"100%",
+                //             }],
+                //         },
+                //         "exporting":{
+                //             "enabled":false
+                //         },
+                //         "tooltip":{
+                //             "enabled":false
+                //         },
+                //         "plotOptions":{
+                //             "solidgauge":{
+                //             "dataLabels":{
+                //                 "y":5,
+                //                 "borderWidth":0,
+                //                 "useHTML":false
+                //             }
+                //             }
+                //         },
+                //         "xAxis":{
+                //             "categories":[
+                //             "external_pages_to_root_domain_rank"
+                //             ]
+                //         },
+                //     }
+                // );
+
+                // Highcharts.chart("avg",
+                //     {
+                //         "chart":{
+                //             "type":"solidgauge",
+                //             "backgroundColor": "transparent",
+                //                                 spacingTop: 0,
+                //             spacingLeft: 0,
+                //             spacingRight: 0,
+                //             spacingBottom: 0
+                //         },
+                //         "title":{
+                //             "text":null
+                //         },
+                //         "yAxis":{
+                //             "min":0,
+                //             "max":100,
+                //             "stops":[
+                //             [
+                //                 0.1,
+                //                 "#55BF3B"
+                //             ],
+                //             [
+                //                 0.5,
+                //                 "#DDDF0D"
+                //             ],
+                //             [
+                //                 0.9,
+                //                 "#DF5353"
+                //             ]
+                //             ],
+                //             "lineWidth":0,
+                //             "tickWidth":0,
+                //             "minorTickInterval":null,
+                //             "tickAmount":2,
+                //             "title":{
+                //             "y":-70
+                //             },
+                //             "labels":{
+                //             "y":16
+                //             }
+                //         },
+                //         "credits":{
+                //             "enabled":false
+                //         },
+                //         "series":[
+                //             {
+                //             "data":[
+                //                 [
+                //                     53
+                //                 ]
+                //             ],
+                //             "color":"#209af1"
+                //             }
+                //         ],
+                //         "pane":{
+                //         "size": "100%",
+                //             "center":[
+                //             "50%"
+                //             ],
+                //             "startAngle":-150,
+                //             "endAngle":150,
+                //             "background": [{
+                //                 "backgroundColor": "#f4f4f4",
+                //                 "borderWidth": 0,
+                //                 "innerRadius":"60%",
+                //                 "outerRadius":"100%",
+                //             }],
+                //         },
+                //         "exporting":{
+                //             "enabled":false
+                //         },
+                //         "tooltip":{
+                //             "enabled":false
+                //         },
+                //         "plotOptions":{
+                //             "solidgauge":{
+                //             "dataLabels":{
+                //                 "y":5,
+                //                 "borderWidth":0,
+                //                 "useHTML":false
+                //             }
+                //             }
+                //         },
+                //         "xAxis":{
+                //             "categories":[
+                //             "alexa_avgPageLoadTime_percentile"
+                //             ]
+                //         },
+                //     }
+                // );
+
+                Highcharts.chart("d-a",
+                    {
+                        "yAxis": {
+                            "min": 0,
+                            "max": 100,
+                            "stops": [
+                                [
+                                    0.1,
+                                    "#55BF3B"
+                                ],
+                                [
+                                    0.5,
+                                    "#DDDF0D"
+                                ],
+                                [
+                                    0.9,
+                                    "#DF5353"
+                                ]
+                            ],
+                            "lineWidth": 0,
+                            "tickWidth": 0,
+                            "minorTickInterval": null,
+                            "tickAmount": 2,
+                            "title": {
+                                "y": -70
+                            },
+                            "labels": {
+                                "y": 16
+                            }
+                        },
+                        "credits": {
+                            "enabled": false
+                        },
+                        "series": [
+                            {
+                                "data": [
+                                    [
+                                        47
+                                    ]
+                                ],
+                                "color": "#209af1"
+                            }
+                        ],
+                        "chart": {
+                            "type": "solidgauge"
+                        },
+                        "title": {
+                            "text": null
+                        },
+                        "pane": {
+                            "center": [
+                                "50%",
+                                "85%"
+                            ],
+                            "size": "100%",
+                            "startAngle": -90,
+                            "endAngle": 90,
+                            "background": {
+                                "innerRadius": "60%",
+                                "outerRadius": "100%",
+                                "shape": "arc"
+                            }
+                        },
+                        "exporting": {
+                            "enabled": false
+                        },
+                        "tooltip": {
+                            "enabled": false
+                        },
+                        "plotOptions": {
+                            "solidgauge": {
+                                "dataLabels": {
+                                    "y": 5,
+                                    "borderWidth": 0,
+                                    "useHTML": false
+                                }
+                            }
+                        },
+                        "xAxis": {
+                            "categories": [
+                                "domain_authority"
+                            ]
+                        },
+                        "colors": [
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920",
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920",
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920",
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920",
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920",
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920"
+                        ]
+                    }
+                );
+
+                Highcharts.chart("backlinks",
+                    {
+                        "yAxis": {
+                            "min": 0,
+                            "max": 4500,
+                            "stops": [
+                                [
+                                    0.1,
+                                    "#55BF3B"
+                                ],
+                                [
+                                    0.5,
+                                    "#DDDF0D"
+                                ],
+                                [
+                                    0.9,
+                                    "#DF5353"
+                                ]
+                            ],
+                            "lineWidth": 0,
+                            "tickWidth": 0,
+                            "minorTickInterval": null,
+                            "tickAmount": 2,
+                            "title": {
+                                "y": -70
+                            },
+                            "labels": {
+                                "y": 16
+                            },
+                            "reversed": true
+                        },
+                        "credits": {
+                            "enabled": false
+                        },
+                        "series": [
+                            {
+                                "data": [
+                                    [
+                                        0
+                                    ]
+                                ],
+                                "color": "#209af1"
+                            }
+                        ],
+                        "chart": {
+                            "type": "solidgauge"
+                        },
+                        "title": {
+                            "text": null
+                        },
+                        "pane": {
+                            "center": [
+                                "50%",
+                                "85%"
+                            ],
+                            "size": "100%",
+                            "startAngle": -90,
+                            "endAngle": 90,
+                            "background": {
+                                "innerRadius": "60%",
+                                "outerRadius": "100%",
+                                "shape": "arc"
+                            }
+                        },
+                        "exporting": {
+                            "enabled": false
+                        },
+                        "tooltip": {
+                            "enabled": false
+                        },
+                        "plotOptions": {
+                            "solidgauge": {
+                                "dataLabels": {
+                                    "y": 5,
+                                    "borderWidth": 0,
+                                    "useHTML": false
+                                }
+                            }
+                        },
+                        "xAxis": {
+                            "categories": [
+                                "external_pages_to_root_domain_rank"
+                            ]
+                        },
+                        "colors": [
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920",
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920",
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920",
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920",
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920",
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920"
+                        ]
+                    }
+                );
+
+                Highcharts.chart("avg",
+                    {
+                        "yAxis": {
+                            "min": 0,
+                            "max": 100,
+                            "stops": [
+                                [
+                                    0.1,
+                                    "#55BF3B"
+                                ],
+                                [
+                                    0.5,
+                                    "#DDDF0D"
+                                ],
+                                [
+                                    0.9,
+                                    "#DF5353"
+                                ]
+                            ],
+                            "lineWidth": 0,
+                            "tickWidth": 0,
+                            "minorTickInterval": null,
+                            "tickAmount": 2,
+                            "title": {
+                                "y": -70
+                            },
+                            "labels": {
+                                "y": 16
+                            }
+                        },
+                        "credits": {
+                            "enabled": false
+                        },
+                        "series": [
+                            {
+                                "data": [
+                                    [
+                                        null
+                                    ]
+                                ],
+                                "color": "#209af1"
+                            }
+                        ],
+                        "chart": {
+                            "type": "solidgauge"
+                        },
+                        "title": {
+                            "text": null
+                        },
+                        "pane": {
+                            "center": [
+                                "50%",
+                                "85%"
+                            ],
+                            "size": "100%",
+                            "startAngle": -90,
+                            "endAngle": 90,
+                            "background": {
+                                "innerRadius": "60%",
+                                "outerRadius": "100%",
+                                "shape": "arc"
+                            }
+                        },
+                        "exporting": {
+                            "enabled": false
+                        },
+                        "tooltip": {
+                            "enabled": false
+                        },
+                        "plotOptions": {
+                            "solidgauge": {
+                                "dataLabels": {
+                                    "y": 5,
+                                    "borderWidth": 0,
+                                    "useHTML": false
+                                }
+                            }
+                        },
+                        "xAxis": {
+                            "categories": [
+                                "alexa_avgPageLoadTime_percentile"
+                            ]
+                        },
+                        "colors": [
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920",
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920",
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920",
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920",
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920",
+                            "#209af1",
+                            "#84c586",
+                            "#00429b",
+                            "#7793db",
+                            "#a8cfe5",
+                            "#7497aa",
+                            "#c58484",
+                            "#dba377",
+                            "#aa8674",
+                            "#f16920"
+                        ]
+                    }
+                );
+
+                setDivHeight();
+            });
+        </script>
+
+
+
+
+    </main>
+
+
+
+
+</body>
+</html>
+
+{% endblock %}

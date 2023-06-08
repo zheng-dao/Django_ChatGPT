@@ -1,0 +1,310 @@
+{% load static %}
+{% load tags %}
+<div class="sidebar sidebar-style-2" data-background-color="dark2">
+    <div class="sidebar-wrapper scrollbar scrollbar-inner">
+        <div class="sidebar-content">
+            <div class="user">
+                <div class="avatar-sm float-left mr-2">
+                    {% comment %}<img src="{% static 'app/assets/img/profile.jpg' %}" alt="..." class="avatar-img rounded-circle">{% endcomment %}
+                    <i class="fas fa-user-circle profile_img" style="font-size:40px;"></i>
+                </div>
+                <div class="info">
+                    <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+                        <span>
+                            {{ request.user.first_name|default:'-' }} 
+                            <span class="user-level" dd="{{ is_fin_employee }}">
+                            {% if is_fin_employee and cu_id and cu_id != 'all' %}
+                                {{ company.name }}
+                            {% elif request.user|has_group:"finalytics_INTERNAL_personalization_admin,finalytics_INTERNAL_personalization_staff" and "cu_id" in request.session and request.session.cu_id %}
+                                {{ request.session.co.name }}
+                            {% else %}
+                                {% if request.user.is_superuser %}
+                                    Super Admin
+                                {% elif request.user.groups.first.name %}
+                                    {% if 'admin' in request.user.groups.first.name %}
+                                        Administrator
+                                    {% else %}
+                                        Basic Access
+                                    {% endif %}
+                                {% else %}
+                                    Basic Access
+                                {% endif %}
+                            {% endif %}
+                            
+                            
+                            </span>
+                            <span class="caret"></span>
+                        </span>
+                    </a>
+                    <div class="clearfix"></div>
+
+                    <div class="collapse in" id="collapseExample">
+                        <ul class="nav">
+                            <li>
+                                <a href="/admin/auth/user/{{ request.user.id }}/change">
+                                    <span class="link-collapse">Edit Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/accounts/password/change/">
+                                    <span class="link-collapse">Change Password</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/account/two_factor/">
+                                    <span class="link-collapse">Security Settings</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav nav-primary">
+                {% if request.user|has_group:"finalytics_INTERNAL_personalization_admin,finalytics_INTERNAL_personalization_staff" and "cu_id" in request.session or is_fin_employee %}
+                {% comment %}{% if is_fin_employee %}{% endcomment %}
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#clients" class="collapsed" aria-expanded="false">
+                        <i class="fas fa-building"></i>
+                        <p>Clients</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="clients">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ request.path }}?cu_id=all">
+                                    <span class="sub-item">View All</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ request.path }}?cu_id=cscu">
+                                    <span class="sub-item">CSCU</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ request.path }}?cu_id=vys">
+                                    <span class="sub-item">Easterly</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ request.path }}?cu_id=gown">
+                                    <span class="sub-item">Georgia's Own</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ request.path }}?cu_id=glbl">
+                                    <span class="sub-item">Global</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ request.path }}?cu_id=lfcu">
+                                    <span class="sub-item">LFCU</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ request.path }}?cu_id=sffire">
+                                    <span class="sub-item">SF Fire</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ request.path }}?cu_id=uccu">
+                                    <span class="sub-item">UCCU</span>
+                                </a>
+                            <li>
+                                <a href="{{ request.path }}?cu_id=visions">
+                                    <span class="sub-item">Visions</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                        <i class="fas fa-home"></i>
+                        <p>AI Settings</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="dashboard">
+                        <ul class="nav nav-collapse">
+                        </ul>
+                    </div>
+                </li>
+                <!--<li class="nav-section">
+        <span class="sidebar-mini-icon">
+            <i class="fa fa-ellipsis-h"></i>
+        </span>
+        <h4 class="text-section">Personalization Engine</h4>
+    </li>-->
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#base">
+                        <i class="fas fa-layer-group"></i>
+                        <p>AI Scenarios</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="base">
+                        <ul class="nav nav-collapse">
+
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#sidebarLayouts">
+                        <i class="far fa-sticky-note"></i>
+                        <p>Content</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="sidebarLayouts">
+                        <ul class="nav nav-collapse">
+                            
+                            <li>
+                                <a href="{% url 'generate-copy' %}">
+                                    <span class="sub-item">Generate Copy</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#forms">
+                        <i class="far fa-chart-bar"></i>
+                        <p>Analytics</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="forms">
+                        <ul class="nav nav-collapse">
+                        </ul>
+                    </div>
+                </li>
+                {% comment %}{% if is_fin_employee or 'personalization_admin' in user_groups %}{% endcomment %}
+                {% if request.user|has_group:"finalytics_INTERNAL_personalization_admin,finalytics_INTERNAL_personalization_staff,personalization_admin" %}
+                    <li class="nav-item">
+                        <a data-toggle="collapse" href="#users">
+                            <i class="fas fa-user-friends"></i>
+                            <p>User Management</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="users">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="/admin/auth/user/">
+                                        <span class="sub-item">Users &amp; Permissions</span>
+                                    </a>
+                                </li>
+                            
+                                <li>
+                                    <a href="/admin/auth/user/add/">
+                                        <span class="sub-item">Add a User</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#tables">
+                        <i class="fas fa-table"></i>
+                        <p>Data &amp; Integrations</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="tables">
+                        <ul class="nav nav-collapse">
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#maps">
+                        <i class="fas fa-question"></i>
+                        <p>Support</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="maps">
+                        <ul class="nav nav-collapse">
+                        </ul>
+                    </div>
+                </li>
+                <!--                    <li class="nav-item">
+            <a data-toggle="collapse" href="#charts">
+                <i class="far fa-chart-bar"></i>
+                <p>Charts</p>
+                <span class="caret"></span>
+            </a>
+            <div class="collapse" id="charts">
+                <ul class="nav nav-collapse">
+                    <li>
+                        <a href="charts/charts.html">
+                            <span class="sub-item">Chart Js</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="charts/sparkline.html">
+                            <span class="sub-item">Sparkline</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a href="widgets.html">
+                <i class="fas fa-desktop"></i>
+                <p>Widgets</p>
+                <span class="badge badge-success">4</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a data-toggle="collapse" href="#submenu">
+                <i class="fas fa-bars"></i>
+                <p>Menu Levels</p>
+                <span class="caret"></span>
+            </a>
+            <div class="collapse" id="submenu">
+                <ul class="nav nav-collapse">
+                    <li>
+                        <a data-toggle="collapse" href="#subnav1">
+                            <span class="sub-item">Level 1</span>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="subnav1">
+                            <ul class="nav nav-collapse subnav">
+                                <li>
+                                    <a href="#">
+                                        <span class="sub-item">Level 2</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="sub-item">Level 2</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a data-toggle="collapse" href="#subnav2">
+                            <span class="sub-item">Level 1</span>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="subnav2">
+                            <ul class="nav nav-collapse subnav">
+                                <li>
+                                    <a href="#">
+                                        <span class="sub-item">Level 2</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="sub-item">Level 1</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="mx-4 mt-2">
+            <a href="http://themekita.com/atlantis-bootstrap-dashboard.html" class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i class="fa fa-heart"></i> </span>Buy Pro</a>
+        </li>
+    </ul>-->
+</div>
+    </div>
+</div>

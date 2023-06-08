@@ -1,0 +1,249 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <link rel="stylesheet" href="{% static 'app/content/local.css' %}">
+    <script>
+        function generate_data(val, l=5) {
+            let val1_decimal = val - parseInt(val);
+            let val1_remainder = l - val - val1_decimal;
+            return [val1_decimal, val1_remainder];
+        }
+    </script>
+</head>
+
+<body>
+    <div id="container2" style="min-width: 310px; margin: 0" class="border"></div>
+    <div id="container" style="min-width: 310px; margin: 0" class="border"></div>
+    <script> 
+        let val1 = 3.12
+        //let val1_decimal = val1 - parseInt(val1)
+        //let val1_remainder = 5 - val1 - val1_decimal
+        //console.log('here')
+        const [val1_decimal, val1_remainder] = generate_data(val1)
+        console.log(generate_data(val1))
+        let val2 = 2.98
+        //let val2_decimal = val2 - parseInt(val2)
+        //let val2_remainder = 5 - val2 - val2_decimal
+        const [val2_decimal, val2_remainder] = generate_data(val2)
+
+     // let color_value = ''
+     //let list_of_values_blue = [0.99, 0.01, 0.99, 0.01, 0.99, 0.01, 0.23,0.01,1,0.01,1]
+     //list_of_values_blue = list_of_values_blue.reverse()
+     //let list_of_values_green = [0.99, 0.01, 0.99, 0.01, 0.99, 0.01, 0.53,0.01,1,0.01,1]
+     //list_of_values_green = list_of_values_green.reverse()
+     // function generate_series(list_of_values, color_value){
+     //   series_value = new Array()
+  
+     //   for (value_ in list_of_values)
+     //   {
+         
+     //     console.log(list_of_values[value_])
+     //     series_value.push(value_)
+     //     let color="transparent"
+     //     let status = value_%2
+
+     //     if (status == 0)
+     //     {
+     //       color = color_value
+     //     }
+     //     let y_value = list_of_values[value_]
+     //     if (y_value == 1)
+     //     {
+     //       console.log("This is called")
+     //       color = "white"
+     //       y_value = 0.99
+     //     }
+          
+     //     let value_found = {
+     //       //name: `Stack${value_}`,
+     //       data: [ {y:y_value, color:color, margin:1}],
+      
+     //    }
+     //    console.log(value_found)
+     //    if (y_value < 0.99 && y_value != 0.01){
+     //     let remaining = 0.99 - y_value -0.01
+     //     let value_found = {
+     //      //name: `Stack_add_white`,
+     //      data: [ {y:remaining,color:"white"}],
+         
+           
+     //   }
+     //   series_value.push(value_found)
+     //   }
+     //   let value_found2 = {
+     //    //name: `Stack_add_white_demo`,
+     //    data: [ {y:0.01, color:"transparent"}],
+       
+         
+     // }
+     // series_value.push(value_found2)
+     // series_value.push(value_found)
+     //  }
+      
+        
+     //   return series_value
+
+     // }
+     // let blue_series = generate_series(list_of_values_blue, "#52B5FF")
+     // console.log(blue_series)
+     // let green_series = generate_series(list_of_values_green, "#00419B")
+     // console.log(green_series)
+      let data = {
+        xAxis: { title: { text: "Numbers" } },
+        title: { text: "Data Summaries (2019, 2020)" },
+        subtitle: { text: "Source" },
+        yAxis: { title: { text: "Numbers of" } },
+        legend: { layout: "vertical", align: "right", verticalAlign: "middle" },
+      };
+
+      let series = data["series"];
+      console.log(series);
+    Highcharts.chart('container', {
+        chart: {
+            type: 'bar',
+            height: 50,
+            spacing: [10, 0, 0, 0],
+            marginLeft: 0,
+            marginRight: 0,
+            backgroundColor: 'transparent',
+
+        },
+        title: {
+            text: '',
+        },
+        legend: {
+            enabled: false
+        },
+        credits: {
+            enabled: false
+        },
+        exporting: {
+            enabled: false,
+        },
+        xAxis: {
+            visible: true,
+            categories: ['<b>2.98<b>',
+            ],
+        },
+        yAxis: {
+            min: 0,
+            max: 10,
+            visible: false,
+            labels: {
+                overflow: 'justify'
+            },
+            gridLineColor: "yellow",
+
+            gridLineWidth: 1,
+            gridZIndex: 4,
+        },
+        tooltip: {
+    	    pointFormat: ''
+        },
+        legend: {
+            enabled: false
+        },
+        //series:green_series,
+        series: [{ data: [{ y: val1_remainder, color: "white" }] },{ data: [{ y: val1_decimal, color: "#00419B" }] }, { data: [{ y: 0.01, color: "transparent" }] }, { data: [{ y: 0.99, color: "#00419B" }] }, { data: [{ y: 0.01, color: "transparent" }] }, { data: [{ y: 0.99, color: "#00419B" }] }, { data: [{ y: 0.01, color: "transparent" }] }, { data: [{ y: 1, color: "#00419B" }] }, ],
+            plotOptions: {
+              
+              bar: {
+                groupPadding: 0,
+                pointPadding: 0,
+              
+                  dataLabels: {
+                    enabled: false,
+                    
+                    
+                  }
+                },
+                series:{
+                  stacking:'normal',
+                  groupPadding: 0,
+                  pointPadding: 0
+                }
+            },
+             
+            
+        });
+        
+     
+      Highcharts.chart('container2',{
+      chart: {
+        type: 'bar',
+        height:50,
+        spacing: [10, 0, 0, 0],
+        marginLeft: 0,
+        marginRight: 0,
+        backgroundColor:'transparent',
+       
+},
+    title: {
+    text:'',
+    },
+    legend: {
+      enabled: false
+    },
+    credits: {
+      enabled: false
+    },
+    exporting: {
+    enabled:false,
+    },
+    xAxis: {
+        visible: true,
+        categories:['<b>2.98<b>',
+        '<b>2.48</b>',
+        '<b>2.73</b>',
+        '<b>2.60</b>',
+        '<b>2.59</b>',
+        '<b>2.47</b>',
+        ],
+        endOnTick: true,
+        
+    },
+    yAxis: {
+      min:0,
+              max:10,
+        visible: false,
+    },
+    tooltip: {
+    	pointFormat: ''
+    },
+    legend: {
+        enabled: false
+    },
+    series: [{ data: [{ y: val2_remainder, color: "white" }] },{ data: [{ y: val2_decimal, color: "#52B5FF" }] }, { data: [{ y: 0.01, color: "transparent" }] }, { data: [{ y: 0.99, color: "#52B5FF" }] }, { data: [{ y: 0.01, color: "transparent" }] }, { data: [{ y: 0.99, color: "#52B5FF" }] }, { data: [{ y: 0.01, color: "transparent" }] }, { data: [{ y: 1, color: "#52B5FF" }] }, ],
+    plotOptions: {
+      bar: {
+        groupPadding: 0,
+        pointPadding: 0,
+      
+          dataLabels: {
+            enabled: false,
+           
+          },
+      },
+      series:{
+        stacking:"normal",
+        groupPadding: 0,
+        pointPadding: 0
+
+      }
+    },
+     
+    
+});
+
+      
+      
+    </script>
+</body>
+</html>

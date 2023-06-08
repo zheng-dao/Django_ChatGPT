@@ -1,0 +1,204 @@
+{% load static %}
+{% if messages %}
+    {% for msg in messages %}
+<div class="alert alert-{{msg.tags}} alert-dismissible fade show mb-0" role="alert" id="alert-msg">
+    <strong>{{msg|safe}}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+    {% endfor %}
+{% endif %}
+
+<div class="row">
+    <div class="col-md-6 col-lg-6">
+        <p>{% if request.GET.select == "select_all" %}<a href="{% url 'charter' %}?cu_id=68490&select=deselect_all">Deselect all</a>{% else %}<a href="{% url 'charter' %}?cu_id=68490&select=select_all">Select all</a>{% endif %}</p>
+    </div>
+</div>
+
+<form id="charter-form" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="chkbox" id="states_chkbox">
+    <div class="card-action top_btn_card">
+        <button id="getselectedpoints_top" class="btn btn-success btn-round" type="submit">Continue</button>
+    </div>
+
+    <div id="container" style="min-width: 310px; max-width: 700px; height:600px; margin: 0 auto">
+
+    </div>
+    <div class="card-action">
+        <button id="getselectedpoints_bottom" class="btn btn-success btn-round" type="submit">Continue</button>
+    </div>
+
+</form>
+
+
+<script>
+    stts = "{{selected_states}}";
+    temp_str = stts.split(",");
+    selectedState = new Array();
+    temp_str.forEach(function(d){
+        selectedState.push("us-"+d.toLowerCase())
+    });
+    // console.log(temp_arr)
+    // selectedState = temp_arr
+    // stts.forEach(function(d) {
+    //     console.log(d)
+    // })
+    // selected_states = "{{selected_states}}";
+    // selected_states.forEach(function(data) {
+    //     data.split("-")[1]
+    // })
+    // var selectedState = ['us-nm','us-ne'];
+    (async () => {
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+        });
+        let cu_id = params.cu_id;
+        const topology = await fetch('{% static "app/assets/js/plugin/highcharts/maps/mapdata/countries/us" %}/us-all.topo.json').then(response => response.json());
+
+        // Prepare demo data. The data is joined to map using value of 'hc-key'
+        // property by default. See API docs for 'joinBy' for more info on linking
+        // data and map.
+        // console.log('selected_states',selected_states)
+        // var selected_str = [{{selected_str1}}]
+
+
+
+
+
+
+
+                    const data = [
+                ['us-ma', 10], ['us-wa', 11], ['us-ca', 12], ['us-or', 13],
+                ['us-wi', 14], ['us-me', 15], ['us-mi', 16], ['us-nv', 17],
+                ['us-nm', 18], ['us-co', 19], ['us-wy', 20], ['us-ks', 21],
+                ['us-ne', 22], ['us-ok', 23], ['us-mo', 24], ['us-il', 25],
+                ['us-in', 26], ['us-vt', 27], ['us-ar', 28], ['us-tx', 29],
+                ['us-ri', 30], ['us-al', 31], ['us-ms', 32], ['us-nc', 33],
+                ['us-va', 34], ['us-ia', 35], ['us-md', 36], ['us-de', 37],
+                ['us-pa', 38], ['us-nj', 39], ['us-ny', 40], ['us-id', 41],
+                ['us-sd', 42], ['us-ct', 43], ['us-nh', 44], ['us-ky', 45],
+                ['us-oh', 46], ['us-tn', 47], ['us-wv', 48], ['us-dc', 49],
+                ['us-la', 50], ['us-fl', 51], ['us-ga', 52], ['us-sc', 53],
+                ['us-mn', 54], ['us-mt', 55], ['us-nd', 56], ['us-az', 57],
+                ['us-ut', 58], ['us-hi', 59], ['us-ak', 60]
+            ];
+
+
+
+
+            // Create the chart
+            const chart = Highcharts.mapChart('container', {
+                chart: {
+                    map: topology,
+                    borderWidth: 0,
+                    marginRight: 20,
+                    backgroundColor: null,
+                },
+                credits: {
+                    enabled:false,
+                },
+                exporting: {
+                    enabled: false,
+                },
+                title: {
+                    text: null,
+                    style: { color: '#FFF' },
+                },
+
+
+                mapNavigation: {
+                    enabled: true,
+                    buttonOptions: {
+                        verticalAlign: 'bottom'
+                    }
+                },
+
+                colorAxis: {
+                    min: 0,
+                    max: 25,
+                    tickInterval: 5,
+                    stops: [[0, '#b8d0e4'], [0.65, '#b8d0e4'], [1, '#b8d0e4']],
+                    labels: {
+                        format: '{value}%'
+                    }
+                },
+                plotOptions:{
+                    series:{
+                        borderColor: '#000000',
+                        point:{
+                            events:{
+                                click: function(){
+                                    console.log(this.selected);
+                                    this.selected = !this.selected;
+                                    // alert(this.name);
+                                },
+                            }
+                        }
+                    }
+                },
+
+                series: [{
+                    data: data,
+                    name: 'Random data',
+                    states: {
+                        hover: {
+                            color: 'rgb(69,160,227)'
+                        },
+                        select:{
+                            color:'rgb(69,160,227)'
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}'
+                    },
+                    shadow: false
+                }],
+                legend: {
+                    enabled: false
+                }
+            });
+            chart.series[0].points.forEach(o=>{
+            if(selectedState.includes(o['hc-key'])){
+                console.log('oo', o)
+            o.select(true,true);
+            }
+            });
+
+        function onclick_func(chart) {
+            const selectedPointsLength = chart.getSelectedPoints().length;
+            if(chart.getSelectedPoints().length > 0){
+                var selectedPoints = chart.getSelectedPoints();
+                var filterData = [];
+                selectedPoints.forEach(function(index,points,array){
+                    filterData.push(index["hc-key"].split('-')[1].toUpperCase());
+
+                });
+                jQuery("#states_chkbox").val(filterData.sort())
+                console.log('filterData', filterData)
+                jQuery("#charter-form").submit()
+
+            }
+        }
+        const button_top = document.getElementById('getselectedpoints_top');
+        const button_bottom = document.getElementById('getselectedpoints_bottom');
+
+        // When the button is clicked
+        button_top.onclick = () => {
+            onclick_func(chart)
+        };
+
+        button_bottom.onclick = () => {
+            onclick_func(chart)
+        };
+
+
+
+
+
+
+    })();
+
+</script>

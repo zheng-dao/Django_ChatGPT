@@ -1,0 +1,324 @@
+{% extends "admin/base_atlantis.html" %}
+{% load static %}
+{% block startheadscripts %}
+    <style>
+        .swal-modal {
+            background-color:#1f283e;
+        }
+        .swal-text {
+            color: white ;
+        }   
+        .swal-title {
+            color: white ;
+        } 
+    </style>
+{% endblock %}
+{% block panel-header %}
+<div class="page-navs bg-black py-3 pr-2">
+    <div class="card-title fw-bold">Segments</div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+{% include 'admin/modal.html'  %}
+{% if companies %}
+{% include 'admin/companies.html' with companies=companies view_name='segments' %}
+{% else %}
+<div class="page-inner page-inner-fill">
+    {% comment %}<input type="hidden" id="kg_list" value="{{ kg_list }}">{% endcomment %}
+    <div id="myKanban" class="board">
+        {% if messages %}
+            {% for msg in messages %}
+                <div class="alert alert-{{msg.tags}} alert-dismissible fade show mb-0" role="alert" id="alert-msg">
+                    <strong>{{msg|safe}}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-top:0 !important;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+            <br/>
+        {% endif %}        
+        {% for i in gs_data %}
+        <div data-id="{{ i.board_title }}" class="kanban-board">
+            <header class="kanban-board-header">
+                <div class="kanban-title-board">{{ i.board_label }}</div>
+                <div class="kanban-title-button d-inline-flex">
+                    {% if not i.board_title == "suggested_segments" %}
+                        <button class="mr-2 add_btn"><i class="fas fa-plus-circle"></i></button>
+                    {% endif %}
+                    <!-- <div class="dropdown dropdown-kanban">
+                        <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-options-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Edit</a>
+                            <a class="dropdown-item" href="#">Move</a>
+                            <a class="dropdown-item" href="#">Duplicate</a>
+                            <a class="dropdown-item" href="#">Trash</a>
+                        </div>
+                    </div> -->
+                </div>
+            </header>
+            <main class="kanban-drag" title="{{ i.board_title }}">
+                {% for rec in i.segments %}
+                <div class="kanban-item">
+                    <!--<div class="kanban-image">
+        <img src="{% static 'app/assets/img/examples/product8.jpg' %}" class="img-fluid">
+    </div>-->
+                    <a href="#" class="kanban-title">{{ rec.setting_value }}</a>
+                    {% if not i.board_title == "suggested_segments" %}
+                    <div class="kanban-edit remove_segment" segment_id="{{ rec.id }}">
+                        <i class="fa fa-trash"></i>
+                    </div>
+                    {% endif %}
+                    <!--<div class="kanban-badges">
+        <div class="kanban-badge">
+            <i class="far fa-comment-alt"></i>
+            <span class="badge-text">2</span>
+        </div>
+        <div class="kanban-badge">
+            <i class="fas fa-paperclip"></i>
+            <span class="badge-text">10</span>
+        </div>
+    </div>-->
+                    <div class="kanban-edit">
+                        <i class="fa fa-pencil-alt"></i>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </main>
+        </div>
+        {% empty %}
+            <p>No Segment Exist.</p>
+        {% endfor %}
+
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+{% block endscripts %}
+<script>
+    jQuery(document).ready(function() {
+    // kg_list = JSON.parse(jQuery("#kg_list").val());
+    
+    jQuery("#myKanban.board").on('click', '.add_btn', function() {
+        existing_segments = []
+        non_existing_segments = []
+        boards = jQuery(".kanban-board").children()
+        jQuery("#setting_name").val(jQuery(this).parent().parent().parent().attr('data-id'))
+        jQuery(".kanban-board").each(function(e) {
+            if(jQuery(this).attr("data-id") == "suggested_segments") {
+                if(jQuery(this).find(".kanban-title").length > 0) {
+                    jQuery("select#selected").empty()
+                    jQuery("select#selected").html("<option value=''>Select Segment</option>")
+                    jQuery(this).find(".kanban-title").each(function() {
+                        jQuery("select#selected").append("<option value='"+jQuery(this).text()+"'>"+jQuery(this).text()+"</option>")
+                    })
+                }
+                else {
+                    alert('No Segment Exist.')
+                    return false;
+                }
+                jQuery("#modal").modal('show');
+                
+            }
+        })
+
+        return false;
+        // existing_segments_obj = jQuery(this).parent().parent().next().children().find('.kanban-title')
+        // console.log('existing_segments_obj', existing_segments_obj)
+        
+        // existing_segments_obj.each(function(ind, value) {
+        //     existing_segments.push(jQuery(value).text())
+        // })
+
+        // kg_list.forEach(function(value, ind) {
+        //     if (!existing_segments.includes(value)) {
+        //         non_existing_segments.push(value)
+        //     }
+        // })    
+
+        // console.log('existing_segments', existing_segments)
+        // console.log('non_existing_segments', non_existing_segments)
+        
+        // if(non_existing_segments.length > 0) {
+        //     jQuery("select#selected").empty()
+        //     jQuery("select#selected").html("<option value=''>Select Segment</option>")
+        //     sorted_non_existing_segments = non_existing_segments.sort()
+        //     sorted_non_existing_segments.forEach(function(value) {
+        //         jQuery("select#selected").append("<option value='"+value+"'>"+value+"</option>")
+        //     })
+        // }
+        // else {
+        //     alert('No Segment Exist.')
+        //     return false;
+        // }
+        
+        // jQuery("#setting_name").val(jQuery(this).parent().parent().parent().attr('data-id'));
+        // jQuery("#modal").modal('show');
+        
+    })
+
+    jQuery("#myKanban.board .kanban-item").on('click', '.remove_segment', function() {
+        segment_id = jQuery(this).attr("segment_id")
+        cu_id = "{{ request.GET.cu_id }}";
+        swal({
+            title: 'Delete Confirmation',
+            text: "Please confirm that you want to delete this segment.",
+            type: 'warning',
+            buttons:{
+                confirm: {
+                    text : 'Yes, Delete',
+                    className : 'btn btn-danger',
+                },
+                cancel: {
+                    text: 'No, Cancel',
+                    visible: true,
+                    className: 'btn btn-gray'
+                }
+            }
+        }).then((Delete) => {
+            if (Delete) {
+                redirect_url = "{% url 'segments' %}"+"/delete/"+segment_id+"?cu_id="+cu_id
+                window.location.href = window.location.origin+redirect_url
+            } else {
+                swal.close();
+            }
+        });
+    }); 
+    return false;
+});
+</script>
+<script>
+    'use strict';
+
+    // Kanban Board Demo
+    // =============================================================
+
+    var boardDemo = {
+        init: function init() {
+
+            this.bindUIActions();
+        },
+        bindUIActions: function bindUIActions() {
+            // event handlers
+            this.handleBoardStyle();
+            this.handleSortable();
+        },
+        byId: function byId(id) {
+            return document.getElementById(id);
+        },
+        handleBoardStyle: function handleBoardStyle() {
+            $(document).on('mouseenter mouseleave', '.kanban-board-header', function (e) {
+                var isHover = e.type === 'mouseenter';
+                $(this).parent().toggleClass('hover', isHover);
+            });
+        },
+        handleSortable: function handleSortable() {
+            var board = this.byId('myKanban');
+            // Multi groups
+            Sortable.create(board, {
+                animation: 150,
+                draggable: '.kanban-board',
+                handle: '.kanban-board-header',
+                filter: '.ignore-sort',
+                forceFallback: true
+            });[].forEach.call(board.querySelectorAll('.kanban-drag'), function (el, ind) {
+                // console.log('count', count)
+                Sortable.create(el, {
+                    group: 'tasks',
+                    animation: 150,
+                    filter: '.ignore-sort',
+                    forceFallback: true,
+					// Called by any change to the list (add / update / remove)
+					onSort: function (/**Event*/evt) {
+
+                        // ind == 0 because we need to perform backend operations in the first board. ind==1 for second board operations.
+                        if(ind == 0){
+                            var dragging_type;
+                            var oldIndex, newIndex, segment_name;
+                            console.log('index', ind)
+                            console.log(evt)
+                            console.log(evt.from.attributes[1].nodeValue)
+                            // console.log(evt.to.attributes[1].nodeValue)
+                            if(evt.from.attributes[1].nodeValue == "suggested_segments" && evt.to.attributes[1].nodeValue == "default") {
+                                // insert new segment
+                                dragging_type = "right_to_left"
+                                segment_name = evt.item.children[0].text
+                            }
+                            else if(evt.from.attributes[1].nodeValue == "default" && evt.to.attributes[1].nodeValue == "suggested_segments") {
+                                // delete segment
+                                dragging_type = "left_to_right"
+                                segment_name = evt.item.children[0].text
+
+                            }
+                            else if(evt.from.attributes[1].nodeValue == "default" && evt.to.attributes[1].nodeValue == "default"){
+                                dragging_type = "vertical"
+                            }
+                            else if(evt.from.attributes[1].nodeValue == "suggested_segments" && evt.to.attributes[1].nodeValue == "suggested_segments"){
+                                // not allowed
+                                return false;
+                            }
+                            console.log('after')
+                            console.log(dragging_type)
+                            oldIndex = evt.oldIndex
+                            newIndex = evt.newIndex
+                            console.log('oldIndex', oldIndex)
+                            console.log('newIndex', newIndex)
+                            // console.log(evt.from.attributes.getNamedItem('title').value)
+
+                            jQuery.ajax({
+                                type: 'GET',
+                                url: window.location.origin+'/ai-settings/update-segments-order-ajax?cu_id={{ cu_id }}',
+                                data: {"oldIndex": oldIndex, "newIndex": newIndex, "board_title":"default", "dragging_type": dragging_type, "segment_name": segment_name},
+                                success: function(response) {
+                                    if(response.status == 1) {
+                                        console.log('dragging_type', dragging_type)
+                                        
+        jQuery(".kanban-board").each(function(e) {
+            if(dragging_type == "right_to_left") {
+            if(jQuery(this).attr("data-id") == "default") {
+                
+                jQuery(this).find(".kanban-title").each(function() {
+                    if(jQuery(this).text() == segment_name) {
+                        console.log('ttm', jQuery(this).parent())
+                        jQuery(this).parent().append('<div class="kanban-edit remove_segment" segment_id="'+response.new_segment_id+'"><i class="fa fa-trash"></i></div>')
+                    }
+                })
+                
+            }
+        }
+        else if(dragging_type == "left_to_right") {
+            if(jQuery(this).attr("data-id") == "suggested_segments") {
+                
+                jQuery(this).find(".kanban-title").each(function() {
+                    if(jQuery(this).text() == segment_name) {
+                        console.log('ttm', jQuery(this).parent())
+                        jQuery(this).parent().find(".kanban-edit.remove_segment").remove()
+                    }
+                })
+                
+            }
+        }
+        })
+                                        
+                                        
+                                    }
+                                    if(response.status == 0) {
+                                        console.log('invalid board label')
+                                    }
+                                }
+                            });
+                        }
+
+
+					}
+                });
+            });
+        }
+    };
+
+    boardDemo.init();
+</script>
+{% endblock %}

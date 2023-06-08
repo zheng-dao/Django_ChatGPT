@@ -1,0 +1,30 @@
+<div class="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title">Companies</h4>
+                    </div>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-group">
+                                {% for co in companies %}
+                                {% if 'choose-company' in request.path %}
+                                <p><a dd="{{ co.code }}" href="{{ request.META.HTTP_REFERER }}?cu_id={{ co.number }}">{{ co.name }}</a></p>
+                                {% else %}
+                                <p><a dd="{{ co.code }}" href="{{ request.path }}?cu_id={{ co.number }}">{{ co.name }}</a></p>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,169 @@
+{% load static %}
+<div class="row">
+    <div class="col-md-6 col-lg-6">
+        <p>{% if request.GET.select == "select_all" %}<a href="{% url 'charter' %}?cu_id=68490&state={{request.GET.state}}&select=deselect_all">Deselect all</a>{% else %}<a href="{% url 'charter' %}?cu_id=68490&state={{request.GET.state}}&select=select_all">Select all</a>{% endif %}</p>
+    </div>
+</div>
+<form id="charter-form" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="chkbox" id="counties_chkbox">
+    <div class="card-action top_btn_card">
+        <button id="getselectedpoints_top" class="btn btn-success btn-round" type="submit">Continue</button>
+    </div>
+    <div id="container" style="min-width: 310px; max-width: 700px; height:600px; margin: 0 auto"></div>
+
+    <div class="card-action">
+        <button id="getselectedpoints_bottom" class="btn btn-success btn-round" type="submit">Continue</button>
+    </div>
+</form>
+
+<script>
+   sst = "{{ selected_counties }}";
+   selectedCounty = sst.split(",");
+   console.log('selectedCounty23', selectedCounty);
+    (async () => {
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        let cu_id = params.cu_id;
+        let state = params.state.toLowerCase();
+        const topology = await fetch(
+            '{% static "app/assets/js/plugin/highcharts/maps/mapdata/countries/us" %}/us-' + state + '-all.topo.json'
+        ).then(response => response.json());
+
+        // Prepare demo data. The data is joined to map using value of 'hc-key'
+        // property by default. See API docs for 'joinBy' for more info on linking
+        // data and map.
+
+        Highcharts.getJSON(
+            '{% static "app/assets/js/plugin/highcharts/maps/mapdata/us-counties-unemployment.json" %}',
+            //'https://cdn.jsdelivr.net/gh/highcharts/highcharts@c116b6fa6948448/samples/data/us-counties-unemployment.json',
+            function (data) {
+
+                var selectedState = [state]
+                // var selectedCounty = ['Taylor'];
+                // var selectedState = ['fl'];
+                // var selectedCounty = j
+                var filterData = [];
+                data.forEach(o=>{
+                    console.log(o)
+                    temp_arr = []
+                    // filterData.push(o);
+                    if(selectedState.includes(o.code.split("-")[1])){
+                        filterData.push([o.code, o.value]);
+                    }
+
+
+                });
+        console.log('filterData', filterData)
+
+
+        chart = Highcharts.mapChart('container', {
+        chart: {
+            map: topology,
+            borderWidth: 0,
+            marginRight: 20,
+            backgroundColor: null,
+        },
+        credits: {
+                enabled:false,
+        },
+        exporting: {
+            enabled: false,
+        },
+
+        title: {
+                text: null,
+                style: { color: '#FFF' },
+            },
+
+        mapNavigation: {
+            enabled: true,
+            buttonOptions: {
+                verticalAlign: 'bottom'
+            }
+        },
+
+        colorAxis: {
+                min: 0,
+                max: 25,
+                tickInterval: 5,
+                stops: [[0, '#b8d0e4'], [0.65, '#b8d0e4'], [1, '#b8d0e4']],
+                labels: {
+                    format: '{value}%'
+                }
+        },
+        plotOptions:{
+            series:{
+                borderColor: '#000000',
+                point:{
+                    events:{
+                        click: function(){
+                            console.log(this.selected);
+                            this.selected = !this.selected;
+                            // alert(this.name);
+                        },
+                    }
+                }
+            }
+        },
+
+        series: [{
+            data: filterData,
+            name: 'Random data',
+            states: {
+                hover: {
+                    color: 'rgb(69,160,227)'
+                },
+                select:{
+                    color:'rgb(69,160,227)'
+                }
+            },
+            dataLabels: {
+                enabled: false,
+                format: '{point.name}'
+            },
+
+        }],
+        legend: {
+            enabled: false
+        }
+    });
+    chart.series[0].points.forEach(o=>{
+        if(selectedCounty.includes(o['name'])){
+        o.select(true,true);
+        }
+    });
+
+
+    function onclick_func() {
+        const selectedPointsLength = chart.getSelectedPoints().length;
+            if(chart.getSelectedPoints().length > 0){
+                var selectedPoints = chart.getSelectedPoints();
+                var filterData = [];
+                selectedPoints.forEach(function(index,points,array){
+                    filterData.push(index["name"]);
+
+                });
+                // window.location.href = "/county-map?counties="+filterData;
+                jQuery("#counties_chkbox").val(filterData)
+                jQuery("#charter-form").submit()
+            }
+    }
+    // Create the chart
+    const button_top = document.getElementById('getselectedpoints_top');
+    const button_bottom = document.getElementById('getselectedpoints_bottom');
+
+        // When the button is clicked
+        button_top.onclick = () => {
+            onclick_func(chart)
+        };
+
+        button_bottom.onclick = () => {
+            onclick_func(chart)
+        };
+
+    })
+
+})();
+</script>

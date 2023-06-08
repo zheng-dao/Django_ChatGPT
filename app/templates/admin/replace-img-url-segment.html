@@ -1,0 +1,68 @@
+{% extends "admin/base_atlantis.html" %}
+{% load static %}
+{% block endheadscripts %}
+<style>
+    .alert-danger {
+        color: #721c24 !important;
+        background-color: #f8d7da !important;
+        border-color: #f5c6cb !important;
+    }
+    form .form-check [type="checkbox"] + .form-check-sign {
+	color: #fff !important;
+}
+</style>
+{% endblock endheadscripts %}
+{% block panel-header %}
+<div class="page-navs bg-black py-3 pr-2">
+    <div class="card-title fw-bold">
+        Replace Image URL
+    </div>
+</div>
+{% endblock %}
+{% block panel-inner %}
+<div class="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title">Which image URL do you want to replace?</h4>
+                    </div>
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        {% if message %}
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <div class="alert alert-danger">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                {% for img_path in imgs_path_arr %}
+                                <div class="form-check">
+                                    <label class="form-radio-label">
+                                        <input class="form-radio-input" type="radio" name="img_path_radio" value="{{ img_path }}" {% if forloop.first %}checked{% endif %}>
+                                        <span class="form-radio-sign">{{ img_path }}</span>
+                                    </label>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>                    
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success btn-round" type="submit">Continue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block endscripts %}
+{% endblock %}

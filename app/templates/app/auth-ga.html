@@ -1,0 +1,67 @@
+﻿{% extends "app/wp-auth-charts.html" %}
+{% load static %}
+        {% block title %}Google Analytics Benchmarks for XYZ Credit Union{% endblock %}
+        {% block chart1 %}
+        <section class="hero finalytics" style="height:80% !important;padding-top:0px !important;">
+
+            <div class="container">
+                <div class="row middle-xs">
+                    <div class="col-12 col-md-6">
+                        <div
+                              id="container1"
+                              style="min-width: 310px; height: 400px; margin: 0 auto"
+                              class="border">
+                        </div>
+                        <script>
+                            column.title.text = 'Chart 1'
+                            renderChart('container1', column)
+                        </script>
+                    </div>
+                    <div class="col-12 col-md-6 center-xs">
+                        <div
+                              id="container1b"
+                              style="min-width: 310px; height: 400px; margin: 0 auto"
+                              class="border">
+
+                        </div>
+                        <script>
+                            combo.title.text = 'Chart 1b'
+                            renderChart('container1b', combo)
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endblock %}
+        {% block chart2 %}
+        <section class="hero finalytics">
+
+            <div class="container">
+                <div class="row middle-xs">
+                    <div class="col-12 col-md-6">
+                        <div
+                              id="container2"
+                              style="min-width: 310px; height: 400px; margin: 0 auto"
+                              class="border">
+                        </div>
+                        <script>
+                            column.chart['type'] = 'line'
+                            column.title.text = 'Chart 2'
+                            renderChart('container2', column)
+                        </script>
+                    </div>
+                    <div class="col-12 col-md-6 center-xs">
+                        <div
+                              id="container2b"
+                              style="min-width: 310px; height: 400px; margin: 0 auto"
+                              class="border">
+
+                        </div>
+                        <script>
+                            renderChart('container2b', pie)
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endblock %}

@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <link rel="stylesheet" href="/static/app/content/local.css">
+
+  </head>
+
+  <body>
+    <div
+      id="container"
+      style="min-width: 310px; height: 400px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+      let data = {
+        xAxis: { title: { text: "Numbers" } },
+        title: { text: "Data Summaries (2019, 2020)" },
+        subtitle: { text: "Source" },
+        yAxis: { title: { text: "Numbers of" } },
+        legend: { layout: "vertical", align: "right", verticalAlign: "middle" },
+      };
+
+      let series = data["series"];
+      console.log(series);
+        Highcharts.chart("container", {
+            chart: {
+                type: "column",
+                backgroundColor: 'transparent',
+                scrollablePlotArea: {
+                    minWidth: 0,
+                },
+                //            styledMode: true,
+            },
+
+            title: {
+                text: "NCUA Data Series: XYZ Credit Union",
+                style: {
+                    color: "#02429b",
+                },
+            },
+            /*
+            subtitle: {
+                text: 'Source: Google Analytics'
+            },
+            */
+            xAxis: {
+                // one week
+                labels: {
+                    style: {
+                        color: "#434343",
+                    },
+                },
+
+                categories: [
+                    "2019 Q1",
+                    "2019 Q2",
+                    "2019 Q3",
+                    "2019 Q4",
+                    "2020 Q1",
+                    "2019 Q1",
+                    "2019 Q2",
+                    "2019 Q3",
+                    "2019 Q4",
+                    "2020 Q1",
+                    "2019 Q1",
+                    "2019 Q2",
+                    "2019 Q3",
+                    "2019 Q4",
+                    "2020 Q1",
+                    "2019 Q1",
+                    "2019 Q2",
+                    "2019 Q3",
+                    "2019 Q4",
+                    "2020 Q1",
+                    "2019 Q1",
+                    "2019 Q2",
+                    "2019 Q3",
+                    "2019 Q4",
+                    "2020 Q1",
+                ],
+                gridLineColor: "transparent",
+                gridTextColor: "#ffffff",
+                lineColor: '#434343',
+                lineWidth: 3,
+                tickColor: "transparent",
+                showEmpty: false,
+                gridLineWidth: 0,
+            },
+
+            yAxis: {
+                // left y axis
+                title: {
+                    text: null,
+                },
+                /*
+                  labels: {
+                      align: 'left',
+                      x: 3,
+                      y: 16,
+                      format: '{value:.,0f}'
+                  },
+                  */
+                labels: {
+                    style: {
+                        color: "#434343",
+                    },
+                },
+                gridLineColor: "#fff",
+                gridTextColor: "#ffffff",
+                gridLineWidth: 1,
+                showFirstLabel: false,
+                lineColor: '#434343',
+                lineWidth: 3,
+            } /*{ // right y axis
+            linkedTo: 0,
+            gridLineWidth: 1,
+            gridLineColor: '#FFFFFF',
+            lineColor:'#FFFFFF',
+            opposite: true,
+            title: {
+                text: null
+            },
+            labels: {
+                align: 'right',
+                x: -3,
+                y: 16,
+            },
+            showFirstLabel: false
+        }*/,
+
+            /*legend: {
+                align: 'left',
+                verticalAlign: 'top',
+                borderWidth: 0
+            },
+            */
+            tooltip: {
+                shared: true,
+                crosshairs: true,
+            },
+            /*plotOptions: {
+                series: {
+                    cursor: 'pointer',
+                    point: {
+                        events: {
+                            click: function (e) {
+                                hs.htmlExpand(null, {
+                                    pageOrigin: {
+                                        x: e.pageX || e.clientX,
+                                        y: e.pageY || e.clientY
+                                    },
+                                    headingText: this.series.name,
+                                    maincontentText: Highcharts.dateFormat('%A, %b %e, %Y', this.x) + ':<br/> ' +
+                                        this.y + ' sessions',
+                                    width: 200
+                                });
+                            }
+                        }
+                    },
+                    marker: {
+                        lineWidth: 1
+                    }
+                }
+            },
+            */
+            plotOptions: {
+                series: {
+                    pointPadding: 0,
+                    // groupPadding: 0,
+                    borderWidth: 0,
+                    //shadow: false,
+                    // pointWidth: 15,
+                },
+            },
+            credits: {
+                enabled:false,
+            },
+        series: [
+          {
+            data: [1258.0, 1270.0, 1277.0, 1283.0, 1280.0],
+            name: "total number of members",
+            color: {
+              linearGradient: {
+                x1: 0,
+                x2: 0,
+                y1: 0,
+                y2: 1,
+              },
+              stops: [
+                [0, "#209af1"],
+                [1, "#209af1"],
+              ],
+            },
+          },
+          {
+            data: [2258.0, 2270.0, 2277.0, 2283.0, 2280.0],
+            name: "total outstanding loans",
+            color: {
+              linearGradient: {
+                x1: 0,
+                x2: 0,
+                y1: 0,
+                y2: 1,
+              },
+              stops: [
+                [0, "#84c586"],
+                [1, "#84c586"],
+              ],
+            },
+          },
+          {
+            data: [7285.0, 7096.0, 8041.0, 4200.0, 7039.0],
+            name: "total shares and deposits",
+            color: {
+              linearGradient: {
+                x1: 0,
+                x2: 0,
+                y1: 0,
+                y2: 1,
+              },
+              stops: [
+                [0, "#00429b"],
+                [1, "#00429b"],
+              ],
+            },
+          },
+          {
+            data: [881.0, 901.0, 913.0, 925.0, 914.0],
+            name: "total number of loans and leases",
+            color: {
+              linearGradient: {
+                x1: 0,
+                x2: 0,
+                y1: 0,
+                y2: 1,
+              },
+              stops: [
+                [0, "#7793db"],
+                [1, "#7793db"],
+              ],
+            },
+          },
+          {
+            data: [1142.0, 6965.0, 1951.0, 2506.0, 1646.0],
+            name: "total amount of loans and leases",
+            color: {
+              linearGradient: {
+                x1: 0,
+                x2: 0,
+                y1: 0,
+                y2: 1,
+              },
+              stops: [
+                [0, "#a8cfe5"],
+                [1, "#a8cfe5"],
+              ],
+            },
+          },
+          {
+            data: [5917.0, 9271.0, 4542.0, 2638.0, 2746.0],
+            name: "total assets (liabilities, deposits, etc)",
+            color: {
+              linearGradient: {
+                x1: 0,
+                x2: 0,
+                y1: 0,
+                y2: 1,
+              },
+              stops: [
+                [0, "#7497aa"],
+                [1, "#7497aa"],
+              ],
+            },
+          },
+        ],
+      });
+    </script>
+  </body>
+</html>

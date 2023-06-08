@@ -1,0 +1,331 @@
+[
+  {
+    "siteid": "35087",
+    "name": "103rd Street",
+    "lat": 30.248904,
+    "lon": -81.776601,
+    "state": "FL"
+  },
+  {
+    "siteid": "35092",
+    "name": "Arlington",
+    "lat": 30.313119,
+    "lon": -81.575783,
+    "state": "FL"
+  },
+  {
+    "siteid": "35115",
+    "name": "Beaches & 295E",
+    "lat": 30.286231,
+    "lon": -81.517395,
+    "state": "FL"
+  },
+  {
+    "siteid": "35155",
+    "name": "Eagle Harbor",
+    "lat": 30.104392,
+    "lon": -81.704847,
+    "state": "FL"
+  },
+  {
+    "siteid": "35162",
+    "name": "Fernandina Beach",
+    "lat": 30.64202,
+    "lon": -81.45563,
+    "state": "FL"
+  },
+  {
+    "siteid": "35181",
+    "name": "Green Cove Springs",
+    "lat": 29.999,
+    "lon": -81.68249,
+    "state": "FL"
+  },
+  {
+    "siteid": "35422",
+    "name": "Lake City",
+    "lat": 30.180106,
+    "lon": -82.66479,
+    "state": "FL"
+  },
+  {
+    "siteid": "35425",
+    "name": "Macclenny",
+    "lat": 30.26691,
+    "lon": -82.122669,
+    "state": "FL"
+  },
+  {
+    "siteid": "35428",
+    "name": "Mandarin",
+    "lat": 30.168441,
+    "lon": -81.629741,
+    "state": "FL"
+  },
+  {
+    "siteid": "35433",
+    "name": "Middleburg",
+    "lat": 30.059202,
+    "lon": -81.878893,
+    "state": "FL"
+  },
+  {
+    "siteid": "35457",
+    "name": "Normandy",
+    "lat": 30.295686,
+    "lon": -81.77613,
+    "state": "FL"
+  },
+  {
+    "siteid": "35461",
+    "name": "Northside",
+    "lat": 30.434261,
+    "lon": -81.674016,
+    "state": "FL"
+  },
+  {
+    "siteid": "35467",
+    "name": "Oakleaf",
+    "lat": 30.194115,
+    "lon": -81.830926,
+    "state": "FL"
+  },
+  {
+    "siteid": "35474",
+    "name": "Orange Park",
+    "lat": 30.178235,
+    "lon": -81.742578,
+    "state": "FL"
+  },
+  {
+    "siteid": "35482",
+    "name": "Orange Park Drive Thru",
+    "lat": 30.177936,
+    "lon": -81.743613,
+    "state": "FL"
+  },
+  {
+    "siteid": "35489",
+    "name": "Palatka",
+    "lat": 29.646411,
+    "lon": -81.643648,
+    "state": "FL"
+  },
+  {
+    "siteid": "35497",
+    "name": "Palm Coast",
+    "lat": 29.552769,
+    "lon": -81.250199,
+    "state": "FL"
+  },
+  {
+    "siteid": "35517",
+    "name": "Roosevelt",
+    "lat": 30.278005,
+    "lon": -81.718152,
+    "state": "FL"
+  },
+  {
+    "siteid": "35521",
+    "name": "St Augustine",
+    "lat": 29.866695,
+    "lon": -81.325293,
+    "state": "FL"
+  },
+  {
+    "siteid": "35531",
+    "name": "Vystar Service Center",
+    "lat": 30.083917,
+    "lon": -81.710979,
+    "state": "FL"
+  },
+  {
+    "siteid": "36426",
+    "name": "Southside",
+    "lat": 30.21831,
+    "lon": -81.58419,
+    "state": "FL"
+  },
+  {
+    "siteid": "36490",
+    "name": "Starke",
+    "lat": 29.93172,
+    "lon": -82.11761,
+    "state": "FL"
+  },
+  {
+    "siteid": "36532",
+    "name": "Westside Drive Thru",
+    "lat": 30.259004,
+    "lon": -81.741462,
+    "state": "FL"
+  },
+  {
+    "siteid": "36925",
+    "name": "Callahan",
+    "lat": 30.561812,
+    "lon": -81.828537,
+    "state": "FL"
+  },
+  {
+    "siteid": "36952",
+    "name": "NAS JAX",
+    "lat": 30.22866,
+    "lon": -81.69955,
+    "state": "FL"
+  },
+  {
+    "siteid": "50227",
+    "name": "Murabella",
+    "lat": 29.962231,
+    "lon": -81.486633,
+    "state": "FL"
+  },
+  {
+    "siteid": "50228",
+    "name": "CR210",
+    "lat": 30.06261,
+    "lon": -81.50547,
+    "state": "FL"
+  },
+  {
+    "siteid": "50229",
+    "name": "Oceanway",
+    "lat": 30.473803,
+    "lon": -81.629948,
+    "state": "FL"
+  },
+  {
+    "siteid": "52412",
+    "name": "Baymeadows & 295E",
+    "lat": 30.216496,
+    "lon": -81.519509,
+    "state": "FL"
+  },
+  {
+    "siteid": "52413",
+    "name": "Riverside",
+    "lat": 30.316301,
+    "lon": -81.677277,
+    "state": "FL"
+  },
+  {
+    "siteid": "52414",
+    "name": "Chaffee Pointe",
+    "lat": 30.307253,
+    "lon": -81.844299,
+    "state": "FL"
+  },
+  {
+    "siteid": "52415",
+    "name": "Ponte Vedra",
+    "lat": 30.247916,
+    "lon": -81.38843,
+    "state": "FL"
+  },
+  {
+    "siteid": "52418",
+    "name": "Nocatee",
+    "lat": 30.112201,
+    "lon": -81.419001,
+    "state": "FL"
+  },
+  {
+    "siteid": "52419",
+    "name": "Branan Field Plantation",
+    "lat": 30.106804,
+    "lon": -81.826627,
+    "state": "FL"
+  },
+  {
+    "siteid": "52421",
+    "name": "Ormond Beach",
+    "lat": 29.264125,
+    "lon": -81.108141,
+    "state": "FL"
+  },
+  {
+    "siteid": "52422",
+    "name": "St. Augustine North",
+    "lat": 29.926216,
+    "lon": -81.325851,
+    "state": "FL"
+  },
+  {
+    "siteid": "52427",
+    "name": "Orange City",
+    "lat": 28.910595,
+    "lon": -81.28579,
+    "state": "FL"
+  },
+  {
+    "siteid": "52429",
+    "name": "DeLand",
+    "lat": 29.057154,
+    "lon": -81.304102,
+    "state": "FL"
+  },
+  {
+    "siteid": "52435",
+    "name": "Ocala",
+    "lat": 29.138782,
+    "lon": -82.19613,
+    "state": "FL"
+  },
+  {
+    "siteid": "52438",
+    "name": "Gainesville Oaks",
+    "lat": 29.65959,
+    "lon": -82.396036,
+    "state": "FL"
+  },
+  {
+    "siteid": "52440",
+    "name": "San Marco",
+    "lat": 30.30861,
+    "lon": -81.655033,
+    "state": "FL"
+  },
+  {
+    "siteid": "52442",
+    "name": "Oveido",
+    "lat": 28.624557,
+    "lon": -81.207933,
+    "state": "FL"
+  },
+  {
+    "siteid": "52443",
+    "name": "Corporate Office (VyStar Tower)",
+    "lat": 30.325988,
+    "lon": -81.660052,
+    "state": "FL"
+  },
+  {
+    "siteid": "52451",
+    "name": "Gainesville 43rd",
+    "lat": 29.678729,
+    "lon": -82.38896,
+    "state": "FL"
+  },
+  {
+    "siteid": "52452",
+    "name": "Perry",
+    "lat": 30.09922,
+    "lon": -83.58407,
+    "state": "FL"
+  },
+  {
+    "siteid": "52453",
+    "name": "Steinhatchee",
+    "lat": 29.677296,
+    "lon": -83.383239,
+    "state": "FL"
+  },
+  {
+    "siteid": "52457",
+    "name": "The Villages",
+    "lat": 28.865944,
+    "lon": -82.004413,
+    "state": "FL"
+  }
+]

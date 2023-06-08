@@ -1,0 +1,650 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <link rel="stylesheet" href="{% static 'app/content/local.css' %}">
+  </head>
+
+  <body>
+    <div>
+      <div
+        id="container1"
+        style="min-width: 50%; height: 400px; margin: 0 auto"
+        class="border"
+      ></div>
+      <div
+        id="container2"
+        style="min-width: 50%; height: 400px; margin: 0 auto"
+        class="border"
+      ></div>
+      <div
+        id="container3"
+        style="min-width: 50%; height: 400px; margin: 0 auto"
+        class="border"
+      ></div>
+      <div
+        id="container4"
+        style="min-width: 50%; height: 400px; margin: 0 auto"
+        class="border"
+      ></div>
+    </div>
+    <script>
+      let container1 = {
+          chart: {
+              type: "line",
+              scrollablePlotArea: { minWidth: 0 },
+              backgroundColor: "transparent",
+          },
+        title: {
+          text: "NCUA Data Series: Line Chart Type",
+          style: { color: "#ffffff" },
+        },
+        xAxis: {
+          labels: { style: { color: "#ffffff" } },
+          gridTextColor: "#ffffff",
+          categories: [
+            "2018 Q1",
+            "2018 Q2",
+            "2018 Q3",
+            "2018 Q4",
+            "2019 Q1",
+            "2019 Q2",
+            "2019 Q3",
+            "2019 Q4",
+            "2020 Q1",
+            "2018 Q1",
+            "2018 Q2",
+            "2018 Q3",
+            "2018 Q4",
+            "2019 Q1",
+            "2019 Q2",
+            "2019 Q3",
+            "2019 Q4",
+            "2020 Q1",
+            "2018 Q1",
+            "2018 Q2",
+            "2018 Q3",
+            "2018 Q4",
+            "2019 Q1",
+            "2019 Q2",
+            "2019 Q3",
+            "2019 Q4",
+            "2020 Q1",
+          ],
+          gridLineColor: "transparent",
+          lineColor: "transparent",
+          tickColor: "transparent",
+          showEmpty: false,
+        },
+        yAxis: {
+          title: { text: null },
+          labels: { style: { color: "#00B1BC" } },
+          gridLineColor: "transparent",
+          gridTextColor: "#ffffff",
+          gridLineWidth: 0,
+          showFirstLabel: false,
+        },
+        tooltip: { shared: true, crosshairs: true },
+        series: [
+          {
+            data: [
+              1263.0,
+              1252.0,
+              1305.0,
+              1256.0,
+              1258.0,
+              1270.0,
+              1277.0,
+              1283.0,
+              1280.0,
+            ],
+            name: "total number of members",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#8B2A43"],
+                [1, "#ED2A76"],
+              ],
+            },
+          },
+          {
+            data: [],
+            name: "total outstanding loans",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#265BB6"],
+                [1, "#00B1BC"],
+              ],
+            },
+          },
+          {
+            data: [
+              6789028.0,
+              6875128.0,
+              6887360.0,
+              7020318.0,
+              7289453.0,
+              7096482.0,
+              7008041.0,
+              7044200.0,
+              7297039.0,
+            ],
+            name: "total shares and deposits",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#8B2A43"],
+                [1, "#ED2A76"],
+              ],
+            },
+          },
+          {
+            data: [
+              899.0,
+              896.0,
+              904.0,
+              893.0,
+              881.0,
+              901.0,
+              913.0,
+              925.0,
+              914.0,
+            ],
+            name: "total number of loans and leases",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#C13B00"],
+                [1, "#F2981B"],
+              ],
+            },
+          },
+          {
+            data: [
+              5992877.0,
+              6376365.0,
+              6632649.0,
+              6551042.0,
+              6591142.0,
+              7026965.0,
+              7380951.0,
+              7647506.0,
+              7434646.0,
+            ],
+            name: "total amount of loans and leases",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#063E54"],
+                [1, "#556D79"],
+              ],
+            },
+          },
+          {
+            data: [
+              7726494.0,
+              7832063.0,
+              7859081.0,
+              7991267.0,
+              8275917.0,
+              8109271.0,
+              8044542.0,
+              8342638.0,
+              8352746.0,
+            ],
+            name: "total assets (liabilities, deposits, etc)",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#6B8795"],
+                [1, "#D7E1E7"],
+              ],
+            },
+          },
+        ],
+        plotOptions: {
+          series: {
+            color: "#265BB6",
+            pointPadding: 0,
+            groupPadding: 0,
+            borderWidth: 0,
+            opacity: 25,
+          },
+        },
+        colors: [
+          "#8B2A43",
+          "#265BB6",
+          "#8B2A43",
+          "#C13B00",
+          "#063E54",
+          "#6B8795",
+        ],
+      };
+      let container2 = {
+        chart: { type: "column", scrollablePlotArea: { minWidth: 0 } },
+        title: {
+          text: "NCUA Data Series: Bar Vertical Chart Type",
+          style: { color: "#ffffff" },
+        },
+        xAxis: {
+          labels: { style: { color: "#ffffff" } },
+          gridLineColor: "transparent",
+          gridTextColor: "#ffffff",
+          categories: [
+            "2018 Q1",
+            "2018 Q2",
+            "2018 Q3",
+            "2018 Q4",
+            "2019 Q1",
+            "2019 Q2",
+            "2019 Q3",
+            "2019 Q4",
+            "2020 Q1",
+            "2018 Q1",
+            "2018 Q2",
+            "2018 Q3",
+            "2018 Q4",
+            "2019 Q1",
+            "2019 Q2",
+            "2019 Q3",
+            "2019 Q4",
+            "2020 Q1",
+          ],
+          lineColor: "transparent",
+          tickColor: "transparent",
+          showEmpty: false,
+          gridLineWidth: 0,
+        },
+        yAxis: {
+          title: { text: null },
+          labels: { style: { color: "white" } },
+          gridLineColor: "transparent",
+          gridTextColor: "#ffffff",
+          gridLineWidth: 0,
+          showFirstLabel: false,
+        },
+        tooltip: { shared: true, crosshairs: true },
+        series: [
+          {
+            data: [
+              1263.0,
+              1252.0,
+              1305.0,
+              1256.0,
+              1258.0,
+              1270.0,
+              1277.0,
+              1283.0,
+              1280.0,
+            ],
+            name: "total number of members",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#8B2A43"],
+                [1, "#ED2A76"],
+              ],
+            },
+          },
+          {
+            data: [],
+            name: "total outstanding loans",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#265BB6"],
+                [1, "#00B1BC"],
+              ],
+            },
+          },
+          {
+            data: [
+              6789028.0,
+              6875128.0,
+              6887360.0,
+              7020318.0,
+              7289453.0,
+              7096482.0,
+              7008041.0,
+              7044200.0,
+              7297039.0,
+            ],
+            name: "total shares and deposits",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#8B2A43"],
+                [1, "#ED2A76"],
+              ],
+            },
+          },
+          {
+            data: [
+              899.0,
+              896.0,
+              904.0,
+              893.0,
+              881.0,
+              901.0,
+              913.0,
+              925.0,
+              914.0,
+            ],
+            name: "total number of loans and leases",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#C13B00"],
+                [1, "#F2981B"],
+              ],
+            },
+          },
+          {
+            data: [
+              5992877.0,
+              6376365.0,
+              6632649.0,
+              6551042.0,
+              6591142.0,
+              7026965.0,
+              7380951.0,
+              7647506.0,
+              7434646.0,
+            ],
+            name: "total amount of loans and leases",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#063E54"],
+                [1, "#556D79"],
+              ],
+            },
+          },
+          {
+            data: [
+              7726494.0,
+              7832063.0,
+              7859081.0,
+              7991267.0,
+              8275917.0,
+              8109271.0,
+              8044542.0,
+              8342638.0,
+              8352746.0,
+            ],
+            name: "total assets (liabilities, deposits, etc)",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#6B8795"],
+                [1, "#D7E1E7"],
+              ],
+            },
+          },
+        ],
+        plotOptions: { series: { pointPadding: 0, borderWidth: 0 } },
+        colors: [
+          "#8B2A43",
+          "#265BB6",
+          "#8B2A43",
+          "#C13B00",
+          "#063E54",
+          "#6B8795",
+        ],
+      };
+      let container3 = {
+        chart: { type: "bar", scrollablePlotArea: { minWidth: 0 } },
+        title: {
+          text: "NCUA Data Series: Bar Horizontal Chart type",
+          style: { color: "#ffffff" },
+        },
+        xAxis: {
+          labels: { style: { color: "#ffffff" } },
+          gridLineColor: "transparent",
+          gridTextColor: "#ffffff",
+          categories: [
+            "2019 Q1",
+            "2019 Q2",
+            "2019 Q3",
+            "2019 Q4",
+            "2019 Q1",
+            "2019 Q2",
+            "2019 Q3",
+            "2019 Q4",
+            "2019 Q1",
+            "2019 Q2",
+            "2019 Q3",
+            "2019 Q4",
+            "2019 Q1",
+            "2019 Q2",
+            "2019 Q3",
+            "2019 Q4",
+            "2019 Q1",
+            "2019 Q2",
+            "2019 Q3",
+            "2019 Q4",
+          ],
+          lineColor: "transparent",
+          tickColor: "transparent",
+          showEmpty: false,
+          gridLineWidth: 0,
+        },
+        yAxis: {
+          title: { text: null },
+          labels: { style: { color: "white" } },
+          gridLineColor: "transparent",
+          gridTextColor: "#ffffff",
+          gridLineWidth: 0,
+          showFirstLabel: false,
+        },
+        tooltip: { shared: true, crosshairs: true },
+        series: [
+          {
+            data: [1258.0, 1270.0, 1277.0, 1283.0],
+            name: "total number of members",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#8B2A43"],
+                [1, "#ED2A76"],
+              ],
+            },
+          },
+          {
+            data: [],
+            name: "total outstanding loans",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#265BB6"],
+                [1, "#00B1BC"],
+              ],
+            },
+          },
+          {
+            data: [7289453.0, 7096482.0, 7008041.0, 7044200.0],
+            name: "total shares and deposits",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#8B2A43"],
+                [1, "#ED2A76"],
+              ],
+            },
+          },
+          {
+            data: [881.0, 901.0, 913.0, 925.0],
+            name: "total number of loans and leases",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#C13B00"],
+                [1, "#F2981B"],
+              ],
+            },
+          },
+          {
+            data: [6591142.0, 7026965.0, 7380951.0, 7647506.0],
+            name: "total amount of loans and leases",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#063E54"],
+                [1, "#556D79"],
+              ],
+            },
+          },
+          {
+            data: [8275917.0, 8109271.0, 8044542.0, 8342638.0],
+            name: "total assets (liabilities, deposits, etc)",
+            color: {
+              linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+              stops: [
+                [0, "#6B8795"],
+                [1, "#D7E1E7"],
+              ],
+            },
+          },
+        ],
+        plotOptions: { series: { pointPadding: 0, borderWidth: 0 } },
+        colors: [
+          "#8B2A43",
+          "#265BB6",
+          "#8B2A43",
+          "#C13B00",
+          "#063E54",
+          "#6B8795",
+        ],
+      };
+      let container4 = {
+        chart: {
+          plotShadow: false,
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+        },
+        title: { text: "NCUA Data Series: Pie Chart Type" },
+        tooltip: {
+          pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: "pointer",
+            dataLabels: {
+              enabled: true,
+              format: "<b>{point.name}%</b>: {point.percentage:.1f} %",
+              style: {
+                color:
+                  "(Highcharts.theme && Highcharts.theme.contrastTextColor) ||'black'",
+              },
+            },
+          },
+        },
+        series: [
+          {
+            type: "pie",
+            name: "",
+            data: [
+              {
+                name: "2019 Q1acct_083",
+                y: 1258.0,
+                color: {
+                  radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                  stops: [
+                    [0, "#ED2A76"],
+                    [1, "#8B2A43"],
+                  ],
+                },
+              },
+              {
+                name: "2019 Q2acct_083",
+                y: 1270.0,
+                color: {
+                  radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                  stops: [
+                    [0, "#00B1BC"],
+                    [1, "#265BB6"],
+                  ],
+                },
+              },
+              {
+                name: "2019 Q3acct_083",
+                y: 1277.0,
+                color: {
+                  radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                  stops: [
+                    [0, "#ED2A76"],
+                    [1, "#8B2A43"],
+                  ],
+                },
+              },
+              {
+                name: "2019 Q4acct_083",
+                y: 1283.0,
+                color: {
+                  radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                  stops: [
+                    [0, "#F2981B"],
+                    [1, "#C13B00"],
+                  ],
+                },
+              },
+              {
+                name: "2019 Q1acct_018",
+                y: 7289453.0,
+                color: {
+                  radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                  stops: [
+                    [0, "#556D79"],
+                    [1, "#063E54"],
+                  ],
+                },
+              },
+              {
+                name: "2019 Q2acct_018",
+                y: 7096482.0,
+                color: {
+                  radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                  stops: [
+                    [0, "#D7E1E7"],
+                    [1, "#6B8795"],
+                  ],
+                },
+              },
+
+              {
+                name: "2019 Q4acct_010",
+                y: 8342638.0,
+                color: {
+                  radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                  stops: [
+                    [0, ""],
+                    [1, ""],
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+        colors: [
+          "#8B2A43",
+          "#265BB6",
+          "#8B2A43",
+          "#C13B00",
+          "#063E54",
+          "#6B8795",
+        ],
+      };
+      Highcharts.chart("container1", container1);
+      Highcharts.chart("container2", container2);
+      Highcharts.chart("container3", container3);
+      Highcharts.chart("container4", container4);
+    </script>
+  </body>
+</html>

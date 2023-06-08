@@ -1,0 +1,164 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.highcharts.com/highcharts-more.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.6/proj4.js"></script>
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/data.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/funnel.js"></script>
+        <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+      <script src="https://code.highcharts.com/modules/dumbbell.js"></script>
+      <script src="https://code.highcharts.com/modules/sankey.js"></script>
+<script src="https://code.highcharts.com/modules/marker-clusters.js"></script>
+<script src="https://code.highcharts.com/modules/coloraxis.js"></script>
+      <script src="https://code.highcharts.com/mapdata/countries/us/us-fl-all.js"></script>
+
+    <link rel="stylesheet" href="https://code.highcharts.com/css/themes/highcharts.css">
+    <link rel="stylesheet" href="{% static 'app/content/local.css' %}">
+
+  </head>
+
+  <body>
+    <div
+      id="container"
+      style="min-width: 310px; height: 500px; margin: 0 auto"
+      class="border"
+    ></div>
+    <script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column',
+        },
+      	
+	    title: {text:null},
+        exporting:{
+            enabled:false
+        },
+        credits: {
+            enabled: false
+        },
+        xAxis: {
+            categories:['Auto Loan', 'Auto Refinance', 'Car Buying Service', 'RV Loans', 'Boat Loans'],
+            labels: {
+                align: 'center',
+                color: '#aaaaaa',
+                style: {
+                    fontSize: '12px',
+                    fontWeight: 'bold',
+                    fontFamily: 'Arial, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            visible: false,
+
+            min: 0,
+            title: {
+                text: null
+            },
+            /* make all y-axis gridlines invisible */
+            gridLineColor: 'transparent'
+        },
+        legend: {
+            enabled: false,
+        },
+        colors: [{
+                    linearGradient: {
+                      x1: 0,
+                      x2: 0,
+                      y1: 0,
+                      y2: 1
+                    },
+                    stops: [
+                        [0, '#45A0E3'],
+                        [1, '#7BCEF3']
+                    ],
+                }, {
+                    linearGradient: {
+                      x1: 0,
+                      x2: 0,
+                      y1: 0,
+                      y2: 1
+                    },
+                    stops: [
+                        [0, '#37CCC5'],
+                        [1, '#68E8E4']
+                    ],
+                },
+                {
+                    linearGradient: {
+                      x1: 0,
+                      x2: 0,
+                      y1: 0,
+                      y2: 1
+                    },
+                    stops: [
+                        [0, '#12294F'],
+                        [1, '#295387']
+                    ],
+                },
+                {
+                    linearGradient: {
+                      x1: 0,
+                      x2: 0,
+                      y1: 0,
+                      y2: 1
+                    },
+                    stops: [
+                        [0, '#058789'],
+                        [1, '#0CBCBE']
+                    ],
+                },
+                {
+                    linearGradient: {
+                      x1: 0,
+                      x2: 0,
+                      y1: 0,
+                      y2: 1
+                    },
+                    stops: [
+                        [0, '#65EBE4'],
+                        [1, '#9EF7F3']
+                    ],
+                }
+                ],
+        plotOptions: {
+            column: {colorByPoint: true},
+            series: {
+                dataLabels: {
+                    enabled: true,
+                    crop: false,
+                    overflow: 'none',
+                    format: '${y}K',
+                    //format: '{name}',
+                    style: {
+                        fontWeight: 'normal',
+                        fontSize: '30px',
+                        fontFamily: 'arial',
+                        color: '#aaaaaa',
+                    },
+
+                },
+            },
+        },
+      	
+        series: [
+            {
+                name: 'Vehicle Loans',
+                data: [227, 80, 70, 65, 55],
+            },
+        ]
+    });
+    </script>
+  </body>
+</html>
